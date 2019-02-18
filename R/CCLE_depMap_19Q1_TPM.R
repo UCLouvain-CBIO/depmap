@@ -8,8 +8,10 @@
 #' Primary Diseases 33
 #' Lineages 32
 #'
-#' @format A data frame with 1165 rows and 57821 variables:
-#' \describe{}
+#' @format A data frame with 1165 rows (cell lines) and 57821 variables (genes):
+#' \describe{
+#'      \item{Gene}{HUGO symbol (e.g. "HSPA5") and Ensembl gene ID (e.g. ENSG00000044574)}
+#' }
 #'
 #' @docType data
 #'
@@ -22,9 +24,9 @@
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
-#' (\href{https://www.ncbi.nlm.nih.gov/pubmed/28753430}{PubMed})
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
 #'
-#' @source \href{https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-rnaseq-expression-data-ccd0.12%2FCCLE_depMap_19Q1_TPM.csv}{DepMap, Broad (2019)}
+#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
 #' data(CCLE_depMap_19Q1_TPM)
