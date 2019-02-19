@@ -1,0 +1,65 @@
+---
+title: "depmap vignette"
+author: "Theo Killian"
+date: "February 19, 2019"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{depmap vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+## depmap
+
+This is a brief vignette displaying the data and functions found in the [depmap](https://depmap.org/portal/download/) package.  
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+```
+
+## Preliminaries
+
+To install R/depmap, you need to first install the package. Type (within R) 
+install.packages("qtl") (This needs to be done just once.)
+
+```{r}
+#install.packages("BiocManager")
+#BiocManager::install("tfkillian/depmap")
+```
+
+You then load the R/depmap package using the library function:
+
+```{r}
+#library("depmap")
+```
+
+This needs to be done every time you start R. (There is a way to have the 
+package loaded automatically every time, but we won’t discuss that here.)
+
+To get help on the functions and data sets in R (and in R/depmap), use help() 
+or ?. For example, to view the help file for the remove.rows.all.nas function, 
+type one of the following:
+
+```{r}
+help(remove.rows.all.nas)
+?remove.rows.all.nas
+```
+
+## Data Import
+
+```{r}
+#data("gene_effect_corrected")
+#"gene_effect_corrected"
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+#library(ggplot2)
+#y <-depmap_19Q1_cell_lines$Primary.Disease
+#pie <- coord_polar("y", start=0)
+#pie
+```
