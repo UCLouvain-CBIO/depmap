@@ -22,15 +22,15 @@ knitr::opts_chunk$set(collapse = T, comment = "#>")
 To install R/depmap, you need to first install the package. Type (within R) 
 install.packages("qtl") (This needs to be done just once.)
 
-```{r}
-#install.packages("BiocManager")
-#BiocManager::install("tfkillian/depmap")
+```{r, eval=FALSE, echo=T}
+install.packages("BiocManager")
+BiocManager::install("tfkillian/depmap")
 ```
 
 You then load the R/depmap package using the library function:
 
-```{r}
-#library("depmap")
+```{r, eval=FALSE, echo=T}
+library("depmap")
 ```
 
 This needs to be done every time you start R. (There is a way to have the 
@@ -40,16 +40,37 @@ To get help on the functions and data sets in R (and in R/depmap), use help()
 or ?. For example, to view the help file for the remove.rows.all.nas function, 
 type one of the following:
 
-```{r}
+```{r, eval=FALSE, echo=T}
 help(remove.rows.all.nas)
 ?remove.rows.all.nas
 ```
 
 ## Data Import
 
-```{r}
-#data("gene_effect_corrected")
-#"gene_effect_corrected"
+The depmap package currently contains seven datasets in .rda format 
+"CCLE_depMap_19Q1_TPM.rda"  "D2_combined_genetic_dependency_scores.rda", 
+"depmap_19Q1_mutation_calls.rda", "public_19Q1_gene_cn.rda", 
+"CCLE_RPPA_20180123.rda", "depmap_19Q1_cell_lines.rda" and 
+"gene_effect_corrected.rda""
+
+These datasets can be loaded by using *data()* after the [depmap](https://depmap.org/portal/download/) package has been loaded using *library("depmap")*.
+
+```{r, eval=FALSE, echo=T}
+data()
+"gene_effect_corrected"
+
+```
+
+The depmap data can also be downloaded directly from the [depmap](https://depmap.org/portal/download/)
+website ran by the Broad Institute
+
+```{r, eval=FALSE, echo=T}
+library("RCurl")
+# r read csv from url
+# allows you to directly download csv file from website
+depmap_19Q1_mutation_calls_download <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv")
+
+depmap_19Q1_mutation_calls_download
 
 ```
 
@@ -57,9 +78,9 @@ help(remove.rows.all.nas)
 
 You can also embed plots, for example:
 
-```{r}
-#library(ggplot2)
-#y <-depmap_19Q1_cell_lines$Primary.Disease
-#pie <- coord_polar("y", start=0)
-#pie
+```{r, eval=FALSE, echo=T}
+library(ggplot2)
+y <-depmap_19Q1_cell_lines$Primary.Disease
+pie <- coord_polar("y", start=0)
+pie
 ```
