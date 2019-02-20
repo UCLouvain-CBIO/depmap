@@ -9,35 +9,42 @@ vignette: >
   %\usepackage[utf8]{inputenc}
 ---
 
-## depmap
-
-This is a brief vignette displaying the data and functions found in the [depmap](https://depmap.org/portal/download/) package.  
-
-```{r, include = FALSE}
+```{r, include = FALSE, echo = FALSE, results = 'asis'}
 knitr::opts_chunk$set(collapse = T, comment = "#>")
+```
+
+# [depmap](https://github.com/tfkillian/depmap/)
+
+This is a brief demo vignette displaying the data and functions found in the [depmap](https://github.com/tfkillian/depmap/) package.  
+
+```{r, echo=FALSE, warning=FALSE}
+# This code chunk simply makes sure that all the libraries used here are installed, it will not be shown in the report (notice echo = FALSE).
+packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly")
+if ( length(missing_pkgs <- setdiff(packages, rownames(installed.packages()))) > 0) {
+  message("Installing missing package(s): ", paste(missing_pkgs, collapse = ", "))
+  install.packages(missing_pkgs)
+}
 ```
 
 ## Preliminaries
 
-To install R/depmap, you need to first install the package. Type (within R) 
-install.packages("qtl") (This needs to be done just once.)
+To install [depmap](https://github.com/tfkillian/depmap/), the [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) Bioconductor Project Package Manager is required. If [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
+is not already installed, it will need to be done so beforehand. Type (within R) install.packages("BiocManager") (This needs to be done just once.)
 
 ```{r, eval=FALSE, echo=T}
 install.packages("BiocManager")
 BiocManager::install("tfkillian/depmap")
 ```
 
-You then load the R/depmap package using the library function:
+The [depmap](https://github.com/tfkillian/depmap/) package can be loaded using 
+the library function:
 
 ```{r, eval=FALSE, echo=T}
 library("depmap")
 ```
 
-This needs to be done every time you start R. (There is a way to have the 
-package loaded automatically every time, but we won’t discuss that here.)
-
-To get help on the functions and data sets in R (and in R/depmap), use help() 
-or ?. For example, to view the help file for the remove.rows.all.nas function, 
+To get help on the functions and data sets in R (and in R/depmap), use *help()* 
+or *?*. For example, to view the help file for the *remove.rows.all.nas* function, 
 type one of the following:
 
 ```{r, eval=FALSE, echo=T}
@@ -47,40 +54,115 @@ help(remove.rows.all.nas)
 
 ## Data Import
 
-The depmap package currently contains seven datasets in .rda format 
-"CCLE_depMap_19Q1_TPM.rda"  "D2_combined_genetic_dependency_scores.rda", 
-"depmap_19Q1_mutation_calls.rda", "public_19Q1_gene_cn.rda", 
-"CCLE_RPPA_20180123.rda", "depmap_19Q1_cell_lines.rda" and 
-"gene_effect_corrected.rda""
+The [depmap](https://github.com/tfkillian/depmap/) package currently contains 
+seven datasets in *.rda* format:
 
-These datasets can be loaded by using *data()* after the [depmap](https://depmap.org/portal/download/) package has been loaded using *library("depmap")*.
+### "CCLE_depMap_19Q1_TPM"
+CCLE RNAseq gene expression data (log2(TPM+1)). The portal shows expression data 
+for only protein coding genes; this download is the full dataset.
+Genes 57820, Cell Lines 1165, Primary Diseases 33, Lineages 32
+
+### "CCLE_RPPA_20180123"
+CCLE Reverse Phase Protein Array (RPPA) data
+Genes 214, Cell Lines 899, Primary Diseases 28, Lineages 28
+
+### "D2_combined_genetic_dependency_scores" 
+Genetic Dependency Combined RNAi data
+Genes 17309 Cell Lines 712 Primary Diseases 30 Lineages 31
+
+### "depmap_19Q1_cell_lines" 
+Metadata about cell lines in the 19Q1 release, including mapping between DepMap 
+ID and CCLE names. 
+Genes 0, Cell Lines 1677, Primary Diseases 38, Lineages 33
+
+### "depmap_19Q1_mutation_calls" 
+Merged mutation calls (coding region, germline filtered)
+Genes 18755, Cell Lines 1601, Primary Diseases 37, Lineages 33
+
+### "gene_effect_corrected"
+Batch corrected CERES inferred gene effect matrix
+Genes 17634, Cell Lines 558, Primary Diseases 26, Lineages 28
+
+### "public_19Q1_gene_cn" 
+DepMap WES copy number data
+Genes 23299, Cell Lines 1604, Primary Diseases 38, Lineages 33
+
+These datasets can be loaded by using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package has been loaded using *library("depmap")*. Here, for example, the 
+"gene_effect_corrected" dataset is loaded.
 
 ```{r, eval=FALSE, echo=T}
-data()
-"gene_effect_corrected"
+data("gene_effect_corrected", package = "depmap")
+gene_effect_corrected
 
 ```
 
-The depmap data can also be downloaded directly from the [depmap](https://depmap.org/portal/download/)
-website ran by the Broad Institute
+The depmap datasets can also be downloaded in *.csv* format directly from the [Broad Institute](https://depmap.org/portal/download/) website.
 
 ```{r, eval=FALSE, echo=T}
-library("RCurl")
+#install.packages("RCurl")
+library("RCurl", warn.conflicts = FALSE)
+
 # r read csv from url
 # allows you to directly download csv file from website
-depmap_19Q1_mutation_calls_download <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv")
+# download depmap_19Q1_mutation_calls.csv
+depmap_19Q1_mutation_calls <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv")
+depmap_19Q1_mutation_calls
 
-depmap_19Q1_mutation_calls_download
+# download public_19Q1_gene_cn.csv
+public_19Q1_gene_cn  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-wes-cn-data-97cc.14%2Fpublic_19Q1_gene_cn.csv")
+public_19Q1_gene_cn
 
+# download DepMap-2019q1-celllines.csv
+depmap_19Q1_cell_lines  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=processed_portal_downloads%2Fdepmap-public-cell-line-metadata-183e.3%2FDepMap-2019q1-celllines.csv")
+depmap_19Q1_cell_lines
+
+# download gene_effect_corrected.csv
+gene_effect_corrected <- read.csv("https://ndownloader.figshare.com/files/14221385")
+gene_effect_corrected
+
+# download CCLE_depMap_19Q1_TPM.csv
+CCLE_depMap_19Q1_TPM  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-rnaseq-expression-data-ccd0.12%2FCCLE_depMap_19Q1_TPM.csv")
+CCLE_depMap_19Q1_TPM
+
+# download CCLE_RPPA_20180123.csv
+CCLE_RPPA_20180123 <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2FCCLE_RPPA_20180123.csv")
+CCLE_RPPA_20180123
+
+# download D2_combined_genetic_dependency_scores.csv
+D2_combined_genetic_dependency_scores <- read.csv("https://ndownloader.figshare.com/files/13515395")
+D2_combined_genetic_dependency_scores
+```
+
+## [depmap](https://github.com/tfkillian/depmap/) data_utils functions
+
+[depmap](https://github.com/tfkillian/depmap/) comes with several data cleaning
+functions, such as *remove.rows.all.nas*
+
+```{r, eval=FALSE, echo=T}
+remove.rows.all.nas <- function(x, indices=FALSE) {
+    i <- aaply(x, 1, function(r) {all(is.na(r))})
+    if (indices) {
+        return(which(i))
+    } else {
+        return(x[ ! i, ])
+    }
+}
 ```
 
 ## Including Plots
 
-You can also embed plots, for example:
+Here are a few plots to help illustrate features of the [depmap](https://github.com/tfkillian/depmap/) data 
 
-```{r, eval=FALSE, echo=T}
-library(ggplot2)
-y <-depmap_19Q1_cell_lines$Primary.Disease
+```{r, echo=FALSE, fig.width=10}
+# ggplot is a powerful plotting package for aesthetics driven plotting
+library(ggplot2, warn.conflicts = FALSE) 
+y <-depmap_19Q1_mutation_calls$Primary.Disease
 pie <- coord_polar("y", start=0)
 pie
 ```
+
+## TCGA Cancer genome atlas
+
+https://cancergenome.nih.gov/researchhighlights/tcgainaction
+
+
