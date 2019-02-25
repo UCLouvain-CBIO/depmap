@@ -15,7 +15,8 @@ knitr::opts_chunk$set(collapse = T, comment = "#>")
 
 # [depmap](https://github.com/tfkillian/depmap/)
 
-This is a brief demo vignette displaying the data and functions found in the [depmap](https://github.com/tfkillian/depmap/) package.  
+This is a brief demo vignette displaying the data and functions found in 
+the [depmap](https://github.com/tfkillian/depmap/) package.  
 
 ```{r, echo=FALSE, warning=FALSE}
 # This code chunk simply makes sure that all the libraries used here are installed, it will not be shown in the report (notice echo = FALSE).
@@ -28,8 +29,10 @@ if ( length(missing_pkgs <- setdiff(packages, rownames(installed.packages()))) >
 
 ## Preliminaries
 
-To install [depmap](https://github.com/tfkillian/depmap/), the [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) Bioconductor Project Package Manager is required. If [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
-is not already installed, it will need to be done so beforehand. Type (within R) install.packages("BiocManager") (This needs to be done just once.)
+To install [depmap](https://github.com/tfkillian/depmap/), the [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
+Bioconductor Project Package Manager is required. If [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
+is not already installed, it will need to be done so beforehand. Type (within R)
+install.packages("BiocManager") (This needs to be done just once.)
 
 ```{r, eval=FALSE, echo=T}
 install.packages("BiocManager")
@@ -55,48 +58,123 @@ help(remove.rows.all.nas)
 ## Data Import
 
 The [depmap](https://github.com/tfkillian/depmap/) package currently contains 
-seven datasets in *.rda* format:
+seven datasets (shown below) in *.rda* format. These datasets can be loaded by 
+using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package 
+has been loaded in RStudio using *library("depmap")*. 
+
+Brief views of [depmap](https://github.com/tfkillian/depmap/) column subsets are
+shown. Some of these datasets possess thousands of columns, which may be gene
+names or in other cases cell lineages. For convenience, the list of column names 
+of these large data sets is restricted to the first 10. Note: "ACH" in the first 
+column in some datasets refers to the DepMap ID#. 
 
 ### "CCLE_depMap_19Q1_TPM"
 CCLE RNAseq gene expression data (log2(TPM+1)). The portal shows expression data 
-for only protein coding genes; this download is the full dataset.
-Genes 57820, Cell Lines 1165, Primary Diseases 33, Lineages 32
+for only protein coding genes; this download is the full dataset. Contains: 
+Genes 57820, Cell Lines 1165, Primary Diseases 33, Lineages 32. First column is 
+the DepMap ID# of the cell lineage. The remaining columns consist of the 
+numerical dependency score values of are select genes. 
+
+```{r, eval=FALSE, echo=T}
+data("CCLE_depMap_19Q1_TPM", package = "depmap")
+CCLE_depMap_19Q1_TPM
+print("CCLE_depMap_19Q1_TPM data subset")
+View(CCLE_depMap_19Q1_TPM[c(1:10)])
+```
 
 ### "CCLE_RPPA_20180123"
-CCLE Reverse Phase Protein Array (RPPA) data
-Genes 214, Cell Lines 899, Primary Diseases 28, Lineages 28
+CCLE Reverse Phase Protein Array (RPPA) data. Contains: Genes 214, Cell Lines 
+899, Primary Diseases 28, Lineages 28. First column is the common name of the 
+cell lineage. The remaining columns consist of the numerical dependency score 
+values of are select genes. 
+
+```{r, eval=FALSE, echo=T}
+data("CCLE_RPPA_20180123", package = "depmap")
+CCLE_RPPA_20180123
+print("CCLE_RPPA_20180123 data subset")
+View(CCLE_RPPA_20180123[c(1:10)])
+```
 
 ### "D2_combined_genetic_dependency_scores" 
-Genetic Dependency Combined RNAi data
-Genes 17309 Cell Lines 712 Primary Diseases 30 Lineages 31
+Genetic Dependency Combined RNAi data (Broad, Novartis, Marcotte). Contains: 
+Genes 17309 Cell Lines 712 Primary Diseases 30 Lineages 31. First column is 
+select genes knocked out by RNAi, while the remaning columns are the dependency 
+scores of the knockout on specific cancer cell lineages. 
+
+```{r, eval=FALSE, echo=T}
+data("D2_combined_genetic_dependency_scores", package = "depmap")
+D2_combined_genetic_dependency_scores
+print("D2_combined_genetic_dependency_scores data subset")
+names(D2_combined_genetic_dependency_scores[c(1:10)])
+View(D2_combined_genetic_dependency_scores[c(1:10)])
+```
 
 ### "depmap_19Q1_cell_lines" 
 Metadata about cell lines in the 19Q1 release, including mapping between DepMap 
-ID and CCLE names. 
-Genes 0, Cell Lines 1677, Primary Diseases 38, Lineages 33
+ID and CCLE names. Contains: Genes 0, Cell Lines 1677, Primary Diseases 38, 
+Lineages 33. Columns are "DepMap_ID", "CCLE_Name", "Aliases", "COSMIC_ID", 
+"Sanger.ID", "Primary.Disease", "Subtype.Disease", "Gender" and "Source"  
+
+```{r, eval=FALSE, echo=T}
+data("depmap_19Q1_cell_lines", package = "depmap")
+depmap_19Q1_cell_lines
+print("depmap_19Q1_cell_lines data subset")
+names(depmap_19Q1_cell_lines)
+View(depmap_19Q1_cell_lines)
+```
 
 ### "depmap_19Q1_mutation_calls" 
-Merged mutation calls (coding region, germline filtered)
-Genes 18755, Cell Lines 1601, Primary Diseases 37, Lineages 33
+Merged mutation calls (coding region, germline filtered). Contains: Genes 18755, 
+Cell Lines 1601, Primary Diseases 37, Lineages 33. Columns are: "X1", 
+"Hugo_Symbol", "Entrez_Gene_Id", "NCBI_Build", "Chromosome", "Start_position",        
+"End_position", "Strand", "Variant_Classification", "Variant_Type", 
+"Reference_Allele", "Tumor_Seq_Allele1", "dbSNP_RS", "dbSNP_Val_Status", 
+"Genome_Change", "Annotation_Transcript", "Tumor_Sample_Barcode", "cDNA_Change",
+"Codon_Change", "Protein_Change", "isDeleterious", "isTCGAhotspot", "TCGAhsCnt",
+"isCOSMIChotspot", "COSMIChsCnt", "ExAC_AF", "VA_WES_AC", "CGA_WES_AC", 
+"SangerWES_AC", "SangerRecalibWES_AC", "RNAseq_AC", "HC_AC", "RD_AC", "WGS_AC", 
+"Variant_annotation", "DepMap_ID"  
+
+```{r, eval=FALSE, echo=T}
+data("depmap_19Q1_mutation_calls", package = "depmap")
+depmap_19Q1_mutation_calls
+print("depmap_19Q1_mutation_calls data subset")
+names(depmap_19Q1_mutation_calls)
+View(depmap_19Q1_mutation_calls)
+```
 
 ### "gene_effect_corrected"
-Batch corrected CERES inferred gene effect matrix
-Genes 17634, Cell Lines 558, Primary Diseases 26, Lineages 28
-
-### "public_19Q1_gene_cn" 
-DepMap WES copy number data
-Genes 23299, Cell Lines 1604, Primary Diseases 38, Lineages 33
-
-These datasets can be loaded by using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package has been loaded using *library("depmap")*. Here, for example, the 
-"gene_effect_corrected" dataset is loaded.
+Batch corrected CERES inferred gene effect matrix derived from CRISPR knock-out
+data. Contains: Genes 17634, Cell Lines 558, Primary Diseases 26, Lineages 28. 
+First column is the DepMap ID# of the cell lineage. The remaining columns 
+consist of the numerical dependency score values of are select genes. 
 
 ```{r, eval=FALSE, echo=T}
 data("gene_effect_corrected", package = "depmap")
 gene_effect_corrected
-
+print("gene_effect_corrected data subset")
+names(gene_effect_corrected[c(1:10)])
+View(gene_effect_corrected[c(1:10)])
 ```
 
-The depmap datasets can also be downloaded in *.csv* format directly from the [Broad Institute](https://depmap.org/portal/download/) website.
+### "public_19Q1_gene_cn" 
+DepMap WES copy number data. Contains: Genes 23299, Cell Lines 1604, Primary 
+Diseases 38, Lineages 33. First column is the DepMap ID# of the cell lineage. 
+Columns with numerical dependency score values of are select genes. 
+
+```{r, eval=FALSE, echo=T}
+data("public_19Q1_gene_cn", package = "depmap")
+public_19Q1_gene_cn
+print("public_19Q1_gene_cn data subset")
+names(public_19Q1_gene_cn[c(1:10)])
+View(public_19Q1_gene_cn[c(1:10)])
+```
+
+## Downloading [Broad Institute](https://depmap.org/portal/download/) data directly
+
+If desired, the depmap datasets can also be downloaded in *.csv* format directly 
+from the [Broad Institute](https://depmap.org/portal/download/) website. Be 
+aware that these files are 1.5GB in total and take some time to download.
 
 ```{r, eval=FALSE, echo=T}
 #install.packages("RCurl")
@@ -133,32 +211,53 @@ D2_combined_genetic_dependency_scores <- read.csv("https://ndownloader.figshare.
 D2_combined_genetic_dependency_scores
 ```
 
-## [depmap](https://github.com/tfkillian/depmap/) data_utils functions
-
-[depmap](https://github.com/tfkillian/depmap/) comes with several data cleaning
-functions, such as *remove.rows.all.nas*
-
-```{r, eval=FALSE, echo=T}
-remove.rows.all.nas <- function(x, indices=FALSE) {
-    i <- aaply(x, 1, function(r) {all(is.na(r))})
-    if (indices) {
-        return(which(i))
-    } else {
-        return(x[ ! i, ])
-    }
-}
-```
-
-## Including Plots
+## Visualisations
 
 Here are a few plots to help illustrate features of the [depmap](https://github.com/tfkillian/depmap/) data 
 
 ```{r, echo=FALSE, fig.width=10}
-# ggplot is a powerful plotting package for aesthetics driven plotting
 library(ggplot2, warn.conflicts = FALSE) 
-y <-depmap_19Q1_mutation_calls$Primary.Disease
+
+disease_no_na <- (na.omit(depmap_19Q1_cell_lines$Primary.Disease)) 
+
+disease <-depmap_19Q1_cell_lines$Primary.Disease
+cancer_types <-unique(depmap_19Q1_cell_lines$Primary.Disease)
+num_cancer <-(as.integer(cancer_types))
+
+pie(x=num_cancer, label = "", col = rainbow(length(cancer_types)), main = "Distribution of Cancer Type Among Cell Lines" )
+
+#legend("right", legend=cancer_types, fill=rainbow(length(cancer_types)))
+
+
+pie(table(depmap_19Q1_cell_lines$Primary.Disease), col=rainbow(length(cancer_types)), main="Distribution of Cancer Type Among Cell Lines")
+y <-depmap_19Q1_cell_lines$Primary.Disease
 pie <- coord_polar("y", start=0)
 pie
+```
+
+
+In order to visualize the full potential of the depmap data, the function shown
+below fetches the dependency scores corresponding to a specific gene and cell 
+lineage. For example: BRCA1 and `184A1_BREAST` breast cancer lineage.
+
+```{r, eval=FALSE, echo=T}
+
+library("ggplot2", warn.conflicts = FALSE)
+
+D2_combined_genetic_dependency_scores$`184A1_BREAST`
+
+h <-gene_effect_corrected[order(gene_effect_corrected$`A1BG (1)`, decreasing=T)[1:5],]
+values <- rbind(h$X1, h$`A1BG (1)`)
+values
+#0.00034
+
+```
+
+Axelle asks: What is the baseline of the expression data?
+
+```{r, eval=FALSE, echo=T}
+
+
 ```
 
 ## TCGA Cancer genome atlas
