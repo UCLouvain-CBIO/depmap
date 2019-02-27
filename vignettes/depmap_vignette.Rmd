@@ -18,6 +18,15 @@ knitr::opts_chunk$set(collapse = T, comment = "#>")
 This is a brief demo vignette displaying the data and functions found in 
 the [depmap](https://github.com/tfkillian/depmap/) package.  
 
+## Introduction {#sec:intro}
+
+The [depmap](https://github.com/tfkillian/depmap/) package aims to provide a 
+reproducible research framework to cancer dependency data described by 
+[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017): 564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The [depmap](https://github.com/tfkillian/depmap/) 
+package should allow a researcher to easily mine dependency data taken from 
+this cancer genomic study, explore the data and its statistical properties 
+and visually display them.
+
 ```{r, echo=FALSE, warning=FALSE}
 # This code chunk simply makes sure that all the libraries used here are installed, it will not be shown in the report (notice echo = FALSE).
 packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly", "viridis")
@@ -39,19 +48,17 @@ install.packages("BiocManager")
 BiocManager::install("tfkillian/depmap")
 ```
 
-The [depmap](https://github.com/tfkillian/depmap/) package can be loaded using 
-the library function:
-
-```{r, eval=FALSE, echo=T}
-library("depmap")
-```
-
-## Data Import
+## Data Import {#sec:data}
 
 The [depmap](https://github.com/tfkillian/depmap/) package currently contains 
 seven datasets (shown below) in *.rda* format. These datasets can be loaded by 
 using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package 
 has been loaded in RStudio using *library("depmap")*. 
+
+```{r, eval=FALSE, echo=T}
+library("depmap")
+#load(package_version())
+```
 
 Brief views of [depmap](https://github.com/tfkillian/depmap/) column subsets are
 shown. Some of these datasets possess thousands of columns, which may be gene
@@ -69,7 +76,7 @@ numerical dependency score values of are select genes.
 ```{r, eval=FALSE, echo=T}
 data("CCLE_depMap_19Q1_TPM", package = "depmap")
 CCLE_depMap_19Q1_TPM
-print("CCLE_depMap_19Q1_TPM data subset")
+print("CCLE_depMap_19Q1_TPM data subset column names 1-10")
 View(CCLE_depMap_19Q1_TPM[c(1:10)])
 ```
 
@@ -82,7 +89,7 @@ values of are select genes.
 ```{r, eval=FALSE, echo=T}
 data("CCLE_RPPA_20180123", package = "depmap")
 CCLE_RPPA_20180123
-print("CCLE_RPPA_20180123 data subset")
+print("CCLE_RPPA_20180123 data subset column names 1-10")
 View(CCLE_RPPA_20180123[c(1:10)])
 ```
 
@@ -95,7 +102,7 @@ scores of the knockout on specific cancer cell lineages.
 ```{r, eval=FALSE, echo=T}
 data("D2_combined_genetic_dependency_scores", package = "depmap")
 D2_combined_genetic_dependency_scores
-print("D2_combined_genetic_dependency_scores data subset")
+print("D2_combined_genetic_dependency_scores data subset column names 1-10")
 names(D2_combined_genetic_dependency_scores[c(1:10)])
 View(D2_combined_genetic_dependency_scores[c(1:10)])
 ```
@@ -109,7 +116,7 @@ Lineages 33. Columns are "DepMap_ID", "CCLE_Name", "Aliases", "COSMIC_ID",
 ```{r, eval=FALSE, echo=T}
 data("depmap_19Q1_cell_lines", package = "depmap")
 depmap_19Q1_cell_lines
-print("depmap_19Q1_cell_lines data subset")
+print("depmap_19Q1_cell_lines data column names")
 names(depmap_19Q1_cell_lines)
 View(depmap_19Q1_cell_lines)
 ```
@@ -129,7 +136,7 @@ Cell Lines 1601, Primary Diseases 37, Lineages 33. Columns are: "X1",
 ```{r, eval=FALSE, echo=T}
 data("depmap_19Q1_mutation_calls", package = "depmap")
 depmap_19Q1_mutation_calls
-print("depmap_19Q1_mutation_calls data subset")
+print("depmap_19Q1_mutation_calls data column names")
 names(depmap_19Q1_mutation_calls)
 View(depmap_19Q1_mutation_calls)
 ```
@@ -143,7 +150,7 @@ consist of the numerical dependency score values of are select genes.
 ```{r, eval=FALSE, echo=T}
 data("gene_effect_corrected", package = "depmap")
 gene_effect_corrected
-print("gene_effect_corrected data subset")
+print("gene_effect_corrected data subset column names 1-10")
 names(gene_effect_corrected[c(1:10)])
 View(gene_effect_corrected[c(1:10)])
 ```
@@ -156,23 +163,23 @@ Columns with numerical dependency score values of are select genes.
 ```{r, eval=FALSE, echo=T}
 data("public_19Q1_gene_cn", package = "depmap")
 public_19Q1_gene_cn
-print("public_19Q1_gene_cn data subset")
+print("public_19Q1_gene_cn data subset column names 1-10")
 names(public_19Q1_gene_cn[c(1:10)])
 View(public_19Q1_gene_cn[c(1:10)])
 ```
 
 ## Downloading [Broad Institute](https://depmap.org/portal/download/) data directly
 
-If desired, the depmap datasets can also be downloaded in *.csv* format directly 
-from the [Broad Institute](https://depmap.org/portal/download/) website. Be 
-aware that these files are 1.5GB in total and take some time to download.
+If desired, the [depmap](https://github.com/tfkillian/depmap/) datasets can also 
+be downloaded in *.csv* format directly from the [Broad Institute](https://depmap.org/portal/download/) 
+website. However, be aware that these files are 1.5GB in total (non-compressed) 
+and take a moderate amount of time to download.
 
 ```{r, eval=FALSE, echo=T}
-#install.packages("RCurl")
 library("RCurl", warn.conflicts = FALSE)
 
-# r read csv from url
-# allows you to directly download csv file from website
+# r read csv from url allows direct download csv file from website
+
 # download depmap_19Q1_mutation_calls.csv
 depmap_19Q1_mutation_calls <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv")
 depmap_19Q1_mutation_calls
@@ -204,27 +211,150 @@ D2_combined_genetic_dependency_scores
 
 ## Visualisations
 
-Here are a few plots to help illustrate features of the [depmap](https://github.com/tfkillian/depmap/) data 
+Below are a few plots to help illustrate features of the [depmap](https://github.com/tfkillian/depmap/) 
+data. The data loaded in the [depmap](https://github.com/tfkillian/depmap/) 
+package is taken from a diverse array of cancer lineages, intended to represent 
+the full spectrum of fatal cancers. 
 
 ```{r, echo=FALSE, fig.width=10}
 library(ggplot2, warn.conflicts = FALSE) 
 library(viridis, warn.conflicts = FALSE)
 
+#select data
 cancer_types <-unique(depmap_19Q1_cell_lines$Primary.Disease)
 num_cancer <-(as.integer(cancer_types))
 
-pie(x=num_cancer, label = "", init.angle = 90, col = plasma(length(cancer_types)))
+#plot pie
+pie(x=num_cancer, label = "", init.angle = 90, col = plasma(length(cancer_types)), 
+    main = "Proportion of 501 Cancer Lineages Represented in DepMap Dependency Screen")
 legend("left", legend=cancer_types, fill=plasma(length(cancer_types)))
-
 
 ```
 
+Much of the data that can be found within the [depmap](https://github.com/tfkillian/depmap/) 
+package relates to the dependency score. This score represents the observed 
+shRNA log fold change (LFC) depletion values in each cell line (CL) as a 
+combination of gene knockdown and off-target seed effects. Or in other words, 
+the dependency score expresses how vital a particular gene is in terms of how 
+lethal the knockout of that gene is on the target cell line. A negative 
+dependency score is indicative of high lethality, while a positive score 
+indicates improved CL vitality. A dependency score of zero indicates no effect.   
 
-In order to visualize the full potential of the depmap data, the function shown
-below fetches the dependency scores corresponding to a specific gene and cell 
-lineage. For example: BRCA1 and `184A1_BREAST` breast cancer lineage.
+The function below fetches the dependency scores corresponding to a specific 
+gene and cell lineage. For example for an example gene we will use `BRCA1` a
+well known human tumor suppressor gene and compare with the `184A1_BREAST` 
+breast cancer lineage.
 
-PSMC2 (Rpt1) was the highest-ranked CYCLOPS candidate in
+```{r, eval=TRUE, echo=T}
+
+# gives a logical vector isolating gene in first column
+BRCA1_row <- D2_combined_genetic_dependency_scores$X1=="BRCA1 (672)"
+
+#select row and column
+ds_brca1_breast <- D2_combined_genetic_dependency_scores[BRCA1_row, "184A1_BREAST"]
+
+#print dependency score
+num_brca1_breast <- as.numeric(ds_brca1_breast[1,1])
+BRCA1_val <- paste("Dependency score for is BRCA1 on 184A1_BREAST CL is: ", num_brca1_breast)
+print(BRCA1_val)
+
+```
+
+As can be seen here dependency score of the knockout of BRCA1 is slightly 
+positive, which implies that that removal of this gene is not lethal for this 
+breast cancer lineage, which is what we would predict. However, we would like 
+to look at the highest dependency scores for this lineage. 
+
+If we want to compare the average dependency score for all genes for the 
+`184A1_BREAST` cell line:
+
+```{r, eval=TRUE, echo=T}
+#remove NA values which prevent calculation of mean
+no_na_breast <-na.omit(D2_combined_genetic_dependency_scores$`184A1_BREAST`)
+
+#avg gene dependency
+breast_avg <- mean(no_na_breast)
+breast_val <- paste("The average dependency score for all genes for the 184A1_BREAST CL is: ", breast_avg)
+print(breast_val)
+
+```
+
+This implies that the knockout of an average gene for this cell line is mildly 
+deleterious, but not fatal.
+
+The most interesting genes are the ones with the lowest dependency score, which
+implies that they are the most vital to the viability of that particular lineage
+and the removal of that gene is likely fatal. Such genes are consequently 
+desirable as potential drug targets.
+
+```{r, eval=FALSE, echo=T}
+#sort dependencies scores of particular cell line my lowest (most important)
+h <-D2_combined_genetic_dependency_scores[order(D2_combined_genetic_dependency_scores$`184A1_BREAST`, decreasing=F)[1:10],]
+dep_values_breast <- rbind(h$X1, h$`184A1_BREAST`)
+print("Dependency scores for top 10 dependent genes for 184A1_BREAST CL")
+dep_values_breast
+```
+
+The gene with the highest dependency score, `SF3B1` Entrez Gene ID: (23451) 
+encodes subunit 1 of the splicing factor 3b protein complex.
+
+If we wish to capture the entire dependency map of the `184A1_BREAST` cell line:
+
+```{r, eval=FALSE, echo=T}
+library(ggplot2, warn.conflicts = FALSE) 
+library(viridis, warn.conflicts = FALSE)
+
+no_na_breast <-na.omit(D2_combined_genetic_dependency_scores$`184A1_BREAST`)
+df_breast <-as.data.frame(no_na_breast)
+
+# plot
+qplot(x = D2_combined_genetic_dependency_scores$X1, y = D2_combined_genetic_dependency_scores$`184A1_BREAST`, data = D2_combined_genetic_dependency_scores, geom = "point")
+```
+
+
+
+If we are interested in returning a dependency score which is the highest of all
+of the genes, we can look  
+
+
+PIK3CA Gene is the highest
+
+Phosphatidylinositol 3-kinase is composed of an 85 kDa regulatory subunit and a 110 kDa catalytic subunit. The protein encoded by this gene represents the catalytic subunit, which uses ATP to phosphorylate PtdIns, PtdIns4P and PtdIns(4,5)P2. This gene has been found to be oncogenic and has been implicated in cervical cancers. A pseudogene of this gene has been defined on chromosome 22. [provided by RefSeq, Apr 2016]
+
+
+Specific genes can be selected 
+
+Compare RNAi and CRISPR datasets
+
+Make graph of "D2...." of dependency scores for each gene and CL 
+
+Given some gene, can we tell if it's vital or not ? How can we evaulate? Plot 
+for all genes, vs avg value and then isolate highest effect 
+
+(1) replicate one or two figures as produced by the online DepMap Data Explorer 
+portal
+
+```{r, eval=FALSE, echo=T}
+
+```
+
+(2) compute and visualise initially for a single gene the correlation between 
+shRNAi and CRISPR-based dependency scores
+
+```{r, eval=FALSE, echo=T}
+
+```
+
+(3) compute and visualise for all genes, the correlation between shRNAi and 
+CRISPR-based dependency scores
+
+```{r, eval=FALSE, echo=T}
+
+```
+
+(4) explore the dependency scores for genes with high and low expression 
+
+PSMC2 (Rpt1) was the highest-ranked CYCLOPS candidate gene in
 our original analysis and was also significant in the validation
 data set. PSMC2 is part of the 19S regulatory complex of the
 26S proteasome, which is responsible for catalyzing the unfold-
@@ -234,32 +364,7 @@ ing and translocation of substrates into the 20S proteasome
 
 ```
 
-Compare RNAi and CRISPR datasets
-
-Suggestions for the depmap vignette: (1) replicate one or two figures as produced by the online DepMap Data Explorer portal; (2) compute and visualise initially for a single gene, then for all genes, the correlation between shRNAi- and CASPR-based dependency scores; (3) explore the dependency scores for genes with high and low expression (detailed to be discussed with Axelle).
 
 ```{r, eval=FALSE, echo=T}
 
-library("ggplot2", warn.conflicts = FALSE)
-
-D2_combined_genetic_dependency_scores$`184A1_BREAST`
-
-h <-gene_effect_corrected[order(gene_effect_corrected$`A1BG (1)`, decreasing=T)[1:5],]
-values <- rbind(h$X1, h$`A1BG (1)`)
-values
-#0.00034
-
 ```
-
-Axelle asks: What is the baseline of the expression data?
-
-```{r, eval=FALSE, echo=T}
-
-
-```
-
-## TCGA Cancer genome atlas
-
-https://cancergenome.nih.gov/researchhighlights/tcgainaction
-
-
