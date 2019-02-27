@@ -20,7 +20,7 @@ the [depmap](https://github.com/tfkillian/depmap/) package.
 
 ```{r, echo=FALSE, warning=FALSE}
 # This code chunk simply makes sure that all the libraries used here are installed, it will not be shown in the report (notice echo = FALSE).
-packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly")
+packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly", "viridis")
 if ( length(missing_pkgs <- setdiff(packages, rownames(installed.packages()))) > 0) {
   message("Installing missing package(s): ", paste(missing_pkgs, collapse = ", "))
   install.packages(missing_pkgs)
@@ -44,15 +44,6 @@ the library function:
 
 ```{r, eval=FALSE, echo=T}
 library("depmap")
-```
-
-To get help on the functions and data sets in R (and in R/depmap), use *help()* 
-or *?*. For example, to view the help file for the *remove.rows.all.nas* function, 
-type one of the following:
-
-```{r, eval=FALSE, echo=T}
-help(remove.rows.all.nas)
-?remove.rows.all.nas
 ```
 
 ## Data Import
@@ -217,28 +208,35 @@ Here are a few plots to help illustrate features of the [depmap](https://github.
 
 ```{r, echo=FALSE, fig.width=10}
 library(ggplot2, warn.conflicts = FALSE) 
+library(viridis, warn.conflicts = FALSE)
 
-disease_no_na <- (na.omit(depmap_19Q1_cell_lines$Primary.Disease)) 
-
-disease <-depmap_19Q1_cell_lines$Primary.Disease
 cancer_types <-unique(depmap_19Q1_cell_lines$Primary.Disease)
 num_cancer <-(as.integer(cancer_types))
 
-pie(x=num_cancer, label = "", col = rainbow(length(cancer_types)), main = "Distribution of Cancer Type Among Cell Lines" )
+pie(x=num_cancer, label = "", init.angle = 90, col = plasma(length(cancer_types)))
+legend("left", legend=cancer_types, fill=plasma(length(cancer_types)))
 
-#legend("right", legend=cancer_types, fill=rainbow(length(cancer_types)))
 
-
-pie(table(depmap_19Q1_cell_lines$Primary.Disease), col=rainbow(length(cancer_types)), main="Distribution of Cancer Type Among Cell Lines")
-y <-depmap_19Q1_cell_lines$Primary.Disease
-pie <- coord_polar("y", start=0)
-pie
 ```
 
 
 In order to visualize the full potential of the depmap data, the function shown
 below fetches the dependency scores corresponding to a specific gene and cell 
 lineage. For example: BRCA1 and `184A1_BREAST` breast cancer lineage.
+
+PSMC2 (Rpt1) was the highest-ranked CYCLOPS candidate in
+our original analysis and was also significant in the validation
+data set. PSMC2 is part of the 19S regulatory complex of the
+26S proteasome, which is responsible for catalyzing the unfold-
+ing and translocation of substrates into the 20S proteasome
+
+```{r, eval=FALSE, echo=T}
+
+```
+
+Compare RNAi and CRISPR datasets
+
+Suggestions for the depmap vignette: (1) replicate one or two figures as produced by the online DepMap Data Explorer portal; (2) compute and visualise initially for a single gene, then for all genes, the correlation between shRNAi- and CASPR-based dependency scores; (3) explore the dependency scores for genes with high and low expression (detailed to be discussed with Axelle).
 
 ```{r, eval=FALSE, echo=T}
 
