@@ -7,8 +7,10 @@
 #' Primary Diseases 30
 #' Lineages 31
 #'
-#' @format A data frame with 17309 rows and 713 variables:
-#' \describe{}
+#' @format A data frame with 17309 rows (genes) and 713 variables (cell lines):
+#' \describe{
+#'    \item{Cell_Line}{Name of cell line (i.e. U87MG_CENTRAL_NERVOUS_SYSTEM)}
+#' }
 #'
 #' @docType data
 #'
@@ -21,9 +23,9 @@
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
-#' (\href{https://www.ncbi.nlm.nih.gov/pubmed/28753430}{PubMed})
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
 #'
-#' @source \href{https://depmap.org/portal/download/api/download/external?file_name=ccle%2FD2_combined_genetic_dependency_scores.csv}{DepMap, Broad (2019)}
+#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
 #' data(D2_combined_genetic_dependency_scores)

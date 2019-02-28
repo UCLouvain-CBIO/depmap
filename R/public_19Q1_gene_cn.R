@@ -7,8 +7,12 @@
 #' Primary Diseases 38
 #' Lineages 33
 #'
-#' @format A data frame with 1604 rows and 23300 variables:
-#' \describe{}
+#' @format A data frame with 1604 rows and 23300 variables. Each variable
+#' column contains copy number for a known gene while each row represents a cell
+#' line:
+#' \describe{
+#'     \item{Gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
+#' }
 #'
 #' @docType data
 #'
@@ -21,9 +25,9 @@
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
-#' (\href{https://www.ncbi.nlm.nih.gov/pubmed/28753430}{PubMed})
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
 #'
-#' @source \href{https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-wes-cn-data-97cc.14%2Fpublic_19Q1_gene_cn.csv}{DepMap, Broad (2019)}
+#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
 #' data(public_19Q1_gene_cn)

@@ -1,0 +1,494 @@
+---
+title: "depmap vignette"
+author: "Theo Killian"
+date: "February 19, 2019"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{depmap vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r, include = FALSE, echo = FALSE, results = 'asis'}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+```
+
+# [depmap](https://github.com/tfkillian/depmap/)
+
+This is a brief demo vignette displaying the data and functions found in 
+the [depmap](https://github.com/tfkillian/depmap/) package.  
+
+## Introduction {#sec:intro}
+
+The [depmap](https://github.com/tfkillian/depmap/) package aims to provide a 
+reproducible research framework to cancer dependency data described by 
+[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017): 564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The [depmap](https://github.com/tfkillian/depmap/) 
+package should allow a researcher to easily mine dependency data taken from 
+this cancer genomic study, explore the data and its statistical properties 
+and visually display them.
+
+```{r, echo=FALSE, warning=FALSE}
+# This code chunk simply makes sure that all the libraries used here are installed, it will not be shown in the report (notice echo = FALSE).
+packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly", "viridis", "tidyverse")
+if ( length(missing_pkgs <- setdiff(packages, rownames(installed.packages()))) > 0) {
+  message("Installing missing package(s): ", paste(missing_pkgs, collapse = ", "))
+  install.packages(missing_pkgs)
+}
+```
+
+## Preliminaries
+
+To install [depmap](https://github.com/tfkillian/depmap/), the [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
+Bioconductor Project Package Manager is required. If [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
+is not already installed, it will need to be done so beforehand. Type (within R)
+install.packages("BiocManager") (This needs to be done just once.)
+
+```{r, eval=FALSE, echo=T}
+install.packages("BiocManager")
+BiocManager::install("tfkillian/depmap")
+```
+
+## Data Import {#sec:data}
+
+The [depmap](https://github.com/tfkillian/depmap/) package currently contains 
+seven datasets (shown below) in *.rda* format. These datasets can be loaded by 
+using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package 
+has been loaded in RStudio using *library("depmap")*. 
+
+```{r, eval=FALSE, echo=T}
+library("depmap")
+#load(package_version())
+```
+
+Brief views of [depmap](https://github.com/tfkillian/depmap/) column subsets are
+shown. Some of these datasets possess thousands of columns, which may be gene
+names or in other cases cell lineages. For convenience, the list of column names 
+of these large data sets is restricted to the first 10. Note: "ACH" in the first 
+column in some datasets refers to the DepMap ID#. 
+
+### "CCLE_depMap_19Q1_TPM"
+CCLE RNAseq gene expression data (log2(TPM+1)). The portal shows expression data 
+for only protein coding genes; this download is the full dataset. Contains: 
+Genes 57820, Cell Lines 1165, Primary Diseases 33, Lineages 32. First column is 
+the DepMap ID# of the cell lineage. The remaining columns consist of the 
+numerical dependency score values of are select genes. 
+
+```{r, eval=FALSE, echo=T}
+data("CCLE_depMap_19Q1_TPM", package = "depmap")
+CCLE_depMap_19Q1_TPM
+print("CCLE_depMap_19Q1_TPM data subset column names 1-10")
+View(CCLE_depMap_19Q1_TPM[c(1:10)])
+```
+
+### "CCLE_RPPA_20180123"
+CCLE Reverse Phase Protein Array (RPPA) data. Contains: Genes 214, Cell Lines 
+899, Primary Diseases 28, Lineages 28. First column is the common name of the 
+cell lineage. The remaining columns consist of the numerical dependency score 
+values of are select genes. 
+
+```{r, eval=FALSE, echo=T}
+data("CCLE_RPPA_20180123", package = "depmap")
+CCLE_RPPA_20180123
+print("CCLE_RPPA_20180123 data subset column names 1-10")
+View(CCLE_RPPA_20180123[c(1:10)])
+```
+
+### "D2_combined_genetic_dependency_scores" 
+Genetic Dependency Combined RNAi data (Broad, Novartis, Marcotte). Contains: 
+Genes 17309 Cell Lines 712 Primary Diseases 30 Lineages 31. First column is 
+select genes knocked out by RNAi, while the remaning columns are the dependency 
+scores of the knockout on specific cancer cell lineages. 
+
+```{r, eval=FALSE, echo=T}
+data("D2_combined_genetic_dependency_scores", package = "depmap")
+D2_combined_genetic_dependency_scores
+print("D2_combined_genetic_dependency_scores data subset column names 1-10")
+names(D2_combined_genetic_dependency_scores[c(1:10)])
+View(D2_combined_genetic_dependency_scores[c(1:10)])
+```
+
+### "depmap_19Q1_cell_lines" 
+Metadata about cell lines in the 19Q1 release, including mapping between DepMap 
+ID and CCLE names. Contains: Genes 0, Cell Lines 1677, Primary Diseases 38, 
+Lineages 33. Columns are "DepMap_ID", "CCLE_Name", "Aliases", "COSMIC_ID", 
+"Sanger.ID", "Primary.Disease", "Subtype.Disease", "Gender" and "Source"  
+
+```{r, eval=FALSE, echo=T}
+data("depmap_19Q1_cell_lines", package = "depmap")
+depmap_19Q1_cell_lines
+print("depmap_19Q1_cell_lines data column names")
+names(depmap_19Q1_cell_lines)
+View(depmap_19Q1_cell_lines)
+```
+
+### "depmap_19Q1_mutation_calls" 
+Merged mutation calls (coding region, germline filtered). Contains: Genes 18755, 
+Cell Lines 1601, Primary Diseases 37, Lineages 33. Columns are: "X1", 
+"Hugo_Symbol", "Entrez_Gene_Id", "NCBI_Build", "Chromosome", "Start_position",        
+"End_position", "Strand", "Variant_Classification", "Variant_Type", 
+"Reference_Allele", "Tumor_Seq_Allele1", "dbSNP_RS", "dbSNP_Val_Status", 
+"Genome_Change", "Annotation_Transcript", "Tumor_Sample_Barcode", "cDNA_Change",
+"Codon_Change", "Protein_Change", "isDeleterious", "isTCGAhotspot", "TCGAhsCnt",
+"isCOSMIChotspot", "COSMIChsCnt", "ExAC_AF", "VA_WES_AC", "CGA_WES_AC", 
+"SangerWES_AC", "SangerRecalibWES_AC", "RNAseq_AC", "HC_AC", "RD_AC", "WGS_AC", 
+"Variant_annotation", "DepMap_ID"  
+
+```{r, eval=FALSE, echo=T}
+data("depmap_19Q1_mutation_calls", package = "depmap")
+depmap_19Q1_mutation_calls
+print("depmap_19Q1_mutation_calls data column names")
+names(depmap_19Q1_mutation_calls)
+View(depmap_19Q1_mutation_calls)
+```
+
+### "gene_effect_corrected"
+Batch corrected CERES inferred gene effect matrix derived from CRISPR knock-out
+data. Contains: Genes 17634, Cell Lines 558, Primary Diseases 26, Lineages 28. 
+First column is the DepMap ID# of the cell lineage. The remaining columns 
+consist of the numerical dependency score values of are select genes. 
+
+```{r, eval=FALSE, echo=T}
+data("gene_effect_corrected", package = "depmap")
+gene_effect_corrected
+print("gene_effect_corrected data subset column names 1-10")
+names(gene_effect_corrected[c(1:10)])
+View(gene_effect_corrected[c(1:10)])
+```
+
+### "public_19Q1_gene_cn" 
+DepMap WES copy number data. Contains: Genes 23299, Cell Lines 1604, Primary 
+Diseases 38, Lineages 33. First column is the DepMap ID# of the cell lineage. 
+Columns with numerical dependency score values of are select genes. 
+
+```{r, eval=FALSE, echo=T}
+data("public_19Q1_gene_cn", package = "depmap")
+public_19Q1_gene_cn
+print("public_19Q1_gene_cn data subset column names 1-10")
+names(public_19Q1_gene_cn[c(1:10)])
+View(public_19Q1_gene_cn[c(1:10)])
+```
+
+## Downloading [Broad Institute](https://depmap.org/portal/download/) data directly
+
+If desired, the [depmap](https://github.com/tfkillian/depmap/) datasets can also 
+be downloaded in *.csv* format directly from the [Broad Institute](https://depmap.org/portal/download/) 
+website. However, be aware that these files are 1.5GB in total (non-compressed) 
+and take a moderate amount of time to download.
+
+```{r, eval=FALSE, echo=T}
+library("RCurl", warn.conflicts = FALSE)
+
+# r read csv from url allows direct download csv file from website
+
+# download depmap_19Q1_mutation_calls.csv
+depmap_19Q1_mutation_calls <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv")
+depmap_19Q1_mutation_calls
+
+# download public_19Q1_gene_cn.csv
+public_19Q1_gene_cn  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-wes-cn-data-97cc.14%2Fpublic_19Q1_gene_cn.csv")
+public_19Q1_gene_cn
+
+# download DepMap-2019q1-celllines.csv
+depmap_19Q1_cell_lines  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=processed_portal_downloads%2Fdepmap-public-cell-line-metadata-183e.3%2FDepMap-2019q1-celllines.csv")
+depmap_19Q1_cell_lines
+
+# download gene_effect_corrected.csv
+gene_effect_corrected <- read.csv("https://ndownloader.figshare.com/files/14221385")
+gene_effect_corrected
+
+# download CCLE_depMap_19Q1_TPM.csv
+CCLE_depMap_19Q1_TPM  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-rnaseq-expression-data-ccd0.12%2FCCLE_depMap_19Q1_TPM.csv")
+CCLE_depMap_19Q1_TPM
+
+# download CCLE_RPPA_20180123.csv
+CCLE_RPPA_20180123 <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=ccle%2FCCLE_RPPA_20180123.csv")
+CCLE_RPPA_20180123
+
+# download D2_combined_genetic_dependency_scores.csv
+D2_combined_genetic_dependency_scores <- read.csv("https://ndownloader.figshare.com/files/13515395")
+D2_combined_genetic_dependency_scores
+```
+
+## Visualisations
+
+Below are a few plots to help illustrate features of the [depmap](https://github.com/tfkillian/depmap/) 
+data. The data loaded in the [depmap](https://github.com/tfkillian/depmap/) 
+package is taken from a diverse array of cancer lineages, intended to represent 
+the full spectrum of fatal cancers. 
+
+```{r, echo=FALSE, fig.width=10}
+library(ggplot2, warn.conflicts = FALSE) 
+library(viridis, warn.conflicts = FALSE)
+
+#select data
+cancer_types <-unique(depmap_19Q1_cell_lines$Primary.Disease)
+num_cancer <-(as.integer(cancer_types))
+
+#plot pie
+pie(x=num_cancer, label = "", init.angle = 90, col = plasma(length(cancer_types)), 
+    main = "Proportion of 501 Cancer Lineages Represented in DepMap Dependency Screen")
+legend("left", legend=cancer_types, fill=plasma(length(cancer_types)))
+
+```
+
+Much of the data that can be found within the [depmap](https://github.com/tfkillian/depmap/) 
+package relates to the dependency score. This score represents the observed 
+shRNA log fold change (LFC) depletion values in each cell line (CL) as a 
+combination of gene knockdown and off-target seed effects. Or in other words, 
+the dependency score expresses how vital a particular gene is in terms of how 
+lethal the knockout of that gene is on the target cell line. A negative 
+dependency score is indicative of high lethality, while a positive score 
+indicates improved CL vitality. A dependency score of zero indicates no effect.   
+
+The function below fetches the dependency scores corresponding to a specific 
+gene and cell lineage. For example for an example gene we will use `BRCA1` a
+well known human tumor suppressor gene and compare with the `184A1_BREAST` 
+breast cancer lineage.
+
+```{r, eval=TRUE, echo=T}
+
+# gives a logical vector isolating gene in first column
+BRCA1_row <- D2_combined_genetic_dependency_scores$X1=="BRCA1 (672)"
+
+#select row and column
+ds_brca1_breast <- D2_combined_genetic_dependency_scores[BRCA1_row, "184A1_BREAST"]
+
+#print dependency score
+num_brca1_breast <- as.numeric(ds_brca1_breast[1,1])
+BRCA1_val <- paste("Dependency score for is BRCA1 on 184A1_BREAST CL is: ", num_brca1_breast)
+print(BRCA1_val)
+# "Dependency score for is BRCA1 on 184A1_BREAST CL is:  0.0144140222477"
+```
+
+As can be seen here dependency score of the knockout of BRCA1 is slightly 
+positive, which implies that that removal of this gene is not lethal for this 
+breast cancer lineage, which is what we would predict. However, we would like 
+to look at the highest dependency scores for this lineage. 
+
+If we want to compare the average dependency score for all genes for the 
+`184A1_BREAST` cell line:
+
+```{r, eval=TRUE, echo=T}
+#remove NA values which prevent calculation of mean
+no_na_breast <-na.omit(D2_combined_genetic_dependency_scores$`184A1_BREAST`)
+
+#avg gene dependency
+breast_avg <- mean(no_na_breast)
+breast_val <- paste("The average dependency score for all genes for the 184A1_BREAST CL is: ", breast_avg)
+print(breast_val)
+# "The average dependency score for all genes for 184A1_BREAST CL is:  -0.03864401760922"
+```
+
+This implies that the knockout of an average gene for this cell line is mildly 
+deleterious, but not fatal.
+
+The most interesting genes are the ones with the lowest dependency score, which
+implies that they are the most vital to the viability of that particular lineage
+and the removal of that gene is likely fatal. Such genes are consequently 
+desirable as potential drug targets.
+
+Given some gene, can we tell if it's vital or not ? How can we evaulate? Below 
+we will also plot for all genes, vs avg value and then isolate highest effect.
+
+```{r, eval=FALSE, echo=T}
+#sort dependencies scores of particular cell line my lowest (most important)
+h <-D2_combined_genetic_dependency_scores[order(D2_combined_genetic_dependency_scores$`184A1_BREAST`, decreasing=F)[1:10],]
+dep_values_breast <- rbind(h$X1, h$`184A1_BREAST`)
+print("Dependency scores for top 10 dependent genes for 184A1_BREAST CL")
+dep_values_breast
+
+#[1] "Dependency scores for top 10 dependent genes for 184A1_BREAST CL"
+#     [,1]             [,2]              [,3]             [,4]          [,5]             [,6]              [,7]             
+#[1,] "SF3B1 (23451)"  "MMS22L (253714)" "VARS (7407)"    "RPL6 (6128)" "EEF1A1 (1915)"  "COLEC10 (10584)" "CASP8AP2 (9994)"
+#[2,] "-2.29742951572" "-2.0783201785"   "-2.03016402347" "-1.96385881" "-1.93895282018" "-1.91599928102"  "-1.84969637225" 
+#     [,8]             [,9]             [,10]           
+#[1,] "SF3B2 (10992)"  "EIF3B (8662)"   "TRRAP (8295)"  
+#[2,] "-1.82570314454" "-1.81781811554" "-1.73550020792"
+
+```
+
+The gene with the highest dependency score, `SF3B1` Entrez Gene ID: (23451) 
+encodes subunit 1 of the splicing factor 3b protein complex.
+
+If we wish to capture the entire dependency map of the `184A1_BREAST` cell line:
+
+```{r, eval=FALSE, echo=T}
+library(ggplot2, warn.conflicts = FALSE) 
+library(viridis, warn.conflicts = FALSE)
+library(tidyverse, warn.conflicts = FALSE)
+
+#omit genes with NA dependency
+no_na_breast <-na.omit(D2_combined_genetic_dependency_scores$`184A1_BREAST`)
+
+#coerce into data frame
+no_na_breast <- as.data.frame(no_na_breast)
+no_na_breast <- tibble::rowid_to_column(no_na_breast, "ID")
+Breast_184A1 <-no_na_breast
+
+#add col names
+colnames(Breast_184A1, do.NULL = FALSE)
+colnames(Breast_184A1) <- c("Gene","Dependency")
+
+#avg gene dependency
+breast_avg2 <- mean(Breast_184A1$Dependency)
+
+#plot gene dependency levels for 184A1_BREAST cell line
+ggplot(Breast_184A1) + aes(Gene, Dependency, color = Breast_184A1$Dependency) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=breast_avg2, linetype="dashed", color = "black")
+
+```
+
+It might be interesting to locate the highest scoring dependencies among all 
+cell lines.
+
+```{r, eval=FALSE, echo=T}
+
+# function that finds highest dependency scores for each gene and cell line
+
+#find row location of minimum
+#depmin <-which.min(D2_combined_genetic_dependency_scores$`127399_SOFT_TISSUE`)
+#high_dep_gene <-D2_combined_genetic_dependency_scores$X1[depmin]
+#high_dep_gene
+
+#last_col <- D2_combined_genetic_dependency_scores[,ncol(D2_combined_genetic_dependency_scores)]
+# number is 713 columns
+
+low_dep_scores <- apply(D2_combined_genetic_dependency_scores[c(2:713)], 2, 
+                        function(x) {min(x, na.rm = TRUE)})
+
+low_dep_gene <- apply(D2_combined_genetic_dependency_scores[c(2:713)], 2, 
+                function(x) {depmin <-which.min(x)
+                D2_combined_genetic_dependency_scores$X1[depmin]})
+
+# coerce into data frame
+low_dep_scores <- as.data.frame(low_dep_scores)
+low_dep_gene <- as.data.frame(low_dep_gene)
+
+# turn row names into a column
+r1 <-rownames(low_dep_scores)
+low_dep_scores$Cell_Line <- r1
+r2 <-rownames(low_dep_gene)
+low_dep_gene$Cell_Line <- r2
+
+# tidy up df, merge on Cell_Line
+df3 = merge(low_dep_gene, low_dep_scores, by.x=c("Cell_Line"), 
+            by.y=c("Cell_Line"))
+colnames(df3, do.NULL = FALSE)
+colnames(df3) <- c("Cell_Line", "Gene", "Dependency_Score")
+
+# sort by 10 highest dependencies 
+top10 <-df3[order(df3$Dependency_Score, decreasing=F)[1:10],]
+top10
+```
+
+The gene with the highest dependency score is UBC (7316). This gene represents a 
+ubiquitin gene, ubiquitin C. The encoded protein is a polyubiquitin precursor.  
+Ubiquitination has been associated with protein degradation, DNA repair, cell 
+cycle regulation, kinase modification, endocytosis, and regulation of other cell 
+signaling pathways.
+
+If we look for the highest dependency for the SW1088_CENTRAL_NERVOUS_SYSTEM cell
+line, we see indeed that UBC (7316) is the most dependent gene for vitality. 
+
+```{r, eval=FALSE, echo=T}
+#sort dependencies scores of particular cell line my lowest (most important)
+ubc <-D2_combined_genetic_dependency_scores[order(D2_combined_genetic_dependency_scores$SW1088_CENTRAL_NERVOUS_SYSTEM, decreasing=F)[1:10],]
+dep_values_cns <- rbind(ubc$X1, ubc$SW1088_CENTRAL_NERVOUS_SYSTEM)
+print("Dependency scores for top 10 dependent genes for SW1088_CENTRAL_NERVOUS_SYSTEM")
+dep_values_cns
+
+# [1] "Dependency scores for top 10 dependent genes for SW1088_CENTRAL_NERVOUS_SYSTEM"
+#     [,1]             [,2]             [,3]             [,4]             [,5]             [,6]            
+# [1,] "UBC (7316)"     "PSMA3 (5684)"   "PSMA4 (5685)"   "UBA52 (7311)"   "COPZ1 (22818)"  "SRSF1 (6426)"  
+# [2,] "-5.93237872763" "-3.17473770863" "-2.95412602267" "-2.86619955206" "-2.68313273074" "-2.63257840872"
+#     [,7]             [,8]            [,9]             [,10]                           
+# [1,] "NACA (4666)"    "MED28 (80306)" "UBB (7314)"     "U2AF1L5&U2AF1 (102724594&7307)"
+# [2,] "-2.52727165132" "-2.4743706891" "-2.31711569988" "-2.30982469365"        
+
+```
+
+Below is a plot of the lowest dependency scores for each gene and CL for the 
+`D2_combined_genetic_dependency_scores` dataset. 
+ 
+```{r, eval=FALSE, echo=T}
+# apply function to get mean dependency from all columns
+D2_avg <- apply(D2_combined_genetic_dependency_scores[c(2:713)], 2, 
+                        function(x) {mean(x, na.rm = TRUE)})
+D2_avg2 <- mean(D2_avg)
+# -0.06833473
+
+# apply function to get mean HIGHEST dependency from all columns
+df3_avg <- mean(df3$Dependency_Score)
+# -2.198807
+
+#coerce into data frame
+df3 <- as.data.frame(df3)
+#df3 <- tibble::rowid_to_column(df3, "ID")
+#View(df3)
+
+#plot gene dependency levels for all cell lines
+ggplot(df3) + aes(ID, Dependency_Score, color = df3$Dependency) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=D2_avg2, linetype="dashed", color = "black") + 
+    geom_hline(yintercept=df3_avg, linetype="dashed", color = "red") +
+    labs(y = "Largest Dependency Score", x = "Genes") + 
+    ggtitle("Plot of the greatest dependency scores") +
+    scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
+
+# I will add a legend to the lines when I have time
+
+```
+
+It might be insightful to compare the dependency scores of datasets derived from
+RNAi knockout e.g. `D2_combined_genetic_dependency_scores` and those utilizing 
+CRISPR knockouts e.g. `gene_effect_corrected` . 
+
+```{r, eval=FALSE, echo=T}
+
+gene_effect_corrected
+
+D2_combined_genetic_dependency_scores
+
+```
+
+
+
+(1) replicate one or two figures as produced by the online DepMap Data Explorer 
+portal
+
+```{r, eval=FALSE, echo=T}
+
+gene_effect_corrected
+
+D2_combined_genetic_dependency_scores
+
+```
+
+(2) compute and visualise initially for a single gene the correlation between 
+shRNAi and CRISPR-based dependency scores
+
+```{r, eval=FALSE, echo=T}
+
+```
+
+(3) compute and visualise for all genes, the correlation between shRNAi and 
+CRISPR-based dependency scores
+
+```{r, eval=FALSE, echo=T}
+
+```
+
+(4) explore the dependency scores for genes with high and low expression 
+
+PSMC2 (Rpt1) was the highest-ranked CYCLOPS candidate gene in
+our original analysis and was also significant in the validation
+data set. PSMC2 is part of the 19S regulatory complex of the
+26S proteasome, which is responsible for catalyzing the unfold-
+ing and translocation of substrates into the 20S proteasome
+
+```{r, eval=FALSE, echo=T}
+
+```
+
+
