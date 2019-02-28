@@ -29,7 +29,7 @@ and visually display them.
 
 ```{r, echo=FALSE, warning=FALSE}
 # This code chunk simply makes sure that all the libraries used here are installed, it will not be shown in the report (notice echo = FALSE).
-packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly", "viridis")
+packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly", "viridis", "tidyverse")
 if ( length(missing_pkgs <- setdiff(packages, rownames(installed.packages()))) > 0) {
   message("Installing missing package(s): ", paste(missing_pkgs, collapse = ", "))
   install.packages(missing_pkgs)
@@ -257,7 +257,7 @@ ds_brca1_breast <- D2_combined_genetic_dependency_scores[BRCA1_row, "184A1_BREAS
 num_brca1_breast <- as.numeric(ds_brca1_breast[1,1])
 BRCA1_val <- paste("Dependency score for is BRCA1 on 184A1_BREAST CL is: ", num_brca1_breast)
 print(BRCA1_val)
-
+# "Dependency score for is BRCA1 on 184A1_BREAST CL is:  0.0144140222477"
 ```
 
 As can be seen here dependency score of the knockout of BRCA1 is slightly 
@@ -276,7 +276,7 @@ no_na_breast <-na.omit(D2_combined_genetic_dependency_scores$`184A1_BREAST`)
 breast_avg <- mean(no_na_breast)
 breast_val <- paste("The average dependency score for all genes for the 184A1_BREAST CL is: ", breast_avg)
 print(breast_val)
-
+# "The average dependency score for all genes for 184A1_BREAST CL is:  -0.03864401760922"
 ```
 
 This implies that the knockout of an average gene for this cell line is mildly 
@@ -287,12 +287,24 @@ implies that they are the most vital to the viability of that particular lineage
 and the removal of that gene is likely fatal. Such genes are consequently 
 desirable as potential drug targets.
 
+Given some gene, can we tell if it's vital or not ? How can we evaulate? Below 
+we will also plot for all genes, vs avg value and then isolate highest effect.
+
 ```{r, eval=FALSE, echo=T}
 #sort dependencies scores of particular cell line my lowest (most important)
 h <-D2_combined_genetic_dependency_scores[order(D2_combined_genetic_dependency_scores$`184A1_BREAST`, decreasing=F)[1:10],]
 dep_values_breast <- rbind(h$X1, h$`184A1_BREAST`)
 print("Dependency scores for top 10 dependent genes for 184A1_BREAST CL")
 dep_values_breast
+
+#[1] "Dependency scores for top 10 dependent genes for 184A1_BREAST CL"
+#     [,1]             [,2]              [,3]             [,4]          [,5]             [,6]              [,7]             
+#[1,] "SF3B1 (23451)"  "MMS22L (253714)" "VARS (7407)"    "RPL6 (6128)" "EEF1A1 (1915)"  "COLEC10 (10584)" "CASP8AP2 (9994)"
+#[2,] "-2.29742951572" "-2.0783201785"   "-2.03016402347" "-1.96385881" "-1.93895282018" "-1.91599928102"  "-1.84969637225" 
+#     [,8]             [,9]             [,10]           
+#[1,] "SF3B2 (10992)"  "EIF3B (8662)"   "TRRAP (8295)"  
+#[2,] "-1.82570314454" "-1.81781811554" "-1.73550020792"
+
 ```
 
 The gene with the highest dependency score, `SF3B1` Entrez Gene ID: (23451) 
@@ -303,38 +315,153 @@ If we wish to capture the entire dependency map of the `184A1_BREAST` cell line:
 ```{r, eval=FALSE, echo=T}
 library(ggplot2, warn.conflicts = FALSE) 
 library(viridis, warn.conflicts = FALSE)
+library(tidyverse, warn.conflicts = FALSE)
 
+#omit genes with NA dependency
 no_na_breast <-na.omit(D2_combined_genetic_dependency_scores$`184A1_BREAST`)
-df_breast <-as.data.frame(no_na_breast)
 
-# plot
-qplot(x = D2_combined_genetic_dependency_scores$X1, y = D2_combined_genetic_dependency_scores$`184A1_BREAST`, data = D2_combined_genetic_dependency_scores, geom = "point")
+#coerce into data frame
+no_na_breast <- as.data.frame(no_na_breast)
+no_na_breast <- tibble::rowid_to_column(no_na_breast, "ID")
+Breast_184A1 <-no_na_breast
+
+#add col names
+colnames(Breast_184A1, do.NULL = FALSE)
+colnames(Breast_184A1) <- c("Gene","Dependency")
+
+#avg gene dependency
+breast_avg2 <- mean(Breast_184A1$Dependency)
+
+#plot gene dependency levels for 184A1_BREAST cell line
+ggplot(Breast_184A1) + aes(Gene, Dependency, color = Breast_184A1$Dependency) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=breast_avg2, linetype="dashed", color = "black")
+
+```
+
+It might be interesting to locate the highest scoring dependencies among all 
+cell lines.
+
+```{r, eval=FALSE, echo=T}
+
+# function that finds highest dependency scores for each gene and cell line
+
+#find row location of minimum
+#depmin <-which.min(D2_combined_genetic_dependency_scores$`127399_SOFT_TISSUE`)
+#high_dep_gene <-D2_combined_genetic_dependency_scores$X1[depmin]
+#high_dep_gene
+
+#last_col <- D2_combined_genetic_dependency_scores[,ncol(D2_combined_genetic_dependency_scores)]
+# number is 713 columns
+
+low_dep_scores <- apply(D2_combined_genetic_dependency_scores[c(2:713)], 2, 
+                        function(x) {min(x, na.rm = TRUE)})
+
+low_dep_gene <- apply(D2_combined_genetic_dependency_scores[c(2:713)], 2, 
+                function(x) {depmin <-which.min(x)
+                D2_combined_genetic_dependency_scores$X1[depmin]})
+
+# coerce into data frame
+low_dep_scores <- as.data.frame(low_dep_scores)
+low_dep_gene <- as.data.frame(low_dep_gene)
+
+# turn row names into a column
+r1 <-rownames(low_dep_scores)
+low_dep_scores$Cell_Line <- r1
+r2 <-rownames(low_dep_gene)
+low_dep_gene$Cell_Line <- r2
+
+# tidy up df, merge on Cell_Line
+df3 = merge(low_dep_gene, low_dep_scores, by.x=c("Cell_Line"), 
+            by.y=c("Cell_Line"))
+colnames(df3, do.NULL = FALSE)
+colnames(df3) <- c("Cell_Line", "Gene", "Dependency_Score")
+
+# sort by 10 highest dependencies 
+top10 <-df3[order(df3$Dependency_Score, decreasing=F)[1:10],]
+top10
+```
+
+The gene with the highest dependency score is UBC (7316). This gene represents a 
+ubiquitin gene, ubiquitin C. The encoded protein is a polyubiquitin precursor.  
+Ubiquitination has been associated with protein degradation, DNA repair, cell 
+cycle regulation, kinase modification, endocytosis, and regulation of other cell 
+signaling pathways.
+
+If we look for the highest dependency for the SW1088_CENTRAL_NERVOUS_SYSTEM cell
+line, we see indeed that UBC (7316) is the most dependent gene for vitality. 
+
+```{r, eval=FALSE, echo=T}
+#sort dependencies scores of particular cell line my lowest (most important)
+ubc <-D2_combined_genetic_dependency_scores[order(D2_combined_genetic_dependency_scores$SW1088_CENTRAL_NERVOUS_SYSTEM, decreasing=F)[1:10],]
+dep_values_cns <- rbind(ubc$X1, ubc$SW1088_CENTRAL_NERVOUS_SYSTEM)
+print("Dependency scores for top 10 dependent genes for SW1088_CENTRAL_NERVOUS_SYSTEM")
+dep_values_cns
+
+# [1] "Dependency scores for top 10 dependent genes for SW1088_CENTRAL_NERVOUS_SYSTEM"
+#     [,1]             [,2]             [,3]             [,4]             [,5]             [,6]            
+# [1,] "UBC (7316)"     "PSMA3 (5684)"   "PSMA4 (5685)"   "UBA52 (7311)"   "COPZ1 (22818)"  "SRSF1 (6426)"  
+# [2,] "-5.93237872763" "-3.17473770863" "-2.95412602267" "-2.86619955206" "-2.68313273074" "-2.63257840872"
+#     [,7]             [,8]            [,9]             [,10]                           
+# [1,] "NACA (4666)"    "MED28 (80306)" "UBB (7314)"     "U2AF1L5&U2AF1 (102724594&7307)"
+# [2,] "-2.52727165132" "-2.4743706891" "-2.31711569988" "-2.30982469365"        
+
+```
+
+Below is a plot of the lowest dependency scores for each gene and CL for the 
+`D2_combined_genetic_dependency_scores` dataset. 
+ 
+```{r, eval=FALSE, echo=T}
+# apply function to get mean dependency from all columns
+D2_avg <- apply(D2_combined_genetic_dependency_scores[c(2:713)], 2, 
+                        function(x) {mean(x, na.rm = TRUE)})
+D2_avg2 <- mean(D2_avg)
+# -0.06833473
+
+# apply function to get mean HIGHEST dependency from all columns
+df3_avg <- mean(df3$Dependency_Score)
+# -2.198807
+
+#coerce into data frame
+df3 <- as.data.frame(df3)
+#df3 <- tibble::rowid_to_column(df3, "ID")
+#View(df3)
+
+#plot gene dependency levels for all cell lines
+ggplot(df3) + aes(ID, Dependency_Score, color = df3$Dependency) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=D2_avg2, linetype="dashed", color = "black") + 
+    geom_hline(yintercept=df3_avg, linetype="dashed", color = "red") +
+    labs(y = "Largest Dependency Score", x = "Genes") + 
+    ggtitle("Plot of the greatest dependency scores") +
+    scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
+
+# I will add a legend to the lines when I have time
+
+```
+
+It might be insightful to compare the dependency scores of datasets derived from
+RNAi knockout e.g. `D2_combined_genetic_dependency_scores` and those utilizing 
+CRISPR knockouts e.g. `gene_effect_corrected` . 
+
+```{r, eval=FALSE, echo=T}
+
+gene_effect_corrected
+
+D2_combined_genetic_dependency_scores
+
 ```
 
 
-
-If we are interested in returning a dependency score which is the highest of all
-of the genes, we can look  
-
-
-PIK3CA Gene is the highest
-
-Phosphatidylinositol 3-kinase is composed of an 85 kDa regulatory subunit and a 110 kDa catalytic subunit. The protein encoded by this gene represents the catalytic subunit, which uses ATP to phosphorylate PtdIns, PtdIns4P and PtdIns(4,5)P2. This gene has been found to be oncogenic and has been implicated in cervical cancers. A pseudogene of this gene has been defined on chromosome 22. [provided by RefSeq, Apr 2016]
-
-
-Specific genes can be selected 
-
-Compare RNAi and CRISPR datasets
-
-Make graph of "D2...." of dependency scores for each gene and CL 
-
-Given some gene, can we tell if it's vital or not ? How can we evaulate? Plot 
-for all genes, vs avg value and then isolate highest effect 
 
 (1) replicate one or two figures as produced by the online DepMap Data Explorer 
 portal
 
 ```{r, eval=FALSE, echo=T}
+
+gene_effect_corrected
+
+D2_combined_genetic_dependency_scores
 
 ```
 
@@ -365,6 +492,3 @@ ing and translocation of substrates into the 20S proteasome
 ```
 
 
-```{r, eval=FALSE, echo=T}
-
-```
