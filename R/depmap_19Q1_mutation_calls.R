@@ -9,9 +9,9 @@
 #' @format A data frame with 1243145 rows and 36 variables:
 #' \describe{
 #'   \item{X1}{Sample number}
-#'   \item{Hugo_Symbol}{Hugo Symbol denotes a unique and meaningful name for every known human gene}
-#'   \item{Entrez_Gene_Id}{Gene ID for NCBI Entrez gene database}
-#'   \item{NCBI_Build}{NCBI_Build}
+#'   \item{Hugo_Symbol}{Hugo Symbol denotes a unique and meaningful name for every known human gene (e.g. SAP25)}
+#'   \item{Entrez_Gene_Id}{Gene ID for NCBI Entrez gene database, (e.g. e.g. 100316904)}
+#'   \item{NCBI_Build}{NCBI_Build (i.e. reference genome)}
 #'   \item{Chromosome}{Chromosome}
 #'   \item{Start_position}{Gene start position}
 #'   \item{End_position}{Gene end position}
@@ -56,9 +56,9 @@
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
-#' (\href{https://www.ncbi.nlm.nih.gov/pubmed/28753430}{PubMed})
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
 #'
-#' @source \href{https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv}{DepMap, Broad (2019)}
+#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
 #' data(depmap_19Q1_mutation_calls)
