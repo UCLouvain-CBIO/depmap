@@ -292,7 +292,8 @@ we will also plot for all genes, vs avg value and then isolate highest effect.
 
 ```{r, eval=FALSE, echo=T}
 #sort dependencies scores of particular cell line my lowest (most important)
-h <-D2_combined_genetic_dependency_scores[order(D2_combined_genetic_dependency_scores$`184A1_BREAST`, decreasing=F)[1:10],]
+h <-D2_combined_genetic_dependency_scores[order(D2_combined_genetic_dependency_scores$`184A1_BREAST`, 
+                                                decreasing=F)[1:10],]
 dep_values_breast <- rbind(h$X1, h$`184A1_BREAST`)
 print("Dependency scores for top 10 dependent genes for 184A1_BREAST CL")
 dep_values_breast
@@ -424,16 +425,17 @@ df3_avg <- mean(df3$Dependency_Score)
 
 #coerce into data frame
 df3 <- as.data.frame(df3)
-#df3 <- tibble::rowid_to_column(df3, "ID")
+df3 <- tibble::rowid_to_column(df3, "ID")
 #View(df3)
+depAllGenes <-df3 
 
 #plot gene dependency levels for all cell lines
-ggplot(df3) + aes(ID, Dependency_Score, color = df3$Dependency) + 
+ggplot(depAllGenes) + aes(ID, Dependency_Score, color = df3$Dependency) + 
     geom_point() +  scale_colour_viridis() + 
     geom_hline(yintercept=D2_avg2, linetype="dashed", color = "black") + 
     geom_hline(yintercept=df3_avg, linetype="dashed", color = "red") +
     labs(y = "Largest Dependency Score", x = "Genes") + 
-    ggtitle("Plot of the greatest dependency scores") +
+    ggtitle("Plot of the greatest dependency scores for each cell line") +
     scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
 
 # I will add a legend to the lines when I have time
@@ -442,16 +444,256 @@ ggplot(df3) + aes(ID, Dependency_Score, color = df3$Dependency) +
 
 It might be insightful to compare the dependency scores of datasets derived from
 RNAi knockout e.g. `D2_combined_genetic_dependency_scores` and those utilizing 
-CRISPR knockouts e.g. `gene_effect_corrected` . 
+CRISPR knockouts e.g. `gene_effect_corrected`. However, in order to compare 
+`D2_combined_genetic_dependency_scores` and `gene_effect_corrected` we will have 
+persome data wrangling, or more specifically, transpose one of these dataframes
+and remove the NA values in order to make the two compatible.  
+
+This is because `D2_combined_genetic_dependency_scores` has cell lines as column
+attributes and genes as rows, and for `gene_effect_corrected` the converse is 
+true. In order to merge and visualize the differences between these datasets we 
+will have to make the dimensions comparable
+
+```{r, eval=TRUE, echo=F}
+
+library(dplyr, warn.conflicts = FALSE)
+#library(tidyr, warn.conflicts = FALSE)
+
+# in order to compare `D2_combined_genetic_dependency_scores` and 
+# `gene_effect_corrected` we will have to transpose one of these dataframes
+# because `D2_combined_genetic_dependency_scores` has cell lines as attributes 
+# and genes as rows, and for `gene_effect_corrected` the converse is true. In 
+# order to merge these datasets we will have to make the dimensions comparable
+
+# `metadata` will allow us to associate the DepMap ID number with the CCLE cell 
+# line names. the association between DepMap ID number will then be mapped onto 
+# the `tranD2` and `gene_effect_corrected` data frames
+
+###############################################################################
+
+# data wrangling for `D2_combined_genetic_dependency_scores`
+
+# we need the depmap ID metadata from `depmap_19Q1_cell_lines`
+metadata <- data.frame(depmap_19Q1_cell_lines$DepMap_ID, 
+                       depmap_19Q1_cell_lines$CCLE_Name)
+
+#add col names to metadata to make the variables more clear
+colnames(metadata, do.NULL = FALSE)
+colnames(metadata) <- c("depmapID","cellLine")
+#View(metadata)
+
+#transpose D2_combined_genetic_dependency_scores
+tranD2 <-t(D2_combined_genetic_dependency_scores) 
+
+#coerce into df because tranD2 is currently a matrix
+tranD2 <-as.data.frame(tranD2, row.names = NULL, col.names = TRUE) 
+
+#select first column of tranD2, make it the colnames
+colnames(tranD2) <- as.character(unlist(tranD2[1,]))
+
+#drop first row (redundant with colnames(tranD2))
+tranD2 = tranD2[-1, ] 
+# visual check to make sure our tranD2 df has the right column names 
+#View(tranD2[1:10, 1:10])
+
+#ensure that dimensions match
+#dim(D2_combined_genetic_dependency_scores)
+# 17309   713
+#dim(tranD2)
+# 713 17309
+#dim(metadata)
+# 1677    2
+#dim(gene_effect_corrected)
+# 558 17635
+
+# make new data frame with cellToID2, with DepmapID as a colname at the 
+# beginning and the rest of the data frame on the columns to the right 
+cellToID <-tranD2
+
+#need to add row names (cell lines) and then merge
+cellLinesD2 <- colnames(D2_combined_genetic_dependency_scores)
+cellLinesD2 <- as.data.frame(cellLinesD2)
+
+# drop X1 row (not necessary) to make dimensions match
+cellLinesD2 = cellLinesD2[-1, ] 
+
+# merge cell lines with transposed D2 dataframe
+cellToID2 <- cbind(cellLinesD2, cellToID)
+
+# Rename first column to "cellLine" to it can be merged with `metadata`
+names(cellToID2)[1]<-"cellLine"
+
+#View(cellToID2[1:10, 1:10])
+
+# add cellLines column 
+#cellToID2 <-cbind("cellLine" = paste(cellLinesD2, seq_len(nrow(cellToID))), cellToID)
+#View(cellToID2[1:10, 1:10])
+
+# map DepmapID onto CCLE name for cellToID2 (transpose of 
+# D2_combined_genetic_dependency_scores)
+cellToID3 <- full_join(cellToID2, metadata, all=TRUE)
+#View(cellToID3[1:10, 1:10])
+
+# tidy up dataframe to make depmapID appear as the first column
+depmapID <- cellToID3$depmapID
+cellToIdCols <- subset(cellToID3, select = -c(depmapID))
+cellToID4 <-cbind(depmapID, cellToIdCols)
+#View(cellToID4[1:10, 1:10])
+#length(cellToID4$depmapID)
+
+#remove all NAs from column cellToID4$depmapID and rename to `noNAdepIDrnai`
+noNAdepIDrnai <- subset(cellToID4, !is.na(depmapID))
+#length(noNAdepIDrnai$depmapID)
+View(noNAdepIDrnai[1:10, 1:10])
+
+###############################################################################
+
+# data wrangling for `gene_effect_corrected`
+
+# Rename first column to "cellLine" to it can be merged with `metadata`
+names(gene_effect_corrected)[1]<-"depmapID"
+
+# map CCLE name onto DepmapID for gene_effect_corrected
+geneToID <- full_join(gene_effect_corrected, metadata, all=TRUE)
+View(geneToID[1:10, 1:10])
+
+# tidy up dataframe to make cellLine appear as the second column
+depmapID <- geneToID$depmapID
+cellLine <- geneToID$cellLine
+geneToIDCols <- subset(cellToID3, select = -c(depmapID, cellLine))
+geneIDcrispr <-cbind(depmapID, cellLine, geneToID)
+geneIDcrispr <- geneIDcrispr[,-3]
+View(geneIDcrispr[1:10, 1:10])
+
+# determine the level of missingness
+#length(geneIDcrispr$depmapID)
+# 1677
+#remove all NAs from column geneIDcrispr$depmapID and rename to `noNAdepIDcrispr`
+#noNAdepIDcrispr <- subset(cellToID4, !is.na(depmapID))
+#length(noNAdepIDcrispr$depmapID)
+# 1677
+# geneIDcrispr doesn't appear to have any missing rows in depmapID unlike the
+# rnai dataset, so we will not be using this block of code 
+
+# make sure dimensions of geneIDcrispr and noNAdepIDrnai are identical
+#dim(noNAdepIDrnai)
+#[1]  1677 17311
+#dim(geneIDcrispr)
+#[1]  1677 17637
+
+# it appears that the CRISPR dataset has about 326 more genes tested than the 
+# RNAi dataset, although they both have the same number of cell lines. We will
+# need to do additional data wrangling to make sure that the number of genes is
+# the same, otherwise we cannot compare them
+
+# compare columns of geneIDcrispr and noNAdepIDrnai 
+
+#a <-names(noNAdepIDrnai)
+#[1]  1677 17311
+#b <-names(geneIDcrispr)
+#[1]  1677 16637
+
+# this is all not working below 
+
+#compareCols <- a[!(a %in% b)]
+#compareCols <-as.character(compareCols)
+#class(compareCols)
+#View(compareCols)
+
+#newData <- subset(geneIDcrispr, select = compareCols) 
+#dim(newData)
+
+#crisprAndRnai <- geneIDcrispr[, -(names(geneIDcrispr) %in% compareCols)]
+#dim(crisprAndRnai)
+
+# remove genes tested in CRISPR dataset that are not in RNAI dataset
+#crisprAndRnai <- subset(geneIDcrispr, select = -c(compareCols))
+
+```
+
+Now that the data wrangling for `D2_combined_genetic_dependency_scores` and 
+`gene_effect_corrected` is complete, we will attempt to visualize the difference
+in dependency scores between the RNAi and CRISPR datasets. First, comparison for 
+the dependency two genes between the two datasets will be produced, then a 
+global comparison between the two datasets will be demonstrated.
+
+We will begin by illustrating a histogram of the dependency scores for a 
+particular gene, comparing CRISPR and RNAI.
 
 ```{r, eval=FALSE, echo=T}
+
+# histogram of the dependency scores for a particular gene taken from data 
+# wrangled `gene_effect_corrected` and `D2_combined_genetic_dependency_scores`
+# datasets. We will first be visualizing the PIK3C3 gene, which is one of the 
+# most dependent genes in either dataset. We will do this by combining the  
+# geneIDcrispr$`PIK3C3 (5289)` and noNAdepIDrnai$`PIK3C3 (5289)` columns into a
+# single dataframe and plotting with ggplot2 
+
+#library(ggplot2, warn.conflicts = FALSE) 
+#library(viridis, warn.conflicts = FALSE)
+
+#class(geneIDcrispr) 
+#class(noNAdepIDrnai)
+
+rnaiNoNaPIK3C3 <- subset(noNAdepIDrnai, !is.na(`PIK3C3 (5289)`))
+#dim(noNArnaiPIK3C3)
+# [1]   709 17311 
+#View(noNArnaiPIK3C3[1:10, 1:10])
+
+
+geneIDcrispr$`PIK3C3 (5289)`
+
+crisprNoNaPIK3C3 <- subset(geneIDcrispr, !is.na(`PIK3C3 (5289)`))
+#dim(crisprNoNaPIK3C3)
+# [1]   558 17637
+#View(crisprNoNaPIK3C3[1:10, 1:10])
+
+# how do we merge the CRISPR and RNAi columns? 
+# first sort by depmapID
+rnaiNoNaPIK3C3 <- rnaiNoNaPIK3C3[order(depmapID),] 
+View(noNArnaiPIK3C3[1:10, 1:10])
+crisprNoNaPIK3C3 <- crisprNoNaPIK3C3[order(depmapID),] 
+View(crisprNoNaPIK3C3[1:10, 1:10])
+View(crisprNoNaPIK3C3$`PIK3C3 (5289)`)
+
+noNArnaiPIK3C3 <-cbind(noNAdepIDrnai$depmapID, noNAdepIDrnai$`PIK3C3 (5289)`)
+
+# why are there so many NAs??????? 
+
+# combine columns into one dataframe
+PIK3C3 <-cbind(geneIDcrispr$`PIK3C3 (5289)`, noNAdepIDrnai$`PIK3C3 (5289)`)
+
+#add col names to PIK3C3 to make the variables more clear
+colnames(PIK3C3, do.NULL = FALSE)
+colnames(PIK3C3) <- c("depCRISPR","depRNAi")
+View(PIK3C3)
+
+#plot gene dependency levels for all cell lines
+ggplot(depAllGenes) + aes(ID, Dependency_Score, color = df3$Dependency) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=D2_avg2, linetype="dashed", color = "black") + 
+    geom_hline(yintercept=df3_avg, linetype="dashed", color = "red") +
+    labs(y = "Largest Dependency Score", x = "Genes") + 
+    ggtitle("Plot of the greatest dependency scores for each cell line") +
+    scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
+
+# I will add a legend to the lines when I have time
+
+
+```
+
+
+Make some sort of histogram of the dependency scores for a cell line 
+
+```{r, eval=FALSE, echo=T}
+
+# histogram of the dependency scores for a cell line 
 
 gene_effect_corrected
 
 D2_combined_genetic_dependency_scores
 
 ```
-
 
 
 (1) replicate one or two figures as produced by the online DepMap Data Explorer 
@@ -481,11 +723,11 @@ CRISPR-based dependency scores
 
 (4) explore the dependency scores for genes with high and low expression 
 
-PSMC2 (Rpt1) was the highest-ranked CYCLOPS candidate gene in
-our original analysis and was also significant in the validation
-data set. PSMC2 is part of the 19S regulatory complex of the
-26S proteasome, which is responsible for catalyzing the unfold-
-ing and translocation of substrates into the 20S proteasome
+PSMC2 (Rpt1) was the highest-ranked CYCLOPS candidate gene in the original 
+depmap analysis and was also significant in the validation data set. PSMC2 is 
+part of the 19S regulatory complex of the 26S proteasome, which is responsible 
+for catalyzing the unfolding and translocation of substrates into the 20S 
+proteasome
 
 ```{r, eval=FALSE, echo=T}
 
