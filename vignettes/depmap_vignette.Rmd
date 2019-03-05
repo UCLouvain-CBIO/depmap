@@ -336,7 +336,8 @@ breast_avg2 <- mean(Breast_184A1$Dependency)
 #plot gene dependency levels for 184A1_BREAST cell line
 ggplot(Breast_184A1) + aes(Gene, Dependency, color = Breast_184A1$Dependency) + 
     geom_point() +  scale_colour_viridis() + 
-    geom_hline(yintercept=breast_avg2, linetype="dashed", color = "black")
+    geom_hline(yintercept=breast_avg2, linetype="dashed", color = "black") +
+    ggtitle("Average RNAi dependency scores for each gene")
 
 ```
 
@@ -430,12 +431,12 @@ df3 <- tibble::rowid_to_column(df3, "ID")
 depAllGenes <-df3 
 
 #plot gene dependency levels for all cell lines
-ggplot(depAllGenes) + aes(ID, Dependency_Score, color = df3$Dependency) + 
+ggplot(depAllGenes) + aes(ID, Dependency_Score, color = depAllGenes$Dependency) + 
     geom_point() +  scale_colour_viridis() + 
     geom_hline(yintercept=D2_avg2, linetype="dashed", color = "black") + 
     geom_hline(yintercept=df3_avg, linetype="dashed", color = "red") +
-    labs(y = "Largest Dependency Score", x = "Genes") + 
-    ggtitle("Plot of the greatest dependency scores for each cell line") +
+    labs(y = "Largest Dependency Score (Gene)", x = "Genes") + 
+    ggtitle("Greatest RNAi dependency scores for each gene cell line") +
     scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
 
 # I will add a legend to the lines when I have time
@@ -468,8 +469,6 @@ library(dplyr, warn.conflicts = FALSE)
 # `metadata` will allow us to associate the DepMap ID number with the CCLE cell 
 # line names. the association between DepMap ID number will then be mapped onto 
 # the `tranD2` and `gene_effect_corrected` data frames
-
-###############################################################################
 
 # data wrangling for `D2_combined_genetic_dependency_scores`
 
@@ -525,10 +524,6 @@ names(cellToID2)[1]<-"cellLine"
 
 #View(cellToID2[1:10, 1:10])
 
-# add cellLines column 
-#cellToID2 <-cbind("cellLine" = paste(cellLinesD2, seq_len(nrow(cellToID))), cellToID)
-#View(cellToID2[1:10, 1:10])
-
 # map DepmapID onto CCLE name for cellToID2 (transpose of 
 # D2_combined_genetic_dependency_scores)
 cellToID3 <- full_join(cellToID2, metadata, all=TRUE)
@@ -541,12 +536,14 @@ cellToID4 <-cbind(depmapID, cellToIdCols)
 #View(cellToID4[1:10, 1:10])
 #length(cellToID4$depmapID)
 
-#remove all NAs from column cellToID4$depmapID and rename to `noNAdepIDrnai`
+# remove all NAs from column cellToID4$depmapID and rename to `noNAdepIDrnai`
 noNAdepIDrnai <- subset(cellToID4, !is.na(depmapID))
 #length(noNAdepIDrnai$depmapID)
-View(noNAdepIDrnai[1:10, 1:10])
+#View(noNAdepIDrnai[1:10, 1:10])
 
-###############################################################################
+```
+
+```{r, eval=TRUE, echo=F}
 
 # data wrangling for `gene_effect_corrected`
 
@@ -555,15 +552,15 @@ names(gene_effect_corrected)[1]<-"depmapID"
 
 # map CCLE name onto DepmapID for gene_effect_corrected
 geneToID <- full_join(gene_effect_corrected, metadata, all=TRUE)
-View(geneToID[1:10, 1:10])
+#View(geneToID[1:10, 1:10])
 
 # tidy up dataframe to make cellLine appear as the second column
 depmapID <- geneToID$depmapID
 cellLine <- geneToID$cellLine
 geneToIDCols <- subset(cellToID3, select = -c(depmapID, cellLine))
 geneIDcrispr <-cbind(depmapID, cellLine, geneToID)
-geneIDcrispr <- geneIDcrispr[,-3]
-View(geneIDcrispr[1:10, 1:10])
+geneIDcrispr <- geneIDcrispr[,-3] #remove reduncent depmapID column
+#View(geneIDcrispr[1:10, 1:10])
 
 # determine the level of missingness
 #length(geneIDcrispr$depmapID)
@@ -586,28 +583,73 @@ View(geneIDcrispr[1:10, 1:10])
 # need to do additional data wrangling to make sure that the number of genes is
 # the same, otherwise we cannot compare them
 
-# compare columns of geneIDcrispr and noNAdepIDrnai 
+```
 
-#a <-names(noNAdepIDrnai)
-#[1]  1677 17311
-#b <-names(geneIDcrispr)
-#[1]  1677 16637
+```{r, eval=TRUE, echo=F}
 
-# this is all not working below 
+#library(dplyr, warn.conflicts = FALSE)
+#library(tidyr, warn.conflicts = FALSE)
 
-#compareCols <- a[!(a %in% b)]
-#compareCols <-as.character(compareCols)
-#class(compareCols)
-#View(compareCols)
+# in order to plot the `gene_effect_corrected` (CRISPR) and 
+# `D2_combined_genetic_dependency_scores`(RNAi) datasets, we will have to make 
+# them comparable, which means removing any NAs or genes that were not tested in
+# on or the other dataset. We will 1) remove all rows with NA for dependency 
+# score for the PIK3C3 gene and 2) remove all genes (columns) that do not occur 
+# in both datasets, then 3) full_join on the cell lines (depmapID) in common for 
+# the CRISPR and RNAi for the PIK3C3 gene dependencies of both datasets 
 
-#newData <- subset(geneIDcrispr, select = compareCols) 
-#dim(newData)
+# compare `depmapID` column of `geneIDcrispr` and `noNAdepIDrnai` 
 
-#crisprAndRnai <- geneIDcrispr[, -(names(geneIDcrispr) %in% compareCols)]
-#dim(crisprAndRnai)
+# since the dimensions for `geneIDcrispr` and `noNAdepIDrnai` are the same, we
+# will full_join on `depmapID` and create a new dataframe `depPIK3C3` with 
+# depenency scores that can be compared between RNAi CRISPR datasets. Note: we
+# use "cbind.data.frame" to avoid turning the numeric values into factors
 
-# remove genes tested in CRISPR dataset that are not in RNAI dataset
-#crisprAndRnai <- subset(geneIDcrispr, select = -c(compareCols))
+crisprPIK3C3 <-cbind.data.frame(geneIDcrispr$depmapID, geneIDcrispr$`PIK3C3 (5289)`)
+rnaiPIK3C3 <-cbind.data.frame(noNAdepIDrnai$depmapID, noNAdepIDrnai$`PIK3C3 (5289)`, stringsAsFactors = FALSE)
+
+#rename column names 
+
+#add col names to crisprPIK3C3 to make the variables more clear
+colnames(crisprPIK3C3, do.NULL = FALSE)
+colnames(crisprPIK3C3) <- c("depmapID","crisprPIK3C3")
+
+#add col names to rnaiPIK3C3 to make the variables more clear
+colnames(rnaiPIK3C3, do.NULL = FALSE)
+colnames(rnaiPIK3C3) <- c("depmapID","rnaiPIK3C3")
+#rnaiPIK3C3 <- data.frame(comparePIK3C3, rnaiPIK3C3 = FALSE)
+
+#full_join on depmapID
+comparePIK3C3 <- full_join(crisprPIK3C3, rnaiPIK3C3, all=TRUE)
+
+#set all NAs to 0 for comparePIK3C3 so the dataframe can be visualized
+
+# comparePIK3C3$rnaiPIK3C3 has to be turned into character because it throws 
+# an annoying warning "invalid factor level, NA generated"
+comparePIK3C3$rnaiPIK3C3<- as.character(comparePIK3C3$rnaiPIK3C3)
+comparePIK3C3[, 1:3][is.na(comparePIK3C3[, 1:3])] <- 0
+
+# comparePIK3C3$rnaiPIK3C3 converted back to numeric. Note: this is an inelegant
+# solution, need to find something that works better 
+comparePIK3C3$rnaiPIK3C3<- as.numeric(comparePIK3C3$rnaiPIK3C3)
+#View(comparePIK3C3)
+
+#convert comparePIK3C3 to depPIK3C3, and convert 0 values to NA
+depPIK3C3 <- comparePIK3C3
+depPIK3C3[depPIK3C3==0] <- NA
+depPIK3C3
+
+#Delete the rows associated with NA.
+compDepPIK3C3<-depPIK3C3[complete.cases(depPIK3C3),]
+#View(compDepPIK3C3)
+#dim(compDepPIK3C3)
+#[1] 402   3
+# this means that there are only 402 cell lines where there are dependency 
+# scores for both RNAI and CRISPR. we will plot them in the chunk below
+
+# sort byDepIdPIK3C3 by depmapID, lowest to highest
+byDepIdPIK3C3 <- compDepPIK3C3[order(compDepPIK3C3$depmapID, decreasing=F),]
+#View(byDepIdPIK3C3)
 
 ```
 
@@ -620,9 +662,11 @@ global comparison between the two datasets will be demonstrated.
 We will begin by illustrating a histogram of the dependency scores for a 
 particular gene, comparing CRISPR and RNAI.
 
+Scatterplot of the dependency scores for RNAi knockouts for PIK3C3 using ggplot2
+
 ```{r, eval=FALSE, echo=T}
 
-# histogram of the dependency scores for a particular gene taken from data 
+# histogram of the dependency scores for a particular gene taken from data-
 # wrangled `gene_effect_corrected` and `D2_combined_genetic_dependency_scores`
 # datasets. We will first be visualizing the PIK3C3 gene, which is one of the 
 # most dependent genes in either dataset. We will do this by combining the  
@@ -632,74 +676,175 @@ particular gene, comparing CRISPR and RNAI.
 #library(ggplot2, warn.conflicts = FALSE) 
 #library(viridis, warn.conflicts = FALSE)
 
-#class(geneIDcrispr) 
-#class(noNAdepIDrnai)
+avgCRISPR <-mean(byDepIdPIK3C3$crisprPIK3C3)
+avgRNAI <-mean(byDepIdPIK3C3$rnaiPIK3C3)
 
-rnaiNoNaPIK3C3 <- subset(noNAdepIDrnai, !is.na(`PIK3C3 (5289)`))
-#dim(noNArnaiPIK3C3)
-# [1]   709 17311 
-#View(noNArnaiPIK3C3[1:10, 1:10])
-
-
-geneIDcrispr$`PIK3C3 (5289)`
-
-crisprNoNaPIK3C3 <- subset(geneIDcrispr, !is.na(`PIK3C3 (5289)`))
-#dim(crisprNoNaPIK3C3)
-# [1]   558 17637
-#View(crisprNoNaPIK3C3[1:10, 1:10])
-
-# how do we merge the CRISPR and RNAi columns? 
-# first sort by depmapID
-rnaiNoNaPIK3C3 <- rnaiNoNaPIK3C3[order(depmapID),] 
-View(noNArnaiPIK3C3[1:10, 1:10])
-crisprNoNaPIK3C3 <- crisprNoNaPIK3C3[order(depmapID),] 
-View(crisprNoNaPIK3C3[1:10, 1:10])
-View(crisprNoNaPIK3C3$`PIK3C3 (5289)`)
-
-noNArnaiPIK3C3 <-cbind(noNAdepIDrnai$depmapID, noNAdepIDrnai$`PIK3C3 (5289)`)
-
-# why are there so many NAs??????? 
-
-# combine columns into one dataframe
-PIK3C3 <-cbind(geneIDcrispr$`PIK3C3 (5289)`, noNAdepIDrnai$`PIK3C3 (5289)`)
-
-#add col names to PIK3C3 to make the variables more clear
-colnames(PIK3C3, do.NULL = FALSE)
-colnames(PIK3C3) <- c("depCRISPR","depRNAi")
-View(PIK3C3)
-
-#plot gene dependency levels for all cell lines
-ggplot(depAllGenes) + aes(ID, Dependency_Score, color = df3$Dependency) + 
+#plot RNAI gene dependency levels for PIK3C3 for all complete cell lines 
+ggplot(byDepIdPIK3C3) + aes(depmapID, byDepIdPIK3C3$rnaiPIK3C3, color = byDepIdPIK3C3$rnaiPIK3C3) + 
     geom_point() +  scale_colour_viridis() + 
-    geom_hline(yintercept=D2_avg2, linetype="dashed", color = "black") + 
-    geom_hline(yintercept=df3_avg, linetype="dashed", color = "red") +
-    labs(y = "Largest Dependency Score", x = "Genes") + 
-    ggtitle("Plot of the greatest dependency scores for each cell line") +
-    scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
-
-# I will add a legend to the lines when I have time
-
+    geom_hline(yintercept=avgRNAI, linetype="dashed", color = "red") +
+    labs(y = "Dependency Score", x = "Cell Lines") + 
+    ggtitle("Plot of the dependency scores for RNAi for PIK3C3") 
 
 ```
 
-
-Make some sort of histogram of the dependency scores for a cell line 
+Scatterplot of dependency scores for CRISPR knockouts for PIK3C3 using ggplot2
 
 ```{r, eval=FALSE, echo=T}
 
-# histogram of the dependency scores for a cell line 
+#plot CRISPR gene dependency levels for PIK3C3 for all complete cell lines
+ggplot(byDepIdPIK3C3) + aes(depmapID, byDepIdPIK3C3$crisprPIK3C3, color = byDepIdPIK3C3$crisprPIK3C3) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=avgCRISPR, linetype="dashed", color = "blue") + 
+    labs(y = "Dependency Score", x = "Cell Lines") + 
+    ggtitle("Plot of the dependency scores for CRISPR for PIK3C3") 
 
-gene_effect_corrected
+#library(ggplot2, warn.conflicts = FALSE) 
+#library(viridis, warn.conflicts = FALSE)
+#library(tidyverse, warn.conflicts = FALSE)
+```
 
-D2_combined_genetic_dependency_scores
+Overlay of dependency scores for RNAi and CRISPR knockouts for PIK3C3 
+
+```{r, eval=FALSE, echo=T}
+
+# add ID into data frame
+#byDepIdPIK3C3 <- tibble::rowid_to_column(byDepIdPIK3C3, "ID")
+#View(byDepIdPIK3C3)
+
+#overlay RNAI and CRISPR
+library(lattice)
+xyplot(rnaiPIK3C3 + crisprPIK3C3 ~ sequence(nrow(byDepIdPIK3C3)), data=byDepIdPIK3C3, 
+       pch = 21, fill = c("blue", "red"), cex = 1, xlab=list("Cell Lines", cex=1.7), 
+       ylab=list("Dependency Score for each Gene", cex=1.5), 
+       main=list("Dependency Score of PIKC3C for RNAi and CRISPR for all cell lines", cex=1.1),
+       auto.key=list(space = "top", column = 2, title="Knockout Type", cex.title=1),
+       panel = function(x, y, ...)
+       {panel.xyplot(x, y, ...)  ## First call the default panel function for 'xyplot'
+       panel.abline(h = avgCRISPR, col = 2, lty = 2)
+       panel.abline(h = avgRNAI, col = 1, lty = 2)
+       })
 
 ```
 
+Visualize the differences in dependency for both RNAi and CRISPR datasets for 
+all genes. 
+
+```{r, eval=TRUE, echo=F}
+
+# apply function to calculate the mean of all of the dependencies for each gene
+
+# convert geneIDcrispr to geneIDcrispr2 so we can preserve original df
+geneIDcrispr2 <- geneIDcrispr
+
+# convert noNAdepIDrnai to noNAdepIDrnai2 so we can preserve original df
+noNAdepIDrnai2 <- noNAdepIDrnai
+
+# make sure dimensions of geneIDcrispr and noNAdepIDrnai are identical
+#dim(noNAdepIDrnai2)
+#[1]  1677 17311
+#dim(geneIDcrispr2)
+#[1]  1677 17637
+
+#nremove columns with characters
+geneIDcrispr2sub <- geneIDcrispr2[3:17311]
+
+crisprCellMean <- apply(geneIDcrispr2sub, 1, mean, na.rm = TRUE)
+#head(crisprCellMean)
+
+crisprGeneMean <- apply(geneIDcrispr2sub, 2, mean, na.rm = TRUE)
+#head(crisprGeneMean)
+
+#remove columns with characters
+noNAdepIDrnai2sub <- noNAdepIDrnai2[3:17311]
+#str(noNAdepIDrnai2sub[1:10, 1:10])
+
+# the columns of noNAdepIDrnai2sub were converted to factors somehow, and we
+# will be converting them back to numeric
+indx <- sapply(noNAdepIDrnai2sub, is.factor)
+noNAdepIDrnai2sub[indx] <- lapply(noNAdepIDrnai2sub[indx], function(x) as.numeric(as.character(x)))
+
+rnaiCellMean <- apply(noNAdepIDrnai2sub, 1, mean, na.rm = TRUE)
+#head(crisprCellMean)
+
+rnaiGeneMean <- apply(noNAdepIDrnai2sub, 2, mean, na.rm = TRUE)
+#head(crisprGeneMean)
+
+```
+
+```{r, eval=FALSE, echo=T}
+plot(crisprCellMean, rnaiCellMean)
+```
+
+```{r, eval=FALSE, echo=T}
+plot(crisprGeneMean, rnaiGeneMean)
+#add ablines
+```
+
+```{r, eval=FALSE, echo=T}
+#overlay RNAI and CRISPR for genes
+#library(lattice)
+
+xyplot(rnaiPIK3C3 + crisprPIK3C3 ~ sequence(nrow(byDepIdPIK3C3)), data=byDepIdPIK3C3, 
+       pch = 21, fill = c("blue", "red"), cex = 1, xlab=list("Cell Lines", cex=1.7), 
+       ylab=list("Dependency Score for each Gene", cex=1.5), 
+       main=list("Dependency Score of PIKC3C for RNAi and CRISPR for all cell lines", cex=1.1),
+       auto.key=list(space = "top", column = 2, title="Knockout Type", cex.title=1),
+       panel = function(x, y, ...)
+       {panel.xyplot(x, y, ...)  ## First call the default panel function for 'xyplot'
+       panel.abline(h = avgCRISPR, col = 2, lty = 2)
+       panel.abline(h = avgRNAI, col = 1, lty = 2)
+       })
+
+```
+
+```{r, eval=FALSE, echo=T}
+#overlay RNAI and CRISPR for genes
+library(lattice)
+xyplot(rnaiPIK3C3 + crisprPIK3C3 ~ sequence(nrow(byDepIdPIK3C3)), data=byDepIdPIK3C3, 
+       pch = 21, fill = c("blue", "red"), cex = 1, xlab=list("Cell Lines", cex=1.7), 
+       ylab=list("Dependency Score for each Gene", cex=1.5), 
+       main=list("Dependency Score of PIKC3C for RNAi and CRISPR for all cell lines", cex=1.1),
+       auto.key=list(space = "top", column = 2, title="Knockout Type", cex.title=1),
+       panel = function(x, y, ...)
+       {panel.xyplot(x, y, ...)  ## First call the default panel function for 'xyplot'
+       panel.abline(h = avgCRISPR, col = 2, lty = 2)
+       panel.abline(h = avgRNAI, col = 1, lty = 2)
+       })
+```
+
+
+```{r, eval=FALSE, echo=T}
+
+#View(noNAdepIDrnai2[1:10, 1:10])
+
+#colMeans(geneIDcrispr2subComp)
+
+#boxplot(geneIDcrispr2subComp[1:100, 1:10])
+str(byDepIdPIK3C3)
+plot(byDepIdPIK3C3[, 2], byDepIdPIK3C3[, 3])
+grid()
+abline(0, 1)
+abline(lm(byDepIdPIK3C3[, 3], byDepIdPIK3C3[, 2]), col = "red")
+abline(lm(byDepIdPIK3C3[, 3] ~ byDepIdPIK3C3[, 2]), col = "red")
+
+geneIDcrispr2subComp[1:10, 1:5]
+apply(geneIDcrispr2subComp[1:10, 1:5], 1, mean)
+mean(geneIDcrispr2subComp[1, 1:5])
+apply(x, 1, mean, na.rm = TRUE)
+
+```
+
+Make some sort of histogram of the dependency scores for a cell line 
+
+Note: Find out what the values of copy number are in public_19Q1_gene_cn
 
 (1) replicate one or two figures as produced by the online DepMap Data Explorer 
 portal
 
 ```{r, eval=FALSE, echo=T}
+
+# histogram of the dependency scores for a cell line 
 
 gene_effect_corrected
 
