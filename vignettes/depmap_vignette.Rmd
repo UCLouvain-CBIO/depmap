@@ -28,10 +28,14 @@ this cancer genomic study, explore the data and its statistical properties
 and visually display them.
 
 ```{r, echo=FALSE, warning=FALSE}
-# This code chunk simply makes sure that all the libraries used here are installed, it will not be shown in the report (notice echo = FALSE).
-packages <- c("RCurl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly", "viridis", "tidyverse")
-if ( length(missing_pkgs <- setdiff(packages, rownames(installed.packages()))) > 0) {
-  message("Installing missing package(s): ", paste(missing_pkgs, collapse = ", "))
+# This code chunk simply makes sure that all the libraries used here are 
+# installed, it will not be shown in the report (notice echo = FALSE).
+
+packages <- c("knitr", "tidyr", "dplyr", "ggplot2", "plotly", "viridis", "tidyverse")
+if ( length(missing_pkgs <- setdiff(packages, 
+                                    rownames(installed.packages()))) > 0) {
+  message("Installing missing package(s): ", 
+          paste(missing_pkgs, collapse = ", "))
   install.packages(missing_pkgs)
 }
 ```
@@ -55,6 +59,9 @@ seven datasets (shown below) in *.rda* format. These datasets can be loaded by
 using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package 
 has been loaded in RStudio using *library("depmap")*. 
 
+If you wish to see how the data was transformed, please see the dataCleaning.Rmd
+vignette. 
+
 ```{r, eval=FALSE, echo=T}
 library("depmap")
 #load(package_version())
@@ -77,7 +84,13 @@ numerical dependency score values of are select genes.
 data("CCLE_depMap_19Q1_TPM", package = "depmap")
 CCLE_depMap_19Q1_TPM
 print("CCLE_depMap_19Q1_TPM data subset column names 1-10")
-View(CCLE_depMap_19Q1_TPM[c(1:10)])
+names((CCLE_depMap_19Q1_TPM[c(1:10)]))
+# [1] "X1"                         "TSPAN6 (ENSG00000000003)"   "TNMD (ENSG00000000005)"     "DPM1 (ENSG00000000419)"    
+# [5] "SCYL3 (ENSG00000000457)"    "C1orf112 (ENSG00000000460)" "FGR (ENSG00000000938)"      "CFH (ENSG00000000971)"     
+# [9] "FUCA2 (ENSG00000001036)"    "GCLC (ENSG00000001084)" 
+# View(CCLE_depMap_19Q1_TPM[c(1:10)])
+dim(CCLE_depMap_19Q1_TPM)
+# [1]  1165 57821
 ```
 
 ### "CCLE_RPPA_20180123"
@@ -90,7 +103,13 @@ values of are select genes.
 data("CCLE_RPPA_20180123", package = "depmap")
 CCLE_RPPA_20180123
 print("CCLE_RPPA_20180123 data subset column names 1-10")
-View(CCLE_RPPA_20180123[c(1:10)])
+names((CCLE_RPPA_20180123[c(1:10)]))
+# [1] "X1"                     "14-3-3_beta"            "14-3-3_epsilon_Caution" "14-3-3_zeta"           
+# [5] "4E-BP1"                 "4E-BP1_pS65"            "4E-BP1_pT37_T46"        "4E-BP1_pT70"           
+# [9] "53BP1"                  "A-Raf_pS299_Caution"   
+#View(CCLE_RPPA_20180123[c(1:10)])
+dim(CCLE_RPPA_20180123)
+# [1] 899 215
 ```
 
 ### "D2_combined_genetic_dependency_scores" 
@@ -104,7 +123,14 @@ data("D2_combined_genetic_dependency_scores", package = "depmap")
 D2_combined_genetic_dependency_scores
 print("D2_combined_genetic_dependency_scores data subset column names 1-10")
 names(D2_combined_genetic_dependency_scores[c(1:10)])
-View(D2_combined_genetic_dependency_scores[c(1:10)])
+# [1] "X1"                                     "127399_SOFT_TISSUE"                    
+# [3] "1321N1_CENTRAL_NERVOUS_SYSTEM"          "143B_BONE"                             
+# [5] "184A1_BREAST"                           "184B5_BREAST"                          
+# [7] "22RV1_PROSTATE"                         "2313287_STOMACH"                       
+# [9] "600MPE_BREAST"                          "697_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE"
+# View(D2_combined_genetic_dependency_scores[c(1:10)])
+dim(D2_combined_genetic_dependency_scores)
+# [1] 17309   713
 ```
 
 ### "depmap_19Q1_cell_lines" 
@@ -118,7 +144,11 @@ data("depmap_19Q1_cell_lines", package = "depmap")
 depmap_19Q1_cell_lines
 print("depmap_19Q1_cell_lines data column names")
 names(depmap_19Q1_cell_lines)
-View(depmap_19Q1_cell_lines)
+# [1] "DepMap_ID"       "CCLE_Name"       "Aliases"         "COSMIC_ID"       
+# [5] "Sanger.ID"       "Primary.Disease"  "Subtype.Disease" "Gender"   "Source"   
+#View(depmap_19Q1_cell_lines)
+dim(depmap_19Q1_cell_lines)
+# [1] 1677    9
 ```
 
 ### "depmap_19Q1_mutation_calls" 
@@ -138,7 +168,18 @@ data("depmap_19Q1_mutation_calls", package = "depmap")
 depmap_19Q1_mutation_calls
 print("depmap_19Q1_mutation_calls data column names")
 names(depmap_19Q1_mutation_calls)
-View(depmap_19Q1_mutation_calls)
+#[1] "X1"                     "Hugo_Symbol"            "Entrez_Gene_Id"         "NCBI_Build"            
+#[5] "Chromosome"             "Start_position"         "End_position"           "Strand"                
+#[9] "Variant_Classification" "Variant_Type"           "Reference_Allele"       "Tumor_Seq_Allele1"     
+#[13] "dbSNP_RS"               "dbSNP_Val_Status"       "Genome_Change"          "Annotation_Transcript" 
+#[17] "Tumor_Sample_Barcode"   "cDNA_Change"            "Codon_Change"           "Protein_Change"        
+#[21] "isDeleterious"          "isTCGAhotspot"          "TCGAhsCnt"              "isCOSMIChotspot"       
+#[25] "COSMIChsCnt"            "ExAC_AF"                "VA_WES_AC"              "CGA_WES_AC"            
+#[29] "SangerWES_AC"           "SangerRecalibWES_AC"    "RNAseq_AC"              "HC_AC"                 
+#[33] "RD_AC"                  "WGS_AC"                 "Variant_annotation"     "DepMap_ID"             
+#View(depmap_19Q1_mutation_calls)
+dim(depmap_19Q1_mutation_calls)
+# [1] 1243145      36
 ```
 
 ### "gene_effect_corrected"
@@ -152,7 +193,11 @@ data("gene_effect_corrected", package = "depmap")
 gene_effect_corrected
 print("gene_effect_corrected data subset column names 1-10")
 names(gene_effect_corrected[c(1:10)])
-View(gene_effect_corrected[c(1:10)])
+# [1] "X1"               "A1BG (1)"         "A1CF (29974)"     "A2M (2)"          "A2ML1 (144568)"   "A3GALT2 (127550)"
+# [7] "A4GALT (53947)"   "A4GNT (51146)"    "AAAS (8086)"      "AACS (65985)"  
+#View(gene_effect_corrected[c(1:10)])
+dim(gene_effect_corrected)
+# [1]   558 17635
 ```
 
 ### "public_19Q1_gene_cn" 
@@ -165,7 +210,12 @@ data("public_19Q1_gene_cn", package = "depmap")
 public_19Q1_gene_cn
 print("public_19Q1_gene_cn data subset column names 1-10")
 names(public_19Q1_gene_cn[c(1:10)])
-View(public_19Q1_gene_cn[c(1:10)])
+# [1] "X1"                     "A1BG (1)"               "NAT2 (10)"              "ADA (100)"             
+# [5] "CDH2 (1000)"            "AKT3 (10000)"           "GAGE12F (100008586)"    "ZBTB11-AS1 (100009676)"
+# [9] "MED6 (10001)"           "NR2E3 (10002)"        
+#View(public_19Q1_gene_cn[c(1:10)])
+dim(public_19Q1_gene_cn)
+#[1]  1604 23300
 ```
 
 ## Downloading [Broad Institute](https://depmap.org/portal/download/) data directly
@@ -174,6 +224,10 @@ If desired, the [depmap](https://github.com/tfkillian/depmap/) datasets can also
 be downloaded in *.csv* format directly from the [Broad Institute](https://depmap.org/portal/download/) 
 website. However, be aware that these files are 1.5GB in total (non-compressed) 
 and take a moderate amount of time to download.
+
+Users who wish to download the raw DRIVE data from which the DepMap data was 
+been derived can be downloaded from the following here:
+https://data.mendeley.com/datasets/y3ds55n88r/4
 
 ```{r, eval=FALSE, echo=T}
 library("RCurl", warn.conflicts = FALSE)
@@ -207,7 +261,48 @@ CCLE_RPPA_20180123
 # download D2_combined_genetic_dependency_scores.csv
 D2_combined_genetic_dependency_scores <- read.csv("https://ndownloader.figshare.com/files/13515395")
 D2_combined_genetic_dependency_scores
+
 ```
+
+We have tried to preserve the original names of the [depmap](https://github.com/tfkillian/depmap/) 
+.csv files, however many of these names are long, unwieldy and don't immediately 
+give the user the accurate impression of what is contained in the data frame. We 
+will give these datasets new names to address this. 
+
+Each quarter, the Broad Institute will release new depmap datasets. It is 
+anticipated that the datasets will change as additional data comes out. For 
+instance, the object `mutationCalls` reflects the most current depmap dataset. 
+Older datasets can be called by `depmap_19Q1_mutation_calls` or by downloading 
+the .csv directly from the [Broad Institute](https://depmap.org/portal/download/) 
+portal.
+
+```{r, eval=T, echo=T}
+
+# rename all the depmap dataframes to more convenient names
+
+# rename 'D2_combined_genetic_dependency_scores' to 'rnai' data
+rnai <- D2_combined_genetic_dependency_scores
+
+# rename 'gene_effect_corrected' to 'crispr' data
+crispr <- gene_effect_corrected
+
+# rename 'depmap_19Q1_mutation_calls' to 'rnai' mutationCalls
+mutationCalls <- depmap_19Q1_mutation_calls
+
+# rename 'depmap_19Q1_cell_lines' to 'metadata' data
+metadata <- depmap_19Q1_cell_lines
+
+# rename 'public_19Q1_gene_cn' to 'copyNumber' data
+copyNumber <- public_19Q1_gene_cn
+
+# rename 'CCLE_RPPA_20180123' to 'RPPA' data
+RPPA <- CCLE_RPPA_20180123
+
+# rename 'CCLE_depMap_19Q1_TPM' to 'TPM' data
+TPM <- CCLE_depMap_19Q1_TPM
+
+```
+
 
 ## Visualisations
 
@@ -342,7 +437,7 @@ ggplot(Breast_184A1) + aes(Gene, Dependency, color = Breast_184A1$Dependency) +
 ```
 
 It might be interesting to locate the highest scoring dependencies among all 
-cell lines.
+cell lines for the RNAI dataset.
 
 ```{r, eval=FALSE, echo=T}
 
@@ -382,6 +477,7 @@ colnames(df3) <- c("Cell_Line", "Gene", "Dependency_Score")
 # sort by 10 highest dependencies 
 top10 <-df3[order(df3$Dependency_Score, decreasing=F)[1:10],]
 top10
+
 ```
 
 The gene with the highest dependency score is UBC (7316). This gene represents a 
@@ -392,6 +488,14 @@ signaling pathways.
 
 If we look for the highest dependency for the SW1088_CENTRAL_NERVOUS_SYSTEM cell
 line, we see indeed that UBC (7316) is the most dependent gene for vitality. 
+
+If perhaps we would like to look at the some of the lowest dependency scores:
+
+```{r, eval=FALSE, echo=T}
+# sort by 10 highest dependencies 
+low10 <-df3[order(df3$Dependency_Score, decreasing=T)[1:10],]
+low10
+```
 
 ```{r, eval=FALSE, echo=T}
 #sort dependencies scores of particular cell line my lowest (most important)
@@ -426,7 +530,7 @@ df3_avg <- mean(df3$Dependency_Score)
 
 #coerce into data frame
 df3 <- as.data.frame(df3)
-df3 <- tibble::rowid_to_column(df3, "ID")
+#df3 <- tibble::rowid_to_column(df3, "ID")
 #View(df3)
 depAllGenes <-df3 
 
@@ -435,13 +539,97 @@ ggplot(depAllGenes) + aes(ID, Dependency_Score, color = depAllGenes$Dependency) 
     geom_point() +  scale_colour_viridis() + 
     geom_hline(yintercept=D2_avg2, linetype="dashed", color = "black") + 
     geom_hline(yintercept=df3_avg, linetype="dashed", color = "red") +
-    labs(y = "Largest Dependency Score (Gene)", x = "Genes") + 
-    ggtitle("Greatest RNAi dependency scores for each gene cell line") +
+    labs(y = "Dep Score of Gene with Largest Dep Score", x = "Cell Line") + 
+    ggtitle("Greatest RNAi dependency scores for each gene by cell line") +
     scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
 
 # I will add a legend to the lines when I have time
 
 ```
+
+It might be interesting to locate the highest scoring dependencies among all 
+cell lines for the CRISPR dataset as well.
+
+```{r, eval=FALSE, echo=T}
+
+# function that finds highest dependency scores for each gene and cell line
+
+#dim(gene_effect_corrected)
+
+lowDepScoresCRISPR <- apply(gene_effect_corrected[c(2:17635)], 1, 
+                        function(x) {min(x, na.rm = TRUE)})
+
+lowDepGeneCRISPR <- apply(gene_effect_corrected[c(2:17635)], 1, 
+                function(x) {depmin <-which.min(x)
+                D2_combined_genetic_dependency_scores$X1[depmin]})
+
+# coerce into data frame
+lowDepScoresCRISPR <- as.data.frame(lowDepScoresCRISPR)
+lowDepGeneCRISPR <- as.data.frame(lowDepGeneCRISPR)
+
+
+df4<-cbind(lowDepGeneCRISPR, lowDepScoresCRISPR)
+
+colnames(df4, do.NULL = FALSE)
+colnames(df4) <- c("Gene","Dependency_Score", "Num")
+
+# turn row names into a column
+#r3 <-rownames(lowDepGeneCRISPR)
+#lowDepScoresCRISPR$Gene <- r3
+
+#View(lowDepScoresCRISPR$Gene)
+
+#View(r1)
+#r2 <-rownames(lowDepGeneCRISPR)
+#low_dep_gene$Cell_Line <- r2
+
+# tidy up df, merge on Cell_Line
+#df3 = merge(low_dep_gene, low_dep_scores, by.x=c("Cell_Line"), by.y=c("Cell_Line"))
+
+
+# sort by 10 highest dependencies 
+top10CRISPR <-df4[order(df4$Dependency_Score, decreasing=F)[1:10],]
+top10CRISPR
+
+```
+
+
+
+
+Below is a plot of the lowest dependency scores for each gene and CL for the 
+`gene_effect_corrected` dataset. 
+ 
+```{r, eval=FALSE, echo=T}
+# apply function to get mean dependency from all columns
+gEc_avg <- apply(gene_effect_corrected[c(2:17635)], 1, function(x) {mean(x, na.rm = TRUE)})
+
+gEc_avg2 <- mean(gEc_avg)
+# -0.06833473
+
+# apply function to get mean HIGHEST dependency from all columns
+df4_avg <- mean(df4$Dependency_Score)
+# -2.198807
+
+#coerce into data frame
+df4 <- as.data.frame(df4)
+#df3 <- tibble::rowid_to_column(df3, "ID")
+#View(df3)
+depAllGenesCRISPR <-df4 
+
+#plot gene dependency levels for all cell lines
+ggplot(depAllGenesCRISPR) + aes(Num, Dependency_Score, color = depAllGenesCRISPR$Dependency_Score) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=gEc_avg2, linetype="dashed", color = "black") + 
+    geom_hline(yintercept=df4_avg, linetype="dashed", color = "red") +
+    labs(y = "Dep Score of Gene with Largest Dep Score", x = "Cell Line") + 
+    ggtitle("Greatest CRISPR dependency scores for each gene by cell line") +
+    scale_linetype_manual(name = "Avg dep scores",values = c(2,2))
+
+# I will add a legend to the lines when I have time
+
+```
+
+
 
 It might be insightful to compare the dependency scores of datasets derived from
 RNAi knockout e.g. `D2_combined_genetic_dependency_scores` and those utilizing 
@@ -710,7 +898,7 @@ Overlay of dependency scores for RNAi and CRISPR knockouts for PIK3C3
 library(lattice)
 xyplot(crisprPIK3C3 + rnaiPIK3C3 ~ sequence(nrow(byDepIdPIK3C3)), data=byDepIdPIK3C3, 
        pch = 21, fill = c("blue", "red"), cex = 1, xlab=list("Cell Lines", cex=1.7), 
-       ylab=list("Dependency Score for each Gene", cex=1.5), 
+       ylab=list("Dependency Score for Gene", cex=1.5), 
        main=list("Dependency Score of PIKC3C for RNAi and CRISPR for all cell lines", cex=1.1),
        auto.key=list(space = "top", column = 2, title="Knockout Type", cex.title=1),
        panel = function(x, y, ...)
@@ -731,10 +919,108 @@ Plot CRISPR vs RNAi gene dependency levels for PIK3C3
 #avgRNAI <-mean(byDepIdPIK3C3$rnaiPIK3C3)
 
 #plot CRISPR vs RNAI gene dependency levels for PIK3C3 for all complete cell lines 
-ggplot(byDepIdPIK3C3) + aes(byDepIdPIK3C3$crisprPIK3C3, byDepIdPIK3C3$rnaiPIK3C3, color = byDepIdPIK3C3$rnaiPIK3C3) + 
+ggplot(byDepIdPIK3C3) + aes(rnaiPIK3C3, crisprPIK3C3, color = byDepIdPIK3C3$rnaiPIK3C3) + 
     geom_point() +  scale_colour_viridis() + 
     labs(y = "CRISPR Dependency Score", x = "RNAI Dependency Score") + 
-    ggtitle("Dependency scores for RNAi vs PIK3C3 for PIKC3C") 
+    ggtitle("Dependency scores for RNAi vs CRISPR for PIKC3C") 
+
+```
+
+Compare CRISPR vs RNAi for COPB1
+
+```{r, eval=FALSE, echo=T}
+# since the dimensions for `geneIDcrispr` and `noNAdepIDrnai` are the same, we
+# will full_join on `depmapID` and create a new dataframe `depCOPB1` with 
+# depenency scores that can be compared between RNAi CRISPR datasets. Note: we
+# use "cbind.data.frame" to avoid turning the numeric values into factors
+
+crisprCOPB1 <-cbind.data.frame(geneIDcrispr$depmapID, geneIDcrispr$`COPB1 (1315)`)
+rnaiCOPB1 <-cbind.data.frame(noNAdepIDrnai$depmapID, noNAdepIDrnai$`COPB1 (1315)`, stringsAsFactors = FALSE)
+
+#rename column names 
+
+#add col names to crisprCOPB1 to make the variables more clear
+colnames(crisprCOPB1, do.NULL = FALSE)
+colnames(crisprCOPB1) <- c("depmapID","crisprCOPB1")
+
+#add col names to rnaiCOPB1 to make the variables more clear
+colnames(rnaiCOPB1, do.NULL = FALSE)
+colnames(rnaiCOPB1) <- c("depmapID","rnaiCOPB1")
+
+#full_join on depmapID
+compareCOPB1 <- full_join(crisprCOPB1, rnaiCOPB1, all=TRUE)
+#View(compareCOPB1)
+
+compDepCOPB1<-compareCOPB1[complete.cases(compareCOPB1),]
+#View(compDepCOPB1)
+
+compDepCOPB1$rnaiCOPB1<- as.numeric(as.character(compDepCOPB1$rnaiCOPB1))
+
+byDepIdCOPB1 <- compDepCOPB1
+
+#str(compDepCOPB1)
+#set all NAs to 0 for compareCOPB1 so the dataframe can be visualized
+
+# compareCOPB1$rnaiCOPB1 has to be turned into character because it throws 
+# an annoying warning "invalid factor level, NA generated"
+#compareCOPB1$rnaiCOPB1<- as.character(compareCOPB1$rnaiCOPB1)
+#compareCOPB1[, 1:3][is.na(compareCOPB1[, 1:3])] <- 0
+
+# compareCOPB1$rnaiCOPB1 converted back to numeric. Note: this is an inelegant
+# solution, need to find something that works better 
+#compareCOPB1$rnaiCOPB1<- as.numeric(compareCOPB1$rnaiCOPB1)
+
+#convert compareCOPB1 to depCOPB1, and convert 0 values to NA
+#depCOPB1 <- compareCOPB1
+#depCOPB1[depCOPB1==0] <- NA
+#depCOPB1
+
+#Delete the rows associated with NA.
+#compDepCOPB1<-depCOPB1[complete.cases(depCOPB1),]
+#View(compDepCOPB1)
+#dim(compDepCOPB1)
+#[1] 402   3
+# this means that there are only 402 cell lines where there are dependency 
+# scores for both RNAI and CRISPR. we will plot them in the chunk below
+
+# sort byDepIdCOPB1 by depmapID, lowest to highest
+#byDepIdCOPB1 <- compDepCOPB1[order(compDepCOPB1$depmapID, decreasing=F),]
+
+
+```
+
+CRISPR vs RNAi for COPB1
+
+```{r, eval=FALSE, echo=T}
+
+#plot CRISPR vs RNAI gene dependency levels for COPB1 for all complete cell lines 
+ggplot(byDepIdCOPB1) + aes(rnaiCOPB1, crisprCOPB1, color = byDepIdCOPB1$rnaiCOPB1) + 
+    geom_point() +  scale_colour_viridis() + 
+    labs(y = "CRISPR Dependency Score", x = "RNAI Dependency Score") + 
+    ggtitle("Dependency scores for RNAi vs CRISPR for COPB1") 
+
+```
+
+
+Overlay of dependency scores for RNAi and CRISPR knockouts for COPB1 
+
+```{r, eval=FALSE, echo=T}
+
+avgCRISPR2 <-mean(byDepIdPIK3C3$crisprCOPB1)
+avgRNAI2 <-mean(byDepIdPIK3C3$rnaiCOPB1)
+
+#overlay RNAI and CRISPR
+library(lattice)
+xyplot(crisprCOPB1 + rnaiCOPB1 ~ sequence(nrow(byDepIdCOPB1)), data=byDepIdCOPB1, 
+       pch = 21, fill = c("blue", "red"), cex = 1, xlab=list("Cell Lines", cex=1.7), 
+       ylab=list("Dependency Score for Gene", cex=1.5), 
+       main=list("Dependency Score of COPB1 for RNAi and CRISPR for all cell lines", cex=1.1),
+       auto.key=list(space = "top", column = 2, title="Knockout Type", cex.title=1),
+       panel = function(x, y, ...)
+       {panel.xyplot(x, y, ...)  ## First call the default panel function for 'xyplot'
+       panel.abline(h = avgCRISPR2, col = 2, lty = 2)
+       panel.abline(h = avgRNAI2, col = 1, lty = 2)
+       })
 
 ```
 
@@ -779,7 +1065,7 @@ noNAdepIDrnai2sub[indx] <- lapply(noNAdepIDrnai2sub[indx],
                                   function(x) as.numeric(as.character(x)))
 
 rnaiCellMean <- apply(noNAdepIDrnai2sub, 1, mean, na.rm = TRUE)
-View(rnaiCellMean)
+#View(rnaiCellMean)
 
 rnaiGeneMean <- apply(noNAdepIDrnai2sub, 2, mean, na.rm = TRUE)
 #head(rnaiGeneMean)
@@ -908,7 +1194,7 @@ Plot CRISPR vs RNAi average gene dependency levels all cell lines
 p2 <- ggplot(compGeneMeans) + aes(CRISPRavgGeneDep, RNAIavgGeneDep, color = CRISPRavgGeneDep) + 
     geom_point() +  scale_colour_viridis() + geom_smooth(method='lm',formula=y~x) +
     labs(y = "RNAIavgGeneDep", x = "CRISPRavgGeneDep") + 
-    ggtitle("CRISPR vs RNAi average gene dependency levels all cell lines") 
+    ggtitle("CRISPR vs RNAi average gene dependency levels all genes") 
 p2 + geom_abline(intercept = 0, slope = 1)
 ```
 
@@ -920,7 +1206,7 @@ Plot CRISPR vs RNAi average gene dependency levels all cells
 p1 <- ggplot(compCellMeans) + aes(CRISPRavgCellDep, RNAIavgCellDep, color = CRISPRavgCellDep) + 
     geom_point() +  scale_colour_viridis() + geom_smooth(method='lm',formula=y~x) +
     labs(y = "RNAIavgCellDep", x = "CRISPRavgCellDep") + 
-    ggtitle("CRISPR vs RNAi average gene dependency levels all genes") 
+    ggtitle("CRISPR vs RNAi average gene dependency levels all cell lines") 
 p1 + geom_abline(intercept = 0, slope = 1)
 ```
 
@@ -991,23 +1277,6 @@ p4 + coord_flip()
 
 Make some sort of histogram of the dependency scores for a cell line 
 
-
-
-(1) replicate one or two figures as produced by the online DepMap Data Explorer 
-portal
-
-```{r, eval=FALSE, echo=T}
-
-# histogram of the dependency scores for a cell line 
-
-gene_effect_corrected
-
-D2_combined_genetic_dependency_scores
-
-```
-
-
-
 (4) explore the dependency scores for genes with high and low expression 
 
 PSMC2 (Rpt1) was the highest-ranked CYCLOPS candidate gene in the original 
@@ -1024,15 +1293,13 @@ Copy Number Note: Find out what the values of copy number are in public_19Q1_gen
 
 ```{r, eval=TRUE, echo=F}
 
-#redo this for copy number
-
 # apply function to calculate the mean of all of the dependencies for each gene
 
 # convert geneIDcrispr to geneIDcrispr2 so we can preserve original df
-geneIDcrispr2 <- geneIDcrispr
+#geneIDcrispr2 <- geneIDcrispr
 
 # convert noNAdepIDrnai to noNAdepIDrnai2 so we can preserve original df
-noNAdepIDrnai2 <- noNAdepIDrnai
+#noNAdepIDrnai2 <- noNAdepIDrnai
 
 # make sure dimensions of geneIDcrispr and noNAdepIDrnai are identical
 #dim(noNAdepIDrnai2)
@@ -1040,91 +1307,62 @@ noNAdepIDrnai2 <- noNAdepIDrnai
 #dim(geneIDcrispr2)
 #[1]  1677 17637
 
+#dim(public_19Q1_gene_cn)
+
 #nremove columns with characters
-geneIDcrispr2sub <- geneIDcrispr2[3:17311]
+CNsub <- public_19Q1_gene_cn[3:23300]
 
-crisprCellMean <- apply(geneIDcrispr2sub, 1, mean, na.rm = TRUE)
-#View(crisprCellMean)
+copyNumGeneMean <- apply(CNsub, 1, mean, na.rm = TRUE)
+#length(copyNumGeneMean)
 
-crisprGeneMean <- apply(geneIDcrispr2sub, 2, mean, na.rm = TRUE)
-#head(crisprGeneMean)
-
-#remove columns with characters
-noNAdepIDrnai2sub <- noNAdepIDrnai2[3:17311]
-#str(noNAdepIDrnai2sub[1:10, 1:10])
-
-# the columns of noNAdepIDrnai2sub were converted to factors somehow, and we
-# will be converting them back to numeric in order to plot or manipulate them
-indx <- sapply(noNAdepIDrnai2sub, is.factor)
-noNAdepIDrnai2sub[indx] <- lapply(noNAdepIDrnai2sub[indx], 
-                                  function(x) as.numeric(as.character(x)))
-
-rnaiCellMean <- apply(noNAdepIDrnai2sub, 1, mean, na.rm = TRUE)
-View(rnaiCellMean)
-
-rnaiGeneMean <- apply(noNAdepIDrnai2sub, 2, mean, na.rm = TRUE)
-#head(rnaiGeneMean)
-
-# now we need to make combined dataframes of CellMean and GeneMean
-# (it's easier to manipulate and plot if they are in one dataframe)
-
-# cbind the CellMeans
-cellMeans <-cbind(crisprCellMean, rnaiCellMean)
-
-#add col names to cellMeans to make the variables more clear
-colnames(cellMeans, do.NULL = FALSE)
-colnames(cellMeans) <- c("CRISPRavgCellDep","RNAIavgCellDep")
+copyNumCellMean <- apply(CNsub, 2, mean, na.rm = TRUE)
+#length(copyNumCellMean)
 
 #coerce into data frame
-cellMeans <- as.data.frame(cellMeans)
+copyNumGeneMean <- as.data.frame(copyNumGeneMean)
+copyNumCellMean <- as.data.frame(copyNumCellMean)
 
 # add sequence number 
-cellMeans <- tibble::rowid_to_column(cellMeans, "ID")
-
-# cbind the GeneMeans
-geneMeans <-cbind(crisprGeneMean, rnaiGeneMean)
+copyNumGeneMean <- tibble::rowid_to_column(copyNumGeneMean, "ID")
+copyNumCellMean <- tibble::rowid_to_column(copyNumCellMean, "ID")
 
 #add col names to cellMeans to make the variables more clear
-colnames(geneMeans, do.NULL = FALSE)
-colnames(geneMeans) <- c("CRISPRavgGeneDep","RNAIavgGeneDep")
+colnames(copyNumCellMean, do.NULL = FALSE)
+colnames(copyNumCellMean) <- c("ID","copyNumCellMean")
 
-#coerce into data frame
-geneMeans <- as.data.frame(geneMeans)
+#add col names to cellMeans to make the variables more clear
+colnames(copyNumGeneMean, do.NULL = FALSE)
+colnames(copyNumGeneMean) <- c("ID","copyNumGeneMean")
 
-# add sequence number 
-geneMeans <- tibble::rowid_to_column(geneMeans, "ID")
-
-#dim(cellMeans)
-#dim(geneMeans)
-
-# there are a lot of missing averages in CellMeans (oddly enough), we will only
-# visualise the complete cases
+View(copyNumGeneMean)
+str(copyNumGeneMean)
 
 #Delete the rows associated with NA.
-compCellMeans<-cellMeans[complete.cases(cellMeans),]
-#dim(compCellMeans)
-
-#Delete the rows associated with NA.
-compGeneMeans<-geneMeans[complete.cases(geneMeans),]
-#dim(compCellMeans)
+copyNumGeneMean<-geneMeans[complete.cases(copyNumGeneMean),]
+copyNumCellMean<-geneMeans[complete.cases(copyNumCellMean),]
 
 # calculate averages to show in plots
 
 # total average CRISPR Gene dependency for all genes
-totalAvgCrisprGene <- mean(geneMeans$CRISPRavgGeneDep, na.rm = TRUE)
+totalAvgCNGene <- mean(copyNumGeneMean$copyNumGeneMean, na.rm = TRUE)
 #totalAvgCrisprGene 
 
 # total average RNAi Gene dependency for all genes
-totalAvgRNAiGene <- mean(geneMeans$RNAIavgGeneDep, na.rm = TRUE)
+totalAvgCNCell <- mean(copyNumCellMean$copyNumCellMean, na.rm = TRUE)
 #totalAvgRNAiGene
 
-# total average CRISPR Gene dependency for all cell lines
-totalAvgCrisprCell <- mean(cellMeans$CRISPRavgCellDep, na.rm = TRUE)
-#totalAvgCrisprCell
+```
 
-# total average RNAi Gene dependency for all cell lines
-totalAvgRNAiCell <- mean(cellMeans$RNAIavgCellDep, na.rm = TRUE)
-#totalAvgRNAiCell
+Plot of avg CRISPR dep scores for all Cell Lines
+
+```{r, eval=FALSE, echo=T}
+
+#Plot of avg CRISPR dep scores for all genes
+ggplot(compCellMeans) + aes(ID, CRISPRavgCellDep, color = CRISPRavgCellDep) + 
+    geom_point() +  scale_colour_viridis() + 
+    geom_hline(yintercept=totalAvgCrisprCell, linetype="dashed", color = "blue") + 
+    labs(y = "Average dependency score per cell line", x = "Cell Lines") + 
+    ggtitle("Average CRISPR dependency scores for all Cell Lines") 
 
 ```
 
