@@ -1,14 +1,12 @@
-#' Depmap_19Q1_mutation_calls
+#' mutationCalls
 #'
-#' Data from merged mutation calls (coding region, germline filtered)
-#' Genes 18755
-#' Cell Lines 1601
-#' Primary Diseases 37
-#' Lineages 33
+#' Mutation calls originating from the `depmap_19Q1_mutation_calls.csv` file.
+#' Data from merged mutation calls (coding region, germline filtered) for 18755
+#' genes, 1601 cell lines, 37 primary diseases and 33 lineages.
 #'
 #' @format A data frame with 1243145 rows and 36 variables:
 #' \describe{
-#'   \item{X1}{Sample number}
+#'   \item{ID}{Sample number}
 #'   \item{Hugo_Symbol}{Hugo Symbol denotes a unique and meaningful name for every known human gene (e.g. SAP25)}
 #'   \item{Entrez_Gene_Id}{Gene ID for NCBI Entrez gene database, (e.g. e.g. 100316904)}
 #'   \item{NCBI_Build}{NCBI_Build (i.e. reference genome)}
@@ -42,14 +40,12 @@
 #'   \item{RD_AC}{RD_AC}
 #'   \item{WGS_AC}{WGS_AC}
 #'   \item{Variant_annotation}{Variant_annotation}
-#'   \item{DepMap_ID}{DepMap_ID}
+#'   \item{depmapID}{depmapID}
 #' }
 #'
 #' @docType data
 #'
-#' @usage data(depmap_19Q1_mutation_calls)
-#'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
+#' @usage data(mutationCalls)
 #'
 #' @keywords datasets
 #'
@@ -61,11 +57,6 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
-#' data(depmap_19Q1_mutation_calls)
-#' Tumor_Sample_Barcode <- attr(depmap_19Q1_mutation_calls, "Tumor_Sample_Barcode")
-#'
-#' \dontrun{
-#' depmap_19Q1_mutation_calls
-#' }
-#'
-"depmap_19Q1_mutation_calls"
+#' data(mutationCalls)
+#' mutationCalls
+"mutationCalls"

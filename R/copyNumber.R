@@ -1,4 +1,4 @@
-#' public_19Q1_gene_cn
+#' copyNumber
 #'
 #' Data from DepMap WES Copy Number Data
 #'
@@ -7,7 +7,7 @@
 #' Primary Diseases 38
 #' Lineages 33
 #'
-#' @format A data frame with 1604 rows and 23300 variables. Each variable
+#' @format A data frame with 1604 rows and 23301 variables. Each variable
 #' column contains copy number for a known gene while each row represents a cell
 #' line:
 #' \describe{
@@ -16,7 +16,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(public_19Q1_gene_cn)
+#' @usage data(copyNumber)
 #'
 #' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 #'
@@ -30,11 +30,11 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
-#' data(public_19Q1_gene_cn)
-#' A1BG_(1) <- attr(public_19Q1_gene_cn, "A1BG (1)")
+#' data(copyNumber)
+#' A1BG_(1) <- attr(copyNumber, "A1BG (1)")
 #'
 #' \dontrun{
-#' public_19Q1_gene_cn
+#' copyNumber
 #' }
 #'
-"public_19Q1_gene_cn"
+"copyNumber"
