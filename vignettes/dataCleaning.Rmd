@@ -28,7 +28,7 @@ data and its statistical properties and visually display them.
 ```{r, eval=TRUE, echo=F}
 # this is a function to ensure all the necessary packages are loaded to run this
 # vignette
-packages <- c("RCurl", "dplyr")
+packages <- c("RCurl", "dplyr", "devtools")
 if ( length(missing_pkgs <- setdiff(packages, 
                                     rownames(installed.packages()))) > 0) {
   message("Installing missing package(s): ", 
@@ -67,7 +67,7 @@ public_19Q1_gene_cn  <- read.csv("https://depmap.org/portal/download/api/downloa
 public_19Q1_gene_cn
 
 # download DepMap-2019q1-celllines.csv
-depmap_19Q1_cell_lines  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=processed_portal_downloads%2Fdepmap-public-cell-line-metadata-183e.3%2FDepMap-2019q1-celllines.csv")
+depmap_19Q1_cell_lines  <- read.csv("https://depmap.org/portal/download/api/download/external?file_name=processed_portal_downloads%2Fdepmap-public-cell-line-metadata-183e.4%2FDepMap-2019q1-celllines_v2.csv")
 depmap_19Q1_cell_lines
 
 # download gene_effect_corrected.csv
@@ -85,6 +85,36 @@ CCLE_RPPA_20180123
 # download D2_combined_genetic_dependency_scores.csv
 D2_combined_genetic_dependency_scores <- read.csv("https://ndownloader.figshare.com/files/13515395")
 D2_combined_genetic_dependency_scores
+```
+
+If the *.csv* files are already downloaded, they may be loaded manually.
+
+```{r, eval=FALSE, echo=T}
+#load necessary libraries
+
+#getwd()
+setwd("~/R_projects/depmapr_csv_files")
+
+# manually load 'D2_combined_genetic_dependency_scores' 
+D2_combined_genetic_dependency_scores <- read.csv("~/R_projects/depmapr_csv_files/D2_combined_gene_dep_scores.csv")
+
+# manually load  'gene_effect_corrected'
+gene_effect_corrected <- read.csv("~/R_projects/depmapr_csv_files/gene_effect_corrected.csv")
+
+# manually load 'depmap_19Q1_mutation_calls'
+depmap_19Q1_mutation_calls <- read.csv("~/R_projects/depmapr_csv_files/depmap_19Q1_mutation_calls.csv")
+
+# manually load 'depmap_19Q1_cell_lines'
+depmap_19Q1_cell_lines <- read.csv("~/R_projects/depmapr_csv_files/DepMap-2019q1-celllines.csv")
+
+# manually load 'public_19Q1_gene_cn'
+public_19Q1_gene_cn <- read.csv("~/R_projects/depmapr_csv_files/public_19Q1_gene_cn.csv")
+
+# manually load 'CCLE_RPPA_20180123'
+CCLE_RPPA_20180123 <- read.csv("~/R_projects/depmapr_csv_files/CCLE_RPPA_20180123.csv")
+
+# manually load 'CCLE_depMap_19Q1_TPM' 
+CCLE_depMap_19Q1_TPM <- read.csv("~/R_projects/depmapr_csv_files/CCLE_depMap_19Q1_TPM.csv")
 ```
 
 Here, we have tried to preserve the original names of the
@@ -109,8 +139,6 @@ R user will be able to reproduce these steps on any depmap dataset given the
 code found in the chunks in the vignettes shown below.
 
 ```{r, eval=FALSE, echo=T}
-# rename all the depmap dataframes to more convenient names
-
 # rename 'D2_combined_genetic_dependency_scores' to 'rnai' data
 rnai <- D2_combined_genetic_dependency_scores
 
@@ -135,24 +163,56 @@ TPM <- CCLE_depMap_19Q1_TPM
 
 The 'D2_combined_genetic_dependency_scores' a.k.a. 'rnai' dataset has common
 gene names as the row names and the cell lines as the columns, unlike the other
-datasets. This dataset needs to be transposed to make to it conform to the other
-datasets.
+datasets. This dataset needs to be transposed to make to it conform to the 
+orientation of the other datasets.
 
 ```{r, eval=FALSE, echo=T}
 #load necessary libraries
 library(dplyr, warn.conflicts = FALSE)
 
-#transpose D2_combined_genetic_dependency_scores
-tranD2 <- t(D2_combined_genetic_dependency_scores) 
+# We need to transpose our `D2_combined_genetic_dependency_scores` matrix but 
+# we need to remove the first column `X` which is the list of genes because if
+# that row is left in, it will make the remaining columns *factors* when the 
+# dataframe is transposed. We will re-add the removed first column as the column
+# names after the matrix is transposed. 
+
+# the first 14 columns of `D2_combined_genetic_dependency_scores` are misnamed
+# and need to be renamed without the `X` at the beginning
+d2WrongName<-names(D2_combined_genetic_dependency_scores)[c(2:15)]
+d2RightNames <- c("127399_SOFT_TISSUE", "1321N1_CENTRAL_NERVOUS_SYSTEM",
+                  "143B_BONE", "184A1_BREAST", "184B5_BREAST", "22RV1_PROSTATE",
+                  "2313287_STOMACH", "600MPE_BREAST",
+                  "697_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE", "769P_KIDNEY",
+                  "786O_KIDNEY", "8305C_THYROID", "8505C_THYROID", "921_UVEA")
+
+names(D2_combined_genetic_dependency_scores)[c(2:15)] <- d2RightNames
+
+# subset D2 column names (cellLines) 
+d2CellLines <- as.data.frame(colnames(D2_combined_genetic_dependency_scores))
+
+# subset D2 first row (genes) which will become colNames of transposed matrix
+d2Genes <-D2_combined_genetic_dependency_scores$X
+
+# remove first column, leaving only numeric columns
+rnaiNum <- subset(D2_combined_genetic_dependency_scores, select = -c(X))
+
+#transpose numeric columns of D2_combined_genetic_dependency_scores (rnaiNum)
+tranD2 <- t(rnaiNum) 
 
 #coerce into df because tranD2 is currently a matrix
 tranD2 <- as.data.frame(tranD2, row.names = NULL, col.names = TRUE) 
 
 #select first column of tranD2, make it the colnames
-colnames(tranD2) <- as.character(unlist(tranD2[1,]))
+colnames(tranD2) <- as.character(unlist(d2Genes))
 
-#drop first row (redundant with colnames(tranD2))
-tranD2 = tranD2[-1, ] 
+# drop X1 row (not necessary) to make dimensions match original matrix
+d2CellLines <- d2CellLines[-1, ]
+
+# merge cell lines with transposed D2 dataframe
+cellLine1stColD2 <- cbind(d2CellLines, tranD2)
+
+# Rename first column to "cellLine" to it can be merged with `metadata`
+names(cellLine1stColD2)[1] <- "cellLine"
 
 # we need the depmap ID  from `depmap_19Q1_cell_lines`
 depIDtoName <- data.frame(depmap_19Q1_cell_lines$DepMap_ID, 
@@ -162,36 +222,20 @@ depIDtoName <- data.frame(depmap_19Q1_cell_lines$DepMap_ID,
 colnames(depIDtoName, do.NULL = FALSE)
 colnames(depIDtoName) <- c("depmapID","cellLine")
 
-# make new data frame with cellToID2, with DepmapID as a colname at the 
-# beginning and the rest of the data frame on the columns to the right. 
-# We need to add row names (cell lines) and then merge
-
-cellLinesD2 <- colnames(D2_combined_genetic_dependency_scores)
-cellLinesD2 <- as.data.frame(cellLinesD2)
-
-# drop X1 row (not necessary) to make dimensions match
-cellLinesD2 = cellLinesD2[-1, ] 
-
-# merge cell lines with transposed D2 dataframe
-cellToID2 <- cbind(cellLinesD2, tranD2)
-
-# Rename first column to "cellLine" to it can be merged with `metadata`
-names(cellToID2)[1] <-"cellLine"
-
-# map DepmapID onto CCLE name for cellToID2 (transpose of 
-# D2_combined_genetic_dependency_scores)
-cellToID3 <- full_join(cellToID2, depIDtoName, all=TRUE)
+# map DepmapID onto cellLine (CCLE name) for cellToID2 
+joinDepIDcellLine <- left_join(cellLine1stColD2, depIDtoName, all=TRUE)
 
 # tidy up dataframe to make depmapID appear as the first column
-depmapID <- cellToID3$depmapID
-cellToIdCols <- subset(cellToID3, select = -c(depmapID))
+depmapID <- joinDepIDcellLine$depmapID
+cellToIdCols <- subset(joinDepIDcellLine, select = -c(depmapID))
 cellToID4 <- cbind(depmapID, cellToIdCols)
 
 # remove all NAs from column cellToID4$depmapID and rename to `noNAdepIDrnai`
 noNAdepIDrnai <- subset(cellToID4, !is.na(depmapID))
 
-# convert our cleaned data back to the rnai object
+# cleaned rnai dataset
 rnai <- noNAdepIDrnai
+#View(rnai[c(1:10, 1:10)])
 ```
 
 Some of these datasets do not have DepMap ID clearly labelled in some datasets,
@@ -202,26 +246,28 @@ and provide column names which are common to all dataframes.
 # Rename first column of `crispr` to "depmapID" 
 names(crispr)[1] <-"depmapID"
 
-# Rename first column of `mutationCalls` to "ID" 
-names(mutationCalls)[1] <-"ID"
-
-# change metadata$CCLE_Name to cellLine
-names(metadata)[2] <- "cellLine"
-
 # Rename first column of `copyNumber` to "depmapID" 
 names(copyNumber)[1] <-"depmapID"
 
 # Rename first column of `RPPA` to "cellLine" 
 names(RPPA)[1] <-"cellLine"
 
-# Rename first column of `copyNumber` to "depmapID" 
+# Rename first column of `TPM` to "depmapID" 
 names(TPM)[1] <-"depmapID"
+
+# Rename first column of `metadata` to "depmapID" and CCLE_Name to cellLine
+names(metadata)[1] <-"depmapID"
+names(metadata)[2] <- "cellLine"
+
+# Rename first column of `mutationCalls` to "ID" and last column to "depmapID" 
+names(mutationCalls)[1] <-"ID"
+names(mutationCalls)[36] <-"depmapID"
 ```
 
 While name improperly named columns have been renamed, not all depmap datasets
-possess both "depmapID" or "cellLine". We will be performing joins and data 
-transformations such that every dataset (except metadata) contains "depmapID" as
-the first column and "cellLine" as the second column.  
+possess both "depmapID" or "cellLine". We will be performing *left_joins* and 
+data transformations such that every dataset (except metadata) contains 
+`depmapID` as the first column and `cellLine` as the second column.  
 
 Note: If you are performing a join yourself, remember that this operation is 
 computationally expensive and will take a bit to perform. This is why we are 
@@ -229,24 +275,22 @@ performing the set here so our end users of depmap don't have to!
 
 ```{r, eval=FALSE, echo=T}
 # add 'cellLine' to 'crispr'
-cripsrJoin <- full_join(crispr, depIDtoName, all=TRUE)
+cripsrJoin <- left_join(crispr, depIDtoName, all=TRUE)
 
 # add 'cellLine' to 'copyNumber'
-cnJoin <- full_join(copyNumber, depIDtoName, all=TRUE)
+cnJoin <- left_join(copyNumber, depIDtoName, all=TRUE)
 
 # add 'depmapID' to 'RPPA'
-rppaJoin <- full_join(RPPA, depIDtoName, all=TRUE)
+rppaJoin <- left_join(RPPA, depIDtoName, all=TRUE)
 
 # add 'cellLine' to 'TPM'
-tpmJoin <- full_join(TPM, depIDtoName, all=TRUE)
+tpmJoin <- left_join(TPM, depIDtoName, all=TRUE)
 ```
 
 Clean up to make sure that "depmapID" is the first column and "cellLine" is the 
 second column
 
 ```{r, eval=FALSE, echo=T}
-# rearrange rows to "depmapID" as first column and "cellLine" as second column
-
 # for crisprJoin (crispr)
 crisprDepID <- as.data.frame(cripsrJoin$depmapID)
 crisprCell <- as.data.frame(cripsrJoin$cellLine)
@@ -284,14 +328,19 @@ df4 <- cbind(tpmDepID, tpmCell, tpmJoinCols)
 names(df4)[1] <-"depmapID"
 names(df4)[2] <-"cellLine"
 TPM <- df4
+
+#View(depIDtoName)
+#View(df1[c(1:10, 1:10)])
+#View(df2[c(1:10, 1:10)])
+#View(df3[c(1:10, 1:10)])
+#View(df4[c(1:10, 1:10)])
 ```
 
-Rows with NA value for "depmapID" will be removed, to preserve the original size 
-of the dataframe.
+We will ensure that there are no dataframes for which "depmapID" was added but 
+may have a with NA value in that column, as to preserve the original size of 
+those dataframes.
 
 ```{r, eval=FALSE, echo=T}
-# make sure that there are now rows with NA in depmapID
-
 # remove all NAs from column TPM$depmapID 
 TPM <- subset(TPM, !is.na(depmapID))
 
@@ -306,56 +355,80 @@ rnai <- subset(rnai, !is.na(depmapID))
 
 # remove all NAs from column crispr$depmapID 
 crispr <- subset(crispr, !is.na(depmapID))
+```
 
-# manually view datasets to ensure that they are of the correct dimensions
+For transparency and reproducibility's sake, we will compare the attributes of 
+the dataframes before and after cleaning. 
 
-# rnai
-View(rnai[1:10, 1:10]) 
+```{r}
+# sort rnai by depmapID
+rnai <- rnai[order(rnai$depmapID),] 
+
+# sort copyNumber by depmapID
+copyNumber <- copyNumber[order(copyNumber$depmapID),] 
+
+# sort TPM by depmapID
+TPM <- TPM[order(TPM$depmapID),] 
+
+# sort RPPA by depmapID
+RPPA <- RPPA[order(RPPA$depmapID),] 
+```
+
+
+```{r}
+# rnai data 
+dim(tranD2) #tranD2 is the transpose of `D2_combined_genetic_dependency_scores`
+# [1]   712 17309
 dim(rnai)
-# [1]  1677 17311
+# [1]   709 17311
 
-# crispr
-View(crispr[1:10, 1:10])
+# crispr data 
+dim(gene_effect_corrected)
+# [1]   558 17635
 dim(crispr)
-# [1]  1677 17636
+# [1]   558 17636
 
-# mutationCalls
-View(mutationCalls[1:10, 1:10]) 
+# copy number data
+dim(public_19Q1_gene_cn)
+# [1]  1604 23300
+dim(copyNumber)
+# [1]  1604 23301
+
+# mutation call data
+dim(depmap_19Q1_mutation_calls)
+# [1] 1243145      36
 dim(mutationCalls)
 # [1] 1243145      36
 
-# copyNumber
-View(copyNumber[1:10, 1:10])
-dim(copyNumber)
-# [1]  1678 23301
-
-# RPPA
-View(RPPA[1:10, 1:10])
-dim(RPPA)
-# [1] 1677  216
-
-# TPM
-View(TPM[1:10, 1:10])
-dim(TPM)
-# [1]  1677 57822
-
 # metadata
-View(metadata[1:10,])
+dim(depmap_19Q1_cell_lines)
+# [1] 1677    9
 dim(metadata)
-#[1] 1677    9
+# [1] 1677    9
+
+# RPPA data
+dim(CCLE_RPPA_20180123)
+# [1] 899 215
+dim(RPPA)
+# [1] 899 216
+
+# TPM data
+dim(CCLE_depMap_19Q1_TPM)
+# [1]  1165 57821
+dim(TPM)
+# [1]  1165 57822
 ```
 
 In the last step, the cleaned depmap data was loaded into the depmap package
 using devtools::use_data()
 
 ```{r, eval=FALSE, echo=T}
-
 # include cleaned depmap data in depmap R package
-devtools::use_data(rnai)
-devtools::use_data(crispr)
-devtools::use_data(TPM)
-devtools::use_data(RPPA)
-devtools::use_data(metadata)
-devtools::use_data(mutationCalls)
-devtools::use_data(copyNumber)
+devtools::use_data(rnai, overwrite = TRUE)
+devtools::use_data(crispr, overwrite = TRUE)
+devtools::use_data(TPM, overwrite = TRUE)
+devtools::use_data(RPPA, overwrite = TRUE)
+devtools::use_data(metadata, overwrite = TRUE)
+devtools::use_data(mutationCalls, overwrite = TRUE)
+devtools::use_data(copyNumber, overwrite = TRUE)
 ```
