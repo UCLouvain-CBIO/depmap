@@ -11,41 +11,44 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # [depmap](https://github.com/tfkillian/depmap/) data cleaning
 
-This is a vignette displaying the how the 
-[depmap](https://github.com/tfkillian/depmap/) was obtained and cleaned before 
+This is a vignette displaying the how the
+[depmap](https://github.com/tfkillian/depmap/) was obtained and cleaned before
 being included in the final [depmap](https://github.com/tfkillian/depmap/)
-package.  
+package.
 
 ## Introduction {#sec:intro}
 
-The [depmap](https://github.com/tfkillian/depmap/) package aims to provide a 
-reproducible research framework to cancer dependency data described by 
-[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017): 564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The 
-[depmap](https://github.com/tfkillian/depmap/) package should allow a researcher 
-to easily mine dependency data taken from this cancer genomic study, explore the 
-data and its statistical properties and visually display them.
+The [depmap](https://github.com/tfkillian/depmap/) package aims to
+provide a reproducible research framework to cancer dependency data
+described by [Tsherniak, Aviad, et al. "Defining a cancer dependency
+map." Cell 170.3 (2017):
+564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The
+[depmap](https://github.com/tfkillian/depmap/) package should allow a
+researcher to easily mine dependency data taken from this cancer
+genomic study, explore the data and its statistical properties and
+visually display them.
 
-```{r, eval=TRUE, echo=F}
+```{r, eval=TRUE, echo=FALSE}
 # this is a function to ensure all the necessary packages are loaded to run this
 # vignette
 packages <- c("RCurl", "dplyr", "devtools")
-if ( length(missing_pkgs <- setdiff(packages, 
+if ( length(missing_pkgs <- setdiff(packages,
                                     rownames(installed.packages()))) > 0) {
-  message("Installing missing package(s): ", 
+  message("Installing missing package(s): ",
           paste(missing_pkgs, collapse = ", "))
   install.packages(missing_pkgs)
 }
 ```
 
-## Downloading [Broad Institute](https://depmap.org/portal/download/) data 
+## Downloading [Broad Institute](https://depmap.org/portal/download/) data
 
-If desired, the [depmap](https://github.com/tfkillian/depmap/) datasets can be 
-downloaded in *.csv* format directly from the 
-[Broad Institute](https://depmap.org/portal/download/) website. However, be 
-aware that these files are 1.5GB in total (non-compressed) and take a moderate 
+If desired, the [depmap](https://github.com/tfkillian/depmap/) datasets can be
+downloaded in *.csv* format directly from the
+[Broad Institute](https://depmap.org/portal/download/) website. However, be
+aware that these files are 1.5GB in total (non-compressed) and take a moderate
 amount of time to download!
 
-Users who wish to download the raw DRIVE data from which the DepMap data was 
+Users who wish to download the raw DRIVE data from which the DepMap data was
 been derived can be downloaded from the following here:
 https://data.mendeley.com/datasets/y3ds55n88r/4
 
@@ -87,55 +90,25 @@ D2_combined_genetic_dependency_scores <- read.csv("https://ndownloader.figshare.
 D2_combined_genetic_dependency_scores
 ```
 
-If the *.csv* files are already downloaded, they may be loaded manually.
-
-```{r, eval=FALSE, echo=T}
-#load necessary libraries
-
-#getwd()
-setwd("~/R_projects/depmapr_csv_files")
-
-# manually load 'D2_combined_genetic_dependency_scores' 
-D2_combined_genetic_dependency_scores <- read.csv("~/R_projects/depmapr_csv_files/D2_combined_gene_dep_scores.csv")
-
-# manually load  'gene_effect_corrected'
-gene_effect_corrected <- read.csv("~/R_projects/depmapr_csv_files/gene_effect_corrected.csv")
-
-# manually load 'depmap_19Q1_mutation_calls'
-depmap_19Q1_mutation_calls <- read.csv("~/R_projects/depmapr_csv_files/depmap_19Q1_mutation_calls.csv")
-
-# manually load 'depmap_19Q1_cell_lines'
-depmap_19Q1_cell_lines <- read.csv("~/R_projects/depmapr_csv_files/DepMap-2019q1-celllines.csv")
-
-# manually load 'public_19Q1_gene_cn'
-public_19Q1_gene_cn <- read.csv("~/R_projects/depmapr_csv_files/public_19Q1_gene_cn.csv")
-
-# manually load 'CCLE_RPPA_20180123'
-CCLE_RPPA_20180123 <- read.csv("~/R_projects/depmapr_csv_files/CCLE_RPPA_20180123.csv")
-
-# manually load 'CCLE_depMap_19Q1_TPM' 
-CCLE_depMap_19Q1_TPM <- read.csv("~/R_projects/depmapr_csv_files/CCLE_depMap_19Q1_TPM.csv")
-```
-
 Here, we have tried to preserve the original names of the
-[depmap](https://github.com/tfkillian/depmap/) .csv files, however many of these 
-names are long, unwieldy and don't immediately give the user the accurate 
-impression of what is contained in the data frame. We will give these datasets 
-new names to address this. 
+[depmap](https://github.com/tfkillian/depmap/) .csv files, however many of these
+names are long, unwieldy and don't immediately give the user the accurate
+impression of what is contained in the data frame. We will give these datasets
+new names to address this.
 
-Each quarter, the Broad Institute will release new depmap datasets. It is 
-anticipated that the datasets will change as additional data comes out. For 
-instance, the object `mutationCalls` reflects the most current depmap dataset. 
-Older datasets such as `depmap_19Q1_mutation_calls` can be loaded after 
-downloading the .csv directly from the 
+Each quarter, the Broad Institute will release new depmap datasets. It is
+anticipated that the datasets will change as additional data comes out. For
+instance, the object `mutationCalls` reflects the most current depmap dataset.
+Older datasets such as `depmap_19Q1_mutation_calls` can be loaded after
+downloading the .csv directly from the
 [Broad Institute](https://depmap.org/portal/download/) portal.
 
-In the following chucks, data cleaning of the data obtained from the 
+In the following chucks, data cleaning of the data obtained from the
 [Broad Institute](https://depmap.org/portal/download/) portal will be performed.
-However, please bear in mind that the directly downloaded .csv files from the 
+However, please bear in mind that the directly downloaded .csv files from the
 [Broad Institute](https://depmap.org/portal/download/) portal will not feature
 any of these data cleaning steps shown below. However, a moderately experienced
-R user will be able to reproduce these steps on any depmap dataset given the 
+R user will be able to reproduce these steps on any depmap dataset given the
 code found in the chunks in the vignettes shown below.
 
 ```{r, eval=FALSE, echo=T}
@@ -163,18 +136,18 @@ TPM <- CCLE_depMap_19Q1_TPM
 
 The 'D2_combined_genetic_dependency_scores' a.k.a. 'rnai' dataset has common
 gene names as the row names and the cell lines as the columns, unlike the other
-datasets. This dataset needs to be transposed to make to it conform to the 
+datasets. This dataset needs to be transposed to make to it conform to the
 orientation of the other datasets.
 
 ```{r, eval=FALSE, echo=T}
 #load necessary libraries
 library(dplyr, warn.conflicts = FALSE)
 
-# We need to transpose our `D2_combined_genetic_dependency_scores` matrix but 
+# We need to transpose our `D2_combined_genetic_dependency_scores` matrix but
 # we need to remove the first column `X` which is the list of genes because if
-# that row is left in, it will make the remaining columns *factors* when the 
+# that row is left in, it will make the remaining columns *factors* when the
 # dataframe is transposed. We will re-add the removed first column as the column
-# names after the matrix is transposed. 
+# names after the matrix is transposed.
 
 # the first 14 columns of `D2_combined_genetic_dependency_scores` are misnamed
 # and need to be renamed without the `X` at the beginning
@@ -187,7 +160,7 @@ d2RightNames <- c("127399_SOFT_TISSUE", "1321N1_CENTRAL_NERVOUS_SYSTEM",
 
 names(D2_combined_genetic_dependency_scores)[c(2:15)] <- d2RightNames
 
-# subset D2 column names (cellLines) 
+# subset D2 column names (cellLines)
 d2CellLines <- as.data.frame(colnames(D2_combined_genetic_dependency_scores))
 
 # subset D2 first row (genes) which will become colNames of transposed matrix
@@ -197,10 +170,10 @@ d2Genes <-D2_combined_genetic_dependency_scores$X
 rnaiNum <- subset(D2_combined_genetic_dependency_scores, select = -c(X))
 
 #transpose numeric columns of D2_combined_genetic_dependency_scores (rnaiNum)
-tranD2 <- t(rnaiNum) 
+tranD2 <- t(rnaiNum)
 
 #coerce into df because tranD2 is currently a matrix
-tranD2 <- as.data.frame(tranD2, row.names = NULL, col.names = TRUE) 
+tranD2 <- as.data.frame(tranD2, row.names = NULL, col.names = TRUE)
 
 #select first column of tranD2, make it the colnames
 colnames(tranD2) <- as.character(unlist(d2Genes))
@@ -215,14 +188,14 @@ cellLine1stColD2 <- cbind(d2CellLines, tranD2)
 names(cellLine1stColD2)[1] <- "cellLine"
 
 # we need the depmap ID  from `depmap_19Q1_cell_lines`
-depIDtoName <- data.frame(depmap_19Q1_cell_lines$DepMap_ID, 
+depIDtoName <- data.frame(depmap_19Q1_cell_lines$DepMap_ID,
                        depmap_19Q1_cell_lines$CCLE_Name)
 
 #add col names to depIDtoName to make the variables more clear
 colnames(depIDtoName, do.NULL = FALSE)
 colnames(depIDtoName) <- c("depmapID","cellLine")
 
-# map DepmapID onto cellLine (CCLE name) for cellToID2 
+# map DepmapID onto cellLine (CCLE name) for cellToID2
 joinDepIDcellLine <- left_join(cellLine1stColD2, depIDtoName, all=TRUE)
 
 # tidy up dataframe to make depmapID appear as the first column
@@ -239,38 +212,38 @@ rnai <- noNAdepIDrnai
 ```
 
 Some of these datasets do not have DepMap ID clearly labelled in some datasets,
-instead the column is named (for instance) 'X1'. We will clean up the data here 
+instead the column is named (for instance) 'X1'. We will clean up the data here
 and provide column names which are common to all dataframes.
 
 ```{r, eval=FALSE, echo=T}
-# Rename first column of `crispr` to "depmapID" 
+# Rename first column of `crispr` to "depmapID"
 names(crispr)[1] <-"depmapID"
 
-# Rename first column of `copyNumber` to "depmapID" 
+# Rename first column of `copyNumber` to "depmapID"
 names(copyNumber)[1] <-"depmapID"
 
-# Rename first column of `RPPA` to "cellLine" 
+# Rename first column of `RPPA` to "cellLine"
 names(RPPA)[1] <-"cellLine"
 
-# Rename first column of `TPM` to "depmapID" 
+# Rename first column of `TPM` to "depmapID"
 names(TPM)[1] <-"depmapID"
 
 # Rename first column of `metadata` to "depmapID" and CCLE_Name to cellLine
 names(metadata)[1] <-"depmapID"
 names(metadata)[2] <- "cellLine"
 
-# Rename first column of `mutationCalls` to "ID" and last column to "depmapID" 
+# Rename first column of `mutationCalls` to "ID" and last column to "depmapID"
 names(mutationCalls)[1] <-"ID"
 names(mutationCalls)[36] <-"depmapID"
 ```
 
 While name improperly named columns have been renamed, not all depmap datasets
-possess both "depmapID" or "cellLine". We will be performing *left_joins* and 
-data transformations such that every dataset (except metadata) contains 
-`depmapID` as the first column and `cellLine` as the second column.  
+possess both "depmapID" or "cellLine". We will be performing *left_joins* and
+data transformations such that every dataset (except metadata) contains
+`depmapID` as the first column and `cellLine` as the second column.
 
-Note: If you are performing a join yourself, remember that this operation is 
-computationally expensive and will take a bit to perform. This is why we are 
+Note: If you are performing a join yourself, remember that this operation is
+computationally expensive and will take a bit to perform. This is why we are
 performing the set here so our end users of depmap don't have to!
 
 ```{r, eval=FALSE, echo=T}
@@ -287,7 +260,7 @@ rppaJoin <- left_join(RPPA, depIDtoName, all=TRUE)
 tpmJoin <- left_join(TPM, depIDtoName, all=TRUE)
 ```
 
-Clean up to make sure that "depmapID" is the first column and "cellLine" is the 
+Clean up to make sure that "depmapID" is the first column and "cellLine" is the
 second column
 
 ```{r, eval=FALSE, echo=T}
@@ -336,53 +309,53 @@ TPM <- df4
 #View(df4[c(1:10, 1:10)])
 ```
 
-We will ensure that there are no dataframes for which "depmapID" was added but 
-may have a with NA value in that column, as to preserve the original size of 
+We will ensure that there are no dataframes for which "depmapID" was added but
+may have a with NA value in that column, as to preserve the original size of
 those dataframes.
 
 ```{r, eval=FALSE, echo=T}
-# remove all NAs from column TPM$depmapID 
+# remove all NAs from column TPM$depmapID
 TPM <- subset(TPM, !is.na(depmapID))
 
-# remove all NAs from column RPPA$depmapID 
+# remove all NAs from column RPPA$depmapID
 RPPA <- subset(RPPA, !is.na(depmapID))
 
-# remove all NAs from column copyNumber$depmapID 
+# remove all NAs from column copyNumber$depmapID
 copyNumber <- subset(copyNumber, !is.na(depmapID))
 
-# remove all NAs from column rnai$depmapID 
+# remove all NAs from column rnai$depmapID
 rnai <- subset(rnai, !is.na(depmapID))
 
-# remove all NAs from column crispr$depmapID 
+# remove all NAs from column crispr$depmapID
 crispr <- subset(crispr, !is.na(depmapID))
 ```
 
-For transparency and reproducibility's sake, we will compare the attributes of 
-the dataframes before and after cleaning. 
+For transparency and reproducibility's sake, we will compare the attributes of
+the dataframes before and after cleaning.
 
 ```{r}
 # sort rnai by depmapID
-rnai <- rnai[order(rnai$depmapID),] 
+rnai <- rnai[order(rnai$depmapID),]
 
 # sort copyNumber by depmapID
-copyNumber <- copyNumber[order(copyNumber$depmapID),] 
+copyNumber <- copyNumber[order(copyNumber$depmapID),]
 
 # sort TPM by depmapID
-TPM <- TPM[order(TPM$depmapID),] 
+TPM <- TPM[order(TPM$depmapID),]
 
 # sort RPPA by depmapID
-RPPA <- RPPA[order(RPPA$depmapID),] 
+RPPA <- RPPA[order(RPPA$depmapID),]
 ```
 
 
 ```{r}
-# rnai data 
+# rnai data
 dim(tranD2) #tranD2 is the transpose of `D2_combined_genetic_dependency_scores`
 # [1]   712 17309
 dim(rnai)
 # [1]   709 17311
 
-# crispr data 
+# crispr data
 dim(gene_effect_corrected)
 # [1]   558 17635
 dim(crispr)
