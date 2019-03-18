@@ -1,4 +1,4 @@
-#' depmap_19Q1_cell_lines
+#' metadata
 #'
 #' Metadata about cell lines in the 19Q1 release, including mapping
 #' between DepMap ID and CCLE names
@@ -10,8 +10,8 @@
 #'
 #' @format A data frame with 1677 rows (cell lines) and 9 variables:
 #' \describe{
-#'   \item{DepMap_ID}{DepMap_ID}
-#'   \item{CCLE_Name}{CCLE_Name}
+#'   \item{depmapID}{depmapID}
+#'   \item{cellLine}{cellLine}
 #'   \item{Aliases}{Aliases}
 #'   \item{COSMIC_ID}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID number (e.g. 905933)}
 #'   \item{Sanger ID}{Sanger ID (eg. 2201)}
@@ -23,7 +23,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(depmap_19Q1_cell_lines)
+#' @usage data(metadata)
 #'
 #' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 #'
@@ -37,11 +37,11 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
-#' data(depmap_19Q1_cell_lines)
-#' DepMap_ID <- attr(depmap_19Q1_cell_lines, "DepMap_ID")
+#' data(metadata)
+#' DepMap_ID <- attr(metadata, "DepMap_ID")
 #'
 #' \dontrun{
-#' depmap_19Q1_cell_lines
+#' metadata
 #' }
 #'
-"depmap_19Q1_cell_lines"
+"metadata"
