@@ -1,25 +1,24 @@
 #' TPM
 #'
-#' CCLE RNAseq gene expression data at scale (log2(TPM+1)). The portal shows
-#' expression data for only protein coding genes.
-#'
-#' Genes 57820
-#' Cell Lines 1165
-#' Primary Diseases 33
-#' Lineages 32
+#' CCLE RNAseq gene expression data at scale (log2(TPM+1)). This data originates
+#' from the `CCLE_depMap_19Q1_TPM` file. This data shows expression data only 
+#' for protein coding genes. This dataset contains 57820 Genes, 1165 Cell Lines,
+#' 33 Primary Diseases, 32 Lineages. First column is the DepMap ID# of the cell 
+#' lineage and the second column is the CCLE name for that cell line. The 
+#' remaining columns consist of the gene expression data.
 #'
 #' @format A data frame with 1165 rows (cell lines) and 57822 variables (genes):
 #' \describe{
-#'      \item{Gene}{HUGO symbol (e.g. "HSPA5") and Ensembl gene ID 
+#'      \item{depmapID}{cell line foreign key (i.e. "ACH-000001")}
+#'      \item{cellLine}{Name of cancer cell line (i.e. "NIHOVCAR3_OVARY")}
+#'      \item{Gene}{HUGO symbol (e.g. "HSPA5") and Ensembl gene ID} 
 #'      (e.g. ENSG00000044574)}
 #' }
 #'
 #' @docType data
 #'
 #' @usage data(TPM)
-#'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
-#'
+#' 
 #' @keywords datasets
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
@@ -31,10 +30,5 @@
 #'
 #' @examples
 #' data(TPM)
-#' ACTC1_(70) <- attr(TPM, "ACTC1 (70)")
-#'
-#' \dontrun{
 #' TPM
-#' }
-#'
 "TPM"

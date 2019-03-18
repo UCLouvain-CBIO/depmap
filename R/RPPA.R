@@ -1,22 +1,21 @@
 #' RPPA
 #'
-#' Celluar Models dataset: CCLE Reverse Phase Protein Array (RPPA) data
-#'
-#' Genes 214
-#' Cell Lines 899
-#' Primary Diseases 28
-#' Lineages 28
+#' Celluar Models dataset: CCLE Reverse Phase Protein Array (RPPA) data which 
+#' originates from the `CCLE_RPPA_20180123`. This dataset contains: 214 Genes, 
+#' 899 Cell Lines, 28 Primary Diseases, 28 Lineages. First column is the DepMap 
+#' ID# of the cell lineage and the second column is the CCLE name for that cell 
+#' line. The remaining columns are the numerical RPPA data of select genes. 
 #'
 #' @format A data frame with 899 rows (cell lines) and 216 variables (genes):
 #' \describe{
-#'     \item{Gene}{Gene (i.e. "Transglutaminase")}
+#'     \item{depmapID}{cell line foreign key (i.e. "ACH-000001")}
+#'     \item{cellLine}{Name of cancer cell line (i.e. "NIHOVCAR3_OVARY")}
+#'     \item{gene}{Gene (i.e. "Transglutaminase")}
 #' }
 #'
 #' @docType data
 #'
 #' @usage data(RPPA)
-#'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 #'
 #' @keywords datasets
 #'
@@ -29,10 +28,5 @@
 #'
 #' @examples
 #' data(RPPA)
-#' ACTC1_(70) <- attr(RPPA, "ACTC1 (70)")
-#'
-#' \dontrun{
 #' RPPA
-#' }
-#'
 "RPPA"

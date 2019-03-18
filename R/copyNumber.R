@@ -1,24 +1,24 @@
 #' copyNumber
 #'
-#' Data from DepMap WES Copy Number Data
+#' The `copyNumber` dataset is the depMap WES copy number data for genes from 
+#' cancer cell lines. This dataset originates from the `public_19Q1_gene_cn` 
+#' file. This dataset contains 23299 Genes, 1604 Cell Lines, 38 Primary 
+#' Diseases, 33 Lineages. The first column is the DepMap ID# of the cell lineage
+#' and the second column is the CCLE name for that cell line. The remaining 
+#' columns consist of the numerical log-fold copy number change measured against
+#' copy number baseline of select genes. 
 #'
-#' Genes 23299
-#' Cell Lines 1604
-#' Primary Diseases 38
-#' Lineages 33
-#'
-#' @format A data frame with 1604 rows and 23301 variables. Each variable
-#' column contains copy number for a known gene while each row represents a cell
-#' line:
+#' @format A data frame with 1604 rows and 23301 variables. Each numeric column 
+#' contains copy number for a known gene while each row represents a cell line: 
 #' \describe{
-#'     \item{Gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
+#'      \item{depmapID}{cell line foreign key (i.e. "ACH-00001")}
+#'      \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
+#'      \item{Gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
 #' }
 #'
 #' @docType data
 #'
 #' @usage data(copyNumber)
-#'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 #'
 #' @keywords datasets
 #'
@@ -31,10 +31,5 @@
 #'
 #' @examples
 #' data(copyNumber)
-#' A1BG_(1) <- attr(copyNumber, "A1BG (1)")
-#'
-#' \dontrun{
 #' copyNumber
-#' }
-#'
 "copyNumber"
