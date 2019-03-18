@@ -1,22 +1,22 @@
 #' rnai
 #'
-#' Genetic Dependency Combined RNAi dataset (Broad, Novartis, Marcotte)
-#'
-#' Genes 17309
-#' Cell Lines 712
-#' Primary Diseases 30
-#' Lineages 31
+#' Genetic Dependency Combined RNAi dataset (Broad, Novartis, Marcotte) 
+#' originating from the `D2_combined_genetic_dependency_scores` file. Data from 
+#' RNAi dataset including 17309 Genes, 712 Cell Lines 712, 30 Primary Diseases
+#' and 31 Lineages. The first column is the DepMap ID# of the cell lineage and 
+#' the second column is the CCLE name for that cell line. The remaining columns 
+#' consist of the numerical dependency score values of the select genes. 
 #'
 #' @format A data frame with 713 rows (cell lines) and 17309 variables (genes):
 #' \describe{
-#'    \item{Gene}{Name of gene (i.e. "SF3B1 (23451)")}
+#'    \item{depmapID}{cell line foreign key (i.e. "ACH-00001")}
+#'    \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
+#'    \item{gene}{Name of gene (i.e. "SF3B1 (23451)")}
 #' }
 #'
 #' @docType data
 #'
 #' @usage data(rnai)
-#'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 #'
 #' @keywords datasets
 #'
@@ -29,10 +29,5 @@
 #'
 #' @examples
 #' data(rnai)
-#' SF3B1_(23451) <- attr(rnai, "SF3B1 (23451)")
-#'
-#' \dontrun{
 #' rnai
-#' }
-#'
 "rnai"
