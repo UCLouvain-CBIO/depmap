@@ -1,4 +1,4 @@
-#' gene_effect_corrected
+#' crispr
 #'
 #' Genetic dependency of CRISPR (Avana) Public 19Q1 from batch corrected CERES
 #' inferred gene effect matrix. CERES is a computational method to estimate gene
@@ -10,14 +10,14 @@
 #' Primary Diseases 26
 #' Lineages 28
 #'
-#' @format A data frame with 558 rows (cell lines) and 17635 variables (genes):
+#' @format A data frame with 558 rows (cell lines) and 17631 variables (genes):
 #' \describe{
 #'     \item{Gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
 #' }
 #'
 #' @docType data
 #'
-#' @usage data(gene_effect_corrected)
+#' @usage data(crispr)
 #'
 #' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 #'
@@ -31,11 +31,11 @@
 #' @source \href{"https://ndownloader.figshare.com/files/14221385"}{DepMap, Broad (2019)}
 #'
 #' @examples
-#' data(gene_effect_corrected)
-#' A1CF_(29974) <- attr(gene_effect_corrected, "A1CF (29974)")
+#' data(crispr)
+#' A1CF_(29974) <- attr(crispr, "A1CF (29974)")
 #'
 #' \dontrun{
-#' gene_effect_corrected
+#' crispr
 #' }
 #'
-"gene_effect_corrected"
+"crispr"

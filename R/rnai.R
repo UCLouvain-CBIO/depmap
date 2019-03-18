@@ -1,4 +1,4 @@
-#' D2_combined_genetic_dependency_scores
+#' rnai
 #'
 #' Genetic Dependency Combined RNAi dataset (Broad, Novartis, Marcotte)
 #'
@@ -7,14 +7,14 @@
 #' Primary Diseases 30
 #' Lineages 31
 #'
-#' @format A data frame with 17309 rows (genes) and 713 variables (cell lines):
+#' @format A data frame with 713 rows (cell lines) and 17309 variables (genes):
 #' \describe{
-#'    \item{Cell_Line}{Name of cell line (i.e. U87MG_CENTRAL_NERVOUS_SYSTEM)}
+#'    \item{Gene}{Name of gene (i.e. "SF3B1 (23451)")}
 #' }
 #'
 #' @docType data
 #'
-#' @usage data(D2_combined_genetic_dependency_scores)
+#' @usage data(rnai)
 #'
 #' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 #'
@@ -28,11 +28,11 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @examples
-#' data(D2_combined_genetic_dependency_scores)
-#' SNU216_STOMACH <- attr(D2_combined_genetic_dependency_scores, "SNU216_STOMACH")
+#' data(rnai)
+#' SF3B1_(23451) <- attr(rnai, "SF3B1 (23451)")
 #'
 #' \dontrun{
-#' D2_combined_genetic_dependency_scores
+#' rnai
 #' }
 #'
-"D2_combined_genetic_dependency_scores"
+"rnai"
