@@ -1,10 +1,8 @@
 #' mutationCalls
 #'
-#' Data from merged mutation calls (coding region, germline filtered)
-#' Genes 18755
-#' Cell Lines 1601
-#' Primary Diseases 37
-#' Lineages 33
+#' Mutation calls originating from the `depmap_19Q1_mutation_calls.csv` file.
+#' Data from merged mutation calls (coding region, germline filtered) for 18755
+#' genes, 1601 cell lines, 37 primary diseases and 33 lineages.
 #'
 #' @format A data frame with 1243145 rows and 36 variables:
 #' \describe{
@@ -49,8 +47,6 @@
 #'
 #' @usage data(mutationCalls)
 #'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
-#'
 #' @keywords datasets
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
@@ -62,10 +58,5 @@
 #'
 #' @examples
 #' data(mutationCalls)
-#' Tumor_Sample_Barcode <- attr(mutationCalls, "Tumor_Sample_Barcode")
-#'
-#' \dontrun{
 #' mutationCalls
-#' }
-#'
 "mutationCalls"
