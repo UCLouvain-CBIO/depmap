@@ -9,12 +9,16 @@
 #' the CCLE name for that cell line. The remaining columns consist of the 
 #' numerical dependency score values of the select genes. 
 #'
-#' @format A data frame with 558 rows (cell lines) and 17631 variables (genes):
+#' @format A data frame with 558 rows (cell lines) and 17636 variables (genes):
 #' \describe{
 #'     \item{depmapID}{cell line foreign key (i.e. "ACH-00001")}
 #'     \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
 #'     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
 #' }
+#' @details This data represents the `gene_effect_corrected` dataset taken from
+#' the public depmap portal. This dataset features the addition of a foreign key
+#' (depmapID) found in the first column of this dataset, which was added from 
+#' the `metadata` dataset.  
 #'
 #' @docType data
 #'

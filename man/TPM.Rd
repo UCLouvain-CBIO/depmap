@@ -19,6 +19,13 @@ for protein coding genes. This dataset contains 57820 Genes, 1165 Cell Lines,
 lineage and the second column is the CCLE name for that cell line. The 
 remaining columns consist of the gene expression data.
 }
+\details{
+This data represents the `CCLE_depMap_19Q1_TPM` dataset taken from
+the public depmap portal. This dataset features the addition of a foreign key
+(depmapID) found in the first column of this dataset, which was added from 
+the `metadata` dataset. The dataset was also sorted so that the rows of 
+depmapID were consecutive.
+}
 \examples{
 data(TPM)
 TPM

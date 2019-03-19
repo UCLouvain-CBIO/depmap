@@ -13,6 +13,12 @@
 #'     \item{gene}{Gene (i.e. "Transglutaminase")}
 #' }
 #'
+#' @details This data represents the `CCLE_RPPA_20180123` dataset taken from
+#' the public depmap portal. This dataset features the addition of a foreign key
+#' (depmapID) found in the first column of this dataset, which was added from 
+#' the `metadata` dataset. The dataset was also sorted so that the rows of 
+#' depmapID were consecutive. 
+#' 
 #' @docType data
 #'
 #' @usage data(RPPA)

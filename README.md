@@ -46,7 +46,7 @@ The [depmap](https://github.com/tfkillian/depmap/) package currently contains
 seven datasets (shown below) in *.rda* format. These datasets can be loaded by 
 using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package 
 has been loaded in RStudio using *library("depmap")*. If you wish to see how the
-data was transformed, please see the dataCleaning.Rmd vignette. 
+data was transformed, please see the make_data.R file in \inst. 
 
 ## Questions
 

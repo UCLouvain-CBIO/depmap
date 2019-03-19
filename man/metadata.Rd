@@ -6,7 +6,8 @@
 \title{metadata}
 \format{A data frame with 1677 rows (cell lines) and 9 variables:
 \describe{
-  \item{depmapID}{cell line foreign key (i.e. "ACH-00001")}
+  \item{depmapID}{cell line primary key, elsewhere used as foreign key 
+  (i.e. "ACH-00001")}
   \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
   \item{Aliases}{Aliases of cancer cell line}
   \item{COSMIC_ID}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID 
@@ -32,6 +33,14 @@ DepMap ID and CCLE names. This dataset contains: 0 Genes, 1677 Cell Lines, 38
 Primary Diseases, 33 Lineages. The columns found in this dataset are 
 "depmapID", "cellLine", "Aliases", "COSMIC_ID", "Sanger.ID", 
 "Primary.Disease", "Subtype.Disease", "Gender" and "Source"
+}
+\details{
+This data represents the `depmap_19Q1_cell_lines` dataset taken from
+the public depmap portal. This dataset does not contain any expression or 
+dependency data but rather contains the metadata for all cancer cell lines 
+used in the depmap project. `metadata` also contains primary key (depmapID) 
+which is used as a foreign key (depmapID) in all other datasets in the depmap
+R package.
 }
 \examples{
 data(metadata)

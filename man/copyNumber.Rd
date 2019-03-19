@@ -26,6 +26,13 @@ and the second column is the CCLE name for that cell line. The remaining
 columns consist of the numerical log-fold copy number change measured against
 copy number baseline of select genes.
 }
+\details{
+This data represents the `public_19Q1_gene_cn` dataset taken from
+the public depmap portal. This dataset features the addition of a foreign key
+(depmapID) found in the first column of this dataset, which was added from 
+the `metadata` dataset. The dataset was also sorted so that the rows of 
+depmapID were consecutive.
+}
 \examples{
 data(copyNumber)
 copyNumber

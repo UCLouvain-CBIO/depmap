@@ -15,7 +15,13 @@
 #'      \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
 #'      \item{Gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
 #' }
-#'
+#' 
+#' @details This data represents the `public_19Q1_gene_cn` dataset taken from
+#' the public depmap portal. This dataset features the addition of a foreign key
+#' (depmapID) found in the first column of this dataset, which was added from 
+#' the `metadata` dataset. The dataset was also sorted so that the rows of 
+#' depmapID were consecutive. 
+#' 
 #' @docType data
 #'
 #' @usage data(copyNumber)
