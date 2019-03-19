@@ -602,6 +602,14 @@ data.
 
 ```{r}
 # boxplot of high and low dependency score 
+
+View(mutationCalls[1:10,])
+
+#rando 
+datRando <- data.frame(replicate(10,sample(0:1,1000,rep=TRUE)))
+datRando
+datRando[[1]] <- NULL
+datRando
 ```
 
 

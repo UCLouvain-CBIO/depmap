@@ -14,6 +14,12 @@
 #'      \item{Gene}{HUGO symbol (e.g. "HSPA5") and Ensembl gene ID} 
 #'      (e.g. ENSG00000044574)}
 #' }
+#' 
+#' @details This data represents the `CCLE_depMap_19Q1_TPM` dataset taken from
+#' the public depmap portal. This dataset features the addition of a foreign key
+#' (depmapID) found in the first column of this dataset, which was added from 
+#' the `metadata` dataset. The dataset was also sorted so that the rows of 
+#' depmapID were consecutive. 
 #'
 #' @docType data
 #'
