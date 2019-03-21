@@ -10,7 +10,7 @@ vignette: >
 ---
 
 ```{r, include = FALSE, echo = FALSE, results = 'asis'}
-knitr::opts_chunk$set(collapse = T, comment = "#>")
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 # [depmap](https://github.com/tfkillian/depmap/)
@@ -356,10 +356,10 @@ cell lines associated with those values:
 
 ```{r, eval=TRUE, echo=TRUE}
 #sort dependencies scores of particular gene (BRCA1) by lowest (most important)
-lowBRCA1vals <-rnai[order(rnai$`BRCA1 (672)`, decreasing=F)[1:10],]
+lowBRCA1vals <-rnai[order(rnai$`BRCA1 (672)`, decreasing=FALSE)[1:10],]
 
 #sort dependencies scores of particular gene (BRCA1) my highest (most important)
-highBRCA1vals <-rnai[order(rnai$`BRCA1 (672)`, decreasing=T)[1:10],]
+highBRCA1vals <-rnai[order(rnai$`BRCA1 (672)`, decreasing=TRUE)[1:10],]
 
 # cbind as df
 lowBRCA1 <- cbind(lowBRCA1vals$cellLine, lowBRCA1vals$`BRCA1 (672)`)
@@ -473,10 +473,10 @@ colnames(rnaiDepScoreMinAndColIndex, do.NULL = FALSE)
 colnames(rnaiDepScoreMinAndColIndex) <- c("DepScore", "ID")
 
 #left_join on ID
-depMinCellGene <- left_join(rnaiDepScoreMinAndColIndex, geneNamesRNAI, all=TRUE)
+rnaiDepMinCellGene <- left_join(rnaiDepScoreMinAndColIndex, geneNamesRNAI, all=TRUE)
 
 # cbind `rnai$cellLine` and `depMinCellGene`
-rnaiDepScoreMinAndColIndex <- cbind(rnai$cellLine, depMinCellGene)
+rnaiDepScoreMinAndColIndex <- cbind(rnai$cellLine, rnaiDepMinCellGene)
 
 # remove superfluous ID column
 rnaiDepScoreMinAndColIndex <-subset(rnaiDepScoreMinAndColIndex, select = -c(ID))
@@ -486,7 +486,7 @@ names(rnaiDepScoreMinAndColIndex)[1] <- "cellLine"
 
 # sort by highest dependencies 
 top25rnai<-rnaiDepScoreMinAndColIndex[order(rnaiDepScoreMinAndColIndex$DepScore, 
-                                             decreasing=F)[1:10],]
+                                             decreasing=FALSE)[1:25],]
 top25rnai 
 
 # if we want to do the same as above, but column-wise
@@ -504,6 +504,9 @@ line for that value. It may be interesting to compare these values with those
 found from the previous table.
 
 ```{r, eval=TRUE, echo=FALSE}
+# load dplyr
+# library(dplyr, warn.conflicts = FALSE)
+
 # Return column index (gene) of each row max (cell line)
 rnaiMaxCols <- (apply(rnai0Chars, 1, which.max))
 
@@ -535,7 +538,7 @@ names(rnaiDepScoreMaxAndColIndex)[1] <- "cellLine"
 
 # sort by highest dependencies 
 bot25rnai<-rnaiDepScoreMaxAndColIndex[order(rnaiDepScoreMaxAndColIndex$DepScore, 
-                                             decreasing=TRUE)[1:10],]
+                                             decreasing=TRUE)[1:25],]
 bot25rnai
 ```
 
@@ -544,6 +547,9 @@ population of genes with highest and lowest dependency scores) for the `crispr`
 data, as shown below. 
 
 ```{r, eval=TRUE, echo=FALSE}
+# load dplyr
+# library(dplyr, warn.conflicts = FALSE)
+
 # need to remove the columns with characters in `crispr` before finding max/min
 crispr0Chars <- subset(crispr, select = -c(depmapID, cellLine))
 
@@ -557,61 +563,128 @@ geneNamesCRISPR <- tibble::rowid_to_column(geneNamesCRISPR, "ID")
 colnames(geneNamesCRISPR, do.NULL = FALSE)
 colnames(geneNamesCRISPR) <- c("ID", "Gene")
 
-# Return column index (gene) of each row minimum (cell line)
+# return column index (gene) of each row minimum (cell line)
 crisprMinCols <- (apply(crispr0Chars, 1, which.min))
 
 # lowest dependency scores for each column (cell line) of `crispr`
 lowDepScoresColCRISPR <- apply(crispr0Chars, 1, 
                                function(x) {min(x, na.rm = TRUE)})
-
 # coerce to dataframe
 crisprMinCols <- as.data.frame(crisprMinCols)
 lowDepScoresColCRISPR <- as.data.frame(lowDepScoresColCRISPR)
-
-############## CRISPR or crispr? 
 
 # cbind `lowDepScoresColCRISPR` and `crisprMinCols`
 crisprDepScoreMinAndColIndex <- cbind(lowDepScoresColCRISPR, crisprMinCols)
 
 # add col names
-colnames(rnaiDepScoreMinAndColIndex, do.NULL = FALSE)
-colnames(rnaiDepScoreMinAndColIndex) <- c("DepScore", "ID")
+colnames(crisprDepScoreMinAndColIndex, do.NULL = FALSE)
+colnames(crisprDepScoreMinAndColIndex) <- c("DepScore", "ID")
 
-#left_join on ID
-depMinCellGene <- left_join(rnaiDepScoreMinAndColIndex, geneNamesRNAI, all=TRUE)
+# left_join on ID
+crisprDepMinCellGene <- left_join(crisprDepScoreMinAndColIndex, geneNamesCRISPR, all=TRUE)
 
-# cbind `rnai$cellLine` and `depMinCellGene`
-rnaiDepScoreMinAndColIndex <- cbind(rnai$cellLine, depMinCellGene)
+# cbind `crispr$cellLine` and `depMinCellGene`
+crisprDepScoreMinAndColIndex <- cbind(crispr$cellLine, crisprDepMinCellGene)
 
 # remove superfluous ID column
-rnaiDepScoreMinAndColIndex <-subset(rnaiDepScoreMinAndColIndex, select = -c(ID))
-
+crisprDepScoreMinAndColIndex <-subset(crisprDepScoreMinAndColIndex, 
+                                      select = -c(ID))
 #rename first column
-names(rnaiDepScoreMinAndColIndex)[1] <- "cellLine"
+names(crisprDepScoreMinAndColIndex)[1] <- "cellLine"
 
 # sort by highest dependencies 
-top25rnai<-rnaiDepScoreMinAndColIndex[order(rnaiDepScoreMinAndColIndex$DepScore, 
-                                             decreasing=F)[1:10],]
-top25rnai 
+top25crispr<-crisprDepScoreMinAndColIndex[order(crisprDepScoreMinAndColIndex$DepScore, 
+                                             decreasing=FALSE)[1:25],]
+top25crispr 
 ```
 
-##########################################################################
+Below shows a table which returns the 10 least significant (most cancer-driving) 
+dependency scores for genes in the `crispr` data, along with corresponding cell 
+line for that value.
+
+```{r, eval=TRUE, echo=FALSE}
+# load dplyr
+# library(dplyr, warn.conflicts = FALSE)
+
+# return column index (gene) of each row max (cell line)
+crisprMaxCols <- (apply(crispr0Chars, 1, which.max))
+
+# highest" dependency scores for each column (cell line) of `crispr`
+highDepScoresColCRISPR <- apply(crispr0Chars, 1, 
+                               function(x) {max(x, na.rm = TRUE)})
+# coerce to dataframe
+crisprMaxCols <- as.data.frame(crisprMaxCols)
+highDepScoresColCRISPR <- as.data.frame(highDepScoresColCRISPR)
+
+# cbind `highDepScoresColCRISPR` and `crisprMaxCols`
+crisprDepScoreMaxAndColIndex <- cbind(highDepScoresColCRISPR, crisprMaxCols)
+
+# add col names
+colnames(crisprDepScoreMaxAndColIndex, do.NULL = FALSE)
+colnames(crisprDepScoreMaxAndColIndex) <- c("DepScore", "ID")
+
+# left_join on ID
+crisprDepMaxCellGene <- left_join(crisprDepScoreMaxAndColIndex, geneNamesCRISPR, all=TRUE)
+
+# cbind `crispr$cellLine` and `depMaxCellGene`
+crisprDepScoreMaxAndColIndex <- cbind(crispr$cellLine, crisprDepMaxCellGene)
+
+# remove superfluous ID column
+crisprDepScoreMaxAndColIndex <-subset(crisprDepScoreMaxAndColIndex, 
+                                      select = -c(ID))
+#rename first column
+names(crisprDepScoreMaxAndColIndex)[1] <- "cellLine"
+
+# sort by highest dependencies 
+bot25crispr<-crisprDepScoreMaxAndColIndex[order(crisprDepScoreMaxAndColIndex$DepScore, 
+                                             decreasing=TRUE)[1:25],]
+bot25crispr 
+```
 
 Below are a series of additional plots to help illustrate structures in the 
 data. 
 
 ```{r}
-# boxplot of high and low dependency score 
+# boxplot of high and low dependency score `rnai`
 
-View(mutationCalls[1:10,])
+# get top 10 scoring genes `rnai`
+uniqueTop25RnaiGene <- unique(top25rnai$Gene)
+uniqueTop5RnaiGene <- uniqueTop25RnaiGene[1:5]
+str(uniqueTop5RnaiGene)
+View(uniqueTop25RnaiGene)
 
-#rando 
-datRando <- data.frame(replicate(10,sample(0:1,1000,rep=TRUE)))
-datRando
-datRando[[1]] <- NULL
-datRando
 ```
 
+```{r}
+# get bottom 10 scoring genes `rnai`
+uniqueBot25RnaiGene <- unique(bot25rnai$Gene)
+uniqueBot25RnaiGene
+```
+
+```{r}
+# boxplot of high and low dependency score `crispr`
+
+# get top 10 scoring genes `crispr`
+uniqueTop25crisprGene <- unique(top25crispr$Gene)
+uniqueTop25crisprGene
+```
+
+```{r}
+
+# get bottom 10 scoring genes `crispr`
+uniqueBot25crisprGene <- unique(bot25crispr$Gene)
+uniqueBot25crisprGene
+```
+
+```{r}
+# boxplot of high and low dependency score 
+
+```
+
+```{r}
+# boxplot of high and low dependency score 
+
+```
 
 ```{r, eval=FALSE, echo=T}
 library(tidyverse, warn.conflicts = FALSE)

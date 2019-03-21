@@ -1,17 +1,18 @@
 #' metadata
 #'
-#' This dataset is the Metadata about cell lines in the 19Q1 Broad Institute 
+#' This dataset contains the metadata about cell lines in the 19Q1 
+#' Broad Institute 
 #' [depmap](https://depmap.org/portal/download/) release, and is derived from 
 #' the `depmap_19Q1_cell_lines` file. The metadata includes mapping between 
-#' DepMap ID and CCLE names. This dataset contains: 0 Genes, 1677 Cell Lines, 38
-#' Primary Diseases, 33 Lineages. The columns found in this dataset are 
+#' DepMap ID and CCLE names. This dataset contains: 0 Genes, 1677 Cell Lines, 
+#' 38 Primary Diseases, 33 Lineages. The columns found in this dataset are 
 #' "depmapID", "cellLine", "Aliases", "COSMIC_ID", "Sanger.ID", 
 #' "Primary.Disease", "Subtype.Disease", "Gender" and "Source"  
 #'
 #' @format A data frame with 1677 rows (cell lines) and 9 variables:
 #' \describe{
-#'   \item{depmapID}{cell line primary key, elsewhere used as foreign key 
-#'   (i.e. "ACH-00001")}
+#'   \item{depmapID}{cell line primary key, used in other datasets as foreign 
+#'   key (i.e. "ACH-00001")}
 #'   \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
 #'   \item{Aliases}{Aliases of cancer cell line}
 #'   \item{COSMIC_ID}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID 
