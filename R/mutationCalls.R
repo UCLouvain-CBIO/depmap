@@ -49,9 +49,11 @@
 #' @details This data represents the `depmap_19Q1_mutation_calls` dataset taken 
 #' from the public depmap portal. This dataset does not contain any expression 
 #' or dependency data but rather contains the mutation calls for all cancer cell
-#' lines used in the depmap project. The first column of the original dataset
+#' lines used in the depmap project. The first column of the original dataset,
 #' (item{ID}{Sample number}) was removed from the original data as this column 
-#' was only the row number and did not serve any unique identifying purpose.
+#' was only the row number and did not serve any unique identifying purpose. In
+#' addition, the column depmapId was moved to the front, to match the other 
+#' datasets.
 #'
 #' @docType data
 #'

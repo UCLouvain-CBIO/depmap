@@ -1,34 +1,29 @@
 #' rnai
 #'
 #' Genetic Dependency Combined RNAi dataset (Broad, Novartis, Marcotte) 
-#' originating from the `D2_combined_genetic_dependency_scores` file. Data from 
-#' RNAi dataset including 17309 Genes, 711 Cell Lines 711, 30 Primary Diseases
-#' and 31 Lineages. The first column is the DepMap ID# of the cell lineage and 
-#' the second column is the CCLE name for that cell line. The remaining columns 
+#' originating from the `D2_combined_genetic_dependency_scores` file and has 
+#' been converted from wide to the long form dataset. Data from RNAi dataset 
+#' includes 17309 Genes, 711 Cell Lines 711, 30 Primary Diseases and 31 
+#' Lineages. The first column is the DepMap ID# of the cell lineage and the 
+#' second column is the CCLE name for that cell line. The remaining columns 
 #' consist of the numerical dependency score values of the select genes. 
 #'
-#' @format A data frame with 711 rows (cell lines) and columns with dependency 
-#' scores from 17311 genes:
+#' @format A data frame with 12324008 rows (each corresponding to an attribute 
+#' of a given cell lines) and 6 columns:
 #' \describe{
-#'    \item{depmapID}{cell line foreign key (i.e. "ACH-00001")}
-#'    \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
-#'    \item{gene}{Name of gene (i.e. "SF3B1 (23451)")}
+#'     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
+#'     \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
+#'     \item{dependency}{numerical depenency score of a gene for a cell line}
+#'     \item{entrez_id}{Entrez ID# (e.g. 100316904}
+#'     \item{gene_name}{HUGO symbol (e.g. "SAP25")}
+#'     \item{depmapID}{cell line foreign key (i.e. "ACH-00001")}
 #' }
 #' 
 #' @details This data represents the `D2_combined_genetic_dependency_scores` 
-#' dataset taken from the public depmap portal. This dataset was transposed to 
-#' have the same orientation as the other depmap datasets (cell lines as rows 
-#' and genes as columns). This dataset features the addition of a foreign key
-#' (depmapID) found in the first column of this dataset, which was added from 
-#' the `metadata` dataset. The dataset was also sorted so that the rows of 
-#' depmapID were consecutive. One cell line "GISTT1_GASTROINTESTINAL_TRACT" was 
-#' removed from the `D2_combined_genetic_dependency_scores` data due to this 
-#' cell line not being given a depmapID foreign key in `metadata` and was 
-#' present in no other dataset. Additionally, two cell line rows were manually
-#' edited: cell line "AZ521_STOMACH" was changed to "AZ521_SMALL_INTESTINE" and 
-#' was manually be altered and given the correct depmapID "ACH-001015". Cell 
-#' line "SW527_BREAST" had to be manually be given the correct depmapID 
-#' "ACH-001825"
+#' dataset taken from the public depmap portal. This dataset features the 
+#' addition of a foreign key (depmapID), which was added from the `metadata` 
+#' dataset. The dataset was converted to the long format and also sorted so that
+#' the rows of depmapID were consecutive. 
 #' 
 #' @docType data
 #'
