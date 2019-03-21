@@ -27,6 +27,7 @@ colnames(depIDtoName, do.NULL = FALSE)
 colnames(depIDtoName) <- c("depmapID","cellLine")
 
 ### saving cleaned and converted data as .rda file
+
 save(metadata, file = "../../data/metadata.rda",
      compress = "xz", compression_level = 9)
 
@@ -111,7 +112,7 @@ save(crispr, file = "../../data/crispr.rda",
 
 
 ##   CCLE_depMap_19Q1_TPM.csv data, will be renamed `TPM`
- 
+
 ### loading data (downloading .csv file from online source)
 k <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-rnaseq-expression-data-ccd0.12%2FCCLE_depMap_19Q1_TPM.csv"
 CCLE_depMap_19Q1_TPM  <- read_csv(k)
@@ -165,8 +166,8 @@ D2_combined_genetic_dependency_scores  <- read_csv(m)
 names(D2_combined_genetic_dependency_scores)[1] <- "gene"
 
 ### gather cell line columns and split gene name into gene_name and entrez_id
-rnai<- gather(D2_combined_genetic_dependency_scores,
-               key = cell_line, value = dependency, -gene) %>%
+rnai <- gather(D2_combined_genetic_dependency_scores, key = cell_line, 
+               value = dependency, -gene) %>%
     mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
            gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) %>%
     left_join(depIDtoName, by = c("cell_line" = "cellLine"))
