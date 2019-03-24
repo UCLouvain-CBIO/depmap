@@ -1,176 +1,252 @@
 ## This scripts documents how to download and generate the data files. This
 ## scipt assumes (!!!) that it is run in ./depmap/inst/scripts/ and saves the 
-## resulting .rda files in ./depmap/data
+## resulting .rda files in ./depmap/data  
 
 library("readr")
 library("dplyr")
 library("tidyr")
 
 
-##   DepMap-2019q1-celllines.csv data, will be renamed `metadata`
+##  data cleaning of `metadata` dataset
+
 ### loading data (downloading .csv file from online source)
 h <- "https://depmap.org/portal/download/api/download/external?file_name=processed_portal_downloads%2Fdepmap-public-cell-line-metadata-183e.4%2FDepMap-2019q1-celllines_v2.csv"
 depmap_19Q1_cell_lines <- read_csv(h)
 
-### renaming
+### DepMap-2019q1-celllines.csv data renamed to `metadata`
 metadata <- depmap_19Q1_cell_lines
 
-### data cleaning
-#### Rename first column of `metadata` to "depmapID" and CCLE_Name to cellLine
-names(metadata)[1:2] <- c("depmapID", "cellLine")
+#### Rename `metadata` columns to contain underscores and be in camel case
+names(metadata)[1:9] <- c("depmap_ID", "cell_Line", "aliases", "COSMIC_ID", 
+                          "sanger_ID", "primary_Disease", "subtype_Disease", 
+                          "gender", "source")
+### visual check
+head(metadata)
 
-#### depmap ID  from `metadata` (this is used as foreign key in other datasets)
-depIDtoName <- data.frame(metadata$depmapID, metadata$cellLine)
-
-#### add correct col names to depIDtoName
-colnames(depIDtoName, do.NULL = FALSE)
-colnames(depIDtoName) <- c("depmapID","cellLine")
-
-### saving cleaned and converted data as .rda file
+### saving cleaned and converted `metadata` data as .rda file
 save(metadata, file = "../../data/metadata.rda",
      compress = "xz", compression_level = 9)
 
+### create `depIDtoName` to add `depmap_ID` or `cell_Line` to other datasets
+metadataDepID <- metadata[1] #depmap_ID
+metadataCellLine <- metadata[2] # cell_Line
+depIDtoName <- bind_cols(metadataDepID, metadataCellLine)
 
-## depmap_19Q1_mutation_calls data, will be renamed `mutationCalls`
+### visual check
+head(depIDtoName)
+
+## data cleaning of `mutationCalls` dataset
+
 ### loading data (downloading .csv file from online source)
 f <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv"
 depmap_19Q1_mutation_calls <- read_csv(f)
 
-### renaming
+### depmap_19Q1_mutation_calls data renamed to `mutationCalls`
 mutationCalls <- depmap_19Q1_mutation_calls
 
-### data cleaning
-#### eliminate superfluous first row
+#### drop superfluous first row
 mutationCalls[[1]] <- NULL
 
-#### rename 35th column
-names(mutationCalls)[35] <- "depmapID"
+#### rename last column to depmap_ID
+names(mutationCalls)[35] <- "depmap_ID"
 
-### rearrange columns so depmapID is the first column like all other datasets
-mutCallID <- mutationCalls$depmapID
-mutCallNoID <- subset(mutationCalls, select = -c(depmapID))
-mutationCalls <- cbind(mutCallID, mutCallNoID)
+### rearrange columns into same column format as other datasets
+firstMutCol <- mutationCalls[35] #depmap_ID
+otherMutCols <- mutationCalls[1:34] #remaining rows
+mutationCalls <- bind_cols(firstMutCol, otherMutCols)
 
-#### Rename `mutationCalls` first column to "depmapID"
-names(mutationCalls)[1] <-"depmapID"
+### visual check
+head(mutationCalls)
 
-### saving cleaned and converted data as .rda file
+### saving cleaned and converted `mutationCalls` data as .rda file
 save(mutationCalls, file = "../../data/mutationCalls.rda",
      compress = "xz", compression_level = 9)
 
 
-##  public_19Q1_gene_cn.csv data, will be renamed `copyNumber`
+##  data cleaning of `copyNumber` dataset 
+
 ### loading data (downloading .csv file from online source)
 g <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-wes-cn-data-97cc.14%2Fpublic_19Q1_gene_cn.csv"
 public_19Q1_gene_cn  <- read_csv(g)
 
-### initial data cleaning (rename column)
-names(public_19Q1_gene_cn)[1] <-"depmapID"
+### public_19Q1_gene_cn.csv data renamed to `copyNumber`
+copyNumber <- public_19Q1_gene_cn
 
-### gather cell line columns and split gene name into gene_name and entrez_id
-copyNumber_long <- gather(public_19Q1_gene_cn, gene, logCopyNumber, -depmapID)
+### rename column first column to "depmap_ID"
+names(copyNumber)[1] <-"depmap_ID"
 
-### mutate gene into gene_name and entrez_id
+### gather into long form on columns: `depmap_ID`, `gene`, `logCopyNumber`
+copyNumber_long <- gather(copyNumber, gene, logCopyNumber, -depmap_ID)
+
+### mutate gene column into `gene_Name` and `entrez_ID`
 copyNumber_long <- copyNumber_long %>% 
-    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+    mutate(entrez_ID = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
+           gene_Name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
 
-### join cell_line name    
+### left_join `copyNumber` and `depIDtoName` on `depmap_ID` to add `cell_Line`     
 copyNumber <- copyNumber_long %>% 
-    left_join(depIDtoName, by = c("depmapID" = "depmapID"))
+    left_join(depIDtoName, by = c("depmap_ID" = "depmap_ID"))
 
-### saving cleaned and converted data as .rda file
+### rearrange columns into same column format as other datasets
+copyNumCol1 <- copyNumber[1] #depmap_ID
+copyNumCol3 <- copyNumber[2] #gene
+copyNumCol6 <- copyNumber[3] #logCopyNumber
+copyNumCol5 <- copyNumber[4] #entrez_ID
+copyNumCol4 <- copyNumber[5] #gene_Name
+copyNumCol2 <- copyNumber[6] #cell_Line
+copyNumber <- bind_cols(copyNumCol1, copyNumCol2, copyNumCol3, copyNumCol4, 
+                        copyNumCol5, copyNumCol6)
+
+### visual check
+head(copyNumber)
+
+### saving cleaned and converted `copyNumber` data as .rda file
 save(copyNumber, file = "../../data/copyNumber.rda",
      compress = "xz", compression_level = 9)
 
 
-##  gene_effect_corrected.csv data, will be renamed `crispr`
+##  data cleaning of `crispr` dataset`
 
 ### loading data (downloading .csv file from online source)
 j <- "https://ndownloader.figshare.com/files/14221385"
 gene_effect_corrected <- read_csv(j)
 
-### initial data cleaning (rename column)
-names(gene_effect_corrected)[1] <-"depmapID"
+### gene_effect_corrected.csv data renamed to `crispr`
+crispr <- gene_effect_corrected
 
-### gather cell line columns and split gene name into gene_name and entrez_id
-crispr_long <- gather(gene_effect_corrected, gene, dependency, -depmapID)
+### rename column first column to "depmap_ID"
+names(crispr)[1] <-"depmap_ID"
 
-### mutate gene into gene_name and entrez_id
+### gather cripsr into long form with columns: `depmap_ID`, `gene`, `dependency`
+crispr_long <- gather(crispr, gene, dependency, -depmap_ID)
+
+### mutate gene into `gene_Name` and `entrez_ID`
 crispr_long <- crispr_long %>% 
-    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+    mutate(entrez_ID = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
+           gene_Name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
 
-### join cell_line name    
-crispr <- crispr_long %>% 
-    left_join(depIDtoName, by = c("depmapID" = "depmapID"))
+### left_join `crispr_long` and `depIDtoName` to add `cell_Line` column   
+crispr <- crispr_long %>% left_join(depIDtoName, 
+                                    by = c("depmap_ID" = "depmap_ID"))
 
-### saving cleaned and converted data as .rda file
+### rearrange columns into same column format as other datasets
+crisprCol1 <- crispr[1] #depmap_ID
+crisprCol3 <- crispr[2] #gene
+crisprCol6 <- crispr[3] #logcrisprCol
+crisprCol5 <- crispr[4] #entrez_ID
+crisprCol4 <- crispr[5] #gene_Name
+crisprCol2 <- crispr[6] #cell_Line
+crispr <- bind_cols(crisprCol1, crisprCol2, crisprCol3, crisprCol4,
+                        crisprCol5, crisprCol6)
+### visual check
+head(crispr)
+
+### saving cleaned and converted `crispr` data as .rda file
 save(crispr, file = "../../data/crispr.rda",
      compress = "xz", compression_level = 9)
 
 
-##   CCLE_depMap_19Q1_TPM.csv data, will be renamed `TPM`
+## data cleaning of `TPM` dataset
  
 ### loading data (downloading .csv file from online source)
 k <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-rnaseq-expression-data-ccd0.12%2FCCLE_depMap_19Q1_TPM.csv"
 CCLE_depMap_19Q1_TPM  <- read_csv(k)
 
-### initial data cleaning (rename column)
-names(CCLE_depMap_19Q1_TPM)[1] <-"depmapID"
+### CCLE_depMap_19Q1_TPM.csv data renamed to `TPM`
+TPM <- CCLE_depMap_19Q1_TPM
 
-### gather cell line columns and split gene name into gene_name and entrez_id
-TPM_long <- gather(CCLE_depMap_19Q1_TPM, gene, expression, -depmapID)
+### rename column first column to "depmap_ID"
+names(TPM)[1] <-"depmap_ID"
 
-### mutate gene into gene_name and entrez_id
+### gather `TPM` into long form on columns: `depmap_ID`, `gene`, `expression`
+TPM_long <- gather(TPM, gene, expression, -depmap_ID)
+
+### mutate gene into gene_Name and ensembl_ID
 TPM_long <- TPM_long %>% 
-    mutate(ensembl_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+    mutate(ensembl_ID = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
+           gene_Name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
 
-### join cell_line name    
-TPM <- TPM_long %>% left_join(depIDtoName, by = c("depmapID" = "depmapID"))
+### left_join join `TPM` and `depIDtoName` to add `cell_Line` column
+TPM <- TPM_long %>% left_join(depIDtoName, by = c("depmap_ID" = "depmap_ID"))
 
-### saving cleaned and converted data as .rda file
-save(TPM, file = "../../data/TPM.rda",
-     compress = "xz", compression_level = 9)
+### rearrange columns into same column format as other datasets
+tpmCol1 <- TPM[1] #depmap_ID
+tpmCol3 <- TPM[2] #gene
+tpmCol6 <- TPM[3] #expression
+tpmCol5 <- TPM[4] #ensembl_ID
+tpmCol4 <- TPM[5] #gene_Name
+tpmCol2 <- TPM[6] #cell_Line
+TPM <- bind_cols(tpmCol1, tpmCol2, tpmCol3, tpmCol4, tpmCol5, tpmCol6)
 
-##  CCLE_RPPA_20180123.csv data, will be renamed `RPPA`
+### visual check
+head(TPM)
+
+### saving cleaned and converted `TPM` data as .rda file
+save(TPM, file = "../../data/TPM.rda", compress = "xz", compression_level = 9)
+
+
+## data cleaning of `RPPA` dataset
 
 ### loading data (downloading .csv file from online source)
 l <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2FCCLE_RPPA_20180123.csv"
 CCLE_RPPA_20180123  <- read_csv(l)
 
-## initial data cleaning (rename column)
-names(CCLE_RPPA_20180123)[1] <-"cellLine"
+### CCLE_RPPA_20180123.csv data renamed to `RPPA`
+RPPA <- CCLE_RPPA_20180123
 
-### gather cell line columns and split gene name into gene_name and entrez_id
-RPPA_long <- gather(CCLE_RPPA_20180123, antibody, expression, -cellLine)
+### rename column first column to "cell_Line"
+names(RPPA)[1] <-"cell_Line"
+
+### gather cell line columns and split gene name into gene_Name and entrez_ID
+RPPA_long <- gather(RPPA, antibody, expression, -cell_Line)
 
 ### join cell_line name    
 RPPA <- RPPA_long %>% left_join(depIDtoName, 
-                                     by = c("cellLine" = "cellLine"))
+                                     by = c("cell_Line" = "cell_Line"))
 
-### saving cleaned and converted data as .rda file
-save(RPPA, file = "../../data/RPPA.rda",
-     compress = "xz", compression_level = 9)
+### rearrange columns into same column format as other datasets
+rppaCol2 <- RPPA[1] #cell_Line
+rppaCol3 <- RPPA[2] #antibody
+rppaCol4 <- RPPA[3] #expression
+rppaCol1 <- RPPA[4] #depmap_ID
+RPPA <- bind_cols(rppaCol1, rppaCol2, rppaCol3, rppaCol4)
+
+### visual check
+head(RPPA)
+
+### saving cleaned and converted `RPPA` data as .rda file
+save(RPPA, file = "../../data/RPPA.rda", compress = "xz", compression_level = 9)
 
 
-##   D2_combined_genetic_dependency_scores.csv data, will be renamed `rnai`
+## data cleaning of `rnai` dataset
 
 ### loading data (downloading .csv file from online source)
 m <- "https://ndownloader.figshare.com/files/13515395"
 D2_combined_genetic_dependency_scores  <- read_csv(m)
 
-### initial data cleaning (rename column)
-names(D2_combined_genetic_dependency_scores)[1] <- "gene"
+### D2_combined_genetic_dependency_scores.csv data renamed to `rnai`
+rnai <- D2_combined_genetic_dependency_scores
 
-### gather cell line columns and split gene name into gene_name and entrez_id
-rnai<- gather(D2_combined_genetic_dependency_scores,
-               key = cell_line, value = dependency, -gene) %>%
-    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) %>%
-    left_join(depIDtoName, by = c("cell_line" = "cellLine"))
+### rename column first column to "gene"
+names(rnai)[1] <- "gene"
 
-### saving cleaned and converted data as .rda file
-save(rnai, file = "../../data/rnai.rda",
-     compress = "xz", compression_level = 9)
+### gather rnai into long form with columns: depmap_ID, gene and dependency
+rnai<- gather(rnai, key = cell_Line, value = dependency, -gene) %>%
+    mutate(entrez_ID = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
+           gene_Name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) %>%
+    left_join(depIDtoName, by = c("cell_Line" = "cell_Line"))
+
+### rearrange columns into same column format as other datasets
+rnaiCol3 <- rnai[1] #gene 
+rnaiCol2 <- rnai[2] #cell_Line
+rnaiCol6 <- rnai[3] #dependency
+rnaiCol5 <- rnai[4] #entrez_ID
+rnaiCol4 <- rnai[5] #gene_Name
+rnaiCol1 <- rnai[6] #depmap_ID 
+rnai <- bind_cols(rnaiCol1, rnaiCol2, rnaiCol3, rnaiCol4, rnaiCol5, rnaiCol6)
+
+### visual check
+head(rnai)
+
+### saving cleaned and converted `rnai` data as .rda file
+save(rnai, file = "../../data/rnai.rda", compress = "xz", compression_level = 9)

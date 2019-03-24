@@ -1,12 +1,14 @@
 #' mutationCalls
 #'
-#' Mutation calls originating from the `depmap_19Q1_mutation_calls.csv` file.
-#' Data from merged mutation calls (coding region, germline filtered) for 18755
-#' genes, 1601 cell lines, 37 primary diseases and 33 lineages.
+#' Mutation calls originates from the `depmap_19Q1_mutation_calls.csv` file.
+#' Data from this dataset contains merged mutation calls (for coding region, 
+#' germline filtered) for 18755 genes, 1601 cell lines, 37 primary diseases 
+#' and 33 lineages. This dataset can be considered the metadata data set for 
+#' mutations.
 #'
 #' @format A data frame with 1243145 rows and 35 variables:
 #' \describe{
-#'   \item{depmapID}{depmapID}
+#'   \item{depmap_ID}{depmap_ID}
 #'   \item{Hugo_Symbol}{Hugo Symbol denotes a unique and meaningful name for 
 #'   every known human gene (e.g. SAP25)}
 #'   \item{Entrez_Gene_Id}{Gene ID for NCBI Entrez gene database, 
@@ -52,7 +54,7 @@
 #' lines used in the depmap project. The first column of the original dataset,
 #' (item{ID}{Sample number}) was removed from the original data as this column 
 #' was only the row number and did not serve any unique identifying purpose. In
-#' addition, the column depmapId was moved to the front, to match the other 
+#' addition, the column `depmap_ID`` was moved to the front, to match the other 
 #' datasets.
 #'
 #' @docType data
