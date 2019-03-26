@@ -9,7 +9,7 @@ Description: The DepMap Public 19Q1 release includes CRISPR screen and omics dat
     Copy number and mutation data for some cell lines were based on Sanger Institute whole exome sequencing data (COSMIC: http://cancer.sanger.ac.uk/cell_lines, EGA accession number: EGAD00001001039), then reprocessed. Omics processing for 19Q1 has changed as follows.
     Expression: We use the GTEx pipeline. Since last release, there have been some updates to the versions of different components of the pipeline and minor bug fixes on GTEx's end.
     Mutation: In this release, we additionally process DepMap WES samples through the CGA mutation calling pipeline adapted for cell lines and available on FireCloud. We have added a column for the allele counts from this pipeline run (CGA_WES_AC). Previously, the WES_AC column was generated from running the Van Allen mutation calling pipeline for SNPs + Mutect2 for INDELs. This column is now named VA_WES_AC.
-Depends: R (>= 3.5.2)
+Depends: R (>= 3.5.2), dplyr
 License: GPL-2 | GPL-3
 Encoding: UTF-8
 LazyData: true
