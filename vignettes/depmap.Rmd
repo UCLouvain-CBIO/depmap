@@ -325,9 +325,9 @@ can be shown that the gene name for *NRF2* in the `rnai` dataset is *NFE2L2*.
 
 ```{r, eval=TRUE, echo=TRUE}
 #find cell lines with dependency corresponding to "entrez_ID == "4780"
-nrf2 <- rnai %>% select(entrez_ID, cell_Line, gene_Name, dependency) %>%
+ent_ID_nrf2 <- rnai %>% select(entrez_ID, cell_Line, gene_Name, dependency) %>%
     filter(entrez_ID == "4780") 
-nrf2
+ent_ID_nrf2
 ```
 
 Below the highest dependency scores via RNAI knock down of a specific gene, 
@@ -336,14 +336,10 @@ will be listed. It appears that the knockdown of this gene is strongly
 associated with cell death with in lung and kidney cancer cell lines.
 
 ```{r, eval=TRUE, echo=TRUE}
-#find cell lines with dependency for "NFE2L2"
-ds_NFE2L2_RNAI <- rnai %>% select(cell_Line, gene_Name, dependency) %>%
-    filter(gene_Name == "NFE2L2") 
-
-#sort dependencies scores of gene "NFE2L2" by lowest (most important)
-low_NFE2L2_Vals <-ds_NFE2L2_RNAI[order(ds_NFE2L2_RNAI$dependency, 
-                                       decreasing=FALSE)[1:10],]
-low_NFE2L2_Vals
+#find cell lines with dependency for "NFE2L2" and select greatest dep scores
+top_DS_NFE2L2_RNAI <- rnai %>% select(cell_Line, gene_Name, dependency) %>%
+    filter(gene_Name == "NFE2L2") %>% arrange(dependency)
+top_DS_NFE2L2_RNAI 
 ```
 
 If we would like to obtain the top 10 lowest dependency scores for a 
@@ -351,27 +347,21 @@ particular cell line (for example `NCIH2066_LUNG`) along with the genes
 associated with those values:
 
 ```{r, eval=TRUE, echo=TRUE}
-#find genes with dependency for cell_Line == "NCIH2066_LUNG"
-ds_NCIH2066_LUNG_RNAI <- rnai %>% select(cell_Line, gene_Name, dependency) %>%
-    filter(cell_Line == "NCIH2066_LUNG") 
-
-#sort dep scores by lowest (most important)
-low_NCIH2066_LUNG_Vals <-ds_NCIH2066_LUNG_RNAI[order(
-    ds_NCIH2066_LUNG_RNAI$dependency, decreasing=FALSE)[1:10],]
-low_NCIH2066_LUNG_Vals
+#find genes with dep for cell_Line == "NCIH2066_LUNG", sort by ascending
+top_DS_NCIH2066_LUNG_RNAI <- rnai %>% 
+    select(cell_Line, gene_Name, dependency) %>%
+    filter(cell_Line == "NCIH2066_LUNG") %>% arrange(dependency)
+top_DS_NCIH2066_LUNG_RNAI
 ```
 
 Below shows the most significant genes that deplete cancer cell lines upon 
 knockdown and their dependency scores for the entire `rnai` data.
 
 ```{r, eval=TRUE, echo=TRUE}
-# select `rnai` columns cell_Line, gene_Name, dependency
-ds_Gene_RNAI <- rnai %>% select(cell_Line, gene_Name, dependency)
-
-#sort dep scores of by greatest dependency
-low_10_Vals_RNAI <- ds_Gene_RNAI[order(ds_Gene_RNAI$dependency, 
-                                         decreasing=FALSE)[1:10],]
-low_10_Vals_RNAI
+# select `rnai` columns cell_Line, gene_Name, dependency with greatest dep score
+greatest_DS_Gene_RNAI <- rnai %>% select(cell_Line, gene_Name, dependency) %>% 
+    arrange(dependency)
+ds_Gene_RNAI
 ```
 
 Below shows the least significant genes that induce cancer cell line vitality 
@@ -379,13 +369,10 @@ upon knockdown and their dependency scores for the entire `rnai` data.
 Unsurprisingly, we see high incidence of "TP53", a well known cancer driver.
 
 ```{r, eval=TRUE, echo=TRUE}
-# select `rnai` columns cell_Line, gene_Name, dependency
-ds_Gene_RNAI <- rnai %>% select(cell_Line, gene_Name, dependency)
-
-#sort dep scores of by greatest dependency
-high_10_Vals_RNAI <- ds_Gene_RNAI[order(ds_Gene_RNAI$dependency, 
-                                         decreasing=TRUE)[1:10],]
-high_10_Vals_RNAI
+# select `rnai` columns cell_Line, gene_Name, dependency with lowest dep score
+lowest_DS_Gene_RNAI <- rnai %>% select(cell_Line, gene_Name, dependency) %>% 
+    arrange(desc(dependency))
+lowest_DS_Gene_RNAI
 ```
 
 Below we will apply some of the same selections as shown in the above examples 
@@ -395,26 +382,20 @@ in the `crispr` dataset. As can be seen below, there is a different population
 of significant genes with the highest dependency score.
 
 ```{r, eval=TRUE, echo=TRUE}
-# select `crispr` columns cell_Line, gene_Name, dependency
-ds_Gene_CRISPR <- crispr %>% select(cell_Line, gene_Name, dependency)
-
-#sort dep scores of by greatest dependency
-low_10_Vals_CRISPR <- ds_Gene_CRISPR[order(ds_Gene_CRISPR$dependency, 
-                                         decreasing=FALSE)[1:10],]
-low_10_Vals_CRISPR
+# select `crispr` columns cell_Line, gene_Name, dependency with greatest dep sc
+greatest_DS_Gene_CRISPR <- crispr %>% 
+    select(cell_Line, gene_Name,dependency) %>% arrange(dependency)
+greatest_DS_Gene_CRISPR
 ```
 
 First we will look at the least significant (most cancer inducing) dependency 
 scores in the `crispr` dataset.
 
 ```{r, eval=TRUE, echo=FALSE}
-# select `crispr` columns cell_Line, gene_Name, dependency
-ds_Gene_CRISPR <- crispr %>% select(cell_Line, gene_Name, dependency)
-
-#sort dep scores by most cancer inducing
-high_10_Vals_CRISPR <- ds_Gene_CRISPR[order(ds_Gene_CRISPR$dependency, 
-                                         decreasing=TRUE)[1:10],]
-high_10_Vals_CRISPR
+# select `crispr` columns cell_Line, gene_Name, dependency, for lowest dep score
+lowest_DS_Gene_CRISPR <- crispr %>% select(cell_Line, gene_Name, dependency) %>%
+    arrange(desc(dependency))
+lowest_DS_Gene_CRISPR
 ```
 
 Here we will plot the difference in expression between the most signficant genes
@@ -429,90 +410,171 @@ library(gridExtra)
 library(grid)
 library(viridis)
 
-# select `crispr` columns gene_Name, dependency
-ds_Gene_CRISPR <- crispr %>% select(gene_Name, dependency)
-
 #sort `crispr` dep scores by most cancer inducing
-high_20_Vals_CRISPR <- ds_Gene_CRISPR[order(ds_Gene_CRISPR$dependency, 
-                                         decreasing=TRUE)[1:20],]
+high_20_Vals_CRISPR <- crispr %>% select(gene_Name, dependency) %>% 
+    arrange(desc(dependency)) %>% top_n(20)
 
 #sort `crispr` dep scores by least cancer inducing
-low_20_Vals_CRISPR <- ds_Gene_CRISPR[order(ds_Gene_CRISPR$dependency, 
-                                         decreasing=FALSE)[1:20],]
-
-# select `rnai` columns gene_Name, dependency
-ds_Gene_RNAI <- rnai %>% select(gene_Name, dependency)
+low_20_Vals_CRISPR <- crispr %>% select(gene_Name, dependency) %>% 
+    arrange(dependency) %>% top_n(-20)
 
 #sort `rnai` dep scores by most cancer inducing
-high_20_Vals_RNAI <- ds_Gene_RNAI[order(ds_Gene_RNAI$dependency, 
-                                         decreasing=TRUE)[1:20],]
+high_20_Vals_RNAI <- rnai %>% select(gene_Name, dependency) %>% 
+    arrange(desc(dependency)) %>% top_n(20)
+high_20_Vals_RNAI[12,1] <-"GAS6-AS2" #shorten gene name so it fits on plot
 
 #sort `rnai` dep scores by least cancer inducing
-low_20_Vals_RNAI <- ds_Gene_RNAI[order(ds_Gene_RNAI$dependency, 
-                                         decreasing=FALSE)[1:20],]
+low_20_Vals_RNAI <- rnai %>% select(gene_Name, dependency) %>% 
+    arrange(dependency) %>% top_n(-20)
 
 # rnai highest dep scores
-p1 <- ggplot(low_20_Vals_RNAI) + aes(gene_Name, dependency, color = dependency) + 
-    geom_point() +  scale_colour_viridis() + 
+p1 <- ggplot(low_20_Vals_RNAI) + 
+    aes(gene_Name, dependency, color = dependency) +
+    geom_point() + scale_colour_viridis() +
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-    ggtitle("RNAI")
+    ggtitle("High DS genes RNAI")
 
-# crispr highest dep scores 
-p2 <- ggplot(low_20_Vals_CRISPR) + aes(gene_Name, dependency, color = dependency) + 
-    geom_point() +  scale_colour_viridis() + 
+# crispr highest dep scores
+p2 <- ggplot(low_20_Vals_CRISPR) + 
+    aes(gene_Name, dependency, color = dependency) +
+    geom_point() + scale_colour_viridis() +
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-    ggtitle("CRISPR ")
+    ggtitle("High DS genes CRISPR ")
 
 # rnai lowest dep scores
-p3 <- ggplot(high_20_Vals_RNAI) + aes(gene_Name, dependency, color = dependency) + 
-    geom_point() +  scale_colour_viridis() + 
+p3 <- ggplot(high_20_Vals_RNAI) + 
+    aes(gene_Name, dependency, color = dependency) +
+    geom_point() + scale_colour_viridis() +
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-    ggtitle("RNAI ")
+    ggtitle("Low DS genes RNAI")
 
-# crispr lowest dep scores 
-p4 <- ggplot(high_20_Vals_CRISPR) + aes(gene_Name, dependency, color = dependency) + 
-    geom_point() +  scale_colour_viridis() + 
+# crispr lowest dep scores
+p4 <- ggplot(high_20_Vals_CRISPR) + 
+    aes(gene_Name, dependency, color = dependency) +
+    geom_point() + scale_colour_viridis() +
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-    ggtitle("CRISPR ")
-
-
-
-p1 <-ggplot(high_20_Vals_CRISPR, aes(x=gene_Name, y=dependency))+
-  geom_bar(stat='identity', fill="forest green")+
-  ylab("dependency")+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  ggtitle("Lowest dep score genes CRISPR")
-p1 
-
+    ggtitle("Low DS genes CRISPR")
 
 #plot as 1x2 grid
-#grid.arrange(p1, p2, p3, p4, nrow = 2, top = "Comparison of CRISPR and RNAI")
-low_Dep_Comp <- (p1 + p2)
-low_Dep_Comp + facet_wrap(~dependency,  ncol=1)
+grid.arrange(p1, p2, p3, p4, nrow = 2, 
+             top = "20 Genes with Highest and Lowest Dep Score for CRISPR and RNAI")
 ```
 
-Compare the top 100 unique genes for `crispr` and `rnai` 
-
-```{r}
-#compare count 
-
-# select `rnai` columns cell_Line, gene_Name, dependency
-ds_Gene_CRISPR <- crispr %>% select(cell_Line, gene_Name, dependency)
-
-#sort dep scores by most cancer inducing
-high_10_Vals_CRISPR <- ds_Gene_CRISPR[order(ds_Gene_CRISPR$dependency, 
-                                         decreasing=TRUE)[1:10],]
-high_10_Vals_CRISPR
-
-```
-
-
+Compare expression of high and low dep score genes for `crispr` and `rnai` 
+datasets.
 
 ```{r}
 
-
 ```
 
 
+Compare the count of top 50 unique genes for `crispr` and `rnai` datasets for 
+the most cancer-vitality inducing genes.
+
+```{r, eval=TRUE, echo=FALSE}
+# get counts of top 50 genes in `crispr` that are most cancer-vitality inducing
+unique_Least_DS_Gene_CRISPR <- crispr %>% select(gene_Name, dependency) %>%
+    arrange(desc(dependency)) %>% top_n(50) %>% 
+    count(gene_Name) %>% arrange(desc(n))
+# TBC1D3 appears to be an extremely common for `crispr` and dominates top 100 
+# most cancer-vitality-inducing genes.
+
+# get counts of top 50 genes in `rnai` that are most cancer-vitality inducing
+unique_Least_DS_Gene_RNAI <- rnai %>% select(gene_Name, dependency) %>%
+    arrange(desc(dependency)) %>% top_n(50) %>% 
+    count(gene_Name) %>% arrange(desc(n))
+unique_Least_DS_Gene_RNAI [9,1] <-"GAS6-AS2" #shorten gene name to fit on plot
+# Whereas for `rnai` UBBP4 and ACTG1P4 are most common. 
+
+# get counts of top 50 genes in `crispr` with greatest dependency
+unique_Most_DS_Gene_CRISPR <- crispr %>% select(gene_Name, dependency) %>%
+    arrange(dependency) %>% top_n(-50) %>% 
+    count(gene_Name) %>% arrange(desc(n))
+# Most common gene for top 100 most dependent genes in `crispr` is RAN
+
+# get counts of top 50 genes in `rnai` with greatest dependency
+unique_Most_DS_Gene_RNAI <- rnai %>% select(gene_Name, dependency) %>%
+    arrange(dependency) %>% top_n(-50) %>% 
+    count(gene_Name) %>% arrange(desc(n))
+# Most common genes for top 100 most dependent genes in `rnai` are RPL7, EIF3B 
+# and RPL14. 
+
+# rnai highest dep scores
+p5 <-ggplot(unique_Most_DS_Gene_CRISPR, aes(x=gene_Name, y=n))+
+  geom_bar(stat='identity', fill="steelblue2")+
+  ylab("count")+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Highest DS genes CRISPR")
+
+p6 <-ggplot(unique_Most_DS_Gene_RNAI, aes(x=gene_Name, y=n))+
+  geom_bar(stat='identity', fill="steelblue2")+
+  ylab("count")+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Highest DS genes RNAI")
+
+p7 <-ggplot(unique_Least_DS_Gene_CRISPR, aes(x=gene_Name, y=n))+
+  geom_bar(stat='identity', fill="steelblue2")+
+  ylab("count")+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Lowest DS genes CRISPR")
+
+p8 <-ggplot(unique_Least_DS_Gene_RNAI, aes(x=gene_Name, y=n))+
+  geom_bar(stat='identity', fill="steelblue2")+
+  ylab("count")+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Lowest DS genes RNAI")
+
+#plot as 1x2 grid
+grid.arrange(p5, p6, p7, p8, nrow = 2, 
+             top = "Count of 50 Genes with Highest and Lowest Dep Score for CRISPR and RNAI")
+```
+
+Mean log copy number and Mean log copy number for each gene
+
+```{r, eval=TRUE, echo=FALSE}
+# mean log copy number for all genes
+mean_LCN_Gene_CopyNum <- copyNumber %>% select(gene_Name, logCopyNumber) %>%
+  summarise(mean_log_Copy_Num_All_Genes = mean(logCopyNumber, na.rm = TRUE))
+
+val_mean_LCN_Gene_CopyNum <-as.numeric(mean_LCN_Gene_CopyNum[1,1])
+
+# mean log copy number for each gene
+each_LCN_Gene_CopyNum <-copyNumber %>% select(gene_Name, logCopyNumber) %>%
+  group_by(gene_Name) %>% 
+    summarise(mean_log_CN = mean(logCopyNumber, na.rm = TRUE))
+
+# add an ID column
+all_LCN_Gene_CopyNum <- 
+    as.data.frame(na.omit(each_LCN_Gene_CopyNum$mean_log_CN))  %>% 
+     tibble::rowid_to_column(., "ID")
+
+# add col names
+colnames(all_LCN_Gene_CopyNum, do.NULL = FALSE)
+colnames(all_LCN_Gene_CopyNum) <- c("gene","logCopyNumber")
+
+# plot of mean copy number for every gene 
+p9 <- ggplot(all_LCN_Gene_CopyNum) + 
+    aes(x=gene, y=mean_log_CN, color = mean_log_CN) +
+    geom_point() +  scale_colour_viridis() +
+    geom_hline(yintercept = val_mean_LCN_Gene_CopyNum, 
+               linetype = "dashed", color = "red") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Mean log copy number change for every gene")
+p9
+```
+
+Find genes with greatest mean log copy number
+
+```{r, eval=TRUE, echo=FALSE}
+# mean log copy number for each gene
+greatest_LCN_Gene_CopyNum <-copyNumber %>% select(gene_Name, logCopyNumber) %>%
+  group_by(gene_Name) %>% summarise(mean_long_CN = mean(logCopyNumber)) %>%
+    arrange(desc(mean_long_CN)) %>% top_n(20)
+
+p10 <-ggplot(greatest_LCN_Gene_CopyNum, aes(x=gene_Name, y=mean_long_CN)) +
+  geom_bar(stat='identity', fill="steelblue2") + ylab("log Copy Number") + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Top 20 genes with largest log copy number")
+p10
+```
+
+################## this is where I am at with coding right now #################
 
 ```{r, eval=FALSE, echo=T}
 library(tidyverse, warn.conflicts = FALSE)
