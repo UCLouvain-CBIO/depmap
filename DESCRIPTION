@@ -4,17 +4,37 @@ Title: Cancer Dependency Map Data Package
 Version: 0.1.0
 Author: Theo Killian
 Maintainer: The package maintainer <theo.killian@gmail.com>
-Description: The DepMap Public 19Q1 release includes CRISPR screen and omics datasets expanded to include new cell lines. The Avana CRISPR screen dataset is expanded to include 558 cell lines. Mutation, copy number and gene expression data are also expanded to include new lines in Avana dataset. As our screening efforts continue, we will be releasing additional cancer dependency data on a quarterly basis.
-    The CRISPR screen uses the Avana CRISPR-Cas9 genome-scale knockout library, and descriptions of the experimental methods and the CERES algorithm are published in here. This dataset also includes batch-corrected versions of gene_effect, gene_dependency, and pan_dependent_genes, and the portal shows this batch corrected version of gene_effect. See the README file for more detail.
-    Copy number and mutation data for some cell lines were based on Sanger Institute whole exome sequencing data (COSMIC: http://cancer.sanger.ac.uk/cell_lines, EGA accession number: EGAD00001001039), then reprocessed. Omics processing for 19Q1 has changed as follows.
-    Expression: We use the GTEx pipeline. Since last release, there have been some updates to the versions of different components of the pipeline and minor bug fixes on GTEx's end.
-    Mutation: In this release, we additionally process DepMap WES samples through the CGA mutation calling pipeline adapted for cell lines and available on FireCloud. We have added a column for the allele counts from this pipeline run (CGA_WES_AC). Previously, the WES_AC column was generated from running the Van Allen mutation calling pipeline for SNPs + Mutect2 for INDELs. This column is now named VA_WES_AC.
+Description: The DepMap Public 19Q1 release includes CRISPR screen and
+    omics datasets expanded to include new cell lines. The Avana
+    CRISPR screen dataset is expanded to include 558 cell
+    lines. Mutation, copy number and gene expression data are also
+    expanded to include new lines in Avana dataset. As our screening
+    efforts continue, we will be releasing additional cancer
+    dependency data on a quarterly basis.  The CRISPR screen uses the
+    Avana CRISPR-Cas9 genome-scale knockout library, and descriptions
+    of the experimental methods and the CERES algorithm are published
+    in here. This dataset also includes batch-corrected versions of
+    gene_effect, gene_dependency, and pan_dependent_genes, and the
+    portal shows this batch corrected version of gene_effect. See the
+    README file for more detail.  Copy number and mutation data for
+    some cell lines were based on Sanger Institute whole exome
+    sequencing data (COSMIC: http://cancer.sanger.ac.uk/cell_lines,
+    EGA accession number: EGAD00001001039), then reprocessed. Omics
+    processing for 19Q1 has changed as follows.  Expression: We use
+    the GTEx pipeline. Since last release, there have been some
+    updates to the versions of different components of the pipeline
+    and minor bug fixes on GTEx's end.  Mutation: In this release, we
+    additionally process DepMap WES samples through the CGA mutation
+    calling pipeline adapted for cell lines and available on
+    FireCloud. We have added a column for the allele counts from this
+    pipeline run (CGA_WES_AC). Previously, the WES_AC column was
+    generated from running the Van Allen mutation calling pipeline for
+    SNPs + Mutect2 for INDELs. This column is now named VA_WES_AC.
 Depends: R (>= 3.5.2), dplyr
 License: GPL-2 | GPL-3
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 6.1.1.9000
-Suggests: 
+Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
