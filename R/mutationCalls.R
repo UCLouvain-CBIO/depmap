@@ -60,6 +60,8 @@
 #' @docType data
 #'
 #' @usage data(mutationCalls)
+#' 
+#' @import tibble 
 #'
 #' @keywords datasets
 #'

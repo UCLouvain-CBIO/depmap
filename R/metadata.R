@@ -34,6 +34,8 @@
 #' @docType data
 #'
 #' @usage data(metadata)
+#' 
+#' @import tibble 
 #'
 #' @keywords datasets
 #'

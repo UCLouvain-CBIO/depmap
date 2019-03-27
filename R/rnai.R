@@ -31,6 +31,8 @@
 #' @docType data
 #'
 #' @usage data(rnai)
+#' 
+#' @import tibble 
 #'
 #' @keywords datasets
 #'
