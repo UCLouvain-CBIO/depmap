@@ -18,3 +18,7 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: 
+    tibble,
+    ggplot2,
+    dplyr
