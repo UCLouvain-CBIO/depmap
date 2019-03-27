@@ -16,9 +16,14 @@ LazyData: true
 RoxygenNote: 6.1.1.9000
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    viridis,
+    plotly,
+    gridExtra
 VignetteBuilder: knitr
 Imports: 
     tibble,
     ggplot2,
-    dplyr
+    dplyr,
+    readr,
+    tidyr

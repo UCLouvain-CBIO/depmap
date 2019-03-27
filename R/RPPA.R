@@ -25,6 +25,8 @@
 #' @docType data
 #'
 #' @usage data(RPPA)
+#' 
+#' @import tibble 
 #'
 #' @keywords datasets
 #'
