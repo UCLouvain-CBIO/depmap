@@ -6,7 +6,7 @@
 #' mapping between `depmap_ID` and `cell_Line` name for cancer cell lines. This
 #' dataset contains: 0 Genes, 1677 Cell Lines, 38 Primary Diseases, 33 Lineages.
 #' The columns found in this dataset are `depmap_ID`, `cell_Line`, `aliases`, 
-#' `COSMIC_ID`, `sanger.ID`, `primary.Disease`, `subtype.Disease`, `gender` and 
+#' `COSMIC_ID`, `sanger_ID`, `primary_Disease`, `subtype_Disease`, `gender` and 
 #' `source`.  
 #'
 #' @format A data frame with 1677 rows (cell lines) and 9 variables:
@@ -17,9 +17,9 @@
 #'   \item{aliases}{Aliases of cancer cell line}
 #'   \item{COSMIC_ID}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID 
 #'   number (e.g. 905933)}
-#'   \item{sanger ID}{Sanger ID (eg. 2201)}
-#'   \item{primary Disease}{Primary Disease (e.g. cancer type)}
-#'   \item{subtype Disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia 
+#'   \item{sanger_ID}{Sanger ID (eg. 2201)}
+#'   \item{primary_Disease}{Primary Disease (e.g. cancer type)}
+#'   \item{subtype_Disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia 
 #'   (AML), M3 (Promyelocytic))}
 #'   \item{gender}{Gender of patient of cell source}
 #'   \item{source}{Organization where the cell was sampled}
@@ -27,9 +27,9 @@
 #' @details This data represents the `depmap_19Q1_cell_lines` dataset taken from
 #' the public depmap portal. This dataset does not contain any expression or 
 #' dependency data but rather contains the metadata for all cancer cell lines 
-#' used in the depmap project. `metadata` also contains primary key (depmapID) 
-#' which is used as a foreign key (depmapID) in all other datasets in the depmap
-#' R package.
+#' used in the depmap project. `metadata` also contains primary key (depmap_ID) 
+#' which is used as a foreign key (depmap_ID) in all other datasets in the 
+#' depmap R package.
 #'
 #' @docType data
 #'

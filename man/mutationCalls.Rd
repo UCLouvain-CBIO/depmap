@@ -26,10 +26,10 @@
   \item{Genome_Change}{Genome Change}
   \item{Annotation_Transcript}{Annotation Transcript}
   \item{Tumor_Sample_Barcode}{Tumor Sample Barcode}
+  \item{cDNA_Change}{change in cDNA}
   \item{Codon_Change}{Codon_Change}
   \item{Protein_Change}{Protein_Change}
-  \item{isDeleterious}{If the gene knockout is deleterious to the cell 
-  lineage}
+  \item{isDeleterious}{Status of gene knockout on cell lineage}
   \item{isTCGAhotspot}{isTCGAhotspot}
   \item{TCGAhsCnt}{TCGAhsCnt}
   \item{isCOSMIChotspot}{isCOSMIChotspot}

@@ -110,14 +110,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Preliminaries</h2>
 <p>To install <a href="https://github.com/tfkillian/depmap/">depmap</a>, the <a href="https://cran.r-project.org/web/packages/BiocManager/index.html">BiocManager</a> Bioconductor Project Package Manager is required. If <a href="https://cran.r-project.org/web/packages/BiocManager/index.html">BiocManager</a> is not already installed, it will need to be done so beforehand. Type (within R) install.packages(“BiocManager”) (This needs to be done just once.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)
-BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="st">&quot;UCLouvain-CBIO/depmap&quot;</span>)</code></pre></div>
+BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="st">&quot;uclouvain-cbio/depmap&quot;</span>)</code></pre></div>
 </div>
 <div id="sec:data" class="section level2">
 <h2>Data Import</h2>
-<p>The <a href="https://github.com/tfkillian/depmap/">depmap</a> package currently contains seven datasets in <em>.rda</em> format. These datasets can be loaded by using <em>data()</em> after this package has been installed and loaded in RStudio with <em>library(“depmap”)</em>. The data found in this R package has been converted from wide format to long format, although none of the values taken from the original datasets have been changed. The code related to the data transformation is can be found in the make_data.R file found in ./depmap/inst/scripts</p>
+<p>The <a href="https://github.com/tfkillian/depmap/">depmap</a> package currently contains seven datasets in <em>.rda</em> format. These datasets can be loaded by using <em>data()</em> after this package has been installed and loaded in RStudio with <em>library(“depmap”)</em>. The data found in this R package has been converted from wide format to long format, although none of the values taken from the original datasets has been changed. The code related to the data transformation is can be found in the make_data.R file found in ./depmap/inst/scripts</p>
 <div id="rnai" class="section level3">
 <h3><code>rnai</code></h3>
-<p>The <code>rnai</code> dataset contains the combined genetic dependency data for RNAi- induced gene knockdown for select genes and cancer cell lines. This data corresponds to the <code>D2_combined_genetic_dependency_scores.csv</code> file found in the most recent 19Q1 depmap release and includes 17309 genes, 711 cell lines 711, 30 primary diseases and 31 lineages.</p>
+<p>The <code>rnai</code> dataset contains the combined genetic dependency data for RNAi - induced gene knockdown for select genes and cancer cell lines. This data corresponds to the <code>D2_combined_genetic_dependency_scores.csv</code> file found in the most recent 19Q1 depmap release and includes 17309 genes, 711 cell lines 711, 30 primary diseases and 31 lineages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;rnai&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(rnai)
 <span class="co">#&gt;           gene          cell_line dependency entrez_id gene_name</span>
@@ -157,7 +157,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 </div>
 <div id="copynumber" class="section level3">
 <h3><code>copyNumber</code></h3>
-<p>The <code>copyNumber</code> dataset contains the WES copy number data, relating to the numerical log-fold copy number change measured against copy number baseline of select genes and cell lines found in the depmap dependency study. This dataset corresponds to the <code>public_19Q1_gene_cn.csv</code> from the most recent 19Q1 depmap release. This dataset includes 23299 genes, 1604 cell lines, 38 primary diseases and 33 lineages.</p>
+<p>The <code>copyNumber</code> dataset contains the WES copy number data, relating to the numerical log-fold copy number change measured against the baseline copy number of select genes and cell lines. This dataset corresponds to the <code>public_19Q1_gene_cn.csv</code> from the most recent 19Q1 depmap release. This dataset includes 23299 genes, 1604 cell lines, 38 primary diseases and 33 lineages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;copyNumber&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(copyNumber)
 <span class="co">#&gt;     depmapID     gene logCopyNumber entrez_id gene_name</span>
@@ -197,7 +197,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 </div>
 <div id="tpm" class="section level3">
 <h3><code>TPM</code></h3>
-<p>The <code>TPM</code> dataset contains the CCLE RNAseq gene expression data (using scale log2(TPM+1)). This shows expression data only for protein coding genes. This data corresponds to the <code>CCLE_depMap_19Q1_TPM.csv</code> file from the most recent 19Q1 depmap release. This dataset includes 57820 genes, 1165 cell lines, 33 primary Diseases, 32 lineages.</p>
+<p>The <code>TPM</code> dataset contains the CCLE RNAseq gene expression data. This shows expression data only for protein coding genes (using scale log2(TPM+1)). This data corresponds to the <code>CCLE_depMap_19Q1_TPM.csv</code> file from the most recent 19Q1 depmap release. This dataset includes 57820 genes, 1165 cell lines, 33 primary Diseases, 32 lineages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;TPM&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(TPM)
 <span class="co">#&gt;     depmapID                     gene expression      ensembl_id gene_name</span>

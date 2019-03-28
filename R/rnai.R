@@ -16,10 +16,10 @@
 #' of a given cell lines) and 6 columns:
 #' \describe{
 #'     \item{depmap_ID}{cell line foreign key (i.e. "ACH-00001")}
-#'     \item{cellLine}{Name of cancer cell line (i.e. "184A1_BREAST")}
+#'     \item{cell_Line}{Name of cancer cell line (i.e. "184A1_BREAST")}
 #'     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
-#'     \item{gene_name}{HUGO symbol (e.g. "SAP25")}
-#'     \item{entrez_id}{Entrez ID# (e.g. 100316904}
+#'     \item{gene_Name}{HUGO symbol (e.g. "SAP25")}
+#'     \item{entrez_ID}{Entrez ID# (e.g. 100316904}
 #'     \item{dependency}{numerical depenency score of a gene for a cell line}
 #' }
 #' 

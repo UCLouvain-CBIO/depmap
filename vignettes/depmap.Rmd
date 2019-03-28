@@ -4,8 +4,8 @@ author: "Theo Killian"
 date: "February 19, 2019"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{depmap vignette}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{depmap}
   %\usepackage[utf8]{inputenc}
 ---
 
@@ -42,7 +42,7 @@ install.packages("BiocManager") (This needs to be done just once.)
 
 ```{r depmap_bioconductor_installation, eval=FALSE}
 install.packages("BiocManager")
-BiocManager::install("UCLouvain-CBIO/depmap")
+BiocManager::install("uclouvain-cbio/depmap")
 ```
 
 ## Data Import {#sec:data}
