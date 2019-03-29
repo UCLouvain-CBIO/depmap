@@ -2,6 +2,7 @@ inst/doc
 .Rproj.user
 .Rhistory
 .RData
+.RDataTmp
 .Ruserdata
 depmap.Rproj
 CCLE_depMap_19Q1_TPM.zip
