@@ -42,7 +42,7 @@ install.packages("BiocManager") (This needs to be done just once.)
 
 ```{r depmap_bioconductor_installation, eval=FALSE}
 install.packages("BiocManager")
-BiocManager::install("uclouvain-cbio/depmap")
+BiocManager::install("tfkillian/depmap")
 ```
 
 ## Data Import {#sec:data}
