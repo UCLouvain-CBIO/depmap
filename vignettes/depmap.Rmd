@@ -34,7 +34,8 @@ dependency study.
 
 ## Preliminaries
 
-To install [depmap](https://github.com/tfkillian/depmap/), the [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
+To install [depmap](https://github.com/tfkillian/depmap/), the 
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
 Bioconductor Project Package Manager is required. If 
 [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) is
 not already installed, it will need to be done so beforehand. Type (within R)
