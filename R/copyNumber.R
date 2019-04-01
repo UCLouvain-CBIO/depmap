@@ -34,7 +34,9 @@
 #' @docType data
 #'
 #' @usage data(copyNumber)
-#'
+#'  
+#' @import tibble 
+#' 
 #' @keywords datasets
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,

@@ -30,11 +30,19 @@ Description: The DepMap Public 19Q1 release includes CRISPR screen and
     pipeline run (CGA_WES_AC). Previously, the WES_AC column was
     generated from running the Van Allen mutation calling pipeline for
     SNPs + Mutect2 for INDELs. This column is now named VA_WES_AC.
-Depends: R (>= 3.5.2), dplyr
+Depends: R (>= 3.5.2), methods, dplyr
 License: GPL-2 | GPL-3
 Encoding: UTF-8
 RoxygenNote: 6.1.1.9000
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    viridis,
+    plotly,
+    gridExtra
 VignetteBuilder: knitr
+Imports: 
+    tibble,
+    ggplot2,
+    readr,
+    tidyr

@@ -1,6 +1,6 @@
 ## This scripts documents how to download and generate the data files. This
 ## scipt assumes (!!!) that it is run in ./depmap/inst/scripts/ and saves the 
-## resulting .rda files in ./depmap/data  
+## resulting .rda files in ./depmap/data  (e.g. *setwd(./depmap/inst/scripts/)*)
 
 library("readr")
 library("dplyr")
@@ -23,16 +23,7 @@ names(metadata)[1:9] <- c("depmap_ID", "cell_Line", "aliases", "COSMIC_ID",
 ### visual check
 head(metadata)
 
-<<<<<<< HEAD
 ### saving cleaned and converted `metadata` data as .rda file
-=======
-#### add correct col names to depIDtoName
-colnames(depIDtoName, do.NULL = FALSE)
-colnames(depIDtoName) <- c("depmapID","cellLine")
-
-### saving cleaned and converted data as .rda file
-
->>>>>>> aff04b4536d1ec97937a8aaf21e1712d0a0f25d5
 save(metadata, file = "../../data/metadata.rda",
      compress = "xz", compression_level = 9)
 
@@ -43,6 +34,7 @@ depIDtoName <- bind_cols(metadataDepID, metadataCellLine)
 
 ### visual check
 head(depIDtoName)
+
 
 ## data cleaning of `mutationCalls` dataset
 
@@ -155,13 +147,8 @@ save(crispr, file = "../../data/crispr.rda",
      compress = "xz", compression_level = 9)
 
 
-<<<<<<< HEAD
 ## data cleaning of `TPM` dataset
- 
-=======
-##   CCLE_depMap_19Q1_TPM.csv data, will be renamed `TPM`
 
->>>>>>> aff04b4536d1ec97937a8aaf21e1712d0a0f25d5
 ### loading data (downloading .csv file from online source)
 k <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-rnaseq-expression-data-ccd0.12%2FCCLE_depMap_19Q1_TPM.csv"
 CCLE_depMap_19Q1_TPM  <- read_csv(k)
@@ -241,17 +228,8 @@ D2_combined_genetic_dependency_scores  <- read_csv(m)
 ### D2_combined_genetic_dependency_scores.csv data renamed to `rnai`
 rnai <- D2_combined_genetic_dependency_scores
 
-<<<<<<< HEAD
 ### rename column first column to "gene"
 names(rnai)[1] <- "gene"
-=======
-### gather cell line columns and split gene name into gene_name and entrez_id
-rnai <- gather(D2_combined_genetic_dependency_scores, key = cell_line, 
-               value = dependency, -gene) %>%
-    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) %>%
-    left_join(depIDtoName, by = c("cell_line" = "cellLine"))
->>>>>>> aff04b4536d1ec97937a8aaf21e1712d0a0f25d5
 
 ### gather rnai into long form with columns: depmap_ID, gene and dependency
 rnai<- gather(rnai, key = cell_Line, value = dependency, -gene) %>%

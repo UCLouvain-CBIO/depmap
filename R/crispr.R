@@ -35,6 +35,8 @@
 #' @docType data
 #'
 #' @usage data(crispr)
+#' 
+#' @import tibble 
 #'
 #' @keywords datasets
 #'
