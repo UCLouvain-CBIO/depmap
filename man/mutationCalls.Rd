@@ -6,44 +6,43 @@
 \title{mutationCalls}
 \format{A data frame with 1243145 rows and 35 variables:
 \describe{
-  \item{depmap_ID}{depmap_ID}
-  \item{Hugo_Symbol}{Hugo Symbol denotes a unique and meaningful name for 
+  \item{depmap_id}{depmap_id}
+  \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for 
   every known human gene (e.g. SAP25)}
-  \item{Entrez_Gene_Id}{Gene ID for NCBI Entrez gene database, 
-  (e.g. 100316904)}
-  \item{NCBI_Build}{NCBI_Build (i.e. reference genome)}
-  \item{Chromosome}{Chromosome}
-  \item{Start_position}{Gene start position}
-  \item{End_position}{Gene end position}
-  \item{Strand}{Strand location of gene}
-  \item{Variant_Classification}{Variant Classification}
-  \item{Variant_Type}{Variant Type}
-  \item{Reference_Allele}{Reference Allele}
-  \item{Tumor_Seq_Allele1}{Tumor Seq Allele1}
+  \item{entrez_id}{Gene ID for NCBI Entrez gene database, (e.g. 100316904)}
+  \item{ncbi_build}{NCBI Build (i.e. reference genome)}
+  \item{chromosome}{Chromosome}
+  \item{start_pos}{Gene start position}
+  \item{end_pos}{Gene end position}
+  \item{strand}{Strand location of gene}
+  \item{variant_class}{Variant Classification}
+  \item{variant_type}{Variant Type}
+  \item{ref_allele}{Reference Allele}
+  \item{tumor_seq_allele1}{Tumor Seq Allele1}
   \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) 
   reference cluster}
-  \item{dbSNP_Val_Status}{dbSNP Val Status}
-  \item{Genome_Change}{Genome Change}
-  \item{Annotation_Transcript}{Annotation Transcript}
-  \item{Tumor_Sample_Barcode}{Tumor Sample Barcode}
-  \item{cDNA_Change}{change in cDNA}
-  \item{Codon_Change}{Codon_Change}
-  \item{Protein_Change}{Protein_Change}
-  \item{isDeleterious}{Status of gene knockout on cell lineage}
-  \item{isTCGAhotspot}{isTCGAhotspot}
-  \item{TCGAhsCnt}{TCGAhsCnt}
-  \item{isCOSMIChotspot}{isCOSMIChotspot}
-  \item{COSMIChsCnt}{COSMIChsCnt}
+  \item{dbSNP_val_status}{dbSNP Val Status}
+  \item{genome_change}{Genome Change}
+  \item{annotation_transcript}{Annotation Transcript}
+  \item{tumor_sample_barcode}{Tumor Sample Barcode}
+  \item{cDNA_change}{change in cDNA}
+  \item{codon_change}{Codon_Change}
+  \item{protein_change}{Protein_Change}
+  \item{is_deleterious}{Status of gene knockout on cell lineage}
+  \item{is_tcga_hotspot}{isTCGAhotspot}
+  \item{tcga_hsCnt}{TCGAhsCnt}
+  \item{is_cosmic_hotspot}{isCOSMIChotspot}
+  \item{cosmic_hsCnt}{COSMIChsCnt}
   \item{ExAC_AF}{ExAC_AF}
   \item{VA_WES_AC}{VA_WES_AC}
   \item{CGA_WES_AC}{CGA_WES_AC}
-  \item{SangerWES_AC}{SangerWES_AC}
-  \item{SangerRecalibWES_AC}{SangerRecalibWES_AC}
+  \item{sanger_WES_AC}{SangerWES_AC}
+  \item{sanger_recalibWES_AC}{SangerRecalibWES_AC}
   \item{RNAseq_AC}{RNAseq_AC}
   \item{HC_AC}{HC_AC}
   \item{RD_AC}{RD_AC}
   \item{WGS_AC}{WGS_AC}
-  \item{Variant_annotation}{Variant_annotation}
+  \item{variant_annotation}{Variant_annotation}
 }}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
@@ -65,7 +64,7 @@ or dependency data but rather contains the mutation calls for all cancer cell
 lines used in the depmap project. The first column of the original dataset,
 (item{ID}{Sample number}) was removed from the original data as this column 
 was only the row number and did not serve any unique identifying purpose. In
-addition, the column `depmap_ID`` was moved to the front, to match the other 
+addition, the column `depmap_id`` was moved to the front, to match the other 
 datasets.
 }
 \examples{
