@@ -39,10 +39,10 @@ Suggests:
     rmarkdown,
     viridis,
     plotly,
-    gridExtra
-VignetteBuilder: knitr
-Imports: 
-    tibble,
+    gridExtra,
     ggplot2,
     readr,
     tidyr
+VignetteBuilder: knitr
+Imports: 
+    tibble
