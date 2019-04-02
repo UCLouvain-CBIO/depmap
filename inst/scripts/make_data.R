@@ -60,7 +60,7 @@ names(mutationCalls)[1:35] <- c("gene_name", "entrez_id", "ncbi_build",
                                "is_cosmic_hotspot", "cosmic_hsCnt", "ExAC_AF", 
                                "VA_WES_AC", "CGA_WES_AC", "sanger_WES_AC", 
                                "sanger_recalib_WES_AC", "RNAseq_AC", "HC_AC",                 
-                               "RD_AC", "WGS_AC", "variant_annotation",
+                               "RD_AC", "WGS_AC", "var_annotation",
                                "depmap_id")
 
 ### rearrange columns into same column format as other datasets
