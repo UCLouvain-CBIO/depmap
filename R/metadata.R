@@ -1,11 +1,11 @@
 #' metadata
 #'
 #' The `metadata` dataset contains the metadata about cell lines in the 19Q1 
-#' Broad Institute [depmap](https://depmap.org/portal/download/) release, and 
-#' corresponds with the `depmap_19Q1_cell_lines.csv` file. The metadata includes 
-#' mapping between `depmap_id` and `cell_line` name for cancer cell lines. This
-#' dataset contains: 0 Genes, 1677 Cell Lines, 38 Primary Diseases, 33 Lineages.
-#' The columns found in this dataset are `depmap_id`, `cell_line`, `aliases`, 
+#' Broad Institute DepMap release, and corresponds with the 
+#' `depmap_19Q1_cell_lines.csv` file. The metadata includes mapping between 
+#' `depmap_id` and `cell_line` name for cancer cell lines. This dataset 
+#' contains: 0 Genes, 1677 Cell Lines, 38 Primary Diseases, 33 Lineages. The 
+#' columns found in this dataset are `depmap_id`, `cell_line`, `aliases`, 
 #' `cosmic_id`, `sanger_id`, `primary_disease`, `subtype_disease`, `gender` and 
 #' `source`.  
 #'

@@ -10,7 +10,7 @@
      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
      \item{gene}{HUGO symbol and Ensembl ID (e.g. TSPAN6 (ENSG00000000003))}
      \item{gene_name}{HUGO symbol (e.g. "TSPAN6")}
-     \item{ensembl_id}{Ensembl ID e.g. ENSG00000044574)}
+     \item{ensembl_id}{Ensembl ID (e.g. ENSG00000044574)}
      \item{expression}{Log fold scale (log2(TPM+1)) protein expression}
 }}
 \source{
@@ -21,17 +21,16 @@ data(TPM)
 }
 \description{
 TPM is the CCLE RNAseq gene expression data at scale (log2(TPM+1)). This data 
-is derived from the `CCLE_depMap_19Q1_TPM` file that can be downloaded at the 
-[Broad Institute depmap]{https://depmap.org/portal/download} portal. This 
-dataset contains 57820 Genes, 1165 Cell Lines, 33 Primary Diseases, 32 
-Lineages. This data only shows expression data for protein coding genes. The 
-first column is the `depmap_id` is a foreign key relating to the cell lineage
-followed by `cell_line` which contains the common CCLE name of the cancer 
-cell lines, `gene` which contains both the HUGO gene name of the knockdown 
-gene along with ensembl ID#, followed by the column `gene_name` which only 
-contains HUGO gene name and `ensembl_id` which contains only the ensembl ID#.
-The last column `expression` contains the numerical scale (log2(TPM+1)) 
-protein coding gene expression change.
+is derived from the `CCLE_depMap_19Q1_TPM`. This dataset contains 57820 
+Genes, 1165 Cell Lines, 33 Primary Diseases, 32 Lineages. This data only 
+shows expression data for protein coding genes. The first column is the 
+`depmap_id` is a foreign key relating to the cell lineage followed by 
+`cell_line` which contains the common CCLE name of the cancer cell lines, 
+`gene` which contains both the HUGO gene name of the knockdown gene along 
+with ensembl ID#, followed by the column `gene_name` which only contains HUGO
+gene name and `ensembl_id` which contains only the ensembl ID#. The last 
+column `expression` contains the numerical scale (log2(TPM+1)) protein coding
+gene expression change.
 }
 \details{
 This data represents the `CCLE_depMap_19Q1_TPM` dataset taken from
