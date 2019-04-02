@@ -121,7 +121,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;rnai&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(rnai)
 <span class="co">#&gt; # A tibble: 6 x 6</span>
-<span class="co">#&gt;   depmap_ID  cell_Line          gene         gene_Name entrez_ID dependency</span>
+<span class="co">#&gt;   depmap_id  cell_line          gene         gene_name entrez_id dependency</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 ACH-001270 127399_SOFT_TISSUE A1BG (1)     A1BG      1             NA    </span>
 <span class="co">#&gt; 2 ACH-001270 127399_SOFT_TISSUE NAT2 (10)    NAT2      10            NA    </span>
@@ -136,7 +136,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;crispr&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(crispr)
 <span class="co">#&gt; # A tibble: 6 x 6</span>
-<span class="co">#&gt;   depmap_ID  cell_Line                gene   gene_Name entrez_ID dependency</span>
+<span class="co">#&gt;   depmap_id  cell_line                gene   gene_name entrez_id dependency</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;                    &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 ACH-000004 HEL_HAEMATOPOIETIC_AND_… A1BG … A1BG      1             0.135 </span>
 <span class="co">#&gt; 2 ACH-000005 HEL9217_HAEMATOPOIETIC_… A1BG … A1BG      1            -0.212 </span>
@@ -151,14 +151,14 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;copyNumber&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(copyNumber)
 <span class="co">#&gt; # A tibble: 6 x 6</span>
-<span class="co">#&gt;   depmap_ID  cell_Line             gene   gene_Name entrez_ID logCopyNumber</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;                 &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;             &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ACH-000011 253J_URINARY_TRACT    A1BG … A1BG      1               0.131  </span>
-<span class="co">#&gt; 2 ACH-000026 253JBV_URINARY_TRACT  A1BG … A1BG      1              -0.237  </span>
-<span class="co">#&gt; 3 ACH-000086 ACCMESO1_PLEURA       A1BG … A1BG      1               0.134  </span>
-<span class="co">#&gt; 4 ACH-000557 AML193_HAEMATOPOIETI… A1BG … A1BG      1              -0.0208 </span>
-<span class="co">#&gt; 5 ACH-000838 AMO1_HAEMATOPOIETIC_… A1BG … A1BG      1               0.170  </span>
-<span class="co">#&gt; 6 ACH-000080 BDCM_HAEMATOPOIETIC_… A1BG … A1BG      1               0.00703</span></code></pre></div>
+<span class="co">#&gt;   depmap_id  cell_line           gene   gene_name entrez_id log_copy_number</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;               &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 ACH-000011 253J_URINARY_TRACT  A1BG … A1BG      1                 0.131  </span>
+<span class="co">#&gt; 2 ACH-000026 253JBV_URINARY_TRA… A1BG … A1BG      1                -0.237  </span>
+<span class="co">#&gt; 3 ACH-000086 ACCMESO1_PLEURA     A1BG … A1BG      1                 0.134  </span>
+<span class="co">#&gt; 4 ACH-000557 AML193_HAEMATOPOIE… A1BG … A1BG      1                -0.0208 </span>
+<span class="co">#&gt; 5 ACH-000838 AMO1_HAEMATOPOIETI… A1BG … A1BG      1                 0.170  </span>
+<span class="co">#&gt; 6 ACH-000080 BDCM_HAEMATOPOIETI… A1BG … A1BG      1                 0.00703</span></code></pre></div>
 </div>
 <div id="rppa" class="section level3">
 <h3><code>RPPA</code></h3>
@@ -166,7 +166,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;RPPA&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(RPPA)
 <span class="co">#&gt; # A tibble: 6 x 4</span>
-<span class="co">#&gt;   depmap_ID  cell_Line                                antibody   expression</span>
+<span class="co">#&gt;   depmap_id  cell_line                                antibody   expression</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;                                    &lt;chr&gt;           &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 ACH-000698 DMS53_LUNG                               14-3-3_be…    -0.105 </span>
 <span class="co">#&gt; 2 ACH-000489 SW1116_LARGE_INTESTINE                   14-3-3_be…     0.359 </span>
@@ -181,7 +181,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;TPM&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(TPM)
 <span class="co">#&gt; # A tibble: 6 x 6</span>
-<span class="co">#&gt;   depmap_ID  cell_Line         gene        gene_Name ensembl_ID  expression</span>
+<span class="co">#&gt;   depmap_id  cell_line         gene        gene_name ensembl_id  expression</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 ACH-000956 22RV1_PROSTATE    TSPAN6 (EN… TSPAN6    ENSG000000…       2.65</span>
 <span class="co">#&gt; 2 ACH-000948 2313287_STOMACH   TSPAN6 (EN… TSPAN6    ENSG000000…       3.00</span>
@@ -196,7 +196,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;metadata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(metadata)
 <span class="co">#&gt; # A tibble: 6 x 9</span>
-<span class="co">#&gt;   depmap_ID cell_Line aliases COSMIC_ID sanger_ID primary_Disease</span>
+<span class="co">#&gt;   depmap_id cell_line aliases cosmic_id sanger_id primary_disease</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;          </span>
 <span class="co">#&gt; 1 ACH-0000… NIHOVCAR… NIH:OV…    905933      2201 Ovarian Cancer </span>
 <span class="co">#&gt; 2 ACH-0000… HL60_HAE… HL-60      905938        55 Leukemia       </span>
@@ -204,7 +204,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <span class="co">#&gt; 4 ACH-0000… HEL_HAEM… HEL        907053       783 Leukemia       </span>
 <span class="co">#&gt; 5 ACH-0000… HEL9217_… HEL 92…        NA        NA Leukemia       </span>
 <span class="co">#&gt; 6 ACH-0000… MONOMAC6… MONO-M…    908148      2167 Leukemia       </span>
-<span class="co">#&gt; # … with 3 more variables: subtype_Disease &lt;chr&gt;, gender &lt;chr&gt;,</span>
+<span class="co">#&gt; # … with 3 more variables: subtype_disease &lt;chr&gt;, gender &lt;chr&gt;,</span>
 <span class="co">#&gt; #   source &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="mutationcalls" class="section level3">
@@ -213,25 +213,24 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;mutationCalls&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;depmap&quot;</span>)
 <span class="kw">head</span>(mutationCalls)
 <span class="co">#&gt; # A tibble: 6 x 35</span>
-<span class="co">#&gt;   depmap_ID Hugo_Symbol Entrez_Gene_Id NCBI_Build Chromosome Start_position</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ACH-0000… VPS13D               55187         37 1                12359347</span>
-<span class="co">#&gt; 2 ACH-0000… AADACL4             343066         37 1                12726308</span>
-<span class="co">#&gt; 3 ACH-0000… IFNLR1              163702         37 1                24484172</span>
-<span class="co">#&gt; 4 ACH-0000… TMEM57               55219         37 1                25785018</span>
-<span class="co">#&gt; 5 ACH-0000… ZSCAN20               7579         37 1                33954141</span>
-<span class="co">#&gt; 6 ACH-0000… POU3F1                5453         37 1                38512139</span>
-<span class="co">#&gt; # … with 29 more variables: End_position &lt;dbl&gt;, Strand &lt;chr&gt;,</span>
-<span class="co">#&gt; #   Variant_Classification &lt;chr&gt;, Variant_Type &lt;chr&gt;,</span>
-<span class="co">#&gt; #   Reference_Allele &lt;chr&gt;, Tumor_Seq_Allele1 &lt;chr&gt;, dbSNP_RS &lt;chr&gt;,</span>
-<span class="co">#&gt; #   dbSNP_Val_Status &lt;chr&gt;, Genome_Change &lt;chr&gt;,</span>
-<span class="co">#&gt; #   Annotation_Transcript &lt;chr&gt;, Tumor_Sample_Barcode &lt;chr&gt;,</span>
-<span class="co">#&gt; #   cDNA_Change &lt;chr&gt;, Codon_Change &lt;chr&gt;, Protein_Change &lt;chr&gt;,</span>
-<span class="co">#&gt; #   isDeleterious &lt;lgl&gt;, isTCGAhotspot &lt;lgl&gt;, TCGAhsCnt &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   isCOSMIChotspot &lt;lgl&gt;, COSMIChsCnt &lt;dbl&gt;, ExAC_AF &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   VA_WES_AC &lt;chr&gt;, CGA_WES_AC &lt;chr&gt;, SangerWES_AC &lt;chr&gt;,</span>
-<span class="co">#&gt; #   SangerRecalibWES_AC &lt;chr&gt;, RNAseq_AC &lt;chr&gt;, HC_AC &lt;chr&gt;, RD_AC &lt;chr&gt;,</span>
-<span class="co">#&gt; #   WGS_AC &lt;chr&gt;, Variant_annotation &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt;   depmap_id gene_name entrez_id ncbi_build chromosome start_pos end_pos</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 ACH-0000… VPS13D        55187         37 1           12359347  1.24e7</span>
+<span class="co">#&gt; 2 ACH-0000… AADACL4      343066         37 1           12726308  1.27e7</span>
+<span class="co">#&gt; 3 ACH-0000… IFNLR1       163702         37 1           24484172  2.45e7</span>
+<span class="co">#&gt; 4 ACH-0000… TMEM57        55219         37 1           25785018  2.58e7</span>
+<span class="co">#&gt; 5 ACH-0000… ZSCAN20        7579         37 1           33954141  3.40e7</span>
+<span class="co">#&gt; 6 ACH-0000… POU3F1         5453         37 1           38512139  3.85e7</span>
+<span class="co">#&gt; # … with 28 more variables: strand &lt;chr&gt;, var_class &lt;chr&gt;, var_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   ref_allele &lt;chr&gt;, tumor_seq_allele1 &lt;chr&gt;, dbSNP_RS &lt;chr&gt;,</span>
+<span class="co">#&gt; #   dbSNP_val_status &lt;chr&gt;, genome_change &lt;chr&gt;,</span>
+<span class="co">#&gt; #   annotation_transcript &lt;chr&gt;, tumor_sample_barcode &lt;chr&gt;,</span>
+<span class="co">#&gt; #   cDNA_change &lt;chr&gt;, codon_change &lt;chr&gt;, protein_change &lt;chr&gt;,</span>
+<span class="co">#&gt; #   is_deleterious &lt;lgl&gt;, is_tcga_hotspot &lt;lgl&gt;, tcga_hsCnt &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   is_cosmic_hotspot &lt;lgl&gt;, cosmic_hsCnt &lt;dbl&gt;, ExAC_AF &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   VA_WES_AC &lt;chr&gt;, CGA_WES_AC &lt;chr&gt;, sanger_WES_AC &lt;chr&gt;,</span>
+<span class="co">#&gt; #   sanger_recalib_WES_AC &lt;chr&gt;, RNAseq_AC &lt;chr&gt;, HC_AC &lt;chr&gt;,</span>
+<span class="co">#&gt; #   RD_AC &lt;chr&gt;, WGS_AC &lt;chr&gt;, variant_annotation &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="downloading-broad-institute-data" class="section level3">
 <h3>Downloading <a href="https://depmap.org/portal/download/">Broad Institute</a> data</h3>
