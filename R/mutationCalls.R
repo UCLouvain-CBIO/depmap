@@ -17,8 +17,8 @@
 #'   \item{start_pos}{Gene start position}
 #'   \item{end_pos}{Gene end position}
 #'   \item{strand}{Strand location of gene}
-#'   \item{variant_class}{Variant Classification}
-#'   \item{variant_type}{Variant Type}
+#'   \item{var_class}{Variant Classification}
+#'   \item{var_type}{Variant Type}
 #'   \item{ref_allele}{Reference Allele}
 #'   \item{tumor_seq_allele1}{Tumor Seq Allele1}
 #'   \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) 
@@ -44,7 +44,7 @@
 #'   \item{HC_AC}{HC_AC}
 #'   \item{RD_AC}{RD_AC}
 #'   \item{WGS_AC}{WGS_AC}
-#'   \item{variant_annotation}{Variant_annotation}
+#'   \item{var_annotation}{Variant_annotation}
 #' }
 #' 
 #' @details This data represents the `depmap_19Q1_mutation_calls` dataset taken 
