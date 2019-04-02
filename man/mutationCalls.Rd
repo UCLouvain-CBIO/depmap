@@ -15,8 +15,8 @@
   \item{start_pos}{Gene start position}
   \item{end_pos}{Gene end position}
   \item{strand}{Strand location of gene}
-  \item{variant_class}{Variant Classification}
-  \item{variant_type}{Variant Type}
+  \item{var_class}{Variant Classification}
+  \item{var_type}{Variant Type}
   \item{ref_allele}{Reference Allele}
   \item{tumor_seq_allele1}{Tumor Seq Allele1}
   \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) 
@@ -37,12 +37,12 @@
   \item{VA_WES_AC}{VA_WES_AC}
   \item{CGA_WES_AC}{CGA_WES_AC}
   \item{sanger_WES_AC}{SangerWES_AC}
-  \item{sanger_recalibWES_AC}{SangerRecalibWES_AC}
+  \item{sanger_recalib_WES_AC}{SangerRecalibWES_AC}
   \item{RNAseq_AC}{RNAseq_AC}
   \item{HC_AC}{HC_AC}
   \item{RD_AC}{RD_AC}
   \item{WGS_AC}{WGS_AC}
-  \item{variant_annotation}{Variant_annotation}
+  \item{var_annotation}{Variant_annotation}
 }}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
