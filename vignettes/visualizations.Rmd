@@ -42,16 +42,23 @@ the knockout/knockdown of that gene is on a target cell line. For example, a
 highly negative dependency score implies that a cell line is highly dependent 
 on that gene. 
 
-We will demonstrate how to obtain individual dependency scores corresponding to 
-a specific gene and cell lineage. For example, shown below is the dependency of 
-a breast cancer lineage, such as `184A1_BREAST` has on a human tumor suppressor 
-gene, like `BRCA1` when it is knocked down via rnai. Shown below is the 
-comparison for data found within the `rnai` dataset. This shows a score which is
-slightly positive, indicating that the knockdown of this gene is slightly 
-beneficial to the vitality of this cancer cell lineage. However, it may be 
-insightful to put this single dependency score in context. 
+## Preliminaries
 
-```{r, load_libraries, echo=TRUE}
+To install [depmap](https://github.com/tfkillian/depmap/), the 
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) 
+Bioconductor Project Package Manager is required. If 
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) is
+not already installed, it will need to be done so beforehand. Type (within R)
+install.packages("BiocManager") (This needs to be done just once.)
+
+```{r depmap_bioconductor_installation, eval=FALSE}
+install.packages("BiocManager")
+BiocManager::install("UCLouvain-CBIO/depmap")
+```
+
+Load necessary libaries.
+
+```{r, load_libraries, message=FALSE, warning=FALSE, echo=TRUE}
 # load necessary libraries
 library("dplyr")
 library("plotly")
@@ -63,12 +70,21 @@ library("gridExtra")
 
 Load the `rnai`, `crispr` and `copyNumber` datasets for visualization.
 
-```{r, load_data, echo=TRUE}
+```{r, load_data, message=FALSE, warning=FALSE, echo=TRUE}
 # load datasets
 data("rnai", package = "depmap")
 data("crispr", package = "depmap")
 data("copyNumber", package = "depmap")
 ```
+
+We will demonstrate how to obtain individual dependency scores corresponding to 
+a specific gene and cell lineage. For example, shown below is the dependency of 
+a breast cancer lineage, such as `184A1_BREAST` has on a human tumor suppressor 
+gene, like `BRCA1` when it is knocked down via rnai. Shown below is the 
+comparison for data found within the `rnai` dataset. This shows a score which is
+slightly positive, indicating that the knockdown of this gene is slightly 
+beneficial to the vitality of this cancer cell lineage. However, it may be 
+insightful to put this single dependency score in context. 
 
 ```{r, dep_score_BRCA1_184A1Breast, echo=TRUE}
 #find dependency score for "BRCA1" on "184A1_Breast"
@@ -402,7 +418,8 @@ Find genes with greatest mean log copy number
 greatest_log_copy_num_genes <- copyNumber %>% 
                                 select(gene_name, log_copy_number) %>%
                                 group_by(gene_name) %>% 
-                                summarise(mean_long_CN = mean(log_copy_number))%>%
+                                summarise(mean_long_copy_num = 
+                                              mean(log_copy_number))%>%
                                 arrange(desc(mean_long_copy_num)) %>% 
                                 top_n(20)
 
