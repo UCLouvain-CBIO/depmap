@@ -39,7 +39,7 @@
 #'   \item{VA_WES_AC}{VA_WES_AC}
 #'   \item{CGA_WES_AC}{CGA_WES_AC}
 #'   \item{sanger_WES_AC}{SangerWES_AC}
-#'   \item{sanger_recalibWES_AC}{SangerRecalibWES_AC}
+#'   \item{sanger_recalib_WES_AC}{SangerRecalibWES_AC}
 #'   \item{RNAseq_AC}{RNAseq_AC}
 #'   \item{HC_AC}{HC_AC}
 #'   \item{RD_AC}{RD_AC}
