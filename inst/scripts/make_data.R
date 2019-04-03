@@ -246,9 +246,9 @@ names(rnai)[1] <- "gene"
 
 ### gather rnai into long form with columns: depmap_id, gene and dependency
 rnai<- gather(rnai, key = cell_line, value = dependency, -gene) %>%
-    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) %>%
-    left_join(depmap_id_to_name, by = c("cell_line" = "cell_line"))
+                mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
+                gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) %>%
+                left_join(depmap_id_to_name, by = c("cell_line" = "cell_line"))
 
 ### rearrange columns into same column format as other datasets
 rnaiCol3 <- rnai[1] #gene 
