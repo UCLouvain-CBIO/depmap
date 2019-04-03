@@ -1,18 +1,18 @@
 #' rnai
 #'
-#' The `rnai` dataset originates from the Broad Institute Genetic Dependency 
-#' Combined RNAi `D2_combined_genetic_dependency_scores` file and has been 
+#' The `rnai` dataset originates from the Broad Institute Genetic Dependency
+#' Combined RNAi `D2_combined_genetic_dependency_scores` file and has been
 #' converted from wide to the long form dataset. Data from RNAi dataset includes
-#' 17309 genes, 711 cell Lines 711, 30 primary Diseases and 31 lineages. The 
-#' first column `depmap_id` is a foreign key relating to the cell lineage, 
-#' followed by `cell_line` which contains the common CCLE name of the cancer 
-#' cell lines, `gene` which contains both the HUGO gene name of the knockdown 
-#' gene along with entrez ID#, followed by the column `gene_name` which only 
-#' contains HUGO gene name and `entrez_id` which contains only the entrez ID#. 
-#' The last column contains the numerical dependency score values for each pair 
-#' of genes and cell lines. 
+#' 17309 genes, 711 cell Lines 711, 30 primary Diseases and 31 lineages. The
+#' first column `depmap_id` is a foreign key relating to the cell lineage,
+#' followed by `cell_line` which contains the common CCLE name of the cancer
+#' cell lines, `gene` which contains both the HUGO gene name of the knockdown
+#' gene along with entrez ID#, followed by the column `gene_name` which only
+#' contains HUGO gene name and `entrez_id` which contains only the entrez ID#.
+#' The last column contains the numerical dependency score values for each pair
+#' of genes and cell lines.
 #'
-#' @format A data frame with 12324008 rows (each corresponding to an attribute 
+#' @format A data frame with 12324008 rows (each corresponding to an attribute
 #' of a given cell lines) and 6 columns:
 #' \describe{
 #'     \item{depmap_id}{cell line foreign key (i.e. "ACH-00001")}
@@ -22,17 +22,17 @@
 #'     \item{entrez_id}{Entrez ID# (e.g. 100316904}
 #'     \item{dependency}{numerical depenency score of a gene for a cell line}
 #' }
-#' 
-#' @details This data represents the `D2_combined_genetic_dependency_scores` 
-#' dataset taken from the public depmap portal. This dataset features the 
-#' addition of a foreign key `depmapID`, which was added from the `metadata` 
+#'
+#' @details This data represents the `D2_combined_genetic_dependency_scores`
+#' dataset taken from the public depmap portal. This dataset features the
+#' addition of a foreign key `depmapID`, which was added from the `metadata`
 #' dataset. The dataset has been converted to the long format.
-#' 
+#'
 #' @docType data
 #'
 #' @usage data(rnai)
-#' 
-#' @import tibble 
+#'
+#' @import dplyr
 #'
 #' @keywords datasets
 #'

@@ -1,14 +1,14 @@
 #' RPPA
 #'
-#' Celluar Models dataset: CCLE Reverse Phase Protein Array (RPPA) data which 
-#' originates from the `CCLE_RPPA_20180123`. This dataset has been converted 
-#' from wide fromat to the long form dataset and contains 214 Genes, 899 Cell 
-#' Lines, 28 Primary Diseases, 28 Lineages. The first column is the `depmap_id` 
-#' is a foreign key relating to the cell lineage, followed by `cell_line` which 
+#' Celluar Models dataset: CCLE Reverse Phase Protein Array (RPPA) data which
+#' originates from the `CCLE_RPPA_20180123`. This dataset has been converted
+#' from wide fromat to the long form dataset and contains 214 Genes, 899 Cell
+#' Lines, 28 Primary Diseases, 28 Lineages. The first column is the `depmap_id`
+#' is a foreign key relating to the cell lineage, followed by `cell_line` which
 #' contains the common CCLE name of the cancer cell lines, `gene` which contains
-#' the knockdown gene expression, `antibody` containing the name of knocked down 
+#' the knockdown gene expression, `antibody` containing the name of knocked down
 #' gene and `expression` containing numerical protein expression data.
-#' 
+#'
 #' @format A data frame with 899 rows (cell lines) and 216 variables (genes):
 #' \describe{
 #'     \item{depmap_id}{cell line foreign key (i.e. "ACH-000001")}
@@ -19,14 +19,14 @@
 #'
 #' @details This data represents the `CCLE_RPPA_20180123` dataset taken from
 #' the public depmap portal. This dataset features the addition of a foreign key
-#' `depmap_id`` found in the first column of this dataset, which was added from 
+#' `depmap_id`` found in the first column of this dataset, which was added from
 #' the `metadata` dataset. The dataset has been converted to the long format.
-#' 
+#'
 #' @docType data
 #'
 #' @usage data(RPPA)
-#' 
-#' @import tibble 
+#'
+#' @import dplyr
 #'
 #' @keywords datasets
 #'

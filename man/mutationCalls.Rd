@@ -7,7 +7,7 @@
 \format{A data frame with 1243145 rows and 35 variables:
 \describe{
   \item{depmap_id}{depmap_id}
-  \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each 
+  \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
   gene (e.g. SAP25)}
   \item{entrez_id}{Gene ID for NCBI Entrez gene database, (e.g. 100316904)}
   \item{ncbi_build}{NCBI Build (i.e. reference genome)}
@@ -19,7 +19,7 @@
   \item{var_type}{Variant Type}
   \item{ref_allele}{Reference Allele}
   \item{tumor_seq_allele1}{Tumor Seq Allele1}
-  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) 
+  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)
   reference cluster}
   \item{dbSNP_val_status}{dbSNP Val Status}
   \item{genome_change}{Genome Change}
@@ -51,20 +51,20 @@
 data(mutationCalls)
 }
 \description{
-The `mutationCalls` dataset originates from the 
+The `mutationCalls` dataset originates from the
 `depmap_19Q1_mutation_calls.csv` file. Data from this dataset contains merged
-mutation calls (for coding region, germline filtered) for 18755 genes, 1601 
-cell lines, 37 primary diseases and 33 lineages. This dataset can be 
+mutation calls (for coding region, germline filtered) for 18755 genes, 1601
+cell lines, 37 primary diseases and 33 lineages. This dataset can be
 considered the metadata data set for mutations.
 }
 \details{
-This data represents the `depmap_19Q1_mutation_calls` dataset taken 
-from the public depmap portal. This dataset does not contain any expression 
+This data represents the `depmap_19Q1_mutation_calls` dataset taken
+from the public depmap portal. This dataset does not contain any expression
 or dependency data but rather contains the mutation calls for all cancer cell
 lines used in the depmap project. The first column of the original dataset,
-(item{ID}{Sample number}) was removed from the original data as this column 
+(item{ID}{Sample number}) was removed from the original data as this column
 was only the row number and did not serve any unique identifying purpose. In
-addition, the column `depmap_id`` was moved to the front, to match the other 
+addition, the column `depmap_id`` was moved to the front, to match the other
 datasets.
 }
 \examples{

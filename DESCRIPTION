@@ -39,5 +39,3 @@ Suggests:
     readr,
     tidyr
 VignetteBuilder: knitr
-Imports:
-    tibble

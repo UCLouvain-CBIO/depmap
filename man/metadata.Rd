@@ -6,15 +6,15 @@
 \title{metadata}
 \format{A data frame with 1677 rows (cell lines) and 9 variables:
 \describe{
-  \item{depmap_id}{cell line primary key, used in other datasets as foreign 
+  \item{depmap_id}{cell line primary key, used in other datasets as foreign
   key (i.e. "ACH-00001")}
   \item{cell_line}{Name of cancer cell line (i.e. "184A1_BREAST")}
   \item{aliases}{Aliases of cancer cell line}
-  \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID 
+  \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID
   number (e.g. 905933)}
   \item{sanger_id}{Sanger ID (eg. 2201)}
   \item{primary_disease}{Primary Disease (e.g. cancer type)}
-  \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia 
+  \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
   (AML), M3 (Promyelocytic))}
   \item{gender}{Gender of patient of cell source}
   \item{source}{Organization where the cell was sampled}
@@ -26,20 +26,20 @@
 data(metadata)
 }
 \description{
-The `metadata` dataset contains the metadata about cell lines in the 19Q1 
-Broad Institute DepMap release, and corresponds with the 
-`depmap_19Q1_cell_lines.csv` file. The metadata includes mapping between 
-`depmap_id` and `cell_line` name for cancer cell lines. This dataset 
-contains: 0 Genes, 1677 Cell Lines, 38 Primary Diseases, 33 Lineages. The 
-columns found in this dataset are `depmap_id`, `cell_line`, `aliases`, 
-`cosmic_id`, `sanger_id`, `primary_disease`, `subtype_disease`, `gender` and 
+The `metadata` dataset contains the metadata about cell lines in the 19Q1
+Broad Institute DepMap release, and corresponds with the
+`depmap_19Q1_cell_lines.csv` file. The metadata includes mapping between
+`depmap_id` and `cell_line` name for cancer cell lines. This dataset
+contains: 0 Genes, 1677 Cell Lines, 38 Primary Diseases, 33 Lineages. The
+columns found in this dataset are `depmap_id`, `cell_line`, `aliases`,
+`cosmic_id`, `sanger_id`, `primary_disease`, `subtype_disease`, `gender` and
 `source`.
 }
 \details{
 This data represents the `depmap_19Q1_cell_lines` dataset taken from
-the public depmap portal. This dataset does not contain any expression or 
-dependency data but rather contains the metadata for all cancer cell lines 
-used in the depmap project. `metadata` also contains primary key `depmap_id` 
+the public depmap portal. This dataset does not contain any expression or
+dependency data but rather contains the metadata for all cancer cell lines
+used in the depmap project. `metadata` also contains primary key `depmap_id`
 which is used as a foreign key in all other datasets in the package.
 }
 \examples{

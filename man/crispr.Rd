@@ -15,31 +15,31 @@ a given cell lines) and 6 columns:
     \item{dependency}{numerical depenency score of a gene for a cell line}
 }}
 \source{
-\href{"https://ndownloader.figshare.com/files/14221385"}{DepMap, 
+\href{"https://ndownloader.figshare.com/files/14221385"}{DepMap,
 Broad (2019)}
 }
 \usage{
 data(crispr)
 }
 \description{
-The `crispr` dataset is the genetic dependency of CRISPR-Cas9 gene knockout 
-of select genes in various cancer cell lines. This data originates from the 
-`gene_effect_corrected` file, which was generated from the (Avana) Public 
+The `crispr` dataset is the genetic dependency of CRISPR-Cas9 gene knockout
+of select genes in various cancer cell lines. This data originates from the
+`gene_effect_corrected` file, which was generated from the (Avana) Public
 19Q1 from batch corrected CERES inferred gene effect matrix. This dataset
-has been converted from wide fromat to the long form dataset and contains 
-17634 Genes, 558 Cell Lines, 26 Primary Diseases, 28 Lineages. The first 
+has been converted from wide fromat to the long form dataset and contains
+17634 Genes, 558 Cell Lines, 26 Primary Diseases, 28 Lineages. The first
 column `depmap_id` is a foreign key relating to the cell lineage, followed by
-`cell_line` which contains the common CCLE name of the cancer cell lines, 
-`gene` which contains both the HUGO gene name of the knockout gene along 
-with entrez ID#, followed by the column `gene_name` which only contains HUGO 
+`cell_line` which contains the common CCLE name of the cancer cell lines,
+`gene` which contains both the HUGO gene name of the knockout gene along
+with entrez ID#, followed by the column `gene_name` which only contains HUGO
 gene name and `entrez_id` which contains only the entrez ID#. The last column
-contains the numerical dependency score values for each pair of genes and 
+contains the numerical dependency score values for each pair of genes and
 cell lines.
 }
 \details{
 This data represents the `gene_effect_corrected` dataset taken from
 the public depmap portal. This dataset features the addition of a foreign key
-`depmap_id`` found in the first column of this dataset, which was added from 
+`depmap_id`` found in the first column of this dataset, which was added from
 the `metadata` dataset. The numeric column `depenency` contains dependency
 scores for a knock out of a known gene for a given cell line. The dataset has
 been converted to the long format.
