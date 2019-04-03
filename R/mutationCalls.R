@@ -1,10 +1,10 @@
 #' mutationCalls
 #'
-#' Mutation calls originates from the `depmap_19Q1_mutation_calls.csv` file.
-#' Data from this dataset contains merged mutation calls (for coding region, 
-#' germline filtered) for 18755 genes, 1601 cell lines, 37 primary diseases 
-#' and 33 lineages. This dataset can be considered the metadata data set for 
-#' mutations.
+#' The `mutationCalls` dataset originates from the 
+#' `depmap_19Q1_mutation_calls.csv` file. Data from this dataset contains merged
+#' mutation calls (for coding region, germline filtered) for 18755 genes, 1601 
+#' cell lines, 37 primary diseases and 33 lineages. This dataset can be 
+#' considered the metadata data set for mutations.
 #'
 #' @format A data frame with 1243145 rows and 35 variables:
 #' \describe{
