@@ -7,8 +7,8 @@
 \format{A data frame with 1243145 rows and 35 variables:
 \describe{
   \item{depmap_id}{depmap_id}
-  \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for 
-  every known human gene (e.g. SAP25)}
+  \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each 
+  gene (e.g. SAP25)}
   \item{entrez_id}{Gene ID for NCBI Entrez gene database, (e.g. 100316904)}
   \item{ncbi_build}{NCBI Build (i.e. reference genome)}
   \item{chromosome}{Chromosome}
