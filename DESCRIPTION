@@ -8,7 +8,7 @@ Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    role = "aut"),
 	     person(given = "Theo", family = "Killian",
 		    email = "theo.killian@gmail.com",
-		    role = c("cre", "aut")),
+		    role = c("cre", "aut")))
 Maintainer: Theo Killian <theo.killian@gmail.com>
 Description: The depmap package is a data package that contains
     datsets from the Broad Institute DepMap. Seven datsets are made
