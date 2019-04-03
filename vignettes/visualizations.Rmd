@@ -65,7 +65,8 @@ library("plotly")
 library("ggplot2") 
 library("viridis")
 library("tibble")
-library("gridExtra") 
+library("gridExtra")
+library("stringr")
 ```
 
 Load the `rnai`, `crispr` and `copyNumber` datasets for visualization.
@@ -123,6 +124,23 @@ all_gene_dep_score_avg_rnai <- rnai %>%
                             summarise(mean_dependency_all_genes_rnai = 
                                           mean(dependency, na.rm=TRUE))
 all_gene_dep_score_avg_rnai
+
+```
+
+If we are interested researching soft tissue sarcomas and wanted to find the 
+cell lines withing the `rnai` dataset that had "soft tissue" in the CCLE name of 
+cancer cell line, and sort by the highest dependency score. The results of such 
+a search is shown below. Note: CCLE names are in ALL CAPS with an underscore.
+
+```{r, soft_tissue_cell_lines, echo=TRUE}
+#find all cell lines in the `rnai` dataset with "soft tissue" in the name
+soft_tissue_dependency_rnai <- rnai %>% 
+                                select(cell_line, gene_name, dependency) %>%
+                                filter(stringr::str_detect(cell_line, 
+                                                           "SOFT_TISSUE")) %>% 
+                                arrange(dependency) 
+
+soft_tissue_dependency_rnai
 
 ```
 
