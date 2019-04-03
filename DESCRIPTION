@@ -5,12 +5,20 @@ Version: 0.1.0
 Author: Theo Killian
 Maintainer: The package maintainer <theo.killian@gmail.com>
 Description: The depmap package is a data package that contains datsets
-    from the Broad Institute [DepMap Public 19Q1 release](https://depmap.org/portal/download). 
-    These datasets contain CRISPR, RNAI gene knockout screens of human genes 
-    relating to the genetic dependency for select cancer cell lines. Seven 
-    datsets are available upon loading: `rnai`, `crispr`, `copyNumber`, 
-    `TPM`, `RPPA`, `mutationCalls` and `metadata`. The last two datasets 
-    contain metadata for the corrent depmap release.  
+    from the Broad Institute DepMap Public 19Q1 release, converted to long form
+    data for easier data analysis and visualization in R. Seven datsets are made 
+    available upon loading this package: `rnai`, `crispr`, `copyNumber`, `TPM`, 
+    `RPPA`, `mutationCalls` and `metadata`. The `rnai` and `crispr` datasets 
+    each respectively contain RNAI and CRISPR-Cas9 gene knockout screens of 
+    human genes relating to the genetic dependency for select cancer cell lines. 
+    Additional datasets relating to the log copy number of select genes 
+    (`copyNumber`), as well as protein expression measured by reverse phase 
+    protein lysate microarray (`RPPA`) and 'Transcript Per Million' (`TPM`) are 
+    also provided. The last two datasets `metadata` and `mutationCalls` contain 
+    metadata for the other datasets found in the DepMap Public 19Q1 release. The
+    depmap R package will be updated on a quarterly basis to incorporate the 
+    latest release of the Broad Institute DepMap Public cancer dependency 
+    datasets.
 Depends: R (>= 3.5.2), methods, dplyr
 License: GPL-2 | GPL-3
 Encoding: UTF-8
