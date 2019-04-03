@@ -2,7 +2,7 @@
 #'
 #' The `crispr` dataset is the genetic dependency of CRISPR-Cas9 gene knockout 
 #' of select genes in various cancer cell lines. This dataset includes data
-#' from 17634 genes, 558 cell lines, 26 primary diseases, 28 lineages. The 
+#' from 17634 genes, 558 cell lines, 26 primary diseases and 28 lineages. The 
 #' columns of `crispr` are: `depmap_id` a foreign key corresponding to the 
 #' cancer cell lineage, `cell_line` containing the common CCLE name of the 
 #' cancer cell lines, `gene` containing both the HUGO gene name of the knockout 

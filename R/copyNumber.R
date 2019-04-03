@@ -16,7 +16,7 @@
 #'      \item{cell_line}{Name of cancer cell line (i.e. "184A1_BREAST")}
 #'      \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
 #'      \item{gene_name}{HUGO symbol (e.g. "SAP25")}
-#'      \item{entrez_id}{Entrez ID# (e.g. 100316904}
+#'      \item{entrez_id}{Entrez ID# (e.g. 100316904)}
 #'      \item{log_copy_number}{numerical log fold change in copy number for a 
 #'      given gene and cell line}
 #' }
