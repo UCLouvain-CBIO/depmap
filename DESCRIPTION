@@ -1,7 +1,7 @@
 Package: depmap
 Type: Package
 Title: Cancer Dependency Map Data Package
-Version: 0.1.0
+Version: 0.1.1
 Author: Theo Killian, Laurent Gatto
 Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    email = "laurent.gatto@uclouvain.be",
@@ -26,7 +26,7 @@ Description: The depmap package is a data package that contains
     basis to incorporate the latest release of the Broad Institute
     DepMap Public cancer dependency datasets.
 Depends: R (>= 3.5.2), methods, dplyr
-License: GPL-2 | GPL-3
+License: Artistic-2.0
 Encoding: UTF-8
 RoxygenNote: 6.1.1.9000
 Suggests:

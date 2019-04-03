@@ -1,5 +1,5 @@
 ---
-title: "depmap vignette"
+title: "The depmap data"
 author: "Theo Killian"
 date: "February 19, 2019"
 output: rmarkdown::html_vignette
@@ -9,8 +9,8 @@ vignette: >
   %\usepackage[utf8]{inputenc}
 ---
 
-```{r, include = FALSE, echo = FALSE, results = 'asis'}
-require("knitr")
+```{r, echo = FALSE, results = 'asis'}
+suppressPackageStartupMessages(library("dplyr"))
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
@@ -55,31 +55,46 @@ wide format to long format, although none of the values taken from the original
 datasets has been changed. The code related to the data transformation is
 can be found in the make_data.R file found in ./depmap/inst/scripts
 
+```{r load, echo = FALSE}
+data("rnai", package = "depmap")
+data("crispr", package = "depmap")
+```
+
 ### `rnai`
+
 The `rnai` dataset contains the combined genetic dependency data for RNAi -
 induced gene knockdown for select genes and cancer cell lines. This data
 corresponds to the `D2_combined_genetic_dependency_scores.csv` file found in the
-most recent 19Q1 depmap release and includes 17309 genes, 711 cell lines 711, 30
-primary diseases and 31 lineages.
+most `r depmap_release()` depmap release and includes `r length(unique(rnai$gene))`
+genes, `r length(unique(rnai$cell_line))` cell lines, 30 primary diseases and 31
+lineages.
 
-```{r rnai}
+```{r rnai, eval = FALSE}
 data("rnai", package = "depmap")
-head(rnai)
+```
+
+```{r show_rnai}
+rnai
 ```
 
 ### `crispr`
+
 The `crispr` dataset contains the (batch corrected CERES inferred gene effect)
 CRISPR-Cas9 knockout data of select genes and cancer cell lines. This data
 corresponds to the `gene_effect_corrected.csv` file from the most recent 19Q1
-depmap release. Data from this dataset includes 17634 genes, 558 cell lines, 26
-primary diseases, 28 lineages.
+depmap release. Data from this dataset includes `r length(unique(crispr$gene_name))`
+genes, `r length(unique(crispr$cell_line))` cell lines, 26 primary diseases, 28 lineages.
 
-```{r crispr}
+```{r crispr, eval = FALSE}
 data("crispr", package = "depmap")
-head(crispr)
+```
+
+```{r show_crispr}
+crispr
 ```
 
 ### `copyNumber`
+
 The `copyNumber` dataset contains the WES copy number data, relating to the
 numerical log-fold copy number change measured against the baseline copy number
 of select genes and cell lines. This dataset corresponds to the
@@ -92,6 +107,7 @@ head(copyNumber)
 ```
 
 ### `RPPA`
+
 The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data.
 data which corresponds to the `CCLE_RPPA_20180123.csv` file from the most
 recent 19Q1 depmap release. This dataset includes 214 genes, 899 cell lines, 28
@@ -103,6 +119,7 @@ head(RPPA)
 ```
 
 ### `TPM`
+
 The `TPM` dataset contains the CCLE RNAseq gene expression data. This shows
 expression data only for protein coding genes (using scale log2(TPM+1)). This
 data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the most recent
@@ -115,6 +132,7 @@ head(TPM)
 ```
 
 ### `metadata`
+
 The `metadata` dataset contains the metadata about all of the cancer cell lines.
 It corresponds to the `depmap_19Q1_cell_lines.csv` file found in the most recent
 19Q1 depmap release. This dataset includes 0 genes, 1677 cell lines, 38 primary
@@ -126,6 +144,7 @@ head(metadata)
 ```
 
 ### `mutationCalls`
+
 The `mutationCalls` dataset contains all merged mutation calls (coding region,
 germline filtered) found in the depmap dependency study. This dataset
 corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the most
