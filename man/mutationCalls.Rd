@@ -4,10 +4,10 @@
 \name{mutationCalls}
 \alias{mutationCalls}
 \title{mutationCalls}
-\format{A data frame with 1243145 rows and 35 variables:
+\format{A long format tibble data frame with 1243145 rows and 35 columns:
 \describe{
   \item{depmap_id}{depmap_id}
-  \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each 
+  \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
   gene (e.g. SAP25)}
   \item{entrez_id}{Gene ID for NCBI Entrez gene database, (e.g. 100316904)}
   \item{ncbi_build}{NCBI Build (i.e. reference genome)}
@@ -19,7 +19,7 @@
   \item{var_type}{Variant Type}
   \item{ref_allele}{Reference Allele}
   \item{tumor_seq_allele1}{Tumor Seq Allele1}
-  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) 
+  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)
   reference cluster}
   \item{dbSNP_val_status}{dbSNP Val Status}
   \item{genome_change}{Genome Change}
@@ -51,21 +51,33 @@
 data(mutationCalls)
 }
 \description{
-The `mutationCalls` dataset originates from the 
-`depmap_19Q1_mutation_calls.csv` file. Data from this dataset contains merged
-mutation calls (for coding region, germline filtered) for 18755 genes, 1601 
-cell lines, 37 primary diseases and 33 lineages. This dataset can be 
-considered the metadata data set for mutations.
+The `mutationCalls` dataset contains merged mutation calls (for coding
+region, germline filtered) and includes data from 18755 genes, 1601 cell
+lines, 37 primary diseases and 33 lineages. This dataset can be considered
+the metadata data set for mutations and does not contain any dependency data.
+The columns of `mutationCalls` are `depmap_id`, `gene_name`, `entrez_id`,
+`ncbi_build`, `chromosome`, `start_pos`, `end_pos`, `strand`, `var_class`,
+`var_type`, `ref_allele`, `tumor_seq_allele1`, `dbSNP_RS`,
+`dbSNP_val_status`, `genome_change`, `annotation_transcript`,
+`tumor_sample_barcode`, `cDNA_change`, `codon_change`, `protein_change`,
+`is_deleterious`, `is_tcga_hotspot`, `tcga_hsCnt`, `is_cosmic_hotspot`,
+`cosmic_hsCnt`, `ExAC_AF`, `VA_WES_AC`, `CGA_WES_AC`, `sanger_WES_AC`,
+`sanger_recalib_WES_AC`, `RNAseq_AC`, `HC_AC`, `RD_AC`, `WGS_AC`, and
+`var_annotation`.
 }
 \details{
-This data represents the `depmap_19Q1_mutation_calls` dataset taken 
-from the public depmap portal. This dataset does not contain any expression 
-or dependency data but rather contains the mutation calls for all cancer cell
-lines used in the depmap project. The first column of the original dataset,
-(item{ID}{Sample number}) was removed from the original data as this column 
-was only the row number and did not serve any unique identifying purpose. In
-addition, the column `depmap_id`` was moved to the front, to match the other 
-datasets.
+This data represents the `depmap_19Q1_mutation_calls` file taken
+from the 19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
+depenedency study.  This dataset has been converted to a long format tibble.
+This dataset does not contain any expression or dependency data but rather
+contains the mutation calls for all cancer cell lines used in the current
+Depmap 19Q1 release. Some minor alterations to the original file were made.
+The first column of the original dataset, (item{ID}{Sample number}) was
+removed, as this column was only the row number and did not serve any unique
+identifying purpose. In addition, the column `depmap_id` was moved to the
+front to match the format of the other datasets. Variables names were
+converted to lower case, put in snake case, and abbreviated where feasible
+(e.g. "Variant_Annotation" was changed to "var_annotation").
 }
 \examples{
 data(mutationCalls)
