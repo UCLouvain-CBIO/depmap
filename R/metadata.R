@@ -1,45 +1,45 @@
 #' metadata
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 19Q1 
-#' Broad Institute DepMap release, which includes mapping between `depmap_id` 
+#' The `metadata` dataset contains the metadata about cell lines in the 19Q1
+#' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
-#' dependency data but contains the metadata for 0 genes, 1677 cell lines, 38 
-#' primary diseases, 33 lineages. The columns of `metadata` are: `depmap_id`, 
-#' `cell_line`, `aliases`, `cosmic_id`, `sanger_id`, `primary_disease`, 
-#' `subtype_disease`, `gender` and `source`.  
+#' dependency data but contains the metadata for 0 genes, 1677 cell lines, 38
+#' primary diseases, 33 lineages. The columns of `metadata` are: `depmap_id`,
+#' `cell_line`, `aliases`, `cosmic_id`, `sanger_id`, `primary_disease`,
+#' `subtype_disease`, `gender` and `source`.
 #'
 #' @format A long format tibble data frame with 1677 rows and 9 columns:
 #' \describe{
-#'   \item{depmap_id}{cell line primary key, used in other datasets as foreign 
-#'   key (i.e. "ACH-00001")}
-#'   \item{cell_line}{Name of cancer cell line (i.e. "184A1_BREAST")}
+#'   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
+#'   foreign key (i.e. "ACH-00001")}
+#'   \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
 #'   \item{aliases}{Aliases of cancer cell line}
-#'   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID 
+#'   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID
 #'   number (e.g. 905933)}
 #'   \item{sanger_id}{Sanger ID (eg. 2201)}
 #'   \item{primary_disease}{Primary Disease (e.g. cancer type)}
-#'   \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia 
+#'   \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
 #'   (AML), M3 (Promyelocytic))}
 #'   \item{gender}{Gender of patient of cell source}
-#'   \item{source}{Organization where the cell was sampled}
+#'   \item{source}{Organization responsible for cell sampling}
 #' }
-#' @details This data represents the `depmap_19Q1_cell_lines` file taken from 
-#' the 19Q1 [Broad Institute](https://depmap.org/portal/download/) 
+#' @details This data represents the `depmap_19Q1_cell_lines` file taken from
+#' the 19Q1 [Broad Institute](https://depmap.org/portal/download/)
 #' cancer depenedency study. This dataset features the a primary key `depmap_id`
 #' which is a unique ID given to each cell line and is found in the first column
-#' of this dataset. The `depmap_id` attribute is used as a foreign key in all 
-#' other datasets in the package. This dataset has been converted to a long 
-#' format tibble. This dataset does not contain any expression or dependency 
-#' data but rather contains the metadata for all cancer cell lines used in the 
-#' depmap project. Variables names were converted to lower case, put in snake 
-#' case, and abbreviated where feasible (e.g. "Sanger ID" was changed to 
+#' of this dataset. The `depmap_id` attribute is used as a foreign key in all
+#' other datasets in the package. This dataset has been converted to a long
+#' format tibble. This dataset does not contain any expression or dependency
+#' data but rather contains the metadata for all cancer cell lines used in the
+#' depmap project. Variables names were converted to lower case, put in snake
+#' case, and abbreviated where feasible (e.g. "Sanger ID" was changed to
 #' "sanger_id").
 #'
 #' @docType data
 #'
 #' @usage data(metadata)
-#' 
-#' @import tibble 
+#'
+#' @import dplyr
 #'
 #' @keywords datasets
 #'

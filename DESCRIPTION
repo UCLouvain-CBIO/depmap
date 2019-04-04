@@ -1,26 +1,32 @@
 Package: depmap
 Type: Package
 Title: Cancer Dependency Map Data Package
-Version: 0.1.0
-Author: Theo Killian
-Maintainer: The package maintainer <theo.killian@gmail.com>
-Description: The depmap package is a data package that contains datsets
-    from the Broad Institute DepMap Public 19Q1 release, converted to long form
-    data for easier data analysis and visualization in R. Seven datsets are made 
-    available upon loading this package: `rnai`, `crispr`, `copyNumber`, `TPM`, 
-    `RPPA`, `mutationCalls` and `metadata`. The `rnai` and `crispr` datasets 
-    each respectively contain RNAI and CRISPR-Cas9 gene knockout screens of 
-    human genes relating to the genetic dependency for select cancer cell lines. 
-    Additional datasets relating to the log copy number of select genes 
-    (`copyNumber`), as well as protein expression measured by reverse phase 
-    protein lysate microarray (`RPPA`) and 'Transcript Per Million' (`TPM`) are 
-    also provided. The last two datasets `metadata` and `mutationCalls` contain 
-    metadata for the other datasets found in the DepMap Public 19Q1 release. The
-    depmap R package will be updated on a quarterly basis to incorporate the 
-    latest release of the Broad Institute DepMap Public cancer dependency 
-    datasets.
+Version: 0.1.1
+Author: Theo Killian, Laurent Gatto
+Authors@R: c(person(given = "Laurent", family = "Gatto",
+		    email = "laurent.gatto@uclouvain.be",
+		    role = "aut"),
+	     person(given = "Theo", family = "Killian",
+		    email = "theo.killian@gmail.com",
+		    role = c("cre", "aut")))
+Maintainer: Theo Killian <theo.killian@gmail.com>
+Description: The depmap package is a data package that contains
+    datsets from the Broad Institute DepMap cancer dependency study.
+    Seven datsets are provided: `rnai`, `crispr`, `copyNumber`, `TPM`,
+    `RPPA`, `mutationCalls` and `metadata`. The `rnai` and `crispr`
+    datasets each respectively contain RNAI and CRISPR-Cas9 gene
+    knockdown and knockout screens of human genes relating to the
+    genetic dependency for select cancer cell lines. Additional datasets
+    relating to the log copy number of select genes (`copyNumber`), as
+    well as proteinexpression measured by reverse phase protein lysate
+    microarray (`RPPA`) and 'Transcript Per Million' (`TPM`) are also
+    provided. The last two datasets `metadata` and `mutationCalls`
+    contain metadata for the other datasets found in the DepMap Public
+    19Q1 release. The depmap R package will be updated on a quarterly
+    basis to incorporate the latest release of the Broad Institute
+    DepMap cancer dependency datasets.
 Depends: R (>= 3.5.2), methods, dplyr
-License: GPL-2 | GPL-3
+License: Artistic-2.0
 Encoding: UTF-8
 RoxygenNote: 6.1.1.9000
 Suggests:
@@ -34,5 +40,3 @@ Suggests:
     stringr,
     tidyr
 VignetteBuilder: knitr
-Imports: 
-    tibble
