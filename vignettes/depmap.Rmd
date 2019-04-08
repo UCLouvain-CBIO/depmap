@@ -101,7 +101,7 @@ This dataset includes `r length(unique(copyNumber$gene_name))` genes,
 `r length(unique(crispr$cell_line))` cell lines, 38 primary diseases and 33
 lineages.
 
-```{r copynumber}
+```{r show_copynumber}
 copyNumber
 ```
 
@@ -112,7 +112,7 @@ data which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::
 depmap release. This dataset includes `r length(unique(RPPA$gene_name))` genes,
 `r length(unique(RPPA$cell_line))` cell lines, 28 primary Diseases, 28 lineages.
 
-```{r rppa}
+```{r show_rppa}
 RPPA
 ```
 
@@ -124,7 +124,7 @@ data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the `r depmap::depm
 depmap release. This dataset includes `r length(unique(TPM$gene_name))` genes,
 `r length(unique(TPM$cell_line))` cell lines, 33 primary Diseases, 32 lineages.
 
-```{r tpm}
+```{r show_tpm}
 TPM
 ```
 
@@ -136,7 +136,7 @@ depmap release. This dataset includes `r length(unique(metadata$gene_name))`
 genes, `r length(unique(metadata$cell_line))` cell lines, 38 primary diseases
 and 33 lineages.
 
-```{r metadata}
+```{r show_metadata}
 metadata
 ```
 
@@ -149,7 +149,7 @@ depmap release and includes `r length(unique(mutationCalls$gene_name))` genes,
 `r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
 33 lineages.
 
-```{r mutationcalls}
+```{r show_mutationcalls}
 mutationCalls
 ```
 
