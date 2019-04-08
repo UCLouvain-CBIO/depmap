@@ -18,22 +18,22 @@
 data(RPPA)
 }
 \description{
-The `RPPA` dataset contains Reverse Phase Protein Array (RPPA) Western Blot
-expression data. This dataset includes data from 214 genes, 899 cancer cell
-lines, 28 primary diseases, 28 lineages. The columns of `RPPA` are:
-`depmap_id`, a foreign key corresponding to the cancer cell lineage,
-`cell_line` which contains the common CCLE name of the cancer cell lines,
-`gene` which contains the knockdown gene expression, `antibody` containing
-the name of knocked down gene and `expression` containing numerical protein
+The `RPPA` dataset contains CCLE Reverse Phase Protein Array (RPPA) 
+expression data. This dataset includes data from 214 genes, 899 cancer cell 
+lines, 28 primary diseases, 28 lineages. The columns of `RPPA` are: 
+`depmap_id`, aa foreign key corresponding to the cancer cell lineage, 
+`cell_line` which contains the common CCLE name of the cancer cell lines, 
+`gene` which contains the knockdown gene expression, `antibody` containing 
+the name of knocked down gene and `expression` containing numerical protein 
 expression data.
 }
 \details{
-This data represents the `CCLE_RPPA_20180123` file taken from the
-19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
-depenedency study. This dataset features the addition of a foreign key
-`depmap_id` found in the first column of this dataset, which was added from
-the `metadata` dataset. This dataset has been converted to a long format
-tibble. Variables names from the original dataset were converted to lower
+This data represents the `CCLE_RPPA_20180123` file taken from the 
+19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer 
+depenedency study. This dataset features the addition of a foreign key 
+`depmap_id` found in the first column of this dataset, which was added from 
+the `metadata` dataset. This dataset has been converted to a long format 
+tibble. Variables names from the original dataset were converted to lower 
 case, put in snake case, and abbreviated where feasible.
 }
 \examples{

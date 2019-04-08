@@ -11,7 +11,7 @@
      \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
      \item{gene_name}{HUGO symbol (e.g. "SAP25")}
      \item{entrez_id}{Entrez ID# (e.g. 100316904)}
-     \item{log_copy_number}{numerical log fold change in copy number for a
+     \item{log_copy_number}{numerical log fold change in copy number for a 
      given gene and cell line}
 }}
 \source{
@@ -21,23 +21,23 @@
 data(copyNumber)
 }
 \description{
-The `copyNumber` dataset contains WES copy number data for genes and cancer
-cell lines. This dataset includes data from 23299 genes, 1604 cell lines, 38
-primary diseases and 33 lineages. The columns of `copyNumber` are:
-`depmap_id`, a foreign key corresponding to the cancer cell lineage,
-`cell_line` containing the common CCLE name of the cancer cell lines, `gene`
-containing both the HUGO gene name of the knockdown gene along with entrez
-ID#, `gene_name` containing only the HUGO gene name, `entrez_id` containing
-only the entrez ID#, and `log_copy_number` containing the numerical
-dependency score values for each pair of genes and cell lines.
+The `copyNumber` dataset contains WES copy number data for genes and cancer 
+cell lines. This dataset includes data from 23299 genes, 1604 cell lines, 38 
+primary diseases and 33 lineages. The columns of `copyNumber` are: 
+`depmap_id`, a foreign key corresponding to the cancer cell lineage, 
+`cell_line` containing the common CCLE name of the cancer cell lines, 
+`gene` containing both the HUGO gene name of the knockdown gene along with 
+entrez ID#, `gene_name` containing only the HUGO gene name, `entrez_id` 
+containing only the entrez ID#, and `log_copy_number` containing the 
+numerical dependency score values for each pair of genes and cell lines.
 }
 \details{
-This data represents the `public_19Q1_gene_cn` file taken from the
-19Q1 [Broad Institute](https://depmap.org/portal/download/)
+This data represents the `public_19Q1_gene_cn` file taken from the 
+19Q1 [Broad Institute](https://depmap.org/portal/download/) 
 cancer depenedency study. This dataset features the addition of a foreign key
-`depmap_id` found in the first column of this dataset, which was added from
-the `metadata` dataset. The dataset has been converted to a long format
-tibble. Variables names from the original dataset were converted to lower
+`depmap_id` found in the first column of this dataset, which was added from 
+the `metadata` dataset. The dataset has been converted to a long format 
+tibble. Variables names from the original dataset were converted to lower 
 case, put in snake case, and abbreviated where feasible.
 }
 \examples{

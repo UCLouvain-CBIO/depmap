@@ -1,12 +1,12 @@
 #' metadata
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 19Q1
-#' Broad Institute DepMap release, which includes mapping between `depmap_id`
+#' The `metadata` dataset contains the metadata about cell lines in the 19Q1 
+#' Broad Institute DepMap release, which includes mapping between `depmap_id` 
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
-#' dependency data but contains the metadata for 0 genes, 1677 cell lines, 38
-#' primary diseases, 33 lineages. The columns of `metadata` are: `depmap_id`,
-#' `cell_line`, `aliases`, `cosmic_id`, `sanger_id`, `primary_disease`,
-#' `subtype_disease`, `gender` and `source`.
+#' dependency data but contains the metadata for 0 genes, 1677 cell lines, 38 
+#' primary diseases, 33 lineages. The columns of `metadata` are: `depmap_id`, 
+#' `cell_line`, `aliases`, `cosmic_id`, `sanger_id`, `primary_disease`, 
+#' `subtype_disease`, `gender` and `source`.  
 #'
 #' @format A long format tibble data frame with 1677 rows and 9 columns:
 #' \describe{
@@ -23,16 +23,17 @@
 #'   \item{gender}{Gender of patient of cell source}
 #'   \item{source}{Organization responsible for cell sampling}
 #' }
-#' @details This data represents the `depmap_19Q1_cell_lines` file taken from
-#' the 19Q1 [Broad Institute](https://depmap.org/portal/download/)
+#'
+#' @details This data represents the `depmap_19Q1_cell_lines` file taken from 
+#' the 19Q1 [Broad Institute](https://depmap.org/portal/download/) 
 #' cancer depenedency study. This dataset features the a primary key `depmap_id`
 #' which is a unique ID given to each cell line and is found in the first column
-#' of this dataset. The `depmap_id` attribute is used as a foreign key in all
-#' other datasets in the package. This dataset has been converted to a long
-#' format tibble. This dataset does not contain any expression or dependency
-#' data but rather contains the metadata for all cancer cell lines used in the
-#' depmap project. Variables names were converted to lower case, put in snake
-#' case, and abbreviated where feasible (e.g. "Sanger ID" was changed to
+#' of this dataset. The `depmap_id` attribute is used as a foreign key in all 
+#' other datasets in the package. This dataset has been converted to a long 
+#' format tibble. This dataset does not contain any expression or dependency 
+#' data but rather contains the metadata for all cancer cell lines used in the 
+#' depmap project. Variables names were converted to lower case, put in snake 
+#' case, and abbreviated where feasible (e.g. "Sanger ID" was changed to 
 #' "sanger_id").
 #'
 #' @docType data
