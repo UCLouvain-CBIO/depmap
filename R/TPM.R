@@ -10,7 +10,7 @@
 #' containing only the ensembl ID# and `expression` which contains the numerical
 #' protein coding gene expression change at scale (log2(TPM+1)).
 #'
-#' @format A long format tibble data frame with 67360300 rows and 6 columns:
+#' @format A data frame with 67360300 rows (cell lines) and 6 variables:
 #' \describe{
 #'      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
 #'      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}

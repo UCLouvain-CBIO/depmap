@@ -107,10 +107,10 @@ copyNumber
 
 ### `RPPA`
 
-The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data.
-data which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depmap_release()`
+The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data 
+which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depmap_release()`
 depmap release. This dataset includes `r length(unique(RPPA$gene_name))` genes,
-`r length(unique(RPPA$cell_line))` cell lines, 28 primary Diseases, 28 lineages.
+`r length(unique(RPPA$cell_line))` cell lines, 28 primary diseases, 28 lineages.
 
 ```{r show_rppa}
 RPPA

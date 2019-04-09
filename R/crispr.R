@@ -10,7 +10,8 @@
 #' `entrez_id` containing only the entrez ID# and `dependency` which contains 
 #' the numerical dependency score values for each pair of genes and cell lines. 
 #'
-#' @format A long format tibble data frame with 9839772 rows and 6 columns:
+#'
+#' @format A data frame with 9839772 rows (cell lines) and 6 variables:
 #' \describe{
 #'     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
 #'     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
@@ -20,7 +21,6 @@
 #'     \item{dependency}{numerical depenency score of given gene and cell line}
 #' }
 #'
-#' 
 #' @details This data represents the `gene_effect_corrected` file taken from 
 #' the 19Q1 [Broad Institute](https://depmap.org/portal/download/) 
 #' cancer depenedency study. This dataset features the addition of a foreign key

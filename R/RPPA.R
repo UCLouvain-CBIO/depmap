@@ -1,15 +1,15 @@
 #' RPPA
 #'
 #' The `RPPA` dataset contains CCLE Reverse Phase Protein Array (RPPA) 
-#' expression data. This dataset includes data from 214 genes, 899 cancer cell 
-#' lines, 28 primary diseases, 28 lineages. The columns of `RPPA` are: 
-#' `depmap_id`, aa foreign key corresponding to the cancer cell lineage, 
-#' `cell_line` which contains the common CCLE name of the cancer cell lines, 
-#' `gene` which contains the knockdown gene expression, `antibody` containing 
-#' the name of knocked down gene and `expression` containing numerical protein 
-#' expression data.
+#' cellular model expression data. This dataset includes data from 214
+#' genes, 899 cancer cell lines, 28 primary diseases, 28 lineages. The columns
+#' of `RPPA` are: depmap_id`, aa foreign key corresponding to the cancer cell 
+#' lineage, `cell_line` which contains the common CCLE name of the cancer cell
+#' lines, `gene` which contains the knockdown gene expression, `antibody` 
+#' containing the name of knocked down gene and `expression` containing 
+#' numerical protein expression data.
 #' 
-#' @format A long format tibble data frame with 192386 rows and 4 columns:
+#' @format A data frame with 192386 rows and 4 variables:
 #' \describe{
 #'     \item{depmap_id}{cancer cell line foreign key (i.e. "ACH-000001")}
 #'     \item{cell_line}{CCLE name of cancer cell line (i.e. "NIHOVCAR3_OVARY")}

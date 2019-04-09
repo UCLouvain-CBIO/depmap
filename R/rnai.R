@@ -11,7 +11,7 @@
 #' contains the numerical dependency score values for each pair of genes and 
 #' cell lines. 
 #'
-#' @format A long format tibble data frame with 12324008 rows and 6 columns:
+#' @format A data frame with 12324008 rows (cell lines) and 6 variables:
 #' \describe{
 #'     \item{depmap_id}{cancer cancer cell line foreign key (i.e. "ACH-00001")}
 #'     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
