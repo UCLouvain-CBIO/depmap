@@ -1,14 +1,14 @@
 #' crispr
 #'
-#' The `crispr` dataset is the genetic dependency of CRISPR-Cas9 gene knockout 
+#' The `crispr` dataset is the genetic dependency of CRISPR-Cas9 gene knockout
 #' of select genes in various cancer cell lines. This dataset includes data
-#' from 17634 genes, 558 cell lines, 26 primary diseases and 28 lineages. The 
-#' columns of `crispr` are: `depmap_id` a foreign key corresponding to the 
-#' cancer cell lineage, `cell_line` containing the common CCLE name of the 
-#' cancer cell lines, `gene` containing both the HUGO gene name of the knockout 
-#' gene along with entrez ID#, `gene_name` containing only the HUGO gene name, 
-#' `entrez_id` containing only the entrez ID# and `dependency` which contains 
-#' the numerical dependency score values for each pair of genes and cell lines. 
+#' from 17634 genes, 558 cell lines, 26 primary diseases and 28 lineages. The
+#' columns of `crispr` are: `depmap_id` a foreign key corresponding to the
+#' cancer cell lineage, `cell_line` containing the common CCLE name of the
+#' cancer cell lines, `gene` containing both the HUGO gene name of the knockout
+#' gene along with entrez ID#, `gene_name` containing only the HUGO gene name,
+#' `entrez_id` containing only the entrez ID# and `dependency` which contains
+#' the numerical dependency score values for each pair of genes and cell lines.
 #'
 #'
 #' @format A data frame with 9839772 rows (cell lines) and 6 variables:
@@ -21,10 +21,10 @@
 #'     \item{dependency}{numerical depenency score of given gene and cell line}
 #' }
 #'
-#' @details This data represents the `gene_effect_corrected` file taken from 
-#' the 19Q1 [Broad Institute](https://depmap.org/portal/download/) 
+#' @details This data represents the `gene_effect_corrected` file taken from
+#' the 19Q1 [Broad Institute](https://depmap.org/portal/download/)
 #' cancer depenedency study. This dataset features the addition of a foreign key
-#' `depmap_id` found in the first column of this dataset, which was added from 
+#' `depmap_id` found in the first column of this dataset, which was added from
 #' the `metadata` dataset. The numeric column `depenency` contains dependency
 #' scores for a knock out of a known gene for a given cell line. The dataset has
 #' been converted to a long format tibble. Variables names from the original
