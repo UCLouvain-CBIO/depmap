@@ -98,7 +98,7 @@ numerical log-fold copy number change measured against the baseline copy number
 of select genes and cell lines. This dataset corresponds to the
 `public_19Q1_gene_cn.csv` from the `r depmap::depmap_release()` depmap release.
 This dataset includes `r length(unique(copyNumber$gene_name))` genes,
-`r length(unique(crispr$cell_line))` cell lines, 38 primary diseases and 33
+`r length(unique(copyNumber$cell_line))` cell lines, 38 primary diseases and 33
 lineages.
 
 ```{r show_copynumber}
@@ -109,8 +109,8 @@ copyNumber
 
 The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data
 which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depmap_release()`
-depmap release. This dataset includes `r length(unique(RPPA$gene_name))` genes,
-`r length(unique(RPPA$cell_line))` cell lines, 28 primary diseases, 28 lineages.
+depmap release. This dataset includes 214 genes, `r length(unique(RPPA$cell_line))`
+cell lines, 28 primary diseases, 28 lineages.
 
 ```{r show_rppa}
 RPPA
@@ -132,9 +132,8 @@ TPM
 
 The `metadata` dataset contains the metadata about all of the cancer cell lines.
 It corresponds to the `depmap_19Q1_cell_lines.csv` file found in the `r depmap::depmap_release()`
-depmap release. This dataset includes `r length(unique(metadata$gene_name))`
-genes, `r length(unique(metadata$cell_line))` cell lines, 38 primary diseases
-and 33 lineages.
+depmap release. This dataset includes 0 genes, `r length(unique(metadata$cell_line))`
+cell lines, 38 primary diseases and 33 lineages.
 
 ```{r show_metadata}
 metadata
@@ -144,9 +143,7 @@ metadata
 
 The `mutationCalls` dataset contains all merged mutation calls (coding region,
 germline filtered) found in the depmap dependency study. This dataset
-corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the `r depmap::depmap_release()`
-depmap release and includes `r length(unique(mutationCalls$gene_name))` genes,
-`r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
+corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the `r depmap::depmap_release()` depmap release and includes `r length(unique(mutationCalls$gene_name))` genes, `r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
 33 lineages.
 
 ```{r show_mutationcalls}
