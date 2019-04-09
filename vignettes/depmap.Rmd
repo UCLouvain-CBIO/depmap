@@ -107,7 +107,7 @@ copyNumber
 
 ### `RPPA`
 
-The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data 
+The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data
 which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depmap_release()`
 depmap release. This dataset includes `r length(unique(RPPA$gene_name))` genes,
 `r length(unique(RPPA$cell_line))` cell lines, 28 primary diseases, 28 lineages.
@@ -120,7 +120,7 @@ RPPA
 
 The `TPM` dataset contains the CCLE RNAseq gene expression data. This shows
 expression data only for protein coding genes (using scale log2(TPM+1)). This
-data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the `r depmap::depmap_release()` 
+data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the `r depmap::depmap_release()`
 depmap release. This dataset includes `r length(unique(TPM$gene_name))` genes,
 `r length(unique(TPM$cell_line))` cell lines, 33 primary Diseases, 32 lineages.
 
