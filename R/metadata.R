@@ -8,7 +8,7 @@
 #' `cell_line`, `aliases`, `cosmic_id`, `sanger_id`, `primary_disease`, 
 #' `subtype_disease`, `gender` and `source`.  
 #'
-#' @format A long format tibble data frame with 1677 rows and 9 columns:
+#' @format A data frame with 1677 rows (cell lines) and 9 variables:
 #' \describe{
 #'   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
 #'   foreign key (i.e. "ACH-00001")}

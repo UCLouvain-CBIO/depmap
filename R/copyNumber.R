@@ -10,7 +10,8 @@
 #' containing only the entrez ID#, and `log_copy_number` containing the 
 #' numerical dependency score values for each pair of genes and cell lines.
 #'
-#' @format A long format tibble data frame with 37371596 rows and 6 variables.
+#' @format A data frame with 37371596 rows (cell lines) and 6 variables.
+#'
 #' \describe{
 #'      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
 #'      \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
@@ -28,7 +29,7 @@
 #' the `metadata` dataset. The dataset has been converted to a long format 
 #' tibble. Variables names from the original dataset were converted to lower 
 #' case, put in snake case, and abbreviated where feasible.
-#' 
+#'
 #' @docType data
 #'
 #' @usage data(copyNumber)
