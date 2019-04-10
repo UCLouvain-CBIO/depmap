@@ -37,6 +37,7 @@ Suggests:
     gridExtra,
     ggplot2,
     readr,
+    tibble,
     stringr,
     tidyr
 VignetteBuilder: knitr
