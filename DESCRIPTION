@@ -43,8 +43,6 @@ Suggests:
     stringr,
     tidyr
 VignetteBuilder: knitr
-biocViews: ExperimentHub, CellBasedAssays, CopyNumberVariation, SNP, CRISPR,
-    CopyNumberVariationData, SNPData, BreastCancerData, ColonCancerData,
-    KidneyCancerData, LeukemiaCancerData, LungCancerData, OvarianCancerData,
-    ProstateCancerData, Homo_sapiens_Data, ImmunoOncologyData, CellCulture,
-    Genome, Proteome, StemCell, Tissue, ReproducibleResearch, CellBasedAssays
+biocViews:
+    ExperimentHub,
+    ExperimentData
