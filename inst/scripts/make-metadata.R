@@ -6,18 +6,13 @@
 ## note: this script assumes that your current directory is depmap/inst/scripts/
 
 meta <- data.frame(
-    Title = c(paste0("Depmap 19Q1 release RNAi gene knockdown ", 
-                     "cancer dependency data"),
-              paste0("Depmap 19Q1 release CRISP-Cas9 gene knockout ", 
-                     "cancer dependency data"), 
-              paste0("Depmap 19Q1 release log Copy Number of genes ", 
-                     "found in cancer cell lines"),
-              paste0("Depmap 19Q1 release RPPA expression data of ", 
-                     "genes in cancer cell lines"), 
-              paste0("Depmap 19Q1 release TPM protein coding gene ", 
-                     "expression data for genes in cancer cell lines "),
-              paste0("Depmap 19Q1 release Mutation Calls"),
-              paste0("Depmap 19Q1 release Metadata")),
+    Title = c(paste0("rnai_19Q1"),
+              paste0("crispr_19Q1"), 
+              paste0("copyNumber_19Q1"),
+              paste0("RPPA_19Q1"), 
+              paste0("TPM_19Q1"),
+              paste0("mutationCalls_19Q1"),
+              paste0("metadata_19Q1")),
     Description = c(paste0("(DEMETER2) Batch and off-target corrected RNAi ", 
                            "gene knockdown dependency data for 17309 genes, ", 
                            "711 cancer cell lines, 30 primary Diseases and ", 
@@ -67,7 +62,11 @@ meta <- data.frame(
                   paste0("depmap/TPM_19Q1.Rda"),
                   paste0("depmap/mutationCalls_19Q1.Rda"),
                   paste0("depmap/metadata_19Q1.Rda")),
-    Tags = "19Q1",
+    Tags=paste0("ExperimentHub, ExperimentData, ReproducibleResearch, RepositoryData, AssayDomainData, ", 
+                "CopyNumberVariationData, DiseaseModel, CancerData, BreastCancerData, ColonCancerData, ", 
+                "KidneyCancerData, LeukemiaCancerData, LungCancerData, OvarianCancerData, ProstateCancerData", 
+                "OrganismData, Homo_sapiens_Data, PackageTypeData, SpecimenSource, CellCulture, Genome, ", 
+                "Proteome, StemCell, Tissue"),
     Notes = "This dataset is from the 19Q1 release"
 )
 
