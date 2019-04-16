@@ -19,7 +19,7 @@ Killian](http://tfkillian.github/) in February 2019.
 The [github page](https://github.com/tfkillian/depmap) page is for
 active development, issue tracking and forking/pulling purposes.
 
-## Introduction {#sec:intro}
+## Introduction 
 
 The [depmap](https://github.com/tfkillian/depmap/) package aims to
 provide a reproducible research framework to cancer dependency data
@@ -46,18 +46,11 @@ once.)
 install.packages("BiocManager")
 BiocManager::install("uclouvain-cbio/depmap")
 ```
-## Data Import {#sec:data}
-
-The [depmap](https://github.com/tfkillian/depmap/) package currently contains
-seven datasets (shown below) in *.rda* format. These datasets can be loaded by
-using *data()* after the [depmap](https://github.com/tfkillian/depmap/) package
-has been loaded in RStudio using *library("depmap")*. If you wish to see how the
-data was transformed, please see the make_data.R file in \inst.
 
 ## Questions
 
 Feel also free to open a GitHub
-[issue](https://github.com/tfkillian/depmap/issues), in
+[issue](https://github.com/UCLouvain-CBIO/depmap/issues), in
 particular for bug reports.
 
 ## Contributing
@@ -65,9 +58,9 @@ particular for bug reports.
 Contributions to the package are more than welcome. If you want to
 contribute to this package, you should follow the same conventions as
 the rest of the functions. Please do get in touch (preferable opening
-a [github issue](https://github.com/tfkillian/depmap/issues/)) to
+a [github issue](https://github.com/UCLouvain-CBIO/depmap/issues/)) to
 discuss any suggestions.
 
 Please note that this project is released with a
-[Contributor Code of Conduct](https://github.com/tfkillian/depmap/blob/master/CONDUCT.md).
+[Contributor Code of Conduct](https://github.com/UCLouvain-CBIO/depmap/blob/master/CONDUCT.md).
 By participating in this project you agree to abide by its terms.
