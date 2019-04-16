@@ -66,14 +66,20 @@ library("viridis")
 library("tibble")
 library("gridExtra")
 library("stringr")
+library("depmap")
+library("ExperimentHub")
 ```
 
 Load the `rnai`, `crispr` and `copyNumber` datasets for visualization.
 
 ```{r, load_data, message=FALSE, warning=FALSE, echo=TRUE}
-data("rnai", package = "depmap")
-data("crispr", package = "depmap")
-data("copyNumber", package = "depmap")
+## create ExperimentHub query object
+hub <- ExperimentHub()
+x <- query(hub, "depmap")
+rnai <- x[["EH2260"]]
+crispr <- x[["EH2261"]]
+copyNumber <- x[["EH2262"]]
+
 ```
 
 We will demonstrate how to obtain individual dependency scores corresponding to
