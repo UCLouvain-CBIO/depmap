@@ -46,7 +46,5 @@
 #' @source \href{"https://ndownloader.figshare.com/files/14221385"}{DepMap,
 #' Broad (2019)}
 #'
-#' @examples
-#' data(crispr)
-#' crispr
-"crispr"
+#' @rdname crispr
+NULL

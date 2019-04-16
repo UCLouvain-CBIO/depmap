@@ -49,7 +49,7 @@ The `depmap` package fully depends on the `ExperimentHub` Bioconductor package,
 which allows the data accessed in this package to be stored and retrieved from
 the cloud.
 
-```{r, import_EH}
+```{r import_EH}
 library("depmap")
 library("ExperimentHub")
 ```
@@ -73,46 +73,33 @@ The data in `depmap` is stored in a AWS bucket in the cloud and is accessed by
 calling `ExperimentHub` function *ExperimentHub()*, which queries for `depmap`.
 
 
-```{r, ehquery}
+```{r ehquery}
 ## create ExperimentHub query object
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-
-# display results of the depmap query
-x
-
+eh <- ExperimentHub()
+query(eh, "depmap")
 ```
 
 Each dataset has a `ExperimentHub` accession number, (e.g. *EH2266*).
 
-```{r, query}
-## create ExperimentHub query object
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-
-## access `metadata_19Q1` by EH number
-metadata <- x[["EH2266"]]
-
+```{r query}
+metadata <- eh[["EH2266"]]
 metadata
 ```
 
 
 
-```{r, load_data_so_the_code_works, echo=FALSE}
+```{r load_data_so_the_code_works, echo=FALSE}
 ## this code chunk loads the r code in the rmarkdown works before the data is
 ## shown in the code chunks below
 
 ## create ExperimentHub query object
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-rnai <- x[["EH2260"]]
-crispr <- x[["EH2261"]]
-copyNumber <- x[["EH2262"]]
-RPPA <- x[["EH2263"]]
-TPM <- x[["EH2264"]]
-mutationCalls <- x[["EH2265"]]
-metadata <- x[["EH2266"]]
-
+rnai <- eh[["EH2260"]]
+crispr <- eh[["EH2261"]]
+copyNumber <- eh[["EH2262"]]
+RPPA <- eh[["EH2263"]]
+TPM <- eh[["EH2264"]]
+mutationCalls <- eh[["EH2265"]]
+metadata <- eh[["EH2266"]]
 ```
 
 
@@ -125,9 +112,9 @@ corresponds to the `D2_combined_genetic_dependency_scores.csv` file found in the
 genes, `r length(unique(rnai$cell_line))` cell lines, 30 primary diseases and 31
 lineages.
 
-```{r, show_rnai}
+```{r show_rnai}
 ## access `rnai_19Q1` by EH number
-rnai <- x[["EH2260"]]
+rnai <- eh[["EH2260"]]
 
 rnai
 ```
@@ -141,10 +128,9 @@ depmap release. Data from this dataset includes `r length(unique(crispr$gene_nam
 genes, `r length(unique(crispr$cell_line))` cell lines, 26 primary diseases, 28
 lineages.
 
-```{r, show_crispr}
+```{r show_crispr}
 ## access `crispr_19Q1` by EH number
-crispr <- x[["EH2261"]]
-
+crispr <- eh[["EH2261"]]
 crispr
 ```
 
@@ -158,10 +144,9 @@ This dataset includes `r length(unique(copyNumber$gene_name))` genes,
 `r length(unique(copyNumber$cell_line))` cell lines, 38 primary diseases and 33
 lineages.
 
-```{r, show_copynumber}
+```{r show_copynumber}
 ## access `copyNumber_19Q1` by EH number
-copyNumber <- x[["EH2262"]]
-
+copyNumber <- eh[["EH2262"]]
 copyNumber
 ```
 
@@ -172,10 +157,9 @@ which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depma
 depmap release. This dataset includes 214 genes, `r length(unique(RPPA$cell_line))`
 cell lines, 28 primary diseases, 28 lineages.
 
-```{r, show_rppa}
+```{r show_rppa}
 ## access `RPPA_19Q1` by EH number
-RPPA <- x[["EH2263"]]
-
+RPPA <- eh[["EH2263"]]
 RPPA
 ```
 
@@ -187,10 +171,9 @@ data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the `r depmap::depm
 depmap release. This dataset includes `r length(unique(TPM$gene_name))` genes,
 `r length(unique(TPM$cell_line))` cell lines, 33 primary Diseases, 32 lineages.
 
-```{r, show_tpm}
+```{r show_tpm}
 ## access `TPM_19Q1` by EH number
-TPM <- x[["EH2264"]]
-
+TPM <- eh[["EH2264"]]
 TPM
 ```
 
@@ -201,10 +184,9 @@ It corresponds to the `depmap_19Q1_cell_lines.csv` file found in the `r depmap::
 depmap release. This dataset includes 0 genes, `r length(unique(metadata$cell_line))`
 cell lines, 38 primary diseases and 33 lineages.
 
-```{r, show_metadata}
+```{r show_metadata}
 ## access `metadata_19Q1` by EH number
-metadata <- x[["EH2266"]]
-
+metadata <- eh[["EH2266"]]
 metadata
 ```
 
@@ -217,10 +199,9 @@ depmap release and includes `r length(unique(mutationCalls$gene_name))` genes,
 `r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
 33 lineages.
 
-```{r, show_mutationcalls}
+```{r show_mutationcalls}
 ## access `mutationCalls_19Q1` by EH number
-mutationCalls <- x[["EH2265"]]
-
+mutationCalls <- eh[["EH2265"]]
 mutationCalls
 ```
 
@@ -230,11 +211,10 @@ mutationCalls
 *.onLoad* function and setting to *metadata = TRUE* (note: this is not the same
 metadata as the `metadata` found in the 19Q1 release)
 
-```{r, show_onLoad_metadata}
+```{r show_onLoad_metadata}
 depmap(metadata = FALSE) ## data are loaded
 depmap(metadata = TRUE)  ## metadata are displayed
 ```
-
 
 ### Downloading [Broad Institute](https://depmap.org/portal/download/) data
 

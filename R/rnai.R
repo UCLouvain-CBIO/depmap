@@ -20,7 +20,7 @@
 #'     \item{entrez_id}{Entrez ID# (e.g. 100316904)}
 #'     \item{dependency}{numerical depenency score of a gene for a cell line}
 #' }
-#' 
+#'
 #' @details This data represents the `D2_combined_genetic_dependency_scores`
 #' file taken from the 19Q1 [Broad Institute](https://depmap.org/portal/download/)
 #' cancer depenedency study. This dataset features the addition of a foreign key
@@ -29,7 +29,7 @@
 #' This dataset has been converted to a long format tibble. Variables names from
 #' the original dataset were converted to lower case, put in snake case, and
 #' abbreviated where feasible.
-#' 
+#'
 #' @docType data
 #'
 #' @usage data(rnai)
@@ -45,7 +45,5 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @examples
-#' data(rnai)
-#' rnai
-"rnai"
+#' @rdname rnai
+NULL

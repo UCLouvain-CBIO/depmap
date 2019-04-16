@@ -51,7 +51,5 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @examples
-#' data(metadata)
-#' metadata
-"metadata"
+#' @rdname metadata
+NULL
