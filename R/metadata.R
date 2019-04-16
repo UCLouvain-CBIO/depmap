@@ -38,8 +38,6 @@
 #'
 #' @docType data
 #'
-#' @usage data(metadata)
-#'
 #' @import dplyr
 #'
 #' @keywords datasets
@@ -52,4 +50,6 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname metadata
-NULL
+#'
+#' @aliases metadata_19Q1
+metadata <- NULL

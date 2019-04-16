@@ -61,8 +61,6 @@
 #'
 #' @docType data
 #'
-#' @usage data(mutationCalls)
-#'
 #' @import dplyr
 #'
 #' @keywords datasets
@@ -75,4 +73,6 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname mutationCalls
-NULL
+#'
+#' @aliases mutationCalls_19Q1
+mutationCalls <- NULL

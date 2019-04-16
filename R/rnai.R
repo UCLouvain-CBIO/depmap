@@ -32,8 +32,6 @@
 #'
 #' @docType data
 #'
-#' @usage data(rnai)
-#'
 #' @import dplyr
 #'
 #' @keywords datasets
@@ -46,4 +44,6 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname rnai
-NULL
+#'
+#' @aliases rnai_19Q1
+rnai <- NULL
