@@ -1,13 +1,17 @@
 ---
 title: "The depmap data"
-author: "Theo Killian and Laurent Gatto"
+author:
+- name: Theo Killian
+  affiliation: Computational Biology, UCLouvain
+- name: Laurent Gatto
+  affiliation: Computational Biology, UCLouvain
 date: "`r Sys.Date()`"
 output:
   BiocStyle::html_document:
     toc_float: true
 vignette: >
   %\VignetteIndexEntry{depmap}
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
 
@@ -49,7 +53,7 @@ The `depmap` package fully depends on the `ExperimentHub` Bioconductor package,
 which allows the data accessed in this package to be stored and retrieved from
 the cloud.
 
-```{r import_EH}
+```{r import_EH, message = FALSE}
 library("depmap")
 library("ExperimentHub")
 ```

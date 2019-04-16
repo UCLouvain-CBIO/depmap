@@ -1,6 +1,10 @@
 ---
 title: "Using the depmap data"
-author: "Theo Killian and Laurent Gatto"
+author:
+- name: Theo Killian
+  affiliation: Computational Biology, UCLouvain
+- name: Laurent Gatto
+  affiliation: Computational Biology, UCLouvain
 date: "`r Sys.Date()`"
 output:
   BiocStyle::html_document:
