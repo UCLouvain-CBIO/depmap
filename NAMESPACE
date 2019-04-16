@@ -3,3 +3,4 @@
 export(depmap_release)
 import(dplyr)
 import(methods)
+importFrom(utils,read.csv)

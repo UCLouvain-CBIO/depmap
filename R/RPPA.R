@@ -40,5 +40,5 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @rdname
+#' @rdname RPPA
 NULL
