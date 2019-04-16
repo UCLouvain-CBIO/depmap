@@ -3,7 +3,7 @@
 #' The `mutationCalls` dataset contains merged mutation calls (for coding
 #' region, germline filtered) and includes data from 18755 genes, 1601 cell
 #' lines, 37 primary diseases and 33 lineages. This dataset can be considered
-#' the metadata data set for mutations and does not contain any dependency data. 
+#' the metadata data set for mutations and does not contain any dependency data.
 #'
 #' @format A data frame with 1243145 rows and 35 variables:
 #' \describe{
@@ -45,7 +45,7 @@
 #'   \item{WGS_AC}{WGS_AC}
 #'   \item{var_annotation}{Variant_annotation}
 #' }
-#' 
+#'
 #' @details This data represents the `depmap_19Q1_mutation_calls` file taken
 #' from the 19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study.  This dataset has been converted to a long format tibble.
@@ -74,7 +74,5 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @examples
-#' data(mutationCalls)
-#' mutationCalls
-"mutationCalls"
+#' @rdname mutationCalls
+NULL

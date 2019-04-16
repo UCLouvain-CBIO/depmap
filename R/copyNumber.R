@@ -21,7 +21,7 @@
 #'      \item{log_copy_number}{numerical log fold change in copy number for a
 #'      given gene and cell line}
 #' }
-#' 
+#'
 #' @details This data represents the `public_19Q1_gene_cn` file taken from the
 #' 19Q1 [Broad Institute](https://depmap.org/portal/download/)
 #' cancer depenedency study. This dataset features the addition of a foreign key
@@ -45,7 +45,5 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @examples
-#' data(copyNumber)
-#' copyNumber
-"copyNumber"
+#' @rdname copyNumber
+NULL

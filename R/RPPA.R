@@ -8,7 +8,7 @@
 #' `gene` which contains the knockdown gene expression, `antibody` containing
 #' the name of knocked down gene and `expression` containing numerical protein
 #' expression data.
-#' 
+#'
 #' @format A data frame with 192386 rows and 4 variables:
 #' \describe{
 #'     \item{depmap_id}{cancer cell line foreign key (i.e. "ACH-000001")}
@@ -24,7 +24,7 @@
 #' the `metadata` dataset. This dataset has been converted to a long format
 #' tibble. Variables names from the original dataset were converted to lower
 #' case, put in snake case, and abbreviated where feasible.
-#' 
+#'
 #' @docType data
 #'
 #' @usage data(RPPA)
@@ -40,7 +40,5 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @examples
-#' data(RPPA)
-#' RPPA
-"RPPA"
+#' @rdname
+NULL

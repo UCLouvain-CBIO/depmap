@@ -19,15 +19,15 @@
 #'      \item{ensembl_id}{Ensembl ID (e.g. ENSG00000044574)}
 #'      \item{expression}{Log fold (log2(TPM+1)) protein expression change}
 #' }
-#' 
+#'
 #' @details This data originates from the `CCLE_depMap_19Q1_TPM` file taken
-#' from the 19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer 
+#' from the 19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. This dataset features the addition of a foreign key
 #' `depmap_id` found in the first column of this dataset, which was added from
 #' the `metadata` dataset. This dataset has been converted to a long format
 #' tibble. Variables names from the original dataset were converted to lower
 #' case, put in snake case, and abbreviated where feasible.
-#' 
+#'
 #' @docType data
 #'
 #' @usage data(TPM)
@@ -43,7 +43,5 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @examples
-#' data(TPM)
-#' TPM
-"TPM"
+#' @rdname TPM
+NULL
