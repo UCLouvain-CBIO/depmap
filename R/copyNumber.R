@@ -39,7 +39,7 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @aliases copyNumer_19Q1
+#' @aliases copyNumber_19Q1
 #'
 #' @rdname copyNumber
 copyNumber <- NULL

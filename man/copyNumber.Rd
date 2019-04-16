@@ -3,7 +3,7 @@
 \docType{data}
 \name{copyNumber}
 \alias{copyNumber}
-\alias{copyNumer_19Q1}
+\alias{copyNumber_19Q1}
 \title{copyNumber}
 \format{A data frame with 37371596 rows (cell lines) and 6 variables.
 

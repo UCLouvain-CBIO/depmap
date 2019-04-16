@@ -1,7 +1,7 @@
 ---
 title: "The depmap data"
 author: "Theo Killian"
-date: "April 9, 2019"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
@@ -9,9 +9,8 @@ vignette: >
   %\usepackage[utf8]{inputenc}
 ---
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE}
 suppressPackageStartupMessages(library("dplyr"))
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 # [depmap](https://github.com/UCLouvain-CBIO/depmap)
@@ -112,10 +111,12 @@ corresponds to the `D2_combined_genetic_dependency_scores.csv` file found in the
 genes, `r length(unique(rnai$cell_line))` cell lines, 30 primary diseases and 31
 lineages.
 
-```{r show_rnai}
+```{r, eval = FALSE}
 ## access `rnai_19Q1` by EH number
 rnai <- eh[["EH2260"]]
+```
 
+```{r}
 rnai
 ```
 
@@ -128,9 +129,11 @@ depmap release. Data from this dataset includes `r length(unique(crispr$gene_nam
 genes, `r length(unique(crispr$cell_line))` cell lines, 26 primary diseases, 28
 lineages.
 
-```{r show_crispr}
+```{r, eval = FALSE}
 ## access `crispr_19Q1` by EH number
 crispr <- eh[["EH2261"]]
+```
+```{r}
 crispr
 ```
 
@@ -144,9 +147,11 @@ This dataset includes `r length(unique(copyNumber$gene_name))` genes,
 `r length(unique(copyNumber$cell_line))` cell lines, 38 primary diseases and 33
 lineages.
 
-```{r show_copynumber}
+```{r, eval = FALSE}
 ## access `copyNumber_19Q1` by EH number
 copyNumber <- eh[["EH2262"]]
+```
+```{r}
 copyNumber
 ```
 
@@ -157,9 +162,11 @@ which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depma
 depmap release. This dataset includes 214 genes, `r length(unique(RPPA$cell_line))`
 cell lines, 28 primary diseases, 28 lineages.
 
-```{r show_rppa}
+```{r, eval = FALSE}
 ## access `RPPA_19Q1` by EH number
 RPPA <- eh[["EH2263"]]
+```
+```{r}
 RPPA
 ```
 
@@ -171,9 +178,11 @@ data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the `r depmap::depm
 depmap release. This dataset includes `r length(unique(TPM$gene_name))` genes,
 `r length(unique(TPM$cell_line))` cell lines, 33 primary Diseases, 32 lineages.
 
-```{r show_tpm}
+```{r, eval = FALSE}
 ## access `TPM_19Q1` by EH number
 TPM <- eh[["EH2264"]]
+```
+```{r}
 TPM
 ```
 
@@ -184,9 +193,11 @@ It corresponds to the `depmap_19Q1_cell_lines.csv` file found in the `r depmap::
 depmap release. This dataset includes 0 genes, `r length(unique(metadata$cell_line))`
 cell lines, 38 primary diseases and 33 lineages.
 
-```{r show_metadata}
+```{r, eval = FALSE}
 ## access `metadata_19Q1` by EH number
 metadata <- eh[["EH2266"]]
+```
+```{r}
 metadata
 ```
 
@@ -199,9 +210,11 @@ depmap release and includes `r length(unique(mutationCalls$gene_name))` genes,
 `r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
 33 lineages.
 
-```{r show_mutationcalls}
+```{r, eval = FALSE}
 ## access `mutationCalls_19Q1` by EH number
 mutationCalls <- eh[["EH2265"]]
+```
+```{r}
 mutationCalls
 ```
 
