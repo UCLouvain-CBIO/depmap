@@ -30,8 +30,6 @@
 #'
 #' @docType data
 #'
-#' @usage data(TPM)
-#'
 #' @import dplyr
 #'
 #' @keywords datasets
@@ -44,4 +42,6 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname TPM
-NULL
+#'
+#' @aliases TPM_19Q1
+TPM <- NULL

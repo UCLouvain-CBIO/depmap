@@ -30,12 +30,6 @@
 #' tibble. Variables names from the original dataset were converted to lower
 #' case, put in snake case, and abbreviated where feasible.
 #'
-#' @docType data
-#'
-#' @usage data(copyNumber)
-#'
-#' @import dplyr
-#'
 #' @keywords datasets
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
@@ -45,5 +39,7 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
+#' @aliases copyNumer_19Q1
+#'
 #' @rdname copyNumber
-NULL
+copyNumber <- NULL

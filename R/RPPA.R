@@ -27,8 +27,6 @@
 #'
 #' @docType data
 #'
-#' @usage data(RPPA)
-#'
 #' @import dplyr
 #'
 #' @keywords datasets
@@ -41,4 +39,6 @@
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname RPPA
-NULL
+#'
+#' @aliases RPPA_19Q1
+RPPA <- NULL

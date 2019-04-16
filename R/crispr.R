@@ -32,8 +32,6 @@
 #'
 #' @docType data
 #'
-#' @usage data(crispr)
-#'
 #' @import dplyr
 #'
 #' @keywords datasets
@@ -47,4 +45,6 @@
 #' Broad (2019)}
 #'
 #' @rdname crispr
-NULL
+#'
+#' @aliases crispr_19Q1
+crispr <- NULL

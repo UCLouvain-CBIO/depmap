@@ -7,5 +7,5 @@
 }
 
 .onAttach <- function(libname, pkgname) {
-    packageStartupMessage(message("This is depmap release ", depmap_release()))
+    packageStartupMessage(paste0("This is depmap release ", depmap_release()))
 }
