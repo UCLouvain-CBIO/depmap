@@ -1,36 +1,37 @@
 ---
 title: "The depmap data"
-author: "Theo Killian"
+author: "Theo Killian and Laurent Gatto"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  BiocStyle::html_document:
+    toc_float: true
 vignette: >
   %\VignetteEngine{knitr::knitr}
   %\VignetteIndexEntry{depmap}
   %\usepackage[utf8]{inputenc}
 ---
 
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+```
+
 ```{r, echo = FALSE}
 suppressPackageStartupMessages(library("dplyr"))
 ```
 
-# [depmap](https://github.com/UCLouvain-CBIO/depmap)
+# Introduction
 
-This vignette illustrates the steps in loading of the data found in the
-[depmap](https://github.com/UCLouvain-CBIO/depmap) package.
+The `depmap` package aims to provide a reproducible research framework
+to cancer dependency data described by [Tsherniak, Aviad, et
+al. "Defining a cancer dependency map." Cell 170.3 (2017):
+564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The data
+found in the [depmap](https://github.com/UCLouvain-CBIO/depmap)
+package has been formatted to facilitate the use of common R packages
+such as `dplyr` and `ggplot2`. We hope that this package will allow
+researchers to more easily mine, explore and visually illustrate
+dependency data taken from the Depmap cancer genomic dependency study.
 
-## Introduction {#sec:intro}
-
-The [depmap](https://github.com/UCLouvain-CBIO/depmap) package aims to provide a
-reproducible research framework to cancer dependency data described by
-[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017):
-564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The data found in the
-[depmap](https://github.com/UCLouvain-CBIO/depmap) package has been formatted to
-facilitate the use of common R packages such as `dplyr` and `ggplot2`. We hope
-that this package will allow researchers to more easily mine, explore and
-visually illustrate dependency data taken from the Depmap cancer genomic
-dependency study.
-
-## Preliminaries
+# Installation instructions
 
 To install [depmap](https://github.com/UCLouvain-CBIO/depmap), the
 [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
@@ -53,24 +54,16 @@ library("depmap")
 library("ExperimentHub")
 ```
 
-## Data Import {#sec:data}
+# Available data
 
 The [depmap](https://github.com/UCLouvain-CBIO/depmap) package currently contains
-seven datasets in *.rda* format. These datasets can be loaded by using the
-`ExperimentHub` accessor function after the `depmap` and `ExperimentHub`
-packages have been installed and loaded in RStudio.
+seven datasets available through `ExperimentHub`.
 
-The data found in this R package has been converted from a "wide" format .csv
-file to "long" format .rda file. None of the values taken from the original
-datasets have been changed, although the columns have been re-arranged.
-Descriptions of the changes made are described under the `Details` section after
-querying the relevant dataset. (e.g. *??metadata*) The code relating to each
-data transformation can be found in the make-data.R file found in
-./depmap/inst/scripts
-
-The data in `depmap` is stored in a AWS bucket in the cloud and is accessed by
-calling `ExperimentHub` function *ExperimentHub()*, which queries for `depmap`.
-
+The data found in this R package has been converted from a "wide"
+format .csv file to "long" format .rda file. None of the values taken
+from the original datasets have been changed, although the columns
+have been re-arranged.  Descriptions of the changes made are described
+under the `Details` section after querying the relevant dataset.
 
 ```{r ehquery}
 ## create ExperimentHub query object
@@ -79,13 +72,6 @@ query(eh, "depmap")
 ```
 
 Each dataset has a `ExperimentHub` accession number, (e.g. *EH2266*).
-
-```{r query}
-metadata <- eh[["EH2266"]]
-metadata
-```
-
-
 
 ```{r load_data_so_the_code_works, echo=FALSE}
 ## this code chunk loads the r code in the rmarkdown works before the data is
@@ -102,7 +88,7 @@ metadata <- eh[["EH2266"]]
 ```
 
 
-### `rnai`
+## RNA inference knockout data
 
 The `rnai` dataset contains the combined genetic dependency data for RNAi -
 induced gene knockdown for select genes and cancer cell lines. This data
@@ -120,7 +106,7 @@ rnai <- eh[["EH2260"]]
 rnai
 ```
 
-### `crispr`
+## CRISPR-Cas9 knockout data
 
 The `crispr` dataset contains the (batch corrected CERES inferred gene effect)
 CRISPR-Cas9 knockout data of select genes and cancer cell lines. This data
@@ -137,7 +123,7 @@ crispr <- eh[["EH2261"]]
 crispr
 ```
 
-### `copyNumber`
+## WES copy number data
 
 The `copyNumber` dataset contains the WES copy number data, relating to the
 numerical log-fold copy number change measured against the baseline copy number
@@ -155,7 +141,7 @@ copyNumber <- eh[["EH2262"]]
 copyNumber
 ```
 
-### `RPPA`
+## CCLE Reverse Phase Protein Array data
 
 The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data
 which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depmap_release()`
@@ -170,7 +156,7 @@ RPPA <- eh[["EH2263"]]
 RPPA
 ```
 
-### `TPM`
+## CCLE RNAseq gene expression data
 
 The `TPM` dataset contains the CCLE RNAseq gene expression data. This shows
 expression data only for protein coding genes (using scale log2(TPM+1)). This
@@ -186,7 +172,7 @@ TPM <- eh[["EH2264"]]
 TPM
 ```
 
-### `metadata`
+## Cancer cell lines
 
 The `metadata` dataset contains the metadata about all of the cancer cell lines.
 It corresponds to the `depmap_19Q1_cell_lines.csv` file found in the `r depmap::depmap_release()`
@@ -201,7 +187,7 @@ metadata <- eh[["EH2266"]]
 metadata
 ```
 
-### `mutationCalls`
+## Mutation calls
 
 The `mutationCalls` dataset contains all merged mutation calls (coding region,
 germline filtered) found in the depmap dependency study. This dataset
@@ -219,7 +205,7 @@ mutationCalls
 ```
 
 
-### Downloading [Broad Institute](https://depmap.org/portal/download/) data
+# The [Broad Institute](https://depmap.org/portal/download/) data
 
 If desired, the original data from which the
 [depmap](https://github.com/UCLouvain-CBIO/depmap) package were
@@ -231,3 +217,9 @@ transformed and loaded into the
 found in the `make_data.R` file found in `./inst/scripts`. (It should
 be noted that the original uncompressed *.csv* files are 1.5GB in
 total and take a moderate amount of time to download.)
+
+# Session information
+
+```{r echo = FALSE}
+sessionInfo()
+```
