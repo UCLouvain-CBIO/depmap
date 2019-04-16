@@ -6,8 +6,8 @@ output:
   BiocStyle::html_document:
     toc_float: true
 vignette: >
-  %\VignetteEngine{knitr::knitr}
   %\VignetteIndexEntry{depmap}
+  %\VignetteEngine{knitr::knitr}
   %\usepackage[utf8]{inputenc}
 ---
 
@@ -40,7 +40,7 @@ Bioconductor Project Package Manager is required. If
 not already installed, it will need to be done so beforehand. Type (within R)
 install.packages("BiocManager") (This needs to be done just once.)
 
-```{r, depmap_bioconductor_installation, eval=FALSE}
+```{r install, eval=FALSE}
 install.packages("BiocManager")
 BiocManager::install("UCLouvain-CBIO/depmap")
 ```

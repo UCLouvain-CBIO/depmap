@@ -10,8 +10,7 @@ screening efforts continue, the
 [**depmap**](https://github.com/UCLouvain-CBIO/depmap/) package will
 updated on a quarterly basis, in line with the Broad Institute
 [depmap](https://depmap.org/portal/download/) cancer dependency
-mapping initiative. This project was started by [Theo
-Killian](http://tfkillian.github/) in February 2019.
+mapping initiative.
 
 - Portal: https://depmap.org/portal/
 - Selected publications: see https://depmap.org/portal/depmap/

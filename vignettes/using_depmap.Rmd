@@ -17,9 +17,7 @@ BiocStyle::markdown()
 
 This vignette illustrates use cases and visualizations of the data
 found in the [depmap](https://github.com/UCLouvain-CBIO/depmap)
-package after the data has been loaded (see depmap.Rmd
-vignette). NOTE: (!!!) this vignette assumes that you have already ran
-the depmap.Rmd vignette and uploaded all the depmap datasets.
+package. See the *depmap* vignette for details about the datasets.
 
 # Introduction
 
