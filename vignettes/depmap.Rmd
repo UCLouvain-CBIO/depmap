@@ -73,7 +73,7 @@ The data in `depmap` is stored in a AWS bucket in the cloud and is accessed by
 calling `ExperimentHub` function *ExperimentHub()*, which queries for `depmap`.
 
 
-```{r, show_rnai}
+```{r, ehquery}
 ## create ExperimentHub query object
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
@@ -213,7 +213,7 @@ metadata
 The `mutationCalls` dataset contains all merged mutation calls (coding region,
 germline filtered) found in the depmap dependency study. This dataset
 corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the `r depmap::depmap_release()`
-depmap release and includes `r length(unique(mutationCalls$gene_name))` genes, 
+depmap release and includes `r length(unique(mutationCalls$gene_name))` genes,
 `r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
 33 lineages.
 
