@@ -205,23 +205,16 @@ mutationCalls <- eh[["EH2265"]]
 mutationCalls
 ```
 
-### `depmap metadata`
-
-`ExperimentHub` metadata for the `depmap` datasets can be found by calling the
-*.onLoad* function and setting to *metadata = TRUE* (note: this is not the same
-metadata as the `metadata` found in the 19Q1 release)
-
-```{r show_onLoad_metadata}
-depmap(metadata = FALSE) ## data are loaded
-depmap(metadata = TRUE)  ## metadata are displayed
-```
 
 ### Downloading [Broad Institute](https://depmap.org/portal/download/) data
 
-If desired, the original wide form data from which the [depmap](https://github.com/UCLouvain-CBIO/depmap)
-package were derived from can be downloaded from the [Broad Institute](https://depmap.org/portal/download/)
-website. The instructions on how to download these files and how the data was
-transformed and loaded into the [depmap](https://github.com/UCLouvain-CBIO/depmap)
-package can be found in the make_data.R file found in ./inst/scripts. (It should
-be noted that the original uncompressed *.csv* files are 1.5GB in total and
-take a moderate amount of time to download.)
+If desired, the original data from which the
+[depmap](https://github.com/UCLouvain-CBIO/depmap) package were
+derived from can be downloaded from the [Broad
+Institute](https://depmap.org/portal/download/) website. The
+instructions on how to download these files and how the data was
+transformed and loaded into the
+[depmap](https://github.com/UCLouvain-CBIO/depmap) package can be
+found in the `make_data.R` file found in `./inst/scripts`. (It should
+be noted that the original uncompressed *.csv* files are 1.5GB in
+total and take a moderate amount of time to download.)
