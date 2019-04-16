@@ -25,7 +25,7 @@ Description: The depmap package is a data package that accesses datsets from the
     DepMap for research purposes and not intended for clinical use. This data is
     distributed under the Creative Commons license (Attribution 4.0
     International (CC BY 4.0)).
-Depends: R (>= 3.5.2), methods, dplyr, ExperimentHub
+Depends: R (>= 3.6), methods, dplyr, ExperimentHub
 License: Artistic-2.0
 Encoding: UTF-8
 RoxygenNote: 6.1.1.9000
