@@ -22,11 +22,11 @@ jobs:
   include:
     - stage: "Build"
       r_packages:
+        - covr
         - pkgdown
         - testthat
         - knitr
         - roxygen2
-	- covr
       before_install:
         - mkdir -p ~/.R
         - echo -e 'MAKEFLAGS = -j2' > ~/.R/Makevars
@@ -51,11 +51,11 @@ jobs:
     - stage: "Deploy"
       install: skip
       # script:
-      #   - Rscript -e 'covr::codecov()'
-      name: "pkgdown (on gh-pages)"
+      #   - travis_wait 20 Rscript -e 'covr::codecov()'
+      name: "codecov and pkgdown (on master)"
       before_deploy:
         - R CMD INSTALL .
-        - travis_wait 10 Rscript -e 'pkgdown::build_site()'
+        - Rscript -e 'pkgdown::build_site()'
       deploy:
         provider: pages
         skip-cleanup: true
