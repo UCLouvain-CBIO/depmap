@@ -37,15 +37,15 @@ jobs:
       r_check_args: --as-cran --no-build-vignettes --no-vignettes --no-manual --no-tests
       before_script: rm -rf vignettes
       install: skip
-      name: "examples"
-    - r_build_args: --no-build-vignettes --no-manual
-      r_check_args: --as-cran --no-build-vignettes --no-vignettes --no-manual --no-codoc --no-examples
-      install: skip
-      before_script: rm -rf vignettes
-      name: "tests"
-    - r_build_args:
-      r_check_args: --as-cran --no-build-vignettes --no-codoc --no-examples --no-tests
-      install: skip
+    #   name: "examples"
+    # - r_build_args: --no-build-vignettes --no-manual
+    #   r_check_args: --as-cran --no-build-vignettes --no-vignettes --no-manual --no-codoc --no-examples
+    #   install: skip
+    #   before_script: rm -rf vignettes
+    #   name: "tests"
+    # - r_build_args:
+    #   r_check_args: --as-cran --no-build-vignettes --no-codoc --no-examples --no-tests
+    #   install: skip
       name: "vignettes"
     - stage: "Deploy"
       install: skip
