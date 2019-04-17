@@ -50,9 +50,9 @@ jobs:
       name: "vignettes"
     - stage: "Deploy"
       install: skip
-      script:
-        - Rscript -e 'covr::codecov()'
-      name: "pkgdown (on master)"
+      # script:
+      #   - Rscript -e 'covr::codecov()'
+      name: "pkgdown (on gh-pages)"
       before_deploy:
         - R CMD INSTALL .
         - travis_wait 10 Rscript -e 'pkgdown::build_site()'
