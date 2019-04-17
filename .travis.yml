@@ -26,6 +26,7 @@ jobs:
         - testthat
         - knitr
         - roxygen2
+	- covr
       before_install:
         - mkdir -p ~/.R
         - echo -e 'MAKEFLAGS = -j2' > ~/.R/Makevars
@@ -49,9 +50,9 @@ jobs:
       name: "vignettes"
     - stage: "Deploy"
       install: skip
-      script:
-        - travis_wait 20 Rscript -e 'covr::codecov()'
-      name: "codecov and pkgdown (on master)"
+      # script:
+      #   - travis_wait 20 Rscript -e 'covr::codecov()'
+      name: "pkgdown (on master)"
       before_deploy:
         - R CMD INSTALL .
         - travis_wait 20 Rscript -e 'pkgdown::build_site()'
