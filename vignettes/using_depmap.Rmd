@@ -49,7 +49,6 @@ Load necessary libaries.
 
 ```{r load_libraries, message=FALSE, warning=FALSE, echo=TRUE}
 library("dplyr")
-library("plotly")
 library("ggplot2")
 library("viridis")
 library("tibble")

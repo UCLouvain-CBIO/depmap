@@ -33,7 +33,6 @@ Suggests:
     rmarkdown,
     BiocStyle,
     viridis,
-    plotly,
     gridExtra,
     ggplot2,
     readr,
