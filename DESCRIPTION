@@ -8,7 +8,7 @@ Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    role = c("cre", "aut")),
 	     person(given = "Theo", family = "Killian",
 		    email = "theo.killian@gmail.com",
-		    role = c("cre", "aut")))
+		    role = "aut"))
 Description: The depmap package is a data package that accesses datsets from the
     Broad Institute DepMap cancer dependency study using ExperimentHub. Datasets
     from the most current release are available, including RNAI and CRISPR-Cas9
