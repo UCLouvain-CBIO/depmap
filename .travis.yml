@@ -33,11 +33,28 @@ jobs:
         - echo 'options(Ncpus = 2)' > ~/.Rprofile
       script: true
       name: "Build dependencies and cache"
+    - stage: "Check"
+      r_build_args: --no-build-vignettes --no-manual
+      r_check_args: --as-cran --no-build-vignettes --no-vignettes --no-manual --no-tests
+      before_script: rm -rf vignettes
+      install: skip
+      name: "examples"
+    - r_build_args: --no-build-vignettes --no-manual
+      r_check_args: --as-cran --no-build-vignettes --no-vignettes --no-manual --no-codoc --no-examples
+      install: skip
+      before_script: rm -rf vignettes
+      name: "tests"
+    - r_build_args:
+      r_check_args: --as-cran --no-build-vignettes --no-codoc --no-examples --no-tests
+      install: skip
+      name: "vignettes"
     - stage: "Deploy"
       install: skip
-      name: "Install and pkgdown (on master)"
+      script:
+        - travis_wait 20 Rscript -e 'covr::codecov()'
+      name: "codecov and pkgdown (on master)"
       before_deploy:
-        - travis_wait 30 R CMD INSTALL .
+        - R CMD INSTALL .
         - travis_wait 20 Rscript -e 'pkgdown::build_site()'
       deploy:
         provider: pages
