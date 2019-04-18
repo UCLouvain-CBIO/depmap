@@ -100,6 +100,10 @@ rnai <- eh[["EH2260"]]
 rnai
 ```
 
+```{r, echo = FALSE}
+rm(rnai)
+```
+
 ## CRISPR-Cas9 knockout data
 
 ```{r, echo = FALSE}
@@ -117,8 +121,13 @@ lineages.
 ## access `crispr_19Q1` by EH number
 crispr <- eh[["EH2261"]]
 ```
+
 ```{r}
 crispr
+```
+
+```{r, echo = FALSE}
+rm(crispr)
 ```
 
 ## WES copy number data
@@ -139,8 +148,13 @@ lineages.
 ## access `copyNumber_19Q1` by EH number
 copyNumber <- eh[["EH2262"]]
 ```
+
 ```{r}
 copyNumber
+```
+
+```{r, echo = FALSE}
+rm(copyNumber)
 ```
 
 ## CCLE Reverse Phase Protein Array data
@@ -158,8 +172,13 @@ cell lines, 28 primary diseases, 28 lineages.
 ## access `RPPA_19Q1` by EH number
 RPPA <- eh[["EH2263"]]
 ```
+
 ```{r}
 RPPA
+```
+
+```{r, echo = FALSE}
+rm(RPPA)
 ```
 
 ## CCLE RNAseq gene expression data
@@ -178,8 +197,13 @@ depmap release. This dataset includes `r length(unique(TPM$gene_name))` genes,
 ## access `TPM_19Q1` by EH number
 TPM <- eh[["EH2264"]]
 ```
+
 ```{r}
 TPM
+```
+
+```{r, echo = FALSE}
+rm(TPM)
 ```
 
 ## Cancer cell lines
@@ -197,8 +221,13 @@ cell lines, 38 primary diseases and 33 lineages.
 ## access `metadata_19Q1` by EH number
 metadata <- eh[["EH2266"]]
 ```
+
 ```{r}
 metadata
+```
+
+```{r, echo = FALSE}
+rm(metadata)
 ```
 
 ## Mutation calls
@@ -218,8 +247,13 @@ depmap release and includes `r length(unique(mutationCalls$gene_name))` genes,
 ## access `mutationCalls_19Q1` by EH number
 mutationCalls <- eh[["EH2265"]]
 ```
+
 ```{r}
 mutationCalls
+```
+
+```{r, echo = FALSE}
+rm(mutationCalls)
 ```
 
 
