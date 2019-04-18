@@ -54,7 +54,7 @@ jobs:
       #   - travis_wait 20 Rscript -e 'covr::codecov()'
       name: "codecov and pkgdown (on master)"
       before_deploy:
-        - travis_wait 20 R CMD INSTALL .
+        - travis_wait 30 R CMD INSTALL .
         - travis_wait 20 Rscript -e 'pkgdown::build_site()'
       deploy:
         provider: pages
