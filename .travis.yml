@@ -55,7 +55,7 @@ jobs:
       name: "codecov and pkgdown (on master)"
       before_deploy:
         - R CMD INSTALL .
-        - Rscript -e 'pkgdown::build_site()'
+        - travis_wait 20 Rscript -e 'pkgdown::build_site()'
       deploy:
         provider: pages
         skip-cleanup: true
