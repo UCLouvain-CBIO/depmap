@@ -28,4 +28,3 @@ project maintainers.
 
 This Code of Conduct is adapted from the Contributor Covenant, version
 1.0.0, available from http://contributor-covenant.org/version/1/0/0/
-

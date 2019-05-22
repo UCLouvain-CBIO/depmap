@@ -1,0 +1,450 @@
+---
+title: "Using the depmap data"
+author:
+- name: Theo Killian
+  affiliation: Computational Biology, UCLouvain
+- name: Laurent Gatto
+  affiliation: Computational Biology, UCLouvain
+date: "`r Sys.Date()`"
+output:
+  BiocStyle::html_document:
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{depmap use cases}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+```
+
+This vignette illustrates use cases and visualizations of the data
+found in the [depmap](https://github.com/UCLouvain-CBIO/depmap)
+package. See the *depmap* vignette for details about the datasets.
+
+# Introduction
+
+The [depmap](https://github.com/UCLouvain-CBIO/depmap) package aims to provide a
+reproducible research framework to cancer dependency data described by
+[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017):
+564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The data found in the
+[depmap](https://github.com/UCLouvain-CBIO/depmap) package has been formatted to
+facilitate the use of common R packages such as `dplyr` and `ggplot2`. We hope
+that this package will allow researchers to more easily mine, explore and
+visually illustrate dependency data taken from the Depmap cancer genomic
+dependency study.
+
+# Use cases
+
+Perhaps the most interesting datasets found within the
+[depmap](https://github.com/UCLouvain-CBIO/depmap) package are those that relate to
+the cancer gene dependency score, such as `rnai` and `crispr`. These datasets
+contain a score expressing how vital a particular gene is in terms of how lethal
+the knockout/knockdown of that gene is on a target cell line. For example, a
+highly negative dependency score implies that a cell line is highly dependent
+on that gene.
+
+Load necessary libaries.
+
+```{r load_libraries, message=FALSE, warning=FALSE, echo=TRUE}
+library("dplyr")
+library("ggplot2")
+library("viridis")
+library("tibble")
+library("gridExtra")
+library("stringr")
+library("depmap")
+library("ExperimentHub")
+```
+
+Load the `rnai`, `crispr` and `copyNumber` datasets for visualization.
+
+```{r load_data, message=FALSE, warning=FALSE, echo=TRUE}
+## create ExperimentHub query object
+eh <- ExperimentHub()
+query(eh, "depmap")
+rnai <- eh[["EH2260"]]
+crispr <- eh[["EH2261"]]
+copyNumber <- eh[["EH2262"]]
+
+```
+
+## Find dependency score for "BRCA1" on "184A1_Breast"
+
+We will demonstrate how to obtain individual dependency scores corresponding to
+a specific gene and cell lineage. For example, shown below is the dependency of
+a breast cancer lineage, such as `184A1_BREAST` has on a human tumor suppressor
+gene, like `BRCA1` when it is knocked down via rnai. Shown below is the
+comparison for data found within the `rnai` dataset. This shows a score which is
+slightly positive, indicating that the knockdown of this gene is slightly
+beneficial to the vitality of this cancer cell lineage. However, it may be
+insightful to put this single dependency score in context.
+
+```{r dep_score_BRCA1_184A1Breast, echo=TRUE}
+dep_score_BRCA1_184A1Breast <- rnai %>%
+                                select(cell_line, gene_name, dependency) %>%
+                                filter(cell_line == "184A1_BREAST",
+                                       gene_name == "BRCA1")
+
+dep_score_BRCA1_184A1Breast
+```
+
+## Average gene dependency for "BRCA1"
+
+Shown below is the average dependency score for `BRCA1` for all cancer cell
+lines in the `rnai` dataset.
+
+```{r, BRCA1_Avg_Dep_Score, echo=TRUE}
+brca1_dep_score_avg_rnai <- rnai %>%
+                                select(gene_name, dependency) %>%
+                                filter(gene_name == "BRCA1") %>%
+                                summarise(mean_dependency_brca1 =
+                                              mean(dependency, na.rm=TRUE))
+
+brca1_dep_score_avg_rnai
+```
+
+## Average gene dependency for all genes in the `rnai` dataset
+
+
+Or to see the average gene dependency across all genes in the entire `rnai`
+dataset. As one can see below, the average dependency for an average gene in the
+`rnai` dataset is slightly negative but close to zero.
+
+```{r, all_gene_ds_avg_rnai, echo=TRUE}
+all_gene_dep_score_avg_rnai <- rnai %>%
+                            select(gene_name, dependency) %>%
+                            summarise(mean_dependency_all_genes_rnai =
+                                          mean(dependency, na.rm=TRUE))
+all_gene_dep_score_avg_rnai
+```
+
+## Cell lines in the `rnai` dataset with "soft tissue" in the name
+
+If we are interested researching soft tissue sarcomas and wanted to find the
+cell lines withing the `rnai` dataset that had "soft tissue" in the CCLE name of
+cancer cell line, and sort by the highest dependency score. The results of such
+a search is shown below. Note: CCLE names are in ALL CAPS with an underscore.
+
+```{r, soft_tissue_cell_lines, echo=TRUE}
+soft_tissue_dependency_rnai <- rnai %>%
+                                select(cell_line, gene_name, dependency) %>%
+                                filter(stringr::str_detect(cell_line,
+                                                           "SOFT_TISSUE")) %>%
+                                arrange(dependency)
+
+soft_tissue_dependency_rnai
+```
+
+## Cell lines with dependency for a  entrez_id of interest
+
+Sometimes it is difficult to find the subset with the exact gene name one wishes
+to find. In this case, it is better to search by `entrez_id`. For example, a
+[recent paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6251792/) describes
+gene knockdown of *NRF2* increases chemosensitivity in certain types of cancer.
+It might be interesting to see what interactions knockdown of this gene has on
+other cancer cell lines. However, searching by *filter(gene_name == "NRF2")*
+will not yield any results. We know from NCBI that the Entrez ID for this gene
+is "4780" and it is possible to search this dataset by that criteria. Here it
+can be shown that the gene name for *NRF2* in the `rnai` dataset is *NFE2L2*.
+
+```{r cell_lines_with_entrez_id_NRF2, echo=TRUE}
+entrez_id_NRF2 <- rnai %>%
+                select(entrez_id, cell_line, gene_name, dependency) %>%
+                filter(entrez_id == "4780")
+
+entrez_id_NRF2
+```
+
+## Cell lines with dependency for "NFE2L2"
+
+Below the highest dependency scores via rnai knock down of a specific gene,
+*NFE2L2* will be obtained and the cancer cell lines associated with those values
+will be listed. It appears that the knockdown of this gene is strongly
+associated with cell death with in lung and kidney cancer cell lines.
+
+```{r greatest_Dep_Score_NFE2L2, echo=TRUE}
+top_dep_score_NFE2L2_rnai <- rnai %>%
+                        select(cell_line, gene_name, dependency) %>%
+                        filter(gene_name == "NFE2L2") %>%
+                        arrange(dependency)
+
+top_dep_score_NFE2L2_rnai
+```
+
+## Genes for cell line "NCIH2066_LUNG"
+
+If we would like to obtain the top 10 lowest dependency scores for a
+particular cell line (for example `NCIH2066_LUNG`) along with the genes
+associated with those values:
+
+```{r top_dep_score_NCIH2066_LUNG_rnai, echo=TRUE}
+top_dep_score_NCIH2066_LUNG_rnai <- rnai %>%
+                                select(cell_line, gene_name, dependency) %>%
+                                filter(cell_line == "NCIH2066_LUNG") %>%
+                                arrange(dependency)
+
+top_dep_score_NCIH2066_LUNG_rnai
+```
+
+## Most and least RNAi dependency genes
+
+Below shows the most significant genes that deplete cancer cell lines upon
+knockdown and their dependency scores for the entire `rnai` data.
+
+```{r greatest_dep_score_gene_rnai, echo=TRUE}
+greatest_dep_score_gene_rnai <- rnai %>%
+                            select(cell_line, gene_name, dependency) %>%
+                            arrange(dependency)
+
+greatest_dep_score_gene_rnai
+```
+
+Below shows the least significant genes that induce cancer cell line vitality
+upon knockdown and their dependency scores for the entire `rnai` data.
+Unsurprisingly, we see high incidence of "TP53", a well known cancer driver.
+
+```{r cell_line_gene_rnai_lowest_dep_score, echo=TRUE}
+lowest_dep_score_gene_rnai <- rnai %>%
+                            select(cell_line, gene_name, dependency) %>%
+                            arrange(desc(dependency))
+
+lowest_dep_score_gene_rnai
+```
+
+## Most and least CRISPR-Cas9 dependency genes
+
+Below we will apply some of the same selections as shown in the above examples
+on the `crispr` gene knockout dataset and observe the difference between that
+dataset and `rnai`. First we will look at the most significant dependency scores
+in the `crispr` dataset. As can be seen below, there is a different population
+of significant genes with the highest dependency score.
+
+```{r cell_line_gene_crispr_greatest_dep_score, echo=TRUE}
+greatest_dep_score_gene_crispr <- crispr %>%
+                                select(cell_line, gene_name, dependency) %>%
+                                arrange(dependency)
+
+greatest_dep_score_gene_crispr
+```
+
+First we will look at the least significant (most cancer inducing) dependency
+scores in the `crispr` dataset.
+
+```{r cell_line_gene_crispr_lowest_dep_score, echo=TRUE}
+lowest_dep_score_gene_crispr <- crispr %>%
+                            select(cell_line, gene_name, dependency) %>%
+                            arrange(desc(dependency))
+
+lowest_dep_score_gene_crispr
+```
+
+## Differences in RNAi and CRISPR-Cas9 dependency scores
+
+Here we will plot the difference in expression between the most signficant genes
+found in the `crispr` and `rnai` datasets.
+
+```{r comparison_rnai_crispr_dep_scores, fig.height=6, fig.width=7, fig.align="center", echo=FALSE, message=FALSE}
+# sort `crispr` dep scores by most cancer inducing
+top_20_dep_scores_crispr <- crispr %>%
+                                select(gene_name, dependency) %>%
+                                arrange(desc(dependency)) %>%
+                                top_n(20)
+
+# sort `crispr` dep scores by least cancer inducing
+lowest_20_dep_scores_crispr <- crispr %>%
+                                select(gene_name, dependency) %>%
+                                arrange(dependency) %>%
+                                top_n(-20)
+
+# sort `rnai` dep scores by most cancer inducing
+top_20_dep_scores_rnai <- rnai %>%
+                            select(gene_name, dependency) %>%
+                            arrange(desc(dependency)) %>%
+                            top_n(20)
+
+# shorten gene name so it fits on plot
+top_20_dep_scores_rnai[12, 1] <- "GAS6-AS2"
+
+# sort `rnai` dep scores by least cancer inducing
+lowest_20_dep_scores_rnai <- rnai %>%
+                                select(gene_name, dependency) %>%
+                                arrange(dependency) %>%
+                                top_n(-20)
+
+# rnai highest dep scores
+p1 <- ggplot(lowest_20_dep_scores_rnai) +
+        aes(gene_name, dependency, color = dependency) +
+        geom_point() + scale_colour_viridis() +
+        theme(axis.text.x = element_text(angle=90, hjust=1)) +
+        ggtitle("High DS genes rnai")
+
+# crispr highest dep scores
+p2 <- ggplot(lowest_20_dep_scores_crispr) +
+        aes(gene_name, dependency, color = dependency) +
+        geom_point() + scale_colour_viridis() +
+        theme(axis.text.x = element_text(angle=90, hjust=1)) +
+        ggtitle("High DS genes crispr ")
+
+# rnai lowest dep scores
+p3 <- ggplot(top_20_dep_scores_rnai) +
+        aes(gene_name, dependency, color = dependency) +
+        geom_point() + scale_colour_viridis() +
+        theme(axis.text.x = element_text(angle=90, hjust=1)) +
+        ggtitle("Low DS genes rnai")
+
+# crispr lowest dep scores
+p4 <- ggplot(top_20_dep_scores_crispr) +
+        aes(gene_name, dependency, color = dependency) +
+        geom_point() + scale_colour_viridis() +
+        theme(axis.text.x = element_text(angle=90, hjust=1)) +
+        ggtitle("Low DS genes crispr")
+
+#plot as 1x2 grid
+grid.arrange(p1, p2, p3, p4, nrow=2,
+             top = "Most Extreme Dep Scores for CRISPR and RNAI")
+```
+
+Compare the count of top 50 unique genes for `crispr` and `rnai` datasets for
+the most cancer-vitality inducing genes.
+
+```{r count_comp_rnai_crispr_dep_scores, fig.height=6, fig.width=7, fig.align="center", echo=FALSE, message=FALSE}
+# get counts of top 50 genes in `crispr` that are most cancer-vitality inducing
+unique_lowest_dep_scores_gene_crispr <- crispr %>%
+                                    select(gene_name, dependency) %>%
+                                    arrange(desc(dependency)) %>%
+                                    top_n(50) %>%
+                                    count(gene_name) %>%
+                                    arrange(desc(n))
+
+# TBC1D3 appears to be an extremely common for `crispr` and dominates top 100
+# most cancer-vitality-inducing genes.
+
+# get counts of top 50 genes in `rnai` that are most cancer-vitality inducing
+unique_lowest_dep_scores_gene_rnai <- rnai %>%
+                                select(gene_name, dependency) %>%
+                                arrange(desc(dependency)) %>%
+                                top_n(50) %>%
+                                count(gene_name) %>%
+                                arrange(desc(n))
+
+# Whereas for `rnai` UBBP4 and ACTG1P4 are most common.
+
+# shorten gene name to fit on plot
+unique_lowest_dep_scores_gene_rnai[9, 1] <- "GAS6-AS2"
+
+# get counts of top 50 genes in `crispr` with greatest dependency
+unique_top_dep_scores_crispr <- crispr %>%
+                                select(gene_name, dependency) %>%
+                                arrange(dependency) %>%
+                                top_n(-50) %>%
+                                count(gene_name) %>%
+                                arrange(desc(n))
+
+# Most common gene for top 100 most dependent genes in `crispr` is RAN
+
+# get counts of top 50 genes in `rnai` with greatest dependency
+unique_top_dep_scores_rnai <- rnai %>%
+                                select(gene_name, dependency) %>%
+                                arrange(dependency) %>%
+                                top_n(-50) %>%
+                                count(gene_name) %>%
+                                arrange(desc(n))
+
+# Most common genes for top 100 most dependent genes in `rnai` are RPL7, EIF3B
+# and RPL14.
+
+# rnai highest dep scores
+p5 <- ggplot(unique_top_dep_scores_crispr, aes(x=gene_name, y=n)) +
+    geom_bar(stat='identity', fill="steelblue2") +
+    ylab("count") + theme(axis.text.x = element_text(angle=90, hjust=1)) +
+    ggtitle("Highest DS genes crispr")
+
+p6 <- ggplot(unique_top_dep_scores_rnai, aes(x=gene_name, y=n)) +
+    geom_bar(stat='identity', fill="steelblue2") +
+    ylab("count") + theme(axis.text.x = element_text(angle=90, hjust=1)) +
+    ggtitle("Highest DS genes rnai")
+
+p7 <- ggplot(unique_lowest_dep_scores_gene_crispr, aes(x=gene_name, y=n)) +
+    geom_bar(stat='identity', fill="steelblue2") +
+    ylab("count") + theme(axis.text.x = element_text(angle=90, hjust=1)) +
+    ggtitle("Lowest DS genes crispr")
+
+p8 <- ggplot(unique_lowest_dep_scores_gene_rnai, aes(x=gene_name, y=n)) +
+    geom_bar(stat='identity', fill="steelblue2") +
+    ylab("count") + theme(axis.text.x = element_text(angle=90, hjust=1)) +
+    ggtitle("Lowest DS genes rnai")
+
+## plot as 1x2 grid
+grid.arrange(p5, p6, p7, p8, nrow=2,
+             top = "Top 50 CRISPR and RNAI genes with High and Low Dep Score")
+```
+
+Mean log copy number (total dataset) and mean log copy number for each gene
+
+```{r mean_log_copy_num_gene, fig.height=4, fig.width=6, fig.align="center", echo=FALSE, message=FALSE}
+# mean log copy number for all genes
+mean_log_copy_num_gene <- copyNumber %>%
+                            select(gene_name, log_copy_number) %>%
+                            summarise(mean_log_copy_number_all_genes =
+                                          mean(log_copy_number, na.rm = TRUE))
+
+# get average value
+val_mean_log_copy_num_gene <- as.numeric(mean_log_copy_num_gene[1,1])
+
+# mean log copy number for each gene
+each_log_copy_num_gene <- copyNumber %>%
+                            select(gene_name, log_copy_number) %>%
+                            group_by(gene_name) %>%
+                            summarise(mean_log_copy_number =
+                                          mean(log_copy_number, na.rm = TRUE))
+
+# add an ID column
+all_log_copy_num_gene <-
+    as.data.frame(na.omit(each_log_copy_num_gene$mean_log_copy_number)) %>%
+    tibble::rowid_to_column(., "ID")
+
+# add col names
+colnames(all_log_copy_num_gene, do.NULL = FALSE)
+colnames(all_log_copy_num_gene) <- c("gene", "log_copy_number")
+
+# plot of mean copy number for every gene
+p9 <- ggplot(all_log_copy_num_gene) +
+            aes(x=gene, y=log_copy_number, color = log_copy_number) +
+            geom_point() +  scale_colour_viridis() +
+            geom_hline(yintercept = val_mean_log_copy_num_gene,
+            linetype = "dashed", color = "red") +
+            theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+            ggtitle("Mean log copy number change for every gene")
+p9
+```
+
+## Genes with greatest mean log copy number
+
+Find genes with greatest mean log copy number
+
+```{r greatest_log_copy_num_genes, fig.height=4, fig.width=6, fig.align="center", echo=FALSE, message=FALSE}
+# mean log copy number for each gene
+greatest_log_copy_num_genes <- copyNumber %>%
+                                select(gene_name, log_copy_number) %>%
+                                group_by(gene_name) %>%
+                                summarise(mean_long_copy_num =
+                                              mean(log_copy_number))%>%
+                                arrange(desc(mean_long_copy_num)) %>%
+                                top_n(20)
+
+p10 <- ggplot(greatest_log_copy_num_genes, aes(x=gene_name,
+                                              y=mean_long_copy_num)) +
+            geom_bar(stat='identity', fill="steelblue2") +
+            ylab("log Copy Number") +
+            theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+            ggtitle("Top 20 genes with largest log copy number")
+p10
+```
+
+# Session information
+
+```{r echo = FALSE}
+sessionInfo()
+```

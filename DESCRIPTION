@@ -1,15 +1,13 @@
 Package: depmap
 Type: Package
 Title: Cancer Dependency Map Data Package
-Version: 0.2.0
-Author: Theo Killian, Laurent Gatto
+Version: 0.99.3
 Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    email = "laurent.gatto@uclouvain.be",
-		    role = "aut"),
+		    role = c("cre", "aut")),
 	     person(given = "Theo", family = "Killian",
 		    email = "theo.killian@gmail.com",
-		    role = c("cre", "aut")))
-Maintainer: Theo Killian <theo.killian@gmail.com>
+		    role = "aut"))
 Description: The depmap package is a data package that accesses datsets from the
     Broad Institute DepMap cancer dependency study using ExperimentHub. Datasets
     from the most current release are available, including RNAI and CRISPR-Cas9
@@ -26,14 +24,15 @@ Description: The depmap package is a data package that accesses datsets from the
     distributed under the Creative Commons license (Attribution 4.0
     International (CC BY 4.0)).
 Depends: R (>= 3.6), methods, dplyr, ExperimentHub
+Imports: utils
 License: Artistic-2.0
 Encoding: UTF-8
 RoxygenNote: 6.1.1.9000
 Suggests:
     knitr,
     rmarkdown,
+    BiocStyle,
     viridis,
-    plotly,
     gridExtra,
     ggplot2,
     readr,
