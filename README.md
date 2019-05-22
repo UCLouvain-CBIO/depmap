@@ -1,6 +1,6 @@
 # The `depmap` package
 
-[**depmap**](https://github.com/UCLouvain-CBIO/depmap/) is an R data
+[**depmap**](https://github.com/UCLouvain-CBIO/depmap/) is an R data 
 package that disseminates cancer dependency omics datasets from the
 Broad Institute website
 [depmap](https://depmap.org/portal/download/). As the DepMap screening

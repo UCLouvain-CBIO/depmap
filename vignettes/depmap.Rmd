@@ -274,4 +274,3 @@ total and take a moderate amount of time to download.)
 
 ```{r echo = FALSE}
 sessionInfo()
-```
