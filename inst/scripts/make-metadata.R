@@ -1,7 +1,7 @@
 ### =========================================================================
-### depmap metadata 19Q1 data
+### depmap metadata 
 ### -------------------------------------------------------------------------
-### this script generates the metadata_19Q1.csv
+###
 
 ## note: this script assumes that your current directory is depmap/inst/scripts/
 
@@ -54,19 +54,20 @@ meta <- data.frame(
     DataProvider = "Broad Institute",
     Maintainer = "Theo Killian <theodorechristian.killian@student.kuleuven.be>",
     RDataClass = "tibble",
-    DispatchClass = "rda",
-    RDataPath = c(paste0("depmap/rnai_19Q1.rda"), 
-                  paste0("depmap/crispr_19Q1.rda"), 
-                  paste0("depmap/copyNumber_19Q1.rda"), 
-                  paste0("depmap/RPPA_19Q1.rda"), 
-                  paste0("depmap/TPM_19Q1.rda"),
-                  paste0("depmap/mutationCalls_19Q1.rda"),
-                  paste0("depmap/metadata_19Q1.rda")),
+    DispatchClass = "Rda",
+    RDataPath = c(paste0("depmap/rnai_19Q1.Rda"), 
+                  paste0("depmap/crispr_19Q1.Rda"), 
+                  paste0("depmap/copyNumber_19Q1.Rda"), 
+                  paste0("depmap/RPPA_19Q1.Rda"), 
+                  paste0("depmap/TPM_19Q1.Rda"),
+                  paste0("depmap/mutationCalls_19Q1.Rda"),
+                  paste0("depmap/metadata_19Q1.Rda")),
     Tags=paste0("ExperimentHub, ExperimentData, ReproducibleResearch, RepositoryData, AssayDomainData, ", 
                 "CopyNumberVariationData, DiseaseModel, CancerData, BreastCancerData, ColonCancerData, ", 
                 "KidneyCancerData, LeukemiaCancerData, LungCancerData, OvarianCancerData, ProstateCancerData", 
                 "OrganismData, Homo_sapiens_Data, PackageTypeData, SpecimenSource, CellCulture, Genome, ", 
                 "Proteome, StemCell, Tissue"),
-    Notes = "This dataset is from the 19Q1 release")
+    Notes = "This dataset is from the 19Q1 release"
+)
 
-write.csv(meta, file="../extdata/metadata_19Q1.csv", row.names=FALSE)
+write.csv(meta, file="../extdata/metadata.csv", row.names=FALSE)
