@@ -1,7 +1,7 @@
 ### =========================================================================
-### depmap metadata 
+### depmap metadata 19Q1 data
 ### -------------------------------------------------------------------------
-###
+### this script generates the metadata_19Q1.csv
 
 ## note: this script assumes that your current directory is depmap/inst/scripts/
 
@@ -12,14 +12,7 @@ meta <- data.frame(
               paste0("RPPA_19Q1"), 
               paste0("TPM_19Q1"),
               paste0("mutationCalls_19Q1"),
-              paste0("metadata_19Q1"),
-              paste0("rnai_19Q2"),
-              paste0("crispr_19Q2"), 
-              paste0("copyNumber_19Q2"),
-              paste0("RPPA_19Q2"), 
-              paste0("TPM_19Q2"),
-              paste0("mutationCalls_19Q2"),
-              paste0("metadata_19Q2")),
+              paste0("metadata_19Q1")),
     Description = c(paste0("(DEMETER2) Batch and off-target corrected RNAi ", 
                            "gene knockdown dependency data for 17309 genes, ", 
                            "711 cancer cell lines, 30 primary Diseases and ", 
@@ -43,31 +36,7 @@ meta <- data.frame(
                            "cell lines, 37 primary diseases and 33 lineages. "),
                     paste0("Metadata for cell lines in the 19Q1 DepMap release, ", 
                            "for 0 genes, 1677 cell lines, 38 primary diseases ", 
-                           "and 33 lineages."),
-                    paste0("(DEMETER2) Batch and off-target corrected RNAi ", 
-                           "gene knockdown dependency data for 17309 genes, ", 
-                           "712 cancer cell lines, 30 primary Diseases and ", 
-                           "31 lineages."), 
-                    paste0("(CERES) Batch and off-target corrected CRISPR-Cas9 ", 
-                           "gene knockdout dependency data for 17634 genes, ", 
-                           "563 cell lines, 27 primary diseases and 29 ", 
-                           "lineages."), 
-                    paste0("WES log copy number data for 23299 genes, 1627 ", 
-                           "cell lines, 38 primary diseases and 34 lineages."),
-                    paste0("Reverse Phase Protein Array (RPPA) Western Blot ", 
-                           "expression data from 214 genes, 899 cancer cell ", 
-                           "lines, 28 primary diseases and 28 lineages."),
-                    paste0("CCLE 'Transcript Per Million' (TPM) RNAseq gene ", 
-                           "expression data (in scale scale (log2(TPM+1))) ", 
-                           "for protein coding genes from 56202 genes, 1165 ", 
-                           "cancer cell lines, 34 primary diseases and 33 ", 
-                           "lineages."), 
-                    paste0("Merged mutation calls (for coding region, germline ", 
-                           "filtered) and includes data from 18796 genes, 1631 ", 
-                           "cell lines, 37 primary diseases and 34 lineages. "),
-                    paste0("Metadata for cell lines in the 19Q1 DepMap release, ", 
-                           "for 0 genes, 1714 cell lines, 39 primary diseases ", 
-                           "and 34 lineages.")),
+                           "and 33 lineages.")),
     BiocVersion = "3.9",
     Genome = "", 
     SourceType = "CSV", 
@@ -77,15 +46,8 @@ meta <- data.frame(
                   paste0("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-rnaseq-expression-data-ccd0.12%2FCCLE_depMap_19Q1_TPM.csv"),
                   paste0("https://depmap.org/portal/download/api/download/external?file_name=ccle%2FCCLE_RPPA_20180123.csv"),
                   paste0("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fdepmap-mutation-calls-9a1a.7%2Fdepmap_19Q1_mutation_calls.csv"),
-                  paste0("https://depmap.org/portal/download/api/download/external?file_name=processed_portal_downloads%2Fdepmap-public-cell-line-metadata-183e.4%2FDepMap-2019q1-celllines_v2.csv"),
-                  paste0("https://ndownloader.figshare.com/files/13515395"),
-                  paste0("https://ndownloader.figshare.com/files/15023465"),
-                  paste0("https://ndownloader.figshare.com/files/15023495"),
-                  paste0("https://depmap.org/portal/download/api/download/external?file_name=ccle%2FCCLE_RPPA_20180123.csv"),
-                  paste0("https://ndownloader.figshare.com/files/15023483"),
-                  paste0("https://ndownloader.figshare.com/files/15023498"),
-                  paste0("https://ndownloader.figshare.com/files/15023525")),
-    SourceVersion = c(rep("Feb 19 2019", 7), rep("May 7 2019", 7)),
+                  paste0("https://depmap.org/portal/download/api/download/external?file_name=processed_portal_downloads%2Fdepmap-public-cell-line-metadata-183e.4%2FDepMap-2019q1-celllines_v2.csv")),
+    SourceVersion = "Feb 19 2019",
     Species = "Homo sapiens",
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
@@ -99,20 +61,12 @@ meta <- data.frame(
                   paste0("depmap/RPPA_19Q1.rda"), 
                   paste0("depmap/TPM_19Q1.rda"),
                   paste0("depmap/mutationCalls_19Q1.rda"),
-                  paste0("depmap/metadata_19Q1.rda"),
-                  paste0("depmap/rnai_19Q2.rda"), 
-                  paste0("depmap/crispr_19Q2.rda"), 
-                  paste0("depmap/copyNumber_19Q2.rda"), 
-                  paste0("depmap/RPPA_19Q2.rda"), 
-                  paste0("depmap/TPM_19Q2.rda"),
-                  paste0("depmap/mutationCalls_19Q2.rda"),
-                  paste0("depmap/metadata_19Q2.rda")),
+                  paste0("depmap/metadata_19Q1.rda")),
     Tags=paste0("ExperimentHub, ExperimentData, ReproducibleResearch, RepositoryData, AssayDomainData, ", 
                 "CopyNumberVariationData, DiseaseModel, CancerData, BreastCancerData, ColonCancerData, ", 
                 "KidneyCancerData, LeukemiaCancerData, LungCancerData, OvarianCancerData, ProstateCancerData", 
                 "OrganismData, Homo_sapiens_Data, PackageTypeData, SpecimenSource, CellCulture, Genome, ", 
                 "Proteome, StemCell, Tissue"),
-    Notes = c(rep("This dataset is from the 19Q1 release", 7), rep("This dataset is from the 19Q2 release", 7)) 
-)
+    Notes = "This dataset is from the 19Q1 release")
 
-write.csv(meta, file="../extdata/metadata.csv", row.names=FALSE)
+write.csv(meta, file="../extdata/metadata_19Q1.csv", row.names=FALSE)
