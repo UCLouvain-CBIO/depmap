@@ -18,7 +18,7 @@ library("tidyr")
 library("ExperimentHub")
 
 ##########################################
-## EH2301 depmap `metadata_19Q2` dataset
+## EH2556 depmap `metadata_19Q2` dataset
 ##########################################
 
 ##  data cleaning of `metadata` dataset
@@ -57,7 +57,7 @@ save(metadata_19Q2, file = "../eh_data/metadata_19Q2.rda",
 ## access the data on ExperimentHub
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
-EH2301 <- x[["EH2301"]]
+EH2556 <- x[["EH2556"]]
 
 ##########################################
 ## `depmap_id_to_name_19Q2 map `depmap_id` to `cell_line`
@@ -77,7 +77,7 @@ depmap_id_to_name_19Q2 <- metadata_19Q2 %>% select(depmap_id, cell_line)
 head(depmap_id_to_name_19Q2)
 
 ##########################################
-## EH2302 depmap `mutationCalls_19Q2` dataset
+## EH2555 depmap `mutationCalls_19Q2` dataset
 ##########################################
 
 ## data cleaning of `mutationCalls` dataset
@@ -147,10 +147,10 @@ save(mutationCalls_19Q2, file = "../eh_data/mutationCalls_19Q2.rda",
 ## access the data on ExperimentHub
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
-EH2302 <- x[["EH2306"]]
+EH2555 <- x[["EH2555"]]
 
 ##########################################
-## EH2303 depmap `copyNumber_19Q2` dataset
+## EH2552 depmap `copyNumber_19Q2` dataset
 ##########################################
 
 ##  data cleaning of `copyNumber` dataset 
@@ -193,10 +193,10 @@ save(copyNumber_19Q2, file = "../eh_data/copyNumber_19Q2.rda",
 ## access the data on ExperimentHub
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
-EH2303 <- x[["EH2303"]]
+EH2552 <- x[["EH2552"]]
 
 ##########################################
-## EH2304 depmap `crispr_19Q2` dataset
+## EH2551 depmap `crispr_19Q2` dataset
 ##########################################
 
 ##  data cleaning of `crispr` dataset`
@@ -236,10 +236,10 @@ save(crispr_19Q2, file = "../eh_data/crispr_19Q2.rda",
 ## access the data on ExperimentHub
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
-EH2304 <- x[["2303"]]
+EH2551 <- x[["EH2551"]]
 
 ##########################################
-## EH2305 depmap `TPM_19Q2` dataset
+## EH2554 depmap `TPM_19Q2` dataset
 ##########################################
 
 ## data cleaning of `TPM` dataset
@@ -279,10 +279,10 @@ save(TPM_19Q2, file = "../eh_data/TPM_19Q2.rda", compress="xz",
 ## access the data on ExperimentHub
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
-EH2305 <- x[["EH2305"]]
+EH2554 <- x[["EH2554"]]
 
 ##########################################
-## EH2306 depmap `RPPA_19Q2` dataset
+## EH2553 depmap `RPPA_19Q2` dataset
 ##########################################
 
 ## data cleaning of `RPPA` dataset
@@ -317,10 +317,10 @@ save(RPPA_19Q2, file="../eh_data/RPPA_19Q2.rda", compress="xz",
 ## access the data on ExperimentHub
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
-EH2306 <- x[["EH2306"]]
+EH2553 <- x[["EH2553"]]
 
 ##########################################
-## EH2307 depmap `rnai_19Q2` dataset
+## EH2550 depmap `rnai_19Q2` dataset
 ##########################################
 
 ## data cleaning of `rnai` dataset
@@ -354,4 +354,4 @@ save(rnai_19Q2, file="../eh_data/rnai_19Q2.rda", compress="xz",
 ## access the data on ExperimentHub
 hub <- ExperimentHub()
 x <- query(hub, "depmap")
-EH2307 <- x[["EH2307"]]
+EH2550 <- x[["EH2550"]]
