@@ -1,9 +1,24 @@
 ##' @importFrom utils read.csv
 ##' @importFrom ExperimentHub createHubAccessors
 .onLoad <- function(libname, pkgname) {
+#                     fls <- dir(system.file("extdata", package = pkgname),
+#                     full.names = TRUE,
+#                     pattern = "metadata")
+#                     sapply(fls, function(fl) {
+#                     titles <- read.csv(fl, stringsAsFactors = FALSE)$Title
+#                     createHubAccessors(pkgname, titles)
+# })
     fl <- system.file("extdata", "metadata.csv", package = pkgname)
     titles <- read.csv(fl, stringsAsFactors = FALSE)$Title
     createHubAccessors(pkgname, titles)
+    
+    # fl <- system.file("extdata", "metadata_19Q1.csv", package = pkgname)
+    # titles <- read.csv(fl, stringsAsFactors = FALSE)$Title
+    # createHubAccessors(pkgname, titles)
+    # 
+    # fl <- system.file("extdata", "metadata_19Q2.csv", package = pkgname)
+    # titles <- read.csv(fl, stringsAsFactors = FALSE)$Title
+    # createHubAccessors(pkgname, titles)
 }
 
 .onAttach <- function(libname, pkgname) {
