@@ -115,6 +115,8 @@ mutationCalls_19Q2["X"] <- NULL
 # [35] "Variant_annotation"     "DepMap_ID" 
 
 ## note: "mutationCalls_19Q2" has different columns than "mutationCalls_19Q1"
+## the variable "VA_WES_AC" is no longer present in this dataset, unlike
+## previous releases! 
 names(mutationCalls_19Q2)[1:34] <- c("gene_name", "entrez_id", "ncbi_build",            
                                 "chromosome", "start_pos", "end_pos", "strand", 
                                 "var_class","var_type", "ref_allele", 

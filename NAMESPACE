@@ -3,5 +3,3 @@
 export(depmap_release)
 import(dplyr)
 import(methods)
-importFrom(ExperimentHub,createHubAccessors)
-importFrom(utils,read.csv)

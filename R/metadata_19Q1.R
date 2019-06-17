@@ -1,4 +1,4 @@
-#' metadata
+#' metadata_19Q1
 #'
 #' The `metadata` dataset contains the metadata about cell lines in the 19Q1
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
@@ -35,6 +35,10 @@
 #' depmap project. Variables names were converted to lower case, put in snake
 #' case, and abbreviated where feasible (e.g. "Sanger ID" was changed to
 #' "sanger_id").
+#' 
+#' @section Change log:
+#' 
+#' - 19Q1: none
 #'
 #' @docType data
 #'
@@ -51,5 +55,5 @@
 #'
 #' @rdname metadata
 #'
-#' @aliases metadata_19Q1
+#' @aliases metadata_19Q1 metadata_19Q2
 metadata <- NULL

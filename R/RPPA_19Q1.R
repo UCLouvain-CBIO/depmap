@@ -1,13 +1,13 @@
-#' RPPA
+#' RPPA_19Q1
 #'
-#' The `RPPA` dataset contains CCLE Reverse Phase Protein Array (RPPA) cellular
-#' model expression data. This dataset includes data from 214 genes, 899 cancer
-#' cell lines, 28 primary diseases, 28 lineages. The columns of `RPPA` are:
-#' `depmap_id`, a foreign key corresponding to the cancer cell lineage,
-#' `cell_line` which contains the common CCLE name of the cancer cell lines,
-#' `gene` which contains the knockdown gene expression, `antibody` containing
-#' the name of knocked down gene and `expression` containing numerical protein
-#' expression data.
+#' The `RPPA` dataset contains the 19Q1 CCLE Reverse Phase Protein Array (RPPA)
+#' cellular model expression data. This dataset includes data from 214 genes,
+#' 899 cancer cell lines, 28 primary diseases, 28 lineages. The columns of
+#' `RPPA` are: `depmap_id`, a foreign key corresponding to the cancer cell
+#' lineage, `cell_line` which contains the common CCLE name of the cancer cell
+#' lines, `gene` which contains the knockdown gene expression, `antibody`
+#' containing the name of knocked down gene and `expression` containing
+#' numerical protein expression data.
 #'
 #' @format A data frame with 192386 rows and 4 variables:
 #' \describe{
@@ -24,6 +24,10 @@
 #' the `metadata` dataset. This dataset has been converted to a long format
 #' tibble. Variables names from the original dataset were converted to lower
 #' case, put in snake case, and abbreviated where feasible.
+#' 
+#' @section Change log:
+#' 
+#' - 19Q1: none
 #'
 #' @docType data
 #'
@@ -40,5 +44,5 @@
 #'
 #' @rdname RPPA
 #'
-#' @aliases RPPA_19Q1
+#' @aliases RPPA_19Q1 RPPA_19Q2
 RPPA <- NULL

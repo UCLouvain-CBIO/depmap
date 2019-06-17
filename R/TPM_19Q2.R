@@ -1,8 +1,8 @@
-#' TPM
+#' TPM_19Q2
 #'
-#' The `TPM` dataset contains the CCLE "Transcript Per Million" RNAseq gene
+#' The `TPM` dataset contains the 19Q2 CCLE "Transcript Per Million" RNAseq gene
 #' expression data for protein coding genes. This dataset includes data from
-#' 57820 genes, 1165 cancer cell lines, 33 primary diseases, 32 lineages. The
+#' 56202 genes, 1201 cancer cell lines, 34 primary diseases, 33 lineages. The
 #' columns of `TPM` are: `depmap_id`, a foreign key corresponding to the cancer
 #' cell lineage,`cell_line` the common CCLE name of the cancer cell lines,
 #' `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -10,7 +10,7 @@
 #' containing only the ensembl ID# and `expression` which contains the numerical
 #' protein coding gene expression change at scale (log2(TPM+1)).
 #'
-#' @format A data frame with 67360300 rows (cell lines) and 6 variables:
+#' @format A data frame with 67498602 rows (cell lines) and 6 variables:
 #' \describe{
 #'      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
 #'      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
@@ -20,13 +20,17 @@
 #'      \item{expression}{Log fold (log2(TPM+1)) protein expression change}
 #' }
 #'
-#' @details This data originates from the `CCLE_depMap_19Q1_TPM` file taken
-#' from the 19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' @details This data originates from the `CCLE_expression_full.csv` file taken
+#' from the 19Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. This dataset features the addition of a foreign key
 #' `depmap_id` found in the first column of this dataset, which was added from
 #' the `metadata` dataset. This dataset has been converted to a long format
 #' tibble. Variables names from the original dataset were converted to lower
 #' case, put in snake case, and abbreviated where feasible.
+#'
+#' @section Change log:
+#' 
+#' - 19Q2: none
 #'
 #' @docType data
 #'
@@ -43,5 +47,5 @@
 #'
 #' @rdname TPM
 #'
-#' @aliases TPM_19Q1
+#' @aliases TPM_19Q2 TPM_19Q1
 TPM <- NULL
