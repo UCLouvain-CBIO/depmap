@@ -24,8 +24,8 @@ library("ExperimentHub")
 ##  data cleaning of `metadata` dataset
 
 ### loading data (downloading .csv file from online source)
-i <- "https://ndownloader.figshare.com/files/15023525"
-sample_info <- read_csv(i)
+url_8 <- "https://ndownloader.figshare.com/files/15023525"
+sample_info <- read_csv(url_8)
 
 ### DepMap-2019q1-celllines.csv data renamed to `metadata`
 metadata_19Q2 <- sample_info
@@ -41,23 +41,23 @@ metadata_19Q2 <- sample_info
 
 
 #### Rename `metadata` columns to contain underscores and be in camel case
+## note: "metadata_19Q2" has different columns than "metadata_19Q2"
 names(metadata_19Q2)[1:9] <-c("depmap_id", "stripped_cell_line_name",
                                "cell_line", "aliases", "cosmic_id", 
                                "sanger_id", "primary_disease","subtype_disease",
                                "sub_subtype_disease")
 
 ### visual check
-#names(metadata_19Q2)
-head(metadata_19Q2)
+# head(metadata_19Q2)
 
 ### saving cleaned and converted `metadata` data as .rda file
 save(metadata_19Q2, file = "../eh_data/metadata_19Q2.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-EH2556 <- x[["EH2556"]]
+# hub <- ExperimentHub()
+# x <- query(hub, "depmap")
+# EH2556 <- x[["EH2556"]]
 
 ##########################################
 ## `depmap_id_to_name_19Q2 map `depmap_id` to `cell_line`
@@ -74,7 +74,7 @@ EH2556 <- x[["EH2556"]]
 depmap_id_to_name_19Q2 <- metadata_19Q2 %>% select(depmap_id, cell_line)
 
 ### visual check
-head(depmap_id_to_name_19Q2)
+# head(depmap_id_to_name_19Q2)
 
 ##########################################
 ## EH2555 depmap `mutationCalls_19Q2` dataset
@@ -83,12 +83,12 @@ head(depmap_id_to_name_19Q2)
 ## data cleaning of `mutationCalls` dataset
 
 ### loading data (downloading .csv file from online source)
-j <- "https://ndownloader.figshare.com/files/15023498"
-CCLE_mutations_19Q2 <- read_csv(j)
+url_9 <- "https://ndownloader.figshare.com/files/15023498"
+CCLE_mutations_19Q2 <- read_csv(url_9)
 
 ### depmap_19Q1_mutation_calls data renamed to `mutationCalls`
 mutationCalls_19Q2 <- CCLE_mutations_19Q2
-names(mutationCalls_19Q2)
+# names(mutationCalls_19Q2)
 
 #### drop superfluous first two rows
 mutationCalls_19Q2["X1"] <- NULL
@@ -112,7 +112,9 @@ mutationCalls_19Q2["X"] <- NULL
 # [29] "SangerWES_AC"           "SangerRecalibWES_AC"   
 # [31] "RNAseq_AC"              "HC_AC"                 
 # [33] "RD_AC"                  "WGS_AC"                
-# [35] "Variant_annotation"     "DepMap_ID"             
+# [35] "Variant_annotation"     "DepMap_ID" 
+
+## note: "mutationCalls_19Q2" has different columns than "mutationCalls_19Q1"
 names(mutationCalls_19Q2)[1:34] <- c("gene_name", "entrez_id", "ncbi_build",            
                                 "chromosome", "start_pos", "end_pos", "strand", 
                                 "var_class","var_type", "ref_allele", 
@@ -138,16 +140,16 @@ mutationCalls_19Q2 <- mutationCalls_19Q2 %>%
            var_annotation)
 
 ### visual check
-head(mutationCalls_19Q2)
+# head(mutationCalls_19Q2)
 
 ### saving cleaned and converted `mutationCalls` data as .rda file
 save(mutationCalls_19Q2, file = "../eh_data/mutationCalls_19Q2.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-EH2555 <- x[["EH2555"]]
+# hub <- ExperimentHub()
+# x <- query(hub, "depmap")
+# EH2555 <- x[["EH2555"]]
 
 ##########################################
 ## EH2552 depmap `copyNumber_19Q2` dataset
@@ -156,8 +158,8 @@ EH2555 <- x[["EH2555"]]
 ##  data cleaning of `copyNumber` dataset 
 
 ### loading data (downloading .csv file from online source)
-k <- "https://ndownloader.figshare.com/files/15023495"
-CCLE_gene_cn_19Q2 <- read_csv(k)
+url_10 <- "https://ndownloader.figshare.com/files/15023495"
+CCLE_gene_cn_19Q2 <- read_csv(url_10)
 
 ### public_19Q1_gene_cn.csv data renamed to `copyNumber`
 copyNumber_19Q2 <- CCLE_gene_cn_19Q2
@@ -181,19 +183,21 @@ copyNumber_19Q2 <- copyNumber_19Q2_long %>%
     left_join(depmap_id_to_name_19Q2, by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-copyNumber_19Q2 <- copyNumber_19Q2 %>% select(depmap_id, gene, log_copy_number,
-                                              entrez_id, gene_name, cell_line)
+copyNumber_19Q2 <- copyNumber_19Q2 %>% 
+                        select(depmap_id, gene, log_copy_number,
+                               entrez_id, gene_name, cell_line) %>%
+                               type_convert(cols(entrez_id = "i"))
 ### visual check
-head(copyNumber_19Q2)
+# head(copyNumber_19Q2)
 
 ### saving cleaned and converted `copyNumber` data as .rda file
 save(copyNumber_19Q2, file = "../eh_data/copyNumber_19Q2.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-EH2552 <- x[["EH2552"]]
+# hub <- ExperimentHub()
+# x <- query(hub, "depmap")
+# EH2552 <- x[["EH2552"]]
 
 ##########################################
 ## EH2551 depmap `crispr_19Q2` dataset
@@ -202,8 +206,8 @@ EH2552 <- x[["EH2552"]]
 ##  data cleaning of `crispr` dataset`
 
 ### loading data (downloading .csv file from online source)
-l <- "https://ndownloader.figshare.com/files/15023465"
-Achilles_gene_effect_19Q2 <- read_csv(l)
+url_11 <- "https://ndownloader.figshare.com/files/15023465"
+Achilles_gene_effect_19Q2 <- read_csv(url_11)
 
 ### gene_effect_corrected.csv data renamed to `crispr`
 crispr_19Q2 <- Achilles_gene_effect_19Q2
@@ -225,18 +229,19 @@ crispr_19Q2 <- crispr_19Q2_long %>% left_join(depmap_id_to_name_19Q2,
 
 ### rearrange columns into same column format as other datasets
 crispr_19Q2 <- crispr_19Q2 %>% select(depmap_id, gene, dependency, entrez_id,
-                                      gene_name, cell_line)
+                                      gene_name, cell_line) %>%
+                                      type_convert(cols(entrez_id = "i"))
 ### visual check
-head(crispr_19Q2)
+# head(crispr_19Q2)
 
 ### saving cleaned and converted `crispr` data as .rda file
 save(crispr_19Q2, file = "../eh_data/crispr_19Q2.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-EH2551 <- x[["EH2551"]]
+# hub <- ExperimentHub()
+# x <- query(hub, "depmap")
+# EH2551 <- x[["EH2551"]]
 
 ##########################################
 ## EH2554 depmap `TPM_19Q2` dataset
@@ -245,8 +250,8 @@ EH2551 <- x[["EH2551"]]
 ## data cleaning of `TPM` dataset
 
 ### loading data (downloading .csv file from online source)
-m <- "https://ndownloader.figshare.com/files/15023483"
-CCLE_expression_full_19Q2 <- read_csv(m)
+url_12 <- "https://ndownloader.figshare.com/files/15023483"
+CCLE_expression_full_19Q2 <- read_csv(url_12)
 
 ### CCLE_depMap_19Q1_TPM.csv data renamed to `TPM`
 TPM_19Q2 <- CCLE_expression_full_19Q2
@@ -270,16 +275,16 @@ TPM_19Q2 <- TPM_19Q2_long %>% left_join(depmap_id_to_name_19Q2,
 TPM_19Q2 <- TPM_19Q2 %>% select(depmap_id, gene, expression, ensembl_id,
                                 gene_name, cell_line)
 ### visual check
-head(TPM_19Q2)
+# head(TPM_19Q2)
 
 ### saving cleaned and converted `TPM` data as .rda file
 save(TPM_19Q2, file = "../eh_data/TPM_19Q2.rda", compress="xz",
      compression_level=9)
 
 ## access the data on ExperimentHub
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-EH2554 <- x[["EH2554"]]
+# hub <- ExperimentHub()
+# x <- query(hub, "depmap")
+# EH2554 <- x[["EH2554"]]
 
 ##########################################
 ## EH2553 depmap `RPPA_19Q2` dataset
@@ -288,8 +293,8 @@ EH2554 <- x[["EH2554"]]
 ## data cleaning of `RPPA` dataset
 
 ### loading data (downloading .csv file from online source)
-n <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2FCCLE_RPPA_20180123.csv"
-CCLE_RPPA_20180123_19Q2 <- read_csv(n)
+url_13 <- "https://depmap.org/portal/download/api/download/external?file_name=ccle%2FCCLE_RPPA_20180123.csv"
+CCLE_RPPA_20180123_19Q2 <- read_csv(url_13)
 
 ### CCLE_RPPA_20180123.csv data renamed to `RPPA`
 RPPA_19Q2 <- CCLE_RPPA_20180123_19Q2
@@ -305,19 +310,19 @@ RPPA_19Q2 <- RPPA_19Q2_long %>% left_join(depmap_id_to_name_19Q2,
                                 by = c("cell_line" = "cell_line"))
 
 ### rearrange columns into same column format as other datasets
-RPPA_19Q2 <- RPPA_19Q2 %>% select(cell_line, antibody, expression, depmap_id)
+RPPA_19Q2 <- RPPA_19Q2 %>% select(cell_line, antibody, expression, depmap_id) 
 
 ### visual check
-head(RPPA_19Q2)
+# head(RPPA_19Q2)
 
 ### saving cleaned and converted `RPPA` data as .rda file
 save(RPPA_19Q2, file="../eh_data/RPPA_19Q2.rda", compress="xz",
      compression_level=9)
 
 ## access the data on ExperimentHub
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-EH2553 <- x[["EH2553"]]
+# hub <- ExperimentHub()
+# x <- query(hub, "depmap")
+# EH2553 <- x[["EH2553"]]
 
 ##########################################
 ## EH2550 depmap `rnai_19Q2` dataset
@@ -326,8 +331,8 @@ EH2553 <- x[["EH2553"]]
 ## data cleaning of `rnai` dataset
 
 ### loading data (downloading .csv file from online source)
-o <- "https://ndownloader.figshare.com/files/13515395"
-D2_combined_gene_dep_scores_19Q2 <- read_csv(o)
+url_14 <- "https://ndownloader.figshare.com/files/13515395"
+D2_combined_gene_dep_scores_19Q2 <- read_csv(url_14)
 
 ### D2_combined_genetic_dependency_scores.csv data renamed to `rnai`
 rnai_19Q2 <- D2_combined_gene_dep_scores_19Q2
@@ -343,15 +348,16 @@ rnai_19Q2 <- gather(rnai_19Q2, key = cell_line, value = dependency, -gene) %>%
 
 ### rearrange columns into same column format as other datasets
 rnai_19Q2 <- rnai_19Q2 %>% select(gene, cell_line, dependency, entrez_id,
-                                  gene_name, depmap_id)
+                                  gene_name, depmap_id) %>%
+                                  type_convert(cols(entrez_id = "i"))
 ### visual check
-head(rnai_19Q2)
+# head(rnai_19Q2)
 
 ### saving cleaned and converted `rnai` data as .rda file
 save(rnai_19Q2, file="../eh_data/rnai_19Q2.rda", compress="xz",
      compression_level=9)
 
 ## access the data on ExperimentHub
-hub <- ExperimentHub()
-x <- query(hub, "depmap")
-EH2550 <- x[["EH2550"]]
+# hub <- ExperimentHub()
+# x <- query(hub, "depmap")
+# EH2550 <- x[["EH2550"]]

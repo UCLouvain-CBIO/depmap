@@ -75,14 +75,13 @@ eh <- ExperimentHub()
 query(eh, "depmap")
 ```
 
-Each dataset has a `ExperimentHub` accession number, (e.g. *EH2266*).
+Each dataset has a `ExperimentHub` accession number, (e.g. *EH2260*).
 
 ## RNA inference knockout data
 
 ```{r, echo = FALSE}
 rnai <- eh[["EH2260"]]
 ```
-
 
 The `rnai` dataset contains the combined genetic dependency data for RNAi -
 induced gene knockdown for select genes and cancer cell lines. This data
