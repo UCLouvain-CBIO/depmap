@@ -32,7 +32,11 @@
 #'
 #' @section Change log:
 #' 
-#' - 19Q2: none
+#' - 19Q2: Initial dataset consisted of a data frame with 9839772 rows (cell
+#' lines) and 6 variables representing 17634 genes, 558 cell lines, 26 primary
+#' diseases and 28 lineages.
+#' 
+#' - 19Q2: adds 5 cell lines, 1 primary disease and 1 lineage
 #'
 #' @docType data
 #'

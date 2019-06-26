@@ -4,7 +4,7 @@
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
 #' dependency data but contains the metadata for 0 genes, 1714 cell lines, 39
-#' primary diseases, 34 lineages. The columns of `metadata` are: `depmap_id`,
+#' primary diseases and 34 lineages. The columns of `metadata` are: `depmap_id`,
 #' `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 #' `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
 #' `source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
@@ -46,9 +46,14 @@
 #'
 #' @section Change log: 
 #' 
-#' - 19Q2: depmap metadata dataset contains new variables not found in previous
-#' versions, including: `Achilles_n_replicates`, `cell_line_NNMD`,
-#' `culture_type`, `culture_medium`, and `cas9_activity`.
+#' - 19Q1: Initial dataset consisted of data frame with 1677 rows (cell lines)
+#' and 9 variables, representing 0 genes, 1677 cell lines, 38 primary diseases
+#' and 33 lineages
+#' 
+#' - 19Q2: adds 37 new cell lines, 1 primary disease and 1 lineage. This version
+#' of the metadata dataset contains 6 variables not found in previous versions,
+#' including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
+#' `culture_medium`, and `cas9_activity`.
 #'
 #' @docType data
 #'

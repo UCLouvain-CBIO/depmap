@@ -61,9 +61,13 @@
 #' 
 #' @section Change log:
 #' 
-#' - 19Q2: "mutationCalls_19Q2" has different columns than "mutationCalls_19Q1"
-#' the variable "VA_WES_AC" is no longer present in this dataset, unlike
-#' previous releases
+#' - 19Q1: Initial dataset for package consisted of dataframe with 1243145 rows
+#' and 35 variables representing 18755 genes, 1601 cell lines, 37 primary
+#' diseases and 33 lineages
+#' 
+#' - 19Q2: adds 30 cell lines, 1 primary disease and 1 lineage. This version has
+#' different columns than the previous version: the variable "VA_WES_AC" is no
+#' longer present in this dataset
 #' 
 #' @docType data
 #'
