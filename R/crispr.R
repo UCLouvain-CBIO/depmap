@@ -1,9 +1,9 @@
-#' crispr
+#' crispr_19Q2
 #'
-#' The `crispr` dataset is the genetic dependency of CRISPR-Cas9 gene knockout
-#' of select genes in various cancer cell lines. This dataset includes data
-#' from 17634 genes, 558 cell lines, 26 primary diseases and 28 lineages. The
-#' columns of `crispr` are: `depmap_id` a foreign key corresponding to the
+#' The `crispr` dataset contains the 19Q2 genetic dependency of CRISPR-Cas9 gene
+#' knockout of select genes in various cancer cell lines. This dataset includes
+#' data from 17634 genes, 563 cell lines, 27 primary diseases and 29 lineages.
+#' The columns of `crispr` are: `depmap_id` a foreign key corresponding to the
 #' cancer cell lineage, `cell_line` containing the common CCLE name of the
 #' cancer cell lines, `gene` containing both the HUGO gene name of the knockout
 #' gene along with entrez ID#, `gene_name` containing only the HUGO gene name,
@@ -11,24 +11,32 @@
 #' the numerical dependency score values for each pair of genes and cell lines.
 #'
 #'
-#' @format A data frame with 9839772 rows (cell lines) and 6 variables:
+#' @format A data frame with 9927942 rows (cell lines) and 6 variables:
 #' \describe{
 #'     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
-#'     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
 #'     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
 #'     \item{gene_name}{HUGO symbol (e.g. "SAP25")}
 #'     \item{entrez_id}{Entrez ID# (e.g. 100316904)}
 #'     \item{dependency}{numerical depenency score of given gene and cell line}
+#'     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
 #' }
 #'
-#' @details This data represents the `gene_effect_corrected` file taken from
-#' the 19Q1 [Broad Institute](https://depmap.org/portal/download/)
+#' @details This data represents the `Achilles_gene_effect_corrected.csv` file
+#' taken from the 19Q2 [Broad Institute](https://depmap.org/portal/download/)
 #' cancer depenedency study. This dataset features the addition of a foreign key
 #' `depmap_id` found in the first column of this dataset, which was added from
 #' the `metadata` dataset. The numeric column `depenency` contains dependency
 #' scores for a knock out of a known gene for a given cell line. The dataset has
 #' been converted to a long format tibble. Variables names from the original
 #' dataset were converted to lower case, put in snake case, and abbreviated
+#'
+#' @section Change log:
+#' 
+#' - 19Q2: Initial dataset consisted of a data frame with 9839772 rows (cell
+#' lines) and 6 variables representing 17634 genes, 558 cell lines, 26 primary
+#' diseases and 28 lineages.
+#' 
+#' - 19Q2: adds 5 cell lines, 1 primary disease and 1 lineage
 #'
 #' @docType data
 #'
@@ -46,5 +54,5 @@
 #'
 #' @rdname crispr
 #'
-#' @aliases crispr_19Q1
+#' @aliases crispr_19Q2 crispr_19Q1
 crispr <- NULL

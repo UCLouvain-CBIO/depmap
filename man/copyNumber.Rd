@@ -3,18 +3,19 @@
 \docType{data}
 \name{copyNumber}
 \alias{copyNumber}
+\alias{copyNumber_19Q2}
 \alias{copyNumber_19Q1}
-\title{copyNumber}
-\format{A data frame with 37371596 rows (cell lines) and 6 variables.
+\title{copyNumber_19Q2}
+\format{A data frame with 37907473 rows (cell lines) and 6 variables.
 
 \describe{
      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
-     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
      \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
      \item{gene_name}{HUGO symbol (e.g. "SAP25")}
      \item{entrez_id}{Entrez ID# (e.g. 100316904)}
      \item{log_copy_number}{numerical log fold change in copy number for a
      given gene and cell line}
+     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
 }}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
@@ -23,9 +24,9 @@
 copyNumber
 }
 \description{
-The `copyNumber` dataset contains WES copy number data for genes and cancer
-cell lines. This dataset includes data from 23299 genes, 1604 cell lines, 38
-primary diseases and 33 lineages. The columns of `copyNumber` are:
+The `copyNumber` dataset contains the 19Q2 WES copy number data for genes and
+cancer cell lines. This dataset includes data from 23299 genes, 1627 cell
+lines, 38 primary diseases and 34 lineages. The columns of `copyNumber` are:
 `depmap_id`, a foreign key corresponding to the cancer cell lineage,
 `cell_line` containing the common CCLE name of the cancer cell lines,
 `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -34,14 +35,24 @@ containing only the entrez ID#, and `log_copy_number` containing the
 numerical dependency score values for each pair of genes and cell lines.
 }
 \details{
-This data represents the `public_19Q1_gene_cn` file taken from the
-19Q1 [Broad Institute](https://depmap.org/portal/download/)
-cancer depenedency study. This dataset features the addition of a foreign key
+This data represents the `public_19Q2_gene_cn` file taken from the
+19Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
+depenedency study. This dataset features the addition of a foreign key
 `depmap_id` found in the first column of this dataset, which was added from
 the `metadata` dataset. The dataset has been converted to a long format
 tibble. Variables names from the original dataset were converted to lower
 case, put in snake case, and abbreviated where feasible.
 }
+\section{Change log}{
+
+
+- 19Q1: Initial dataset consisted of a data frame with 37907473 rows
+(cell lines) and 6 variables representing 23299 genes, 1604 cell lines, 38
+primary diseases and 33 lineages.
+
+- 19Q2: adds 23 cell lines and 1 lineage
+}
+
 \references{
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer

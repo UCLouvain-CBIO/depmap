@@ -1,11 +1,12 @@
-#' mutationCalls
+#' mutationCalls_19Q2
 #'
-#' The `mutationCalls` dataset contains merged mutation calls (for coding
-#' region, germline filtered) and includes data from 18755 genes, 1601 cell
-#' lines, 37 primary diseases and 33 lineages. This dataset can be considered
-#' the metadata data set for mutations and does not contain any dependency data.
+#' The `mutationCalls` dataset contains merged the 19Q2 mutation calls (for
+#' coding region, germline filtered) and includes data from 18796 genes, 1631
+#' cell lines, 37 primary diseases and 34 lineages. This dataset can be
+#' considered the metadata data set for mutations and does not contain any
+#' dependency data.
 #'
-#' @format A data frame with 1243145 rows and 35 variables:
+#' @format A data frame with 1227713 rows and 34 variables:
 #' \describe{
 #'   \item{depmap_id}{depmap_id}
 #'   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -35,7 +36,6 @@
 #'   \item{is_cosmic_hotspot}{isCOSMIChotspot}
 #'   \item{cosmic_hsCnt}{COSMIChsCnt}
 #'   \item{ExAC_AF}{ExAC_AF}
-#'   \item{VA_WES_AC}{VA_WES_AC}
 #'   \item{CGA_WES_AC}{CGA_WES_AC}
 #'   \item{sanger_WES_AC}{SangerWES_AC}
 #'   \item{sanger_recalib_WES_AC}{SangerRecalibWES_AC}
@@ -46,19 +46,29 @@
 #'   \item{var_annotation}{Variant_annotation}
 #' }
 #'
-#' @details This data represents the `depmap_19Q1_mutation_calls` file taken
-#' from the 19Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' @details This data represents the `CCLE_mutations.csv` file taken from the
+#' 19Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study.  This dataset has been converted to a long format tibble.
 #' This dataset does not contain any expression or dependency data but rather
 #' contains the mutation calls for all cancer cell lines used in the current
-#' Depmap 19Q1 release. Some minor alterations to the original file were made.
+#' Depmap 19Q2 release. Some minor alterations to the original file were made.
 #' The first column of the original dataset, (item{ID}{Sample number}) was
 #' removed, as this column was only the row number and did not serve any unique
 #' identifying purpose. In addition, the column `depmap_id` was moved to the
 #' front to match the format of the other datasets. Variables names were
 #' converted to lower case, put in snake case, and abbreviated where feasible
 #' (e.g. "Variant_Annotation" was changed to "var_annotation").
-#'
+#' 
+#' @section Change log:
+#' 
+#' - 19Q1: Initial dataset for package consisted of dataframe with 1243145 rows
+#' and 35 variables representing 18755 genes, 1601 cell lines, 37 primary
+#' diseases and 33 lineages
+#' 
+#' - 19Q2: adds 30 cell lines, 1 primary disease and 1 lineage. This version has
+#' different columns than the previous version: the variable "VA_WES_AC" is no
+#' longer present in this dataset
+#' 
 #' @docType data
 #'
 #' @import dplyr
@@ -74,5 +84,5 @@
 #'
 #' @rdname mutationCalls
 #'
-#' @aliases mutationCalls_19Q1
+#' @aliases mutationCalls_19Q2 mutationCalls_19Q1
 mutationCalls <- NULL
