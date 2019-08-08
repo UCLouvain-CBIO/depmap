@@ -3,9 +3,10 @@
 \docType{data}
 \name{RPPA}
 \alias{RPPA}
+\alias{RPPA_19Q3}
 \alias{RPPA_19Q2}
 \alias{RPPA_19Q1}
-\title{RPPA_19Q2}
+\title{RPPA_19Q3}
 \format{A data frame with 192386 rows and 4 variables:
 \describe{
     \item{depmap_id}{cancer cell line foreign key (i.e. "ACH-000001")}
@@ -20,7 +21,7 @@
 RPPA
 }
 \description{
-The `RPPA` dataset contains the 19Q2 CCLE Reverse Phase Protein Array (RPPA)
+The `RPPA` dataset contains the 19Q3 CCLE Reverse Phase Protein Array (RPPA)
 cellular model expression data. This dataset includes data from 214 genes,
 899 cancer cell lines, 28 primary diseases and 28 lineages. The columns of
 `RPPA` are: `depmap_id`, a foreign key corresponding to the cancer cell
@@ -30,13 +31,14 @@ containing the name of knocked down gene and `expression` containing
 numerical protein expression data.
 }
 \details{
-This data represents the `CCLE_RPPA_20180123` file taken from the
-19Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
-depenedency study. This dataset features the addition of a foreign key
-`depmap_id` found in the first column of this dataset, which was added from
-the `metadata` dataset. This dataset has been converted to a long format
-tibble. Variables names from the original dataset were converted to lower
-case, put in snake case, and abbreviated where feasible.
+This data represents the `CCLE_RPPA_20181003.csv` file taken from
+the 19Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+depenedency study. The derived dataset found in the `depmap` package features
+the addition of a foreign key `depmap_id` found in the first column of this
+dataset, which was added from the `metadata` dataset. This dataset has been
+converted to a long format tibble. Variables names from the original dataset
+were converted to lower case, put in snake case, and abbreviated where
+feasible.
 }
 \section{Change log}{
 
@@ -46,6 +48,8 @@ variables representing 214 genes, 899 cancer cell lines, 28 primary diseases
 and 28 lineages.
 
 - 19Q2: no change
+
+- 19Q3: no change
 }
 
 \references{
@@ -53,5 +57,16 @@ Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 dependency map. Cell, 170(3), 564-576.
 (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
+
+Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
+... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
+generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
+503–508 (2019).
+(\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
+
+Haoxin Li, Shaoyang Ning, Mahmoud Ghandi, Gregory V. Kryukov, Shuba Gopal,
+... Levi A. Garraway & William R. Sellers. The landscape of cancer cell line
+metabolism. Nature Medicine 25, 850-860 (2019).
+(\href{"https://www.nature.com/articles/s41591-019-0404-8"}{Nature})
 }
 \keyword{datasets}

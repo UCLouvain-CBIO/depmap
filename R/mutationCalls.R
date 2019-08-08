@@ -1,12 +1,12 @@
-#' mutationCalls_19Q2
+#' mutationCalls_19Q3
 #'
-#' The `mutationCalls` dataset contains merged the 19Q2 mutation calls (for
-#' coding region, germline filtered) and includes data from 18796 genes, 1631
-#' cell lines, 37 primary diseases and 34 lineages. This dataset can be
+#' The `mutationCalls` dataset contains merged the 19Q3 mutation calls (for
+#' coding region, germline filtered) and includes data from 18797 genes, 1656
+#' cell lines, 36 primary diseases and 34 lineages. This dataset can be
 #' considered the metadata data set for mutations and does not contain any
 #' dependency data.
 #'
-#' @format A data frame with 1227713 rows and 34 variables:
+#' @format A data frame with 1239235 rows and 34 variables:
 #' \describe{
 #'   \item{depmap_id}{depmap_id}
 #'   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -47,17 +47,13 @@
 #' }
 #'
 #' @details This data represents the `CCLE_mutations.csv` file taken from the
-#' 19Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
-#' depenedency study.  This dataset has been converted to a long format tibble.
-#' This dataset does not contain any expression or dependency data but rather
-#' contains the mutation calls for all cancer cell lines used in the current
-#' Depmap 19Q2 release. Some minor alterations to the original file were made.
-#' The first column of the original dataset, (item{ID}{Sample number}) was
-#' removed, as this column was only the row number and did not serve any unique
-#' identifying purpose. In addition, the column `depmap_id` was moved to the
-#' front to match the format of the other datasets. Variables names were
-#' converted to lower case, put in snake case, and abbreviated where feasible
-#' (e.g. "Variant_Annotation" was changed to "var_annotation").
+#' 19Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' depenedency study. The derived dataset found in the `depmap` package features
+#' the addition of a foreign key `depmap_id` found in the first column of this
+#' dataset, which was added from the `metadata` dataset. This dataset has been
+#' converted to a long format tibble. Variables names from the original dataset
+#' were converted to lower case, put in snake case, and abbreviated where
+#' feasible.
 #' 
 #' @section Change log:
 #' 
@@ -67,7 +63,12 @@
 #' 
 #' - 19Q2: adds 30 cell lines, 1 primary disease and 1 lineage. This version has
 #' different columns than the previous version: the variable "VA_WES_AC" is no
-#' longer present in this dataset
+#' longer present in this dataset. Some minor alterations to the original file
+#' were made. The first column of the original dataset, (item{ID}{Sample number})
+#' was removed, as this column was only the row number and did not serve any
+#' unique identifying purpose.
+#' 
+#' - 19Q3: adds 1 gene, 25 cell lines and removes 1 primary disease. 
 #' 
 #' @docType data
 #'
@@ -79,10 +80,26 @@
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
 #' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
+#' 
+#' DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
+#' (\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
+#' Fileset. 
+#' 
+#' Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
+#' David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
+#' copy number effect improves specificity of CRISPR-Cas9 essentiality screens
+#' in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
+#'  
+#' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
+#' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
+#' generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
+#' 503–508 (2019).
+#' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname mutationCalls
 #'
-#' @aliases mutationCalls_19Q2 mutationCalls_19Q1
+#' @aliases mutationCalls_19Q3 mutationCalls_19Q2 mutationCalls_19Q1
 mutationCalls <- NULL
