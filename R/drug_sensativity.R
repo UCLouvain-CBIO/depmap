@@ -52,4 +52,4 @@
 #' @rdname drug_sensativity
 #'
 #' @aliases drug_sensativity_19Q3
-TPM <- NULL
+drug_sensativity <- NULL
