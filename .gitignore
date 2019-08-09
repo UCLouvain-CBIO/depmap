@@ -19,4 +19,12 @@ mutationCalls_19Q2.rda
 rnai_19Q2.rda
 RPPA_19Q2.rda
 TPM_19Q2.rda
+copyNumber_19Q3.rda
+crispr_19Q3.rda
+metadata_19Q3.rda
+mutationCalls_19Q3.rda
+rnai_19Q3.rda
+RPPA_19Q3.rda
+TPM_19Q3.rda
+drug_sensativity_19Q3.rda
 inst/eh_data

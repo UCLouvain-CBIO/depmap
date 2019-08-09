@@ -9,7 +9,7 @@
 \describe{
      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
-     \item{compound}{Drug compound name (e.g. BRD-A00077618-236-07-6::2.5::HTS)}
+     \item{compound}{Drug compound name (i.e. BRD-A00077618-236-07-6::2.5::HTS)}
      \item{dependency}{numerical depenency score of a gene for a cell line}
 }}
 \source{
@@ -22,12 +22,14 @@ TPM
 The `drug_sensativity` dataset contains the 19Q3 replicate collapsed logfold
 change values relative to DMSO, corrected for experimental confounders using
 ComBat. This dataset contains information refering to 4686 compounds, 578
-cell lines, 23 primary diseases and 25 lineages. The columns of 
-`drug_sensativity` are: `depmap_id` a foreign key corresponding to the
-cancer cell lineage, `cell_line` the common CCLE name of the cancer cell
-lines, `compound` the synonym for the drug compound, and `dependency` which
-contains the numerical dependency score values for each pair of genes and
-cell lines.
+cell lines, 23 primary diseases and 25 lineages. This dataset is part of the
+SIGMA Repurposing release which contains small molecule viability datasets
+generated using the Broad Repurposing Library and the PRISM multiplexed
+cell-line viability assay. The columns of `drug_sensativity` are: `depmap_id`
+a foreign key corresponding to the cancer cell lineage, `cell_line` the
+common CCLE name of the cancer cell lines, `compound` the synonym for the
+drug compound, and `dependency` which contains the numerical dependency score
+values for each pair of genes and cell lines.
 }
 \details{
 This data originates from the 
