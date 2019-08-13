@@ -18,7 +18,7 @@ library("tidyr")
 library("ExperimentHub")
 
 ##########################################
-## EH2556 depmap `metadata_19Q3` dataset
+## EH3086 depmap `metadata_19Q3` dataset
 ##########################################
 
 ##  data cleaning of `metadata` dataset
@@ -45,10 +45,11 @@ metadata_19Q3 <- sample_info
 names(metadata_19Q3)[1:23] <-c("depmap_id", "stripped_cell_line_name",
                               "cell_line", "aliases", "cosmic_id", "lineage",
                               "lineage_subtype", "lineage_sub_subtype", "sex",
-                              "source", "Achilles_n_replicates", "cell_line_NNMD",
-                              "culture_type", "culture_medium", "cas9_activity",
-                              "RRID", "sample_collection_site", "primary_or_metastasis",
-                              "primary_disease", "subtype_disease", "age", 
+                              "source", "Achilles_n_replicates",
+                              "cell_line_NNMD", "culture_type",
+                              "culture_medium", "cas9_activity", "RRID",
+                              "sample_collection_site", "primary_or_metastasis",
+                              "primary_disease", "subtype_disease", "age",
                               "sanger_id", "additional_info")
 
 ### visual check
@@ -61,7 +62,7 @@ save(metadata_19Q3, file = "../eh_data/metadata_19Q3.rda",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2556 <- x[["EH2556"]]
+# EH3086 <- x[["EH3086"]]
 
 ##########################################
 ## `depmap_id_to_name_19Q3 map `depmap_id` to `cell_line`
@@ -81,7 +82,7 @@ depmap_id_to_name_19Q3 <- metadata_19Q3 %>% dplyr::select(depmap_id, cell_line)
 # head(depmap_id_to_name_19Q3)
 
 ##########################################
-## EH2555 depmap `mutationCalls_19Q3` dataset
+## EH3085 depmap `mutationCalls_19Q3` dataset
 ##########################################
 
 ## data cleaning of `mutationCalls` dataset
@@ -119,11 +120,12 @@ names(mutationCalls_19Q3)[1:34] <- c("gene_name", "entrez_id", "ncbi_build",
                                 "dbSNP_val_status", "genome_change",
                                 "annotation_transcript", "tumor_sample_barcode",
                                 "cDNA_change", "codon_change", "protein_change",  
-                                "is_deleterious", "is_tcga_hotspot","tcga_hsCnt",
-                                "is_cosmic_hotspot", "cosmic_hsCnt", "ExAC_AF",
-                                "CGA_WES_AC", "sanger_WES_AC",
-                                "sanger_recalib_WES_AC", "RNAseq_AC", "HC_AC",
-                                "RD_AC", "WGS_AC", "var_annotation","depmap_id")
+                                "is_deleterious", "is_tcga_hotspot",
+                                "tcga_hsCnt", "is_cosmic_hotspot",
+                                "cosmic_hsCnt", "ExAC_AF", "CGA_WES_AC",
+                                "sanger_WES_AC", "sanger_recalib_WES_AC",
+                                "RNAseq_AC", "HC_AC", "RD_AC", "WGS_AC",
+                                "var_annotation","depmap_id")
 
 ### rearrange columns into same column format as other datasets
 mutationCalls_19Q3 <- mutationCalls_19Q3 %>%
@@ -146,10 +148,10 @@ save(mutationCalls_19Q3, file = "../eh_data/mutationCalls_19Q3.rda",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2555 <- x[["EH2555"]]
+# EH3085 <- x[["EH3085"]]
 
 ##########################################
-## EH2552 depmap `copyNumber_19Q3` dataset
+## EH3082 depmap `copyNumber_19Q3` dataset
 ##########################################
 
 ##  data cleaning of `copyNumber` dataset 
@@ -194,10 +196,10 @@ save(copyNumber_19Q3, file = "../eh_data/copyNumber_19Q3.rda",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2552 <- x[["EH2552"]]
+# EH3082 <- x[["EH3082"]]
 
 ##########################################
-## EH2551 depmap `crispr_19Q3` dataset
+## EH3081 depmap `crispr_19Q3` dataset
 ##########################################
 
 ##  data cleaning of `crispr` dataset`
@@ -242,10 +244,10 @@ save(crispr_19Q3, file = "../eh_data/crispr_19Q3.rda",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2551 <- x[["EH2551"]]
+# EH3081 <- x[["EH3081"]]
 
 ##########################################
-## EH2554 depmap `TPM_19Q3` dataset
+## EH3084 depmap `TPM_19Q3` dataset
 ##########################################
 
 ## data cleaning of `TPM` dataset
@@ -287,10 +289,10 @@ save(TPM_19Q3, file = "../eh_data/TPM_19Q3.rda", compress="xz",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2554 <- x[["EH2554"]]
+# EH3084 <- x[["EH3084"]]
 
 ##########################################
-## EH2553 depmap `RPPA_19Q3` dataset
+## EH3083 depmap `RPPA_19Q3` dataset
 ##########################################
 
 ## data cleaning of `RPPA` dataset
@@ -314,7 +316,8 @@ RPPA_19Q3 <- RPPA_19Q3_long %>% left_join(depmap_id_to_name_19Q3,
                                 by = c("cell_line" = "cell_line"))
 
 ### rearrange columns into same column format as other datasets
-RPPA_19Q3 <- RPPA_19Q3 %>% dplyr::select(cell_line, antibody, expression, depmap_id) 
+RPPA_19Q3 <- RPPA_19Q3 %>% dplyr::select(cell_line, antibody, expression,
+                                         depmap_id) 
 
 ### visual check
 # head(RPPA_19Q3)
@@ -326,10 +329,10 @@ save(RPPA_19Q3, file="../eh_data/RPPA_19Q3.rda", compress="xz",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2553 <- x[["EH2553"]]
+# EH3083 <- x[["EH3083"]]
 
 ##########################################
-## EH2550 depmap `rnai_19Q3` dataset
+## EH3080 depmap `rnai_19Q3` dataset
 ##########################################
 
 ## data cleaning of `rnai` dataset
@@ -365,10 +368,10 @@ save(rnai_19Q3, file="../eh_data/rnai_19Q3.rda", compress="xz",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2550 <- x[["EH2550"]]
+# EH3080 <- x[["EH3080"]]
 
 ##########################################
-## EH2550 depmap `drug_sensativity_19Q3` dataset
+## EH3087 depmap `drug_sensativity_19Q3` dataset
 ##########################################
 
 ## data cleaning of `drug_sensativity` dataset
@@ -406,4 +409,4 @@ save(drug_sensativity_19Q3, file="../eh_data/drug_sensativity_19Q3.rda",
 ## access the data on ExperimentHub
 # hub <- ExperimentHub()
 # x <- query(hub, "depmap")
-# EH2550 <- x[["EH2550"]]
+# EH3087 <- x[["EH3087"]]

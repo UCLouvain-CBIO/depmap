@@ -12,7 +12,7 @@ meta_19Q3 <- data.frame(
               paste0("TPM_19Q3"),
               paste0("mutationCalls_19Q3"),
               paste0("metadata_19Q3"),
-              paste0("drug_sensativity_19Q3.rda")
+              paste0("drug_sensativity_19Q3")
               ),
     Description = c(paste0("(DEMETER2) Batch and off-target corrected RNAi ", 
                            "gene knockdown dependency data for 17309 genes, ", 
