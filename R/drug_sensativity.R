@@ -46,6 +46,17 @@
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
 #' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
+#' 
+#' Steven M Corsello, Rohith T Nagari, Ryan D Spangler, Jordan Rossen, Mustafa
+#' Kocak, Jordan G Bryan, Ranad Humeidi, David Peck, Xiaoyun Wu, Andrew A Tang,
+#' Vickie MWang, Samantha A Bender, Evan Lemire, Rajiv Narayan, Philip
+#' Montgomery, Uri Ben-David, Yejia Chen, Matthew G Rees, Nicholas J Lyons,
+#' James M McFarland, Bang TWong, Li Wang, Nancy Dumont, Patrick J O'Hearn, Eric
+#' Stefan, John G Doench, HeidiGreulich, Matthew Meyerson, Francisca Vazquez,
+#' Aravind Subramanian, Jennifer A Roth, Joshua A Bittker, Jesse S Boehm,
+#' Christopher C Mader, Aviad Tsherniak, Todd R Golub. 2019. Non-oncology drugs
+#' are a source of previously unappreciated anti-cancer activity.
+#' (\href{"https://www.biorxiv.org/content/10.1101/730119v1"}{bioRXiv})
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
