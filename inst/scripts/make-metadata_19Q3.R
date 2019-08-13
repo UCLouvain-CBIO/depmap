@@ -12,7 +12,7 @@ meta_19Q3 <- data.frame(
               paste0("TPM_19Q3"),
               paste0("mutationCalls_19Q3"),
               paste0("metadata_19Q3"),
-              paste0("drug_sensativity_19Q3")
+              paste0("drug_sensitivity_19Q3")
               ),
     Description = c(paste0("(DEMETER2) Batch and off-target corrected RNAi ", 
                            "gene knockdown dependency data for 17309 genes, ", 
@@ -38,7 +38,7 @@ meta_19Q3 <- data.frame(
                     paste0("Metadata for cell lines in the 19Q1 DepMap release, ", 
                            "for 0 genes, 1736 cell lines, 37 primary diseases ", 
                            "and 34 lineages."),
-                    paste0("Drug sensativity data for cancer cell lines ",
+                    paste0("Drug sensitivity data for cancer cell lines ",
                            "derived from replicate collapsed logfold change ",
                            "values relative to DMSO, corrected for experimental ",
                            "confounders using ComBat representing 4686 compounds, ",
@@ -71,7 +71,7 @@ meta_19Q3 <- data.frame(
                   paste0("depmap/TPM_19Q3.rda"),
                   paste0("depmap/mutationCalls_19Q3.rda"),
                   paste0("depmap/metadata_19Q3.rda"),
-                  paste0("depmap/drug_sensativity_19Q3.rda")
+                  paste0("depmap/drug_sensitivity_19Q3.rda")
                   ),
     Tags=paste0("ExperimentHub, ExperimentData, ReproducibleResearch, RepositoryData, AssayDomainData, ", 
                 "CopyNumberVariationData, DiseaseModel, CancerData, BreastCancerData, ColonCancerData, ", 
