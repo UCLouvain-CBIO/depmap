@@ -317,7 +317,7 @@ RPPA_19Q3 <- RPPA_19Q3_long %>% left_join(depmap_id_to_name_19Q3,
 
 ### rearrange columns into same column format as other datasets
 RPPA_19Q3 <- RPPA_19Q3 %>% dplyr::select(cell_line, antibody, expression,
-                                         depmap_id) 
+                                            depmap_id) 
 
 ### visual check
 # head(RPPA_19Q3)

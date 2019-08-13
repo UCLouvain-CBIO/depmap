@@ -17,9 +17,9 @@
     titles <- utils::read.csv(fl, stringsAsFactors = FALSE)$Title
     ExperimentHub::createHubAccessors(pkgname, titles)
     # get metadata upon loading for 19Q3 datasets
-    fl <- system.file("extdata", "metadata_19Q3.csv", package = pkgname)
-    titles <- utils::read.csv(fl, stringsAsFactors = FALSE)$Title
-    ExperimentHub::createHubAccessors(pkgname, titles)
+    # fl <- system.file("extdata", "metadata_19Q3.csv", package = pkgname)
+    # titles <- utils::read.csv(fl, stringsAsFactors = FALSE)$Title
+    # ExperimentHub::createHubAccessors(pkgname, titles)
 }
  
 .onAttach <- function(libname, pkgname) {
