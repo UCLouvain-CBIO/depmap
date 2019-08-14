@@ -71,7 +71,7 @@ save(metadata_19Q2, file = "../eh_data/metadata_19Q2.rda",
 ## need to run the following code to generate the data correctly.
 
 ### `depmap_id_to_name` to add `depmap_id` or `cell_line` to other datasets
-depmap_id_to_name_19Q2 <- metadata_19Q2 %>% select(depmap_id, cell_line)
+depmap_id_to_name_19Q2 <- metadata_19Q2 %>% dplyr::select(depmap_id, cell_line)
 
 ### visual check
 # head(depmap_id_to_name_19Q2)

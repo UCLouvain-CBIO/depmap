@@ -61,10 +61,10 @@ library("ExperimentHub")
 # Available data
 
 The [depmap](https://github.com/UCLouvain-CBIO/depmap) package currently contains
-seven datasets available through `ExperimentHub`.
+eight datasets available through `ExperimentHub`.
 
 The data found in this R package has been converted from a "wide"
-format .csv file to "long" format .rda file. None of the values taken
+format `.csv` file to "long" format .rda file. None of the values taken
 from the original datasets have been changed, although the columns
 have been re-arranged.  Descriptions of the changes made are described
 under the `Details` section after querying the relevant dataset.
@@ -75,7 +75,8 @@ eh <- ExperimentHub()
 query(eh, "depmap")
 ```
 
-Each dataset has a `ExperimentHub` accession number, (e.g. *EH2260*).
+Each dataset has a `ExperimentHub` accession number, (e.g. *EH2260* refers to
+the `rnai` dataset from the 19Q1 release).
 
 ## RNA inference knockout data
 

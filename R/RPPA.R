@@ -1,6 +1,6 @@
-#' RPPA_19Q2
+#' RPPA_19Q3
 #'
-#' The `RPPA` dataset contains the 19Q2 CCLE Reverse Phase Protein Array (RPPA)
+#' The `RPPA` dataset contains the 19Q3 CCLE Reverse Phase Protein Array (RPPA)
 #' cellular model expression data. This dataset includes data from 214 genes,
 #' 899 cancer cell lines, 28 primary diseases and 28 lineages. The columns of
 #' `RPPA` are: `depmap_id`, a foreign key corresponding to the cancer cell
@@ -17,13 +17,14 @@
 #'     \item{expression}{Observed expression via RPPA of protein coding genes}
 #' }
 #'
-#' @details This data represents the `CCLE_RPPA_20180123` file taken from the
-#' 19Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
-#' depenedency study. This dataset features the addition of a foreign key
-#' `depmap_id` found in the first column of this dataset, which was added from
-#' the `metadata` dataset. This dataset has been converted to a long format
-#' tibble. Variables names from the original dataset were converted to lower
-#' case, put in snake case, and abbreviated where feasible.
+#' @details This data represents the `CCLE_RPPA_20181003.csv` file taken from
+#' the 19Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' depenedency study. The derived dataset found in the `depmap` package features
+#' the addition of a foreign key `depmap_id` found in the first column of this
+#' dataset, which was added from the `metadata` dataset. This dataset has been
+#' converted to a long format tibble. Variables names from the original dataset
+#' were converted to lower case, put in snake case, and abbreviated where
+#' feasible.
 #' 
 #' @section Change log:
 #' 
@@ -32,6 +33,8 @@
 #' and 28 lineages.
 #'
 #' - 19Q2: no change
+#' 
+#' - 19Q3: no change
 #'
 #' @docType data
 #'
@@ -43,10 +46,21 @@
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
 #' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
+#' 
+#' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
+#' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
+#' generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
+#' 503–508 (2019).
+#' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
+#' 
+#' Haoxin Li, Shaoyang Ning, Mahmoud Ghandi, Gregory V. Kryukov, Shuba Gopal,
+#' ... Levi A. Garraway & William R. Sellers. The landscape of cancer cell line
+#' metabolism. Nature Medicine 25, 850-860 (2019).
+#' (\href{"https://www.nature.com/articles/s41591-019-0404-8"}{Nature})
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname RPPA
 #'
-#' @aliases RPPA_19Q2 RPPA_19Q1
+#' @aliases RPPA_19Q3 RPPA_19Q2 RPPA_19Q1
 RPPA <- NULL

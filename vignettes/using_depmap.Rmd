@@ -67,7 +67,8 @@ query(eh, "depmap")
 rnai <- eh[["EH2260"]]
 crispr <- eh[["EH2261"]]
 copyNumber <- eh[["EH2262"]]
-
+# note: the datasets listed above are from the 19Q1 release. Newer datasets,
+# such as 19Q2 and 19Q3 are available.
 ```
 
 ## Find dependency score for "BRCA1" on "184A1_Breast"

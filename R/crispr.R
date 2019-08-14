@@ -1,8 +1,8 @@
-#' crispr_19Q2
+#' crispr_19Q3
 #'
-#' The `crispr` dataset contains the 19Q2 genetic dependency of CRISPR-Cas9 gene
+#' The `crispr` dataset contains the 19Q3 genetic dependency of CRISPR-Cas9 gene
 #' knockout of select genes in various cancer cell lines. This dataset includes
-#' data from 17634 genes, 563 cell lines, 27 primary diseases and 29 lineages.
+#' data from 18333 genes, 625 cell lines, 28 primary diseases and 29 lineages.
 #' The columns of `crispr` are: `depmap_id` a foreign key corresponding to the
 #' cancer cell lineage, `cell_line` containing the common CCLE name of the
 #' cancer cell lines, `gene` containing both the HUGO gene name of the knockout
@@ -11,7 +11,7 @@
 #' the numerical dependency score values for each pair of genes and cell lines.
 #'
 #'
-#' @format A data frame with 9927942 rows (cell lines) and 6 variables:
+#' @format A data frame with 11458125 rows (cell lines) and 6 variables:
 #' \describe{
 #'     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
 #'     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
@@ -21,22 +21,25 @@
 #'     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
 #' }
 #'
-#' @details This data represents the `Achilles_gene_effect_corrected.csv` file
-#' taken from the 19Q2 [Broad Institute](https://depmap.org/portal/download/)
-#' cancer depenedency study. This dataset features the addition of a foreign key
-#' `depmap_id` found in the first column of this dataset, which was added from
-#' the `metadata` dataset. The numeric column `depenency` contains dependency
-#' scores for a knock out of a known gene for a given cell line. The dataset has
-#' been converted to a long format tibble. Variables names from the original
-#' dataset were converted to lower case, put in snake case, and abbreviated
+#' @details This data represents the `Achilles_gene_effect.csv` file taken from
+#' the 19Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' depenedency study. The derived dataset found in the `depmap` package features
+#' the addition of a foreign key `depmap_id` found in the first column of this
+#' dataset, which was added from the `metadata` dataset. This dataset has been
+#' converted to a long format tibble. Variables names from the original dataset
+#' were converted to lower case, put in snake case, and abbreviated where
+#' feasible.
 #'
 #' @section Change log:
 #' 
-#' - 19Q2: Initial dataset consisted of a data frame with 9839772 rows (cell
+#' - 19Q1: Initial dataset consisted of a data frame with 9839772 rows (cell
 #' lines) and 6 variables representing 17634 genes, 558 cell lines, 26 primary
 #' diseases and 28 lineages.
 #' 
 #' - 19Q2: adds 5 cell lines, 1 primary disease and 1 lineage
+#'
+#' - 19Q3: Adds 699 genes, 62 cell lines and 1 primary disease. Now a dataset
+#' with 11458125 rows and 6 variables.
 #'
 #' @docType data
 #'
@@ -48,11 +51,27 @@
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
 #' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
+#' 
+#' DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
+#' (\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
+#' Fileset. 
+#' 
+#' Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
+#' David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
+#' copy number effect improves specificity of CRISPR-Cas9 essentiality screens
+#' in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
+#'  
+#' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
+#' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
+#' generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
+#' 503–508 (2019).
+#' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
 #' @source \href{"https://ndownloader.figshare.com/files/14221385"}{DepMap,
 #' Broad (2019)}
 #'
 #' @rdname crispr
 #'
-#' @aliases crispr_19Q2 crispr_19Q1
+#' @aliases crispr_19Q3 crispr_19Q2 crispr_19Q1
 crispr <- NULL

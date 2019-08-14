@@ -33,7 +33,7 @@
 #'   \item{cas9_activity}{Cas9 activity)}
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 19Q2
+#' @details This data represents the `sample_info.csv` file taken from the 19Q3
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -54,6 +54,8 @@
 #' of the metadata dataset contains 6 variables not found in previous versions,
 #' including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 #' `culture_medium`, and `cas9_activity`.
+#' 
+#' - 19Q3:
 #'
 #' @docType data
 #'
@@ -65,10 +67,26 @@
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
 #' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
+#' 
+#' DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
+#' (\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
+#' Fileset. 
+#' 
+#' Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
+#' David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
+#' copy number effect improves specificity of CRISPR-Cas9 essentiality screens
+#' in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
+#'  
+#' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
+#' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
+#' generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
+#' 503–508 (2019).
+#' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
 #' @rdname metadata
 #'
-#' @aliases metadata_19Q1 metadata_19Q2
+#' @aliases metadata_19Q1 metadata_19Q2 metadata_19Q3
 metadata <- NULL

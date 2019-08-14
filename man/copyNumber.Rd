@@ -3,10 +3,11 @@
 \docType{data}
 \name{copyNumber}
 \alias{copyNumber}
+\alias{copyNumber_19Q3}
 \alias{copyNumber_19Q2}
 \alias{copyNumber_19Q1}
-\title{copyNumber_19Q2}
-\format{A data frame with 37907473 rows (cell lines) and 6 variables.
+\title{copyNumber_19Q3}
+\format{A data frame with 45670234 rows (cell lines) and 6 variables.
 
 \describe{
      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -24,9 +25,9 @@
 copyNumber
 }
 \description{
-The `copyNumber` dataset contains the 19Q2 WES copy number data for genes and
-cancer cell lines. This dataset includes data from 23299 genes, 1627 cell
-lines, 38 primary diseases and 34 lineages. The columns of `copyNumber` are:
+The `copyNumber` dataset contains the 19Q3 WES copy number data for genes and
+cancer cell lines. This dataset includes data from 27562 genes, 1657 cell
+lines, 36 primary diseases and 34 lineages. The columns of `copyNumber` are:
 `depmap_id`, a foreign key corresponding to the cancer cell lineage,
 `cell_line` containing the common CCLE name of the cancer cell lines,
 `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -35,13 +36,14 @@ containing only the entrez ID#, and `log_copy_number` containing the
 numerical dependency score values for each pair of genes and cell lines.
 }
 \details{
-This data represents the `public_19Q2_gene_cn` file taken from the
-19Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
-depenedency study. This dataset features the addition of a foreign key
-`depmap_id` found in the first column of this dataset, which was added from
-the `metadata` dataset. The dataset has been converted to a long format
-tibble. Variables names from the original dataset were converted to lower
-case, put in snake case, and abbreviated where feasible.
+This data represents the `CCLE_gene_cn.csv` file taken from the
+19Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+depenedency study. The derived dataset found in the `depmap` package features
+the addition of a foreign key `depmap_id` found in the first column of this
+dataset, which was added from the `metadata` dataset. This dataset has been
+converted to a long format tibble. Variables names from the original dataset
+were converted to lower case, put in snake case, and abbreviated where
+feasible.
 }
 \section{Change log}{
 
@@ -51,6 +53,9 @@ case, put in snake case, and abbreviated where feasible.
 primary diseases and 33 lineages.
 
 - 19Q2: adds 23 cell lines and 1 lineage
+
+- 19Q3: Adds 3263 genes, 30 cell lines and removes 2 primary diseases. Now a
+dataframe with 45670234 rows and 6 variables.
 }
 
 \references{
@@ -58,5 +63,21 @@ Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 dependency map. Cell, 170(3), 564-576.
 (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
+
+DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
+(\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
+Fileset. 
+
+Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
+David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
+copy number effect improves specificity of CRISPR-Cas9 essentiality screens
+in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
+(\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
+ 
+Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
+... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
+generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
+503–508 (2019).
+(\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 }
 \keyword{datasets}
