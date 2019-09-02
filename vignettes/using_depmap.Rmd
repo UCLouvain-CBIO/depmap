@@ -20,30 +20,30 @@ BiocStyle::markdown()
 ```
 
 This vignette illustrates use cases and visualizations of the data
-found in the [depmap](https://github.com/UCLouvain-CBIO/depmap)
+found in the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
 package. See the *depmap* vignette for details about the datasets.
 
 # Introduction
 
-The [depmap](https://github.com/UCLouvain-CBIO/depmap) package aims to provide a
-reproducible research framework to cancer dependency data described by
-[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017):
-564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The data found in the
-[depmap](https://github.com/UCLouvain-CBIO/depmap) package has been formatted to
-facilitate the use of common R packages such as `dplyr` and `ggplot2`. We hope
-that this package will allow researchers to more easily mine, explore and
-visually illustrate dependency data taken from the Depmap cancer genomic
-dependency study.
+The [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+package aims to provide a reproducible research framework to cancer dependency
+data described by [Tsherniak, Aviad, et al. "Defining a cancer dependency map."
+Cell 170.3 (2017): 564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The
+data found in the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+package has been formatted to facilitate the use of common R packages such as
+`dplyr` and `ggplot2`. We hope that this package will allow researchers to more
+easily mine, explore and visually illustrate dependency data taken from the
+Depmap cancer genomic dependency study.
 
 # Use cases
 
 Perhaps the most interesting datasets found within the
-[depmap](https://github.com/UCLouvain-CBIO/depmap) package are those that relate to
-the cancer gene dependency score, such as `rnai` and `crispr`. These datasets
-contain a score expressing how vital a particular gene is in terms of how lethal
-the knockout/knockdown of that gene is on a target cell line. For example, a
-highly negative dependency score implies that a cell line is highly dependent
-on that gene.
+[depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+package are those that relate to the cancer gene dependency score, such as
+`rnai` and `crispr`. These datasets contain a score expressing how vital a
+particular gene is in terms of how lethal the knockout/knockdown of that gene is
+on a target cell line. For example, a highly negative dependency score implies
+that a cell line is highly dependent on that gene.
 
 Load necessary libaries.
 
