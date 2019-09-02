@@ -29,7 +29,7 @@ The `depmap` package aims to provide a reproducible research framework
 to cancer dependency data described by [Tsherniak, Aviad, et
 al. "Defining a cancer dependency map." Cell 170.3 (2017):
 564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The data
-found in the [depmap](https://github.com/UCLouvain-CBIO/depmap)
+found in the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
 package has been formatted to facilitate the use of common R packages
 such as `dplyr` and `ggplot2`. We hope that this package will allow
 researchers to more easily mine, explore and visually illustrate
@@ -37,8 +37,8 @@ dependency data taken from the Depmap cancer genomic dependency study.
 
 # Installation instructions
 
-To install [depmap](https://github.com/UCLouvain-CBIO/depmap), the
-[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
+To install [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html),
+the [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
 Bioconductor Project Package Manager is required. If
 [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) is
 not already installed, it will need to be done so beforehand. Type (within R)
@@ -46,7 +46,7 @@ install.packages("BiocManager") (This needs to be done just once.)
 
 ```{r install, eval=FALSE}
 install.packages("BiocManager")
-BiocManager::install("UCLouvain-CBIO/depmap")
+BiocManager::install("depmap")
 ```
 
 The `depmap` package fully depends on the `ExperimentHub` Bioconductor package,
@@ -60,8 +60,8 @@ library("ExperimentHub")
 
 # Available data
 
-The [depmap](https://github.com/UCLouvain-CBIO/depmap) package currently contains
-eight datasets available through `ExperimentHub`.
+The [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+package currently contains eight datasets available through `ExperimentHub`.
 
 The data found in this R package has been converted from a "wide"
 format `.csv` file to "long" format .rda file. None of the values taken
@@ -238,8 +238,9 @@ mutationCalls <- eh[["EH2265"]]
 
 The `mutationCalls` dataset contains all merged mutation calls (coding region,
 germline filtered) found in the depmap dependency study. This dataset
-corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the `r depmap::depmap_release()`
-depmap release and includes `r length(unique(mutationCalls$gene_name))` genes,
+corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the 
+`r depmap::depmap_release()` depmap release and includes 
+`r length(unique(mutationCalls$gene_name))` genes,
 `r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
 33 lineages.
 
@@ -260,15 +261,13 @@ rm(mutationCalls)
 # The [Broad Institute](https://depmap.org/portal/download/) data
 
 If desired, the original data from which the
-[depmap](https://github.com/UCLouvain-CBIO/depmap) package were
-derived from can be downloaded from the [Broad
-Institute](https://depmap.org/portal/download/) website. The
-instructions on how to download these files and how the data was
-transformed and loaded into the
-[depmap](https://github.com/UCLouvain-CBIO/depmap) package can be
-found in the `make_data.R` file found in `./inst/scripts`. (It should
-be noted that the original uncompressed *.csv* files are 1.5GB in
-total and take a moderate amount of time to download.)
+[depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+package were derived from can be downloaded from the [Broad Institute](https://depmap.org/portal/download/)
+website. The instructions on how to download these files and how the data was
+transformed and loaded into the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+package can be found in the `make_data.R` file found in `./inst/scripts`. (It
+should be noted that the original uncompressed *.csv* files are >1.5GB in
+total and take a moderate amount of time to download remotely.)
 
 # Session information
 
