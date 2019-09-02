@@ -8,7 +8,8 @@
 #' `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 #' `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
 #' `source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
-#' `culture_medium`, and `cas9_activity`.
+#' `culture_medium`, and `cas9_activity`. This dataset can be loaded into the R 
+#' environment with the `depmap_copyNumber` function.
 #'
 #' @format A data frame with 1714 rows (cell lines) and 16 variables:
 #' \describe{
@@ -62,6 +63,11 @@
 #' @import dplyr
 #'
 #' @keywords datasets
+#' 
+#' @examples
+#' \dontrun{
+#' depmap_metadata()
+#' }
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
@@ -88,5 +94,5 @@
 #'
 #' @rdname metadata
 #'
-#' @aliases metadata_19Q1 metadata_19Q2 metadata_19Q3
+#' @aliases metadata_19Q1 metadata_19Q2 metadata_19Q3 depmap_metadata
 metadata <- NULL

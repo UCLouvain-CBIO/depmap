@@ -6,6 +6,7 @@
 \alias{crispr_19Q3}
 \alias{crispr_19Q2}
 \alias{crispr_19Q1}
+\alias{depmap_crispr}
 \title{crispr_19Q3}
 \format{A data frame with 11458125 rows (cell lines) and 6 variables:
 \describe{
@@ -33,6 +34,8 @@ cancer cell lines, `gene` containing both the HUGO gene name of the knockout
 gene along with entrez ID#, `gene_name` containing only the HUGO gene name,
 `entrez_id` containing only the entrez ID# and `dependency` which contains
 the numerical dependency score values for each pair of genes and cell lines.
+This dataset can be loaded into R environment with the `depmap_crispr`
+function.
 }
 \details{
 This data represents the `Achilles_gene_effect.csv` file taken from
@@ -57,6 +60,12 @@ diseases and 28 lineages.
 with 11458125 rows and 6 variables.
 }
 
+\examples{
+\dontrun{
+depmap_crispr()
+}
+
+}
 \references{
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer

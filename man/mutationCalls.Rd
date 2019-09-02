@@ -6,6 +6,7 @@
 \alias{mutationCalls_19Q3}
 \alias{mutationCalls_19Q2}
 \alias{mutationCalls_19Q1}
+\alias{depmap_mutationCalls}
 \title{mutationCalls_19Q3}
 \format{A data frame with 1239235 rows and 34 variables:
 \describe{
@@ -57,7 +58,8 @@ The `mutationCalls` dataset contains merged the 19Q3 mutation calls (for
 coding region, germline filtered) and includes data from 18797 genes, 1656
 cell lines, 36 primary diseases and 34 lineages. This dataset can be
 considered the metadata data set for mutations and does not contain any
-dependency data.
+dependency data. This dataset can be loaded into the R environment with the
+`depmap_mutationCalls` function.
 }
 \details{
 This data represents the `CCLE_mutations.csv` file taken from the
@@ -86,6 +88,12 @@ unique identifying purpose.
 - 19Q3: adds 1 gene, 25 cell lines and removes 1 primary disease.
 }
 
+\examples{
+\dontrun{
+depmap_mutationCalls()
+}
+
+}
 \references{
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer

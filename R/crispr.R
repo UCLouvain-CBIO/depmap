@@ -9,6 +9,8 @@
 #' gene along with entrez ID#, `gene_name` containing only the HUGO gene name,
 #' `entrez_id` containing only the entrez ID# and `dependency` which contains
 #' the numerical dependency score values for each pair of genes and cell lines.
+#' This dataset can be loaded into R environment with the `depmap_crispr`
+#' function.
 #'
 #'
 #' @format A data frame with 11458125 rows (cell lines) and 6 variables:
@@ -46,6 +48,11 @@
 #' @import dplyr
 #'
 #' @keywords datasets
+#' 
+#' @examples
+#' \dontrun{
+#' depmap_crispr()
+#' }
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
@@ -73,5 +80,5 @@
 #'
 #' @rdname crispr
 #'
-#' @aliases crispr_19Q3 crispr_19Q2 crispr_19Q1
+#' @aliases crispr_19Q3 crispr_19Q2 crispr_19Q1 depmap_crispr
 crispr <- NULL

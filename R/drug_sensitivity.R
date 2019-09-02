@@ -28,7 +28,7 @@
 #' dataset, which was added from the `metadata` dataset. This dataset has been
 #' converted to a long format tibble. Variables names from the original dataset
 #' were converted to lower case, put in snake case, and abbreviated where
-#' feasible.
+#' feasible. 
 #'
 #' @section Change log:
 #' 
