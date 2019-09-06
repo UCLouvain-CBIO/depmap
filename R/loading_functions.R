@@ -1,7 +1,7 @@
 ##' @importFrom AnnotationHub query
 ##' @importFrom ExperimentHub ExperimentHub
 
-#' @export
+
 depmap_data_loading <- function(name) {
    eh <- ExperimentHub::ExperimentHub()
    eh <- AnnotationHub::query(eh, c("depmap", name))
@@ -9,6 +9,7 @@ depmap_data_loading <- function(name) {
    eh[[eh_name]]
 }
 
+#' @export
 depmap_rnai <- function() 
    depmap_data_loading("rnai")
 
@@ -30,8 +31,11 @@ depmap_metadata <- function()
 depmap_mutationCalls <- function()
    depmap_data_loading("copyNumber")
 
-# depmap_drug_sensitivity <- function() {
-#       eh <- AnnotationHub::query(eh, c("depmap", "drug_sensitivity"))
-#       eh_name <- names(eh)[length(eh)]
-#       eh[[eh_name]]
-# }
+# depmap_drug_sensitivity <- function()
+#    # depmap_drug_sensitivity("drug_sensitivity")
+
+depmap_drug_sensitivity <- function() {
+      eh <- AnnotationHub::query(eh, c("depmap", "drug_sensitivity"))
+      eh_name <- names(eh)[length(eh)]
+      eh[[eh_name]]
+}
