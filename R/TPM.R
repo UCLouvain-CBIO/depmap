@@ -8,7 +8,8 @@
 #' `gene` containing both the HUGO gene name of the knockdown gene along with
 #' ensembl ID#, `gene_name` containing the HUGO gene name and `ensembl_id`
 #' containing only the ensembl ID# and `expression` which contains the numerical
-#' protein coding gene expression change at scale (log2(TPM+1)).
+#' protein coding gene expression change at scale (log2(TPM+1)). This dataset
+#' can be loaded into R environment with the `depmap_RPPA` function.
 #'
 #' @format A data frame with 23164240 rows (cell lines) and 6 variables:
 #' \describe{
@@ -27,7 +28,7 @@
 #' dataset, which was added from the `metadata` dataset. This dataset has been
 #' converted to a long format tibble. Variables names from the original dataset
 #' were converted to lower case, put in snake case, and abbreviated where
-#' feasible.
+#' feasible. 
 #'
 #' @section Change log:
 #' 
@@ -46,6 +47,11 @@
 #' @import dplyr
 #'
 #' @keywords datasets
+#'
+#' @examples
+#' \dontrun{
+#' depmap_TPM()
+#' }
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
@@ -72,5 +78,5 @@
 #'
 #' @rdname TPM
 #'
-#' @aliases TPM_19Q3 TPM_19Q2 TPM_19Q1
+#' @aliases TPM_19Q3 TPM_19Q2 TPM_19Q1 depmap_TPM
 TPM <- NULL

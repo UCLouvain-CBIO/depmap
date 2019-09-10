@@ -6,6 +6,7 @@
 \alias{copyNumber_19Q3}
 \alias{copyNumber_19Q2}
 \alias{copyNumber_19Q1}
+\alias{depmap_copyNumber}
 \title{copyNumber_19Q3}
 \format{A data frame with 45670234 rows (cell lines) and 6 variables.
 
@@ -34,6 +35,8 @@ lines, 36 primary diseases and 34 lineages. The columns of `copyNumber` are:
 entrez ID#, `gene_name` containing only the HUGO gene name, `entrez_id`
 containing only the entrez ID#, and `log_copy_number` containing the
 numerical dependency score values for each pair of genes and cell lines.
+This dataset can be loaded into the R environment with the
+`depmap_copyNumber` function.
 }
 \details{
 This data represents the `CCLE_gene_cn.csv` file taken from the
@@ -58,6 +61,12 @@ primary diseases and 33 lineages.
 dataframe with 45670234 rows and 6 variables.
 }
 
+\examples{
+\dontrun{
+depmap_copyNumber()
+}
+
+}
 \references{
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer

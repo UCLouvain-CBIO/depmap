@@ -1,7 +1,7 @@
 Package: depmap
 Type: Package
 Title: Cancer Dependency Map Data Package
-Version: 0.99.5
+Version: 0.99.6
 Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    email = "laurent.gatto@uclouvain.be",
 		    role = c("cre", "aut")),
@@ -25,8 +25,8 @@ Description: The depmap package is a data package that accesses datsets from the
     DepMap for research purposes and not intended for clinical use. This data is
     distributed under the Creative Commons license (Attribution 4.0
     International (CC BY 4.0)).
-Depends: R (>= 3.6), methods, dplyr, ExperimentHub
-Imports: utils
+Depends: R (>= 3.6), methods, dplyr
+Imports: utils, ExperimentHub, AnnotationHub
 License: Artistic-2.0
 Encoding: UTF-8
 RoxygenNote: 6.1.1.9000

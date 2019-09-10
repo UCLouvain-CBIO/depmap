@@ -9,7 +9,8 @@
 #' gene along with entrez ID#, `gene_name` which only contains HUGO gene name,
 #' `entrez_id` which contains only the entrez ID# and `dependency` which
 #' contains the numerical dependency score values for each pair of genes and
-#' cell lines.
+#' cell lines. This dataset can be loaded into the R environment with the
+#' `depmap_rnai` function.
 #'
 #' @format A data frame with 12324008 rows (cell lines) and 6 variables:
 #' \describe{
@@ -45,6 +46,11 @@
 #' @import dplyr
 #'
 #' @keywords datasets
+#' 
+#' @examples
+#' \dontrun{
+#' depmap_rnai()
+#' }
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
@@ -63,5 +69,5 @@
 #'
 #' @rdname rnai
 #' 
-#' @aliases rnai_19Q3 rnai_19Q2 rnai_19Q1
+#' @aliases rnai_19Q3 rnai_19Q2 rnai_19Q1 depmap_rnai
 rnai <- NULL

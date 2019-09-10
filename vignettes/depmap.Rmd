@@ -26,10 +26,9 @@ suppressPackageStartupMessages(library("dplyr"))
 # Introduction
 
 The `depmap` package aims to provide a reproducible research framework
-to cancer dependency data described by [Tsherniak, Aviad, et
-al. "Defining a cancer dependency map." Cell 170.3 (2017):
-564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430). The data
-found in the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+to cancer dependency data described by
+[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017): 564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430).
+The data found in the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
 package has been formatted to facilitate the use of common R packages
 such as `dplyr` and `ggplot2`. We hope that this package will allow
 researchers to more easily mine, explore and visually illustrate
@@ -100,6 +99,12 @@ rnai <- eh[["EH2260"]]
 rnai
 ```
 
+The `rnai` dataset can also be accessed by using the `depmap_rnai` function.
+
+```{r}
+# depmap_rnai()
+```
+
 ```{r, echo = FALSE}
 rm(rnai)
 ```
@@ -124,6 +129,12 @@ crispr <- eh[["EH2261"]]
 
 ```{r}
 crispr
+```
+
+The `crispr` dataset can also be accessed by using the `depmap_crispr` function.
+
+```{r}
+# depmap_crispr()
 ```
 
 ```{r, echo = FALSE}
@@ -153,6 +164,13 @@ copyNumber <- eh[["EH2262"]]
 copyNumber
 ```
 
+The `copyNumber` dataset can also be accessed by using the `depmap_copyNumber`
+function.
+
+```{r}
+# depmap_copyNumber()
+```
+
 ```{r, echo = FALSE}
 rm(copyNumber)
 ```
@@ -175,6 +193,12 @@ RPPA <- eh[["EH2263"]]
 
 ```{r}
 RPPA
+```
+
+The `RPPA` dataset can also be accessed by using the `depmap_RPPA` function.
+
+```{r}
+# depmap_RPPA()
 ```
 
 ```{r, echo = FALSE}
@@ -202,6 +226,12 @@ TPM <- eh[["EH2264"]]
 TPM
 ```
 
+The `TPM` dataset can also be accessed by using the `depmap_TPM` function.
+
+```{r}
+# depmap_TPM()
+```
+
 ```{r, echo = FALSE}
 rm(TPM)
 ```
@@ -224,6 +254,13 @@ metadata <- eh[["EH2266"]]
 
 ```{r}
 metadata
+```
+
+The `metadat` dataset can also be accessed by using the `depmap_metadata`
+function.
+
+```{r}
+# depmap_metadata()
 ```
 
 ```{r, echo = FALSE}
@@ -251,6 +288,13 @@ mutationCalls <- eh[["EH2265"]]
 
 ```{r}
 mutationCalls
+```
+
+The `mutationCalls` dataset can also be accessed by using the
+`depmap_mutationCalls` function.
+
+```{r}
+# depmap_mutationCalls()
 ```
 
 ```{r, echo = FALSE}

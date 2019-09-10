@@ -6,6 +6,7 @@
 \alias{rnai_19Q3}
 \alias{rnai_19Q2}
 \alias{rnai_19Q1}
+\alias{depmap_rnai}
 \title{rnai_19Q3}
 \format{A data frame with 12324008 rows (cell lines) and 6 variables:
 \describe{
@@ -32,7 +33,8 @@ cancer cell lines, `gene` containing both the HUGO gene name of the knockdown
 gene along with entrez ID#, `gene_name` which only contains HUGO gene name,
 `entrez_id` which contains only the entrez ID# and `dependency` which
 contains the numerical dependency score values for each pair of genes and
-cell lines.
+cell lines. This dataset can be loaded into the R environment with the
+`depmap_rnai` function.
 }
 \details{
 This data represents the `D2_combined_genetic_dependency_scores`
@@ -56,6 +58,12 @@ primary diseases and 31 lineages.
 - 19Q3: adds 1 primary disease
 }
 
+\examples{
+\dontrun{
+depmap_rnai()
+}
+
+}
 \references{
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer

@@ -6,6 +6,7 @@
 \alias{TPM_19Q3}
 \alias{TPM_19Q2}
 \alias{TPM_19Q1}
+\alias{depmap_TPM}
 \title{TPM_19Q3}
 \format{A data frame with 23164240 rows (cell lines) and 6 variables:
 \describe{
@@ -31,7 +32,8 @@ cell lineage, `cell_line` the common CCLE name of the cancer cell lines,
 `gene` containing both the HUGO gene name of the knockdown gene along with
 ensembl ID#, `gene_name` containing the HUGO gene name and `ensembl_id`
 containing only the ensembl ID# and `expression` which contains the numerical
-protein coding gene expression change at scale (log2(TPM+1)).
+protein coding gene expression change at scale (log2(TPM+1)). This dataset
+can be loaded into R environment with the `depmap_RPPA` function.
 }
 \details{
 This data originates from the `CCLE_expression.csv` file taken
@@ -57,6 +59,12 @@ and adds 1 lineage
 Now a 23164240 by 6 dataframe.
 }
 
+\examples{
+\dontrun{
+depmap_TPM()
+}
+
+}
 \references{
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer

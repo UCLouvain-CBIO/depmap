@@ -6,6 +6,7 @@
 \alias{RPPA_19Q3}
 \alias{RPPA_19Q2}
 \alias{RPPA_19Q1}
+\alias{depmap_RPPA}
 \title{RPPA_19Q3}
 \format{A data frame with 192386 rows and 4 variables:
 \describe{
@@ -28,7 +29,8 @@ cellular model expression data. This dataset includes data from 214 genes,
 lineage, `cell_line` which contains the common CCLE name of the cancer cell
 lines, `gene` which contains the knockdown gene expression, `antibody`
 containing the name of knocked down gene and `expression` containing
-numerical protein expression data.
+numerical protein expression data. This dataset can be loaded into R
+environment with the `depmap_RPPA` function.
 }
 \details{
 This data represents the `CCLE_RPPA_20181003.csv` file taken from
@@ -52,6 +54,12 @@ and 28 lineages.
 - 19Q3: no change
 }
 
+\examples{
+\dontrun{
+depmap_RPPA()
+}
+
+}
 \references{
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer

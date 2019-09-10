@@ -9,6 +9,8 @@
 #' entrez ID#, `gene_name` containing only the HUGO gene name, `entrez_id`
 #' containing only the entrez ID#, and `log_copy_number` containing the
 #' numerical dependency score values for each pair of genes and cell lines.
+#' This dataset can be loaded into the R environment with the
+#' `depmap_copyNumber` function.
 #'
 #' @format A data frame with 45670234 rows (cell lines) and 6 variables.
 #'
@@ -29,7 +31,7 @@
 #' dataset, which was added from the `metadata` dataset. This dataset has been
 #' converted to a long format tibble. Variables names from the original dataset
 #' were converted to lower case, put in snake case, and abbreviated where
-#' feasible.
+#' feasible. 
 #' 
 #' @section Change log:
 #' 
@@ -43,6 +45,11 @@
 #' dataframe with 45670234 rows and 6 variables.
 #'
 #' @keywords datasets
+#'
+#' @examples
+#' \dontrun{
+#' depmap_copyNumber()
+#' }
 #'
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
@@ -67,7 +74,7 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 #'
-#' @aliases copyNumber_19Q3 copyNumber_19Q2 copyNumber_19Q1
+#' @aliases copyNumber_19Q3 copyNumber_19Q2 copyNumber_19Q1 depmap_copyNumber
 #'
 #' @rdname copyNumber
 copyNumber <- NULL
