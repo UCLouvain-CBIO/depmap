@@ -90,8 +90,9 @@ corresponds to the `D2_combined_genetic_dependency_scores.csv` file found in the
 genes, `r length(unique(rnai$cell_line))` cell lines, 30 primary diseases and 31
 lineages.
 
+Specific `rnai` datasets can be accessed, such as `rnai_19Q1` by EH number.
+
 ```{r, eval = FALSE}
-## access `rnai_19Q1` by EH number
 rnai <- eh[["EH2260"]]
 ```
 
@@ -99,10 +100,11 @@ rnai <- eh[["EH2260"]]
 rnai
 ```
 
-The `rnai` dataset can also be accessed by using the `depmap_rnai` function.
+The most recent `rnai` dataset can be automatically loaded into R by using the
+`depmap_rnai` function.
 
 ```{r}
-# depmap_rnai()
+depmap::depmap_rnai()
 ```
 
 ```{r, echo = FALSE}
@@ -122,8 +124,9 @@ depmap release. Data from this dataset includes `r length(unique(crispr$gene_nam
 genes, `r length(unique(crispr$cell_line))` cell lines, 26 primary diseases, 28
 lineages.
 
+Specific `crispr` datasets can be accessed, such as `crispr_19Q1` by EH number.
+
 ```{r, eval = FALSE}
-## access `crispr_19Q1` by EH number
 crispr <- eh[["EH2261"]]
 ```
 
@@ -131,10 +134,11 @@ crispr <- eh[["EH2261"]]
 crispr
 ```
 
-The `crispr` dataset can also be accessed by using the `depmap_crispr` function.
+The most recent `crispr` dataset can be automatically loaded into R by using the
+`depmap_crispr` function.
 
 ```{r}
-# depmap_crispr()
+depmap::depmap_crispr()
 ```
 
 ```{r, echo = FALSE}
@@ -155,8 +159,10 @@ This dataset includes `r length(unique(copyNumber$gene_name))` genes,
 `r length(unique(copyNumber$cell_line))` cell lines, 38 primary diseases and 33
 lineages.
 
+Specific `copyNumber` datasets can be accessed, such as `copyNumber_19Q1` by EH
+number.
+
 ```{r, eval = FALSE}
-## access `copyNumber_19Q1` by EH number
 copyNumber <- eh[["EH2262"]]
 ```
 
@@ -164,11 +170,11 @@ copyNumber <- eh[["EH2262"]]
 copyNumber
 ```
 
-The `copyNumber` dataset can also be accessed by using the `depmap_copyNumber`
-function.
+The most recent `copyNumber` dataset can be automatically loaded into R by using
+the `depmap_copyNumber` function.
 
 ```{r}
-# depmap_copyNumber()
+depmap::depmap_copyNumber()
 ```
 
 ```{r, echo = FALSE}
@@ -186,8 +192,9 @@ which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depma
 depmap release. This dataset includes 214 genes, `r length(unique(RPPA$cell_line))`
 cell lines, 28 primary diseases, 28 lineages.
 
+Specific `RPPA` datasets can be accessed, such as `RPPA_19Q1` by EH number.
+
 ```{r, eval = FALSE}
-## access `RPPA_19Q1` by EH number
 RPPA <- eh[["EH2263"]]
 ```
 
@@ -195,10 +202,11 @@ RPPA <- eh[["EH2263"]]
 RPPA
 ```
 
-The `RPPA` dataset can also be accessed by using the `depmap_RPPA` function.
+The most recent `RPPA` dataset can be automatically loaded into R by using the
+`depmap_RPPA` function.
 
 ```{r}
-# depmap_RPPA()
+depmap::depmap_RPPA()
 ```
 
 ```{r, echo = FALSE}
@@ -217,8 +225,9 @@ data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the `r depmap::depm
 depmap release. This dataset includes `r length(unique(TPM$gene_name))` genes,
 `r length(unique(TPM$cell_line))` cell lines, 33 primary Diseases, 32 lineages.
 
+Specific `TPM` datasets can be accessed, such as `TPM_19Q1` by EH number.
+
 ```{r, eval = FALSE}
-## access `TPM_19Q1` by EH number
 TPM <- eh[["EH2264"]]
 ```
 
@@ -229,7 +238,7 @@ TPM
 The `TPM` dataset can also be accessed by using the `depmap_TPM` function.
 
 ```{r}
-# depmap_TPM()
+depmap::depmap_TPM()
 ```
 
 ```{r, echo = FALSE}
@@ -247,8 +256,10 @@ It corresponds to the `depmap_19Q1_cell_lines.csv` file found in the `r depmap::
 depmap release. This dataset includes 0 genes, `r length(unique(metadata$cell_line))`
 cell lines, 38 primary diseases and 33 lineages.
 
+Specific `metadata` datasets can be accessed, such as `metadata_19Q1` by EH
+number.
+
 ```{r, eval = FALSE}
-## access `metadata_19Q1` by EH number
 metadata <- eh[["EH2266"]]
 ```
 
@@ -256,11 +267,11 @@ metadata <- eh[["EH2266"]]
 metadata
 ```
 
-The `metadat` dataset can also be accessed by using the `depmap_metadata`
-function.
+The most recent `metadata` dataset can be automatically loaded into R by using
+the `depmap_metadata` function.
 
 ```{r}
-# depmap_metadata()
+depmap::depmap_metadata()
 ```
 
 ```{r, echo = FALSE}
@@ -281,8 +292,10 @@ corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the
 `r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
 33 lineages.
 
+Specific `mutationCalls` datasets can be accessed, such as `mutationCalls_19Q1`
+by EH number.
+
 ```{r, eval = FALSE}
-## access `mutationCalls_19Q1` by EH number
 mutationCalls <- eh[["EH2265"]]
 ```
 
@@ -290,17 +303,51 @@ mutationCalls <- eh[["EH2265"]]
 mutationCalls
 ```
 
-The `mutationCalls` dataset can also be accessed by using the
-`depmap_mutationCalls` function.
+The most recent `mutationCalls` dataset can be automatically loaded into R by
+using the  `depmap_mutationCalls` function.
 
 ```{r}
-# depmap_mutationCalls()
+depmap::depmap_mutationCalls()
 ```
 
 ```{r, echo = FALSE}
 rm(mutationCalls)
 ```
 
+## Drug Sensitivity
+
+```{r, echo = FALSE}
+drug_sensitivity <- eh[["EH3087"]]
+```
+
+The `drug_sensitivity` dataset contains dependency data for cancer cell lines
+treated with `r length(unique(drug_sensitivity$compound))` compounds. This
+dataset corresponds with the `primary_replicate_collapsed_logfold_change.csv`
+file found in the  `r depmap::depmap_release()` depmap release and includes 
+`r length(unique(drug_sensitivity$depmap_id))` cell lines, 23 primary diseases
+and 25 lineages.
+
+Specific `drug_sensitivity` datasets can be accessed, such as
+`drug_sensitivity_19Q3` by EH number.
+
+```{r, eval = FALSE}
+drug_sensitivity <- eh[["EH3087"]]
+```
+
+```{r}
+drug_sensitivity
+```
+
+The most recent `drug_sensitivity` dataset can be automatically loaded into R by
+using the `depmap_drug_sensitivity` function.
+
+```{r}
+depmap::depmap_drug_sensitivity()
+```
+
+```{r, echo = FALSE}
+rm(drug_sensitivity)
+```
 
 # The [Broad Institute](https://depmap.org/portal/download/) data
 
