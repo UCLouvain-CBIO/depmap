@@ -37,12 +37,6 @@ depmap_metadata <- function()
 depmap_mutationCalls <- function()
    depmap_data_loading("copyNumber")
 
-# depmap_drug_sensitivity <- function()
-#    # depmap_drug_sensitivity("drug_sensitivity")
-
 #' @export
-depmap_drug_sensitivity <- function() {
-      eh <- AnnotationHub::query(eh, c("depmap", "drug_sensitivity"))
-      eh_name <- names(eh)[length(eh)]
-      eh[[eh_name]]
-}
+depmap_drug_sensitivity <- function()
+   depmap_data_loading("drug_sensitivity")
