@@ -1,23 +1,23 @@
 ### =========================================================================
-### depmap metadata 19Q3 data 
+### depmap metadata 19Q4 data 
 ### -------------------------------------------------------------------------
-### this script generates the metadata_19Q3.csv
+### this script generates the metadata_19Q4.csv
 ## note: this script assumes that your current directory is depmap/inst/scripts/
 
 meta_19Q3 <- data.frame(
-    Title = c(paste0("rnai_19Q3"),
-              paste0("crispr_19Q3"), 
-              paste0("copyNumber_19Q3"),
-              paste0("RPPA_19Q3"), 
-              paste0("TPM_19Q3"),
-              paste0("mutationCalls_19Q3"),
-              paste0("metadata_19Q3"),
-              paste0("drug_sensitivity_19Q3")
+    Title = c(paste0("rnai_19Q4"), ## will some datasets not change in Q4?
+              paste0("crispr_19Q4"), 
+              paste0("copyNumber_19Q4"),
+              paste0("RPPA_19Q4"), 
+              paste0("TPM_19Q4"),
+              paste0("mutationCalls_19Q4"),
+              paste0("metadata_19Q4"),
+              paste0("drug_sensitivity_19Q4")
               ),
-    Description = c(paste0("(DEMETER2) Batch and off-target corrected RNAi ", 
+    Description = c(paste0("(DEMETER2) Batch and off-target corrected RNAi ", ## need to update descriptions
                            "gene knockdown dependency data for 17309 genes, ", 
                            "712 cancer cell lines, 31 primary Diseases and ", 
-                           "31 lineages."), 
+                           "31 lineages."),
                     paste0("(CERES) Batch and off-target corrected CRISPR-Cas9 ", 
                            "gene knockdout dependency data for 18333 genes, ", 
                            "625 cell lines, 28 primary diseases and 29 ", 
@@ -47,16 +47,16 @@ meta_19Q3 <- data.frame(
     BiocVersion = "3.10",
     Genome = "", 
     SourceType = "CSV", 
-    SourceUrl = c(paste0("https://ndownloader.figshare.com/files/13515395"),
-                  paste0("https://ndownloader.figshare.com/files/16757666"),
-                  paste0("https://ndownloader.figshare.com/files/16757699"),
-                  paste0("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fccle_2019%2FCCLE_RPPA_20181003.csv"),
-                  paste0("https://ndownloader.figshare.com/files/16757690"),
-                  paste0("https://ndownloader.figshare.com/files/16757702"),
-                  paste0("https://ndownloader.figshare.com/files/16757723"),
-                  paste0("https://ndownloader.figshare.com/files/17008628")
+    SourceUrl = c(paste0("https://ndownloader.figshare.com/files/13515395"), ## not updated
+                  paste0("https://ndownloader.figshare.com/files/20234073"),
+                  paste0("https://ndownloader.figshare.com/files/20234367"),
+                  paste0("https://depmap.org/portal/download/api/download/external?file_name=ccle%2Fccle_2019%2FCCLE_RPPA_20181003.csv"), ## not updated
+                  paste0("https://ndownloader.figshare.com/files/20234346"),
+                  paste0("https://ndownloader.figshare.com/files/20274747"),
+                  paste0("https://ndownloader.figshare.com/files/20274744"),
+                  paste0("https://ndownloader.figshare.com/files/17008628") ## not updated
                   ),
-    SourceVersion = "Aug 7 2019",
+    SourceVersion = "Dec 20 2019",
     Species = "Homo sapiens",
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
@@ -64,22 +64,22 @@ meta_19Q3 <- data.frame(
     Maintainer = "Theo Killian <theodore.killian@uclouvain.be>",
     RDataClass = "tibble",
     DispatchClass = "Rda",
-    RDataPath = c(paste0("depmap/rnai_19Q3.rda"), 
-                  paste0("depmap/crispr_19Q3.rda"), 
-                  paste0("depmap/copyNumber_19Q3.rda"), 
-                  paste0("depmap/RPPA_19Q3.rda"), 
-                  paste0("depmap/TPM_19Q3.rda"),
-                  paste0("depmap/mutationCalls_19Q3.rda"),
-                  paste0("depmap/metadata_19Q3.rda"),
-                  paste0("depmap/drug_sensitivity_19Q3.rda")
+    RDataPath = c(paste0("depmap/rnai_19Q4.rda"), 
+                  paste0("depmap/crispr_19Q4.rda"), 
+                  paste0("depmap/copyNumber_19Q4.rda"), 
+                  paste0("depmap/RPPA_19Q4.rda"), 
+                  paste0("depmap/TPM_19Q4.rda"),
+                  paste0("depmap/mutationCalls_19Q4.rda"),
+                  paste0("depmap/metadata_19Q4.rda"),
+                  paste0("depmap/drug_sensitivity_19Q4.rda")
                   ),
     Tags=paste0("ExperimentHub, ExperimentData, ReproducibleResearch, RepositoryData, AssayDomainData, ", 
                 "CopyNumberVariationData, DiseaseModel, CancerData, BreastCancerData, ColonCancerData, ", 
                 "KidneyCancerData, LeukemiaCancerData, LungCancerData, OvarianCancerData, ProstateCancerData", 
                 "OrganismData, Homo_sapiens_Data, PackageTypeData, SpecimenSource, CellCulture, Genome, ", 
                 "Proteome, StemCell, Tissue"),
-    Notes = "This dataset is from the 19Q3 release")
+    Notes = "This dataset is from the 19Q4 release")
 
-write.csv(meta_19Q3, file="../extdata/metadata_19Q3.csv", row.names=FALSE)
+write.csv(meta_19Q3, file="../extdata/metadata_19Q4.csv", row.names=FALSE)
 ## to upload this metadata to EH, enter the following into the CL
-## ExperimentHubData::makeExperimentHubMetadata("~/tmp/depmap/", fileName = "metadata_19Q3.csv")
+## ExperimentHubData::makeExperimentHubMetadata("~/tmp/depmap/", fileName = "metadata_19Q4.csv")
