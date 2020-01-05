@@ -4,6 +4,7 @@
 \name{drug_sensitivity}
 \alias{drug_sensitivity}
 \alias{drug_sensitivity_19Q3}
+\alias{depmap_drug_sensitivity}
 \title{drug_sensitivity_19Q3}
 \format{A data frame with 67498602 rows (cell lines) and 6 variables:
 \describe{

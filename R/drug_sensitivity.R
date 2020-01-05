@@ -62,5 +62,5 @@
 #'
 #' @rdname drug_sensitivity
 #'
-#' @aliases drug_sensitivity_19Q3
+#' @aliases drug_sensitivity_19Q3 depmap_drug_sensitivity
 drug_sensitivity <- NULL
