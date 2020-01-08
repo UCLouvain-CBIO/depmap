@@ -35,7 +35,7 @@ meta_19Q4 <- data.frame(
                     paste0("Merged mutation calls (for coding region, germline ", 
                            "filtered) and includes data from 18798 genes, 1666 ", 
                            "cell lines, 35 primary diseases and 36 lineages. "),
-                    paste0("Metadata for cell lines in the 19Q1 DepMap release, ", 
+                    paste0("Metadata for cell lines in the 19Q4 DepMap release, ", 
                            "for 0 genes, 1756 cell lines, 35 primary diseases ", 
                            "and 37 lineages.") #,
                     # paste0("Drug sensitivity data for cancer cell lines ", ## not found in Q4 release
