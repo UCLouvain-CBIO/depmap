@@ -35,6 +35,8 @@
 #' - 19Q3: Initial dataset consisted of a data frame with 2708508 rows (cell
 #' lines) and 6 variables representing 686 compounds, 578 cell lines, 23 primary
 #' diseases and 25 lineages.
+#' 
+#' - 19Q4: no change, no further releases are scheduled at this time.
 #'
 #' @docType data
 #'
@@ -62,5 +64,5 @@
 #'
 #' @rdname drug_sensitivity
 #'
-#' @aliases drug_sensitivity_19Q3
+#' @aliases drug_sensitivity_19Q3 depmap_drug_sensitivity
 drug_sensitivity <- NULL

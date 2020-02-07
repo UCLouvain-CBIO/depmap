@@ -3,7 +3,6 @@
 \docType{package}
 \name{depmap}
 \alias{depmap}
-\alias{depmap-package}
 \title{depmap: Cancer Dependency Map Data Package}
 \description{
 The depmap package is a data package that accesses datsets from the Broad

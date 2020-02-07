@@ -56,6 +56,8 @@ primary diseases and 31 lineages.
 - 19Q2: adds 1 cell line
 
 - 19Q3: adds 1 primary disease
+
+- 19Q4: no change, no further releases are scheduled at this time.
 }
 
 \examples{
