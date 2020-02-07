@@ -1,12 +1,14 @@
-# depmap 0.99
+# depmap 1.1
 
-## Changes in version 0.99.6
+## Changes in version 1.1.1
 
 - 19Q4 data added
 - Updated loading functions (accessor functions)
 - 19Q4 versions of `rnai`, `RPPA` and `drug_sensitivity` were not
   released for this quarter, and therefore the 19Q3 releases for
   these datasets are the most current versions.
+
+# depmap 0.99
 
 ## Changes in version 0.99.5
 
