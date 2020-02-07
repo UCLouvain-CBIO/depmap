@@ -3,12 +3,13 @@
 \docType{data}
 \name{mutationCalls}
 \alias{mutationCalls}
+\alias{mutationCalls_19Q4}
 \alias{mutationCalls_19Q3}
 \alias{mutationCalls_19Q2}
 \alias{mutationCalls_19Q1}
 \alias{depmap_mutationCalls}
-\title{mutationCalls_19Q3}
-\format{A data frame with 1239235 rows and 34 variables:
+\title{mutationCalls_19Q4}
+\format{A data frame with 1253648 rows and 34 variables:
 \describe{
   \item{depmap_id}{depmap_id}
   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -23,7 +24,7 @@
   \item{var_type}{Variant Type}
   \item{ref_allele}{Reference Allele}
   \item{tumor_seq_allele1}{Tumor Seq Allele1}
-  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)
+  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)3
   reference cluster}
   \item{dbSNP_val_status}{dbSNP Val Status}
   \item{genome_change}{Genome Change}
@@ -54,16 +55,16 @@
 mutationCalls
 }
 \description{
-The `mutationCalls` dataset contains merged the 19Q3 mutation calls (for
-coding region, germline filtered) and includes data from 18797 genes, 1656
-cell lines, 36 primary diseases and 34 lineages. This dataset can be
+The `mutationCalls` dataset contains merged the 19Q4 mutation calls (for
+coding region, germline filtered) and includes data from 18798 genes, 1666
+cell lines, 35 primary diseases and 36 lineages. This dataset can be
 considered the metadata data set for mutations and does not contain any
 dependency data. This dataset can be loaded into the R environment with the
 `depmap_mutationCalls` function.
 }
 \details{
 This data represents the `CCLE_mutations.csv` file taken from the
-19Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+19Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -86,6 +87,8 @@ was removed, as this column was only the row number and did not serve any
 unique identifying purpose.
 
 - 19Q3: adds 1 gene, 25 cell lines and removes 1 primary disease.
+
+- 19Q4: adds 1 gene, 10 cell lines, 0 primary diseases and 2 lineages.
 }
 
 \examples{

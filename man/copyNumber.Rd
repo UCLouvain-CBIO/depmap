@@ -3,12 +3,13 @@
 \docType{data}
 \name{copyNumber}
 \alias{copyNumber}
+\alias{copyNumber_19Q4}
 \alias{copyNumber_19Q3}
 \alias{copyNumber_19Q2}
 \alias{copyNumber_19Q1}
 \alias{depmap_copyNumber}
-\title{copyNumber_19Q3}
-\format{A data frame with 45670234 rows (cell lines) and 6 variables.
+\title{copyNumber_19Q4}
+\format{A data frame with 46488798 rows (cell lines) and 6 variables.
 
 \describe{
      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -26,9 +27,9 @@
 copyNumber
 }
 \description{
-The `copyNumber` dataset contains the 19Q3 WES copy number data for genes and
-cancer cell lines. This dataset includes data from 27562 genes, 1657 cell
-lines, 36 primary diseases and 34 lineages. The columns of `copyNumber` are:
+The `copyNumber` dataset contains the 19Q4 WES copy number data for genes and
+cancer cell lines. This dataset includes data from 27639 genes, 1682 cell
+lines, 35 primary diseases and 36 lineages. The columns of `copyNumber` are:
 `depmap_id`, a foreign key corresponding to the cancer cell lineage,
 `cell_line` containing the common CCLE name of the cancer cell lines,
 `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -40,7 +41,7 @@ This dataset can be loaded into the R environment with the
 }
 \details{
 This data represents the `CCLE_gene_cn.csv` file taken from the
-19Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+19Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -57,8 +58,10 @@ primary diseases and 33 lineages.
 
 - 19Q2: adds 23 cell lines and 1 lineage
 
-- 19Q3: Adds 3263 genes, 30 cell lines and removes 2 primary diseases. Now a
+- 19Q3: adds 3263 genes, 30 cell lines and removes 2 primary diseases. Now a
 dataframe with 45670234 rows and 6 variables.
+
+- 19Q4: adds 77 genes, 25 cell lines, 0 primary diseases and 2 lineages.
 }
 
 \examples{

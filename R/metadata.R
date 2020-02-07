@@ -1,17 +1,17 @@
-#' metadata_19Q2
+#' metadata_19Q4
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 19Q2
+#' The `metadata` dataset contains the metadata about cell lines in the 19Q4
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
-#' dependency data but contains the metadata for 0 genes, 1714 cell lines, 39
-#' primary diseases and 34 lineages. The columns of `metadata` are: `depmap_id`,
+#' dependency data but contains the metadata for 0 genes, 1756 cell lines, 35
+#' primary diseases and 37 lineages. The columns of `metadata` are: `depmap_id`,
 #' `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 #' `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
 #' `source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 #' `culture_medium`, and `cas9_activity`. This dataset can be loaded into the R 
 #' environment with the `depmap_copyNumber` function.
 #'
-#' @format A data frame with 1714 rows (cell lines) and 16 variables:
+#' @format A data frame with 1756 rows (cell lines) and 16 variables:
 #' \describe{
 #'   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
 #'   foreign key (i.e. "ACH-00001")}
@@ -34,7 +34,7 @@
 #'   \item{cas9_activity}{Cas9 activity)}
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 19Q3
+#' @details This data represents the `sample_info.csv` file taken from the 19Q4
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -56,7 +56,9 @@
 #' including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 #' `culture_medium`, and `cas9_activity`.
 #' 
-#' - 19Q3:
+#' - 19Q3: adds 0 genes, 30 cell lines, 2 primary diseases and 2 lineages.
+#' 
+#' - 19Q4: for 0 genes, 42 cell lines, 0 primary diseases and 3 lineages.
 #'
 #' @docType data
 #'
@@ -82,7 +84,7 @@
 #' David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
 #' copy number effect improves specificity of CRISPR-Cas9 essentiality screens
 #' in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
-#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
+#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})14
 #'  
 #' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
 #' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
@@ -94,5 +96,6 @@
 #'
 #' @rdname metadata
 #'
-#' @aliases metadata_19Q1 metadata_19Q2 metadata_19Q3 depmap_metadata
+#' @aliases metadata_19Q1 metadata_19Q2 metadata_19Q3 metadata_19Q4
+#' depmap_metadata
 metadata <- NULL
