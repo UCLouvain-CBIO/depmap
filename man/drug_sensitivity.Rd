@@ -51,6 +51,8 @@ lines) and 6 variables representing 686 compounds, 578 cell lines, 23 primary
 diseases and 25 lineages.
 
 - 19Q4: no change, no further releases are scheduled at this time.
+
+- 20Q1: no change, no further releases are scheduled at this time.
 }
 
 \references{
