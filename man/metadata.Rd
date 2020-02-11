@@ -7,9 +7,10 @@
 \alias{metadata_19Q2}
 \alias{metadata_19Q3}
 \alias{metadata_19Q4}
+\alias{metadata_20Q1}
 \alias{depmap_metadata}
-\title{metadata_19Q4}
-\format{A data frame with 1756 rows (cell lines) and 16 variables:
+\title{metadata_20Q1}
+\format{A data frame with 1755 rows (cell lines) and 16 variables:
 \describe{
   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
   foreign key (i.e. "ACH-00001")}
@@ -18,18 +19,27 @@
   \item{aliases}{Aliases of cancer cell line}
   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID
   number (e.g. 905933)}
-  \item{sanger_id}{Sanger ID (eg. 2201)}
-  \item{primary_disease}{Primary Disease (e.g. cancer type)}
-  \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
-  (AML), M3 (Promyelocytic))}
-  \item{sub_subtype_disease}{Sub-subtype Disease)}
-  \item{gender}{Gender of tissue sample)}
+  \item{lineage}{Lineage of cancer cell line}
+  \item{lineage_subtype}{Subtype of lineage of cancer cell line}
+  \item{lineage_sub_subtype}{Subtype of subtype of Lineage of cancer cell line}
+  \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
+  \item{sex}{Sex of tissue sample)}
   \item{source}{Source of tissue sample)}
   \item{Achilles_n_replicates}{Number of replicates)}
   \item{cell_line_NNMD}{Cell line NNMD)}
   \item{culture_type}{Culture type of tissue sample)}
   \item{culture_medium}{Culture medium of tissue sample)}
   \item{cas9_activity}{Cas9 activity)}
+  \item{RRID}{Resource Identification Portal ID}
+  \item{sample_collection_site}{Site of sample collection}
+  \item{primary_or_metastasis}{Primary cancer cell line or metastatic}
+  \item{primary_disease}{Primary Disease (e.g. cancer type)}
+  \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
+  (AML), M3 (Promyelocytic))}
+  \item{age}{Age of individual sample of cell line was derived}
+  \item{sanger_id}{Sanger ID (eg. 2201)}
+  \item{additional_info}{Additional information about samples}
+  
 }}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
@@ -38,10 +48,10 @@
 metadata
 }
 \description{
-The `metadata` dataset contains the metadata about cell lines in the 19Q4
+The `metadata` dataset contains the metadata about cell lines in the 20Q1
 Broad Institute DepMap release, which includes mapping between `depmap_id`
 and `cell_line` name for cancer cell lines. This dataset does not contain any
-dependency data but contains the metadata for 0 genes, 1756 cell lines, 35
+dependency data but contains the metadata for 0 genes, 1775 cell lines, 35
 primary diseases and 37 lineages. The columns of `metadata` are: `depmap_id`,
 `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
@@ -50,7 +60,7 @@ primary diseases and 37 lineages. The columns of `metadata` are: `depmap_id`,
 environment with the `depmap_copyNumber` function.
 }
 \details{
-This data represents the `sample_info.csv` file taken from the 19Q4
+This data represents the `sample_info.csv` file taken from the 20Q1
 [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 study. This dataset features the a primary key `depmap_id` which is a unique
 ID given to each cell line and is found in the first column of this dataset.
@@ -76,6 +86,9 @@ including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 - 19Q3: adds 0 genes, 30 cell lines, 2 primary diseases and 2 lineages.
 
 - 19Q4: for 0 genes, 42 cell lines, 0 primary diseases and 3 lineages.
+
+- 20Q1: adds 19 cell lines, `gender` was changed to `sex`, `age`,
+`primary_or_metastasis` and `sample_collection_site`` were added
 }
 
 \examples{

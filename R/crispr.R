@@ -1,8 +1,8 @@
-#' crispr_19Q4
+#' crispr_20Q1
 #'
-#' The `crispr` dataset contains the 19Q4 genetic dependency of CRISPR-Cas9 gene
+#' The `crispr` dataset contains the 20Q1 genetic dependency of CRISPR-Cas9 gene
 #' knockout of select genes in various cancer cell lines. This dataset includes
-#' data from 18333 genes, 689 cell lines, 29 primary diseases and 26 lineages.
+#' data from 18333 genes, 739 cell lines, 29 primary diseases and 26 lineages.
 #' The columns of `crispr` are: `depmap_id` a foreign key corresponding to the
 #' cancer cell lineage, `cell_line` containing the common CCLE name of the
 #' cancer cell lines, `gene` containing both the HUGO gene name of the knockout
@@ -13,7 +13,7 @@
 #' function.
 #'
 #'
-#' @format A data frame with 12631437 rows (cell lines) and 6 variables:
+#' @format A data frame with 13548087 rows (cell lines) and 6 variables:
 #' \describe{
 #'     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
 #'     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
@@ -24,7 +24,7 @@
 #' }
 #'
 #' @details This data represents the `Achilles_gene_effect.csv` file taken from
-#' the 19Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' the 20Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -44,6 +44,8 @@
 #' with 11458125 rows and 6 variables.
 #' 
 #' - 19Q4: adds 0 genes, 64 cell lines, 1 primary diseases and 0 lineages.
+#' 
+#' - 20Q1: adds 50 cell lines
 #'
 #' @docType data
 #'
@@ -82,5 +84,6 @@
 #'
 #' @rdname crispr
 #'
-#' @aliases crispr_19Q4 crispr_19Q3 crispr_19Q2 crispr_19Q1 depmap_crispr
+#' @aliases crispr_20Q1 crispr_19Q4 crispr_19Q3 crispr_19Q2 crispr_19Q1
+#' depmap_crispr
 crispr <- NULL
