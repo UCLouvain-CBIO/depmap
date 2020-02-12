@@ -27,7 +27,7 @@ meta_20Q1 <- data.frame(
                     paste0("Metadata for cell lines in the 20Q1 DepMap release, ", 
                            "for 0 genes, 1775 cell lines, 35 primary diseases ", 
                            "and 37 lineages.")),
-    BiocVersion = "3.12",
+    BiocVersion = "3.11",
     Genome = "", 
     SourceType = "CSV", 
     SourceUrl = c(paste0("https://ndownloader.figshare.com/files/21521910"),
