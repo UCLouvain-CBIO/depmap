@@ -35,7 +35,7 @@ meta_20Q1 <- data.frame(
                   paste0("https://ndownloader.figshare.com/files/21521940"),
                   paste0("https://ndownloader.figshare.com/files/21521967"),
                   paste0("https://ndownloader.figshare.com/files/21522000")),
-    SourceVersion = "Feb 20 2019",
+    SourceVersion = "Feb 10 2020",
     Species = "Homo sapiens",
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
