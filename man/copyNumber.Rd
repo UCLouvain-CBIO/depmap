@@ -10,7 +10,8 @@
 \alias{copyNumber_19Q1}
 \alias{depmap_copyNumber}
 \title{copyNumber_20Q1}
-\format{A data frame with 47345607 rows (cell lines) and 6 variables.
+\format{
+A data frame with 47345607 rows (cell lines) and 6 variables.
 
 \describe{
      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -20,7 +21,8 @@
      \item{log_copy_number}{numerical log fold change in copy number for a
      given gene and cell line}
      \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
-}}
+}
+}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 }

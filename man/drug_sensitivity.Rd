@@ -6,13 +6,15 @@
 \alias{drug_sensitivity_19Q3}
 \alias{depmap_drug_sensitivity}
 \title{drug_sensitivity_19Q3}
-\format{A data frame with 67498602 rows (cell lines) and 6 variables:
+\format{
+A data frame with 67498602 rows (cell lines) and 6 variables:
 \describe{
      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
      \item{compound}{Drug compound name (i.e. BRD-A00077618-236-07-6::2.5::HTS)}
      \item{dependency}{numerical depenency score of a gene for a cell line}
-}}
+}
+}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 }

@@ -8,13 +8,15 @@
 \alias{RPPA_19Q1}
 \alias{depmap_RPPA}
 \title{RPPA_19Q3}
-\format{A data frame with 192386 rows and 4 variables:
+\format{
+A data frame with 192386 rows and 4 variables:
 \describe{
     \item{depmap_id}{cancer cell line foreign key (i.e. "ACH-000001")}
     \item{cell_line}{CCLE name of cancer cell line (i.e. "NIHOVCAR3_OVARY")}
     \item{antibody}{Name of antibody targeting protein (i.e. "14-3-3_beta")}
     \item{expression}{Observed expression via RPPA of protein coding genes}
-}}
+}
+}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 }
