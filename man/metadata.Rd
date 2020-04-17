@@ -10,7 +10,8 @@
 \alias{metadata_20Q1}
 \alias{depmap_metadata}
 \title{metadata_20Q1}
-\format{A data frame with 1755 rows (cell lines) and 16 variables:
+\format{
+A data frame with 1755 rows (cell lines) and 16 variables:
 \describe{
   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
   foreign key (i.e. "ACH-00001")}
@@ -40,7 +41,8 @@
   \item{sanger_id}{Sanger ID (eg. 2201)}
   \item{additional_info}{Additional information about samples}
   
-}}
+}
+}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 }

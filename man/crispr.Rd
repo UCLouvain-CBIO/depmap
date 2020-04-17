@@ -10,7 +10,8 @@
 \alias{crispr_19Q1}
 \alias{depmap_crispr}
 \title{crispr_20Q1}
-\format{A data frame with 13548087 rows (cell lines) and 6 variables:
+\format{
+A data frame with 13548087 rows (cell lines) and 6 variables:
 \describe{
     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
@@ -18,7 +19,8 @@
     \item{entrez_id}{Entrez ID# (e.g. 100316904)}
     \item{dependency}{numerical depenency score of given gene and cell line}
     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
-}}
+}
+}
 \source{
 \href{"https://ndownloader.figshare.com/files/14221385"}{DepMap,
 Broad (2019)}

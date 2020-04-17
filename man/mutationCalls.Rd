@@ -10,7 +10,8 @@
 \alias{mutationCalls_19Q1}
 \alias{depmap_mutationCalls}
 \title{mutationCalls_20Q1}
-\format{A data frame with 1279923 rows and 34 variables:
+\format{
+A data frame with 1279923 rows and 34 variables:
 \describe{
   \item{depmap_id}{depmap_id}
   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -48,7 +49,8 @@
   \item{RD_AC}{RD_AC}
   \item{WGS_AC}{WGS_AC}
   \item{var_annotation}{Variant_annotation}
-}}
+}
+}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 }
