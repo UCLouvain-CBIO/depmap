@@ -2,8 +2,8 @@
 
 ## Changes in version 1.1.3
 
-The using_depmap vignette has been updated to illustrate how to visualize
-depmap data using ggplot2.
+- The using_depmap vignette has been updated to illustrate how to
+  visualize depmap data using ggplot2.
 
 ## Changes in version 1.1.2
 
