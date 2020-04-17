@@ -10,7 +10,8 @@
 \alias{TPM_19Q1}
 \alias{depmap_TPM}
 \title{TPM_20Q1}
-\format{A data frame with 24312880 rows (cell lines) and 6 variables:
+\format{
+A data frame with 24312880 rows (cell lines) and 6 variables:
 \describe{
      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
@@ -18,7 +19,8 @@
      \item{gene_name}{HUGO symbol (e.g. "TSPAN6")}
      \item{ensembl_id}{Ensembl ID (e.g. ENSG00000044574)}
      \item{expression}{Log fold (log2(TPM+1)) protein expression change}
-}}
+}
+}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 }

@@ -8,7 +8,8 @@
 \alias{rnai_19Q1}
 \alias{depmap_rnai}
 \title{rnai_19Q3}
-\format{A data frame with 12324008 rows (cell lines) and 6 variables:
+\format{
+A data frame with 12324008 rows (cell lines) and 6 variables:
 \describe{
     \item{depmap_id}{cancer cancer cell line foreign key (i.e. "ACH-00001")}
     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
@@ -16,7 +17,8 @@
     \item{gene_name}{HUGO symbol (e.g. "SAP25")}
     \item{entrez_id}{Entrez ID# (e.g. 100316904)}
     \item{dependency}{numerical depenency score of a gene for a cell line}
-}}
+}
+}
 \source{
 \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
 }
