@@ -1,15 +1,16 @@
 ### =========================================================================
-### depmap metadata 20Q1 data 
+### depmap metadata 20Q2 data 
 ### -------------------------------------------------------------------------
-### this script generates the metadata_20Q1.csv
+### this script generates the metadata_20Q2.csv
 ## note: this script assumes that your current directory is depmap/inst/scripts/
 
-meta_20Q1 <- data.frame(
-    Title = c(paste0("crispr_20Q1"), 
-              paste0("copyNumber_20Q1"),
-              paste0("TPM_20Q1"),
-              paste0("mutationCalls_20Q1"),
-              paste0("metadata_20Q1")),
+meta_20Q2 <- data.frame(
+    Title = c(paste0("crispr_20Q2"), 
+              paste0("copyNumber_20Q2"),
+              paste0("TPM_20Q2"),
+              paste0("mutationCalls_20Q2"),
+              paste0("metadata_20Q2"),
+              paste0("proteomic_20Q2")),
     Description = c( paste0("(CERES) Batch and off-target corrected CRISPR-Cas9 ", 
                            "gene knockdout dependency data for 18333 genes, ", 
                            "739 cell lines, 29 primary diseases and 26 ", 
@@ -24,9 +25,11 @@ meta_20Q1 <- data.frame(
                     paste0("Merged mutation calls (for coding region, germline ", 
                            "filtered) and includes data from 18802 genes, 1697 ", 
                            "cell lines, 35 primary diseases and 36 lineages. "),
-                    paste0("Metadata for cell lines in the 20Q1 DepMap release, ", 
+                    paste0("Metadata for cell lines in the 20Q2 DepMap release, ", 
                            "for 0 genes, 1775 cell lines, 35 primary diseases ", 
-                           "and 37 lineages.")),
+                           "and 37 lineages."),
+                    paste0("Quantitative profiling of thousands of proteins by ",
+                           "mass spectrometry across 375 cell lines from the Gygi lab.")),
     BiocVersion = "3.12",
     Genome = "", 
     SourceType = "CSV", 
@@ -34,8 +37,9 @@ meta_20Q1 <- data.frame(
                   paste0("https://ndownloader.figshare.com/files/21521964"),
                   paste0("https://ndownloader.figshare.com/files/21521940"),
                   paste0("https://ndownloader.figshare.com/files/21521967"),
+                  paste0("https://ndownloader.figshare.com/files/21522000"),
                   paste0("https://ndownloader.figshare.com/files/21522000")),
-    SourceVersion = "Feb 20 2020",
+    SourceVersion = "May 15 2020",
     Species = "Homo sapiens",
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
@@ -43,18 +47,19 @@ meta_20Q1 <- data.frame(
     Maintainer = "Theo Killian <theodore.killian@uclouvain.be>",
     RDataClass = "tibble",
     DispatchClass = "Rda",
-    RDataPath = c(paste0("depmap/crispr_20Q1.rda"), 
-                  paste0("depmap/copyNumber_20Q1.rda"),
-                  paste0("depmap/TPM_20Q1.rda"),
-                  paste0("depmap/mutationCalls_20Q1.rda"),
-                  paste0("depmap/metadata_20Q1.rda")),
+    RDataPath = c(paste0("depmap/crispr_20Q2.rda"), 
+                  paste0("depmap/copyNumber_20Q2.rda"),
+                  paste0("depmap/TPM_20Q2.rda"),
+                  paste0("depmap/mutationCalls_20Q2.rda"),
+                  paste0("depmap/metadata_20Q2.rda"),
+                  paste0("depmap/proteomic_20Q2.rda")),
     Tags=paste0("ExperimentHub, ExperimentData, ReproducibleResearch, RepositoryData, AssayDomainData, ", 
                 "CopyNumberVariationData, DiseaseModel, CancerData, BreastCancerData, ColonCancerData, ", 
                 "KidneyCancerData, LeukemiaCancerData, LungCancerData, OvarianCancerData, ProstateCancerData", 
                 "OrganismData, Homo_sapiens_Data, PackageTypeData, SpecimenSource, CellCulture, Genome, ", 
                 "Proteome, StemCell, Tissue"),
-    Notes = "This dataset is from the 20Q1 release")
+    Notes = "This dataset is from the 20Q2 release")
 
-write.csv(meta_20Q1, file = "../extdata/metadata_20Q1.csv", row.names = FALSE)
+write.csv(meta_20Q2, file = "../extdata/metadata_20Q2.csv", row.names = FALSE)
 ## to upload this metadata to EH, enter the following into the CL
-## ExperimentHubData::makeExperimentHubMetadata("~/tmp/depmap/", fileName = "metadata_20Q1.csv")
+## ExperimentHubData::makeExperimentHubMetadata("~/tmp/depmap/", fileName = "metadata_20Q2.csv")
