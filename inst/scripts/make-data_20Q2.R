@@ -249,13 +249,13 @@ CCLE_expression_full_20Q2 <- read_tsv(url_37)
 
 ### CCLE_depMap_20Q2_TPM.csv data renamed to `TPM`
 TPM_20Q2 <- CCLE_expression_full_20Q2
-names(TPM_20Q2)
+# names(TPM_20Q2)
 
 ### rename column first column to "depmap_id"
 names(TPM_20Q2)[1] <-"depmap_id"
 
 ### gather `TPM` into long form on columns: `depmap_id`, `gene`, `expression`
-TPM_20Q2_long <- gather(TPM_20Q2, gene, expression, -depmap_id)
+TPM_20Q2_long <- gather(TPM_20Q2, gene, rna_expression, -depmap_id)
 
 ### mutate gene into gene_name and ensembl_id
 TPM_20Q2_long <- TPM_20Q2_long %>% 
@@ -267,14 +267,14 @@ TPM_20Q2 <- TPM_20Q2_long %>% left_join(depmap_id_to_name_20Q2,
                               by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-TPM_20Q2 <- TPM_20Q2 %>% dplyr::select(depmap_id, gene, expression, ensembl_id,
+TPM_20Q2 <- TPM_20Q2 %>% dplyr::select(depmap_id, gene, rna_expression, ensembl_id,
                                 gene_name, cell_line) %>%
                                 type_convert(cols(ensembl_id = "i"))
 ### visual check
-head(TPM_20Q2)
+# View(TPM_20Q2[1:10, ])
 
 ### saving cleaned and converted `TPM` data as .rda file
-save(TPM_20Q2, file = "../eh_data/TPM_20Q2.rda", compress="xz",
+save(TPM_20Q2, file = "../eh_data/TPM_20Q2.rda", compress = "xz",
      compression_level = 9)
 
 ##########################################
@@ -288,30 +288,38 @@ protein_quant_current_normalized_20Q2 <- read_csv(url_38)
 
 ### protein_quant_current_normalized_TPM.csv data renamed to `TPM`
 proteomic_20Q2 <- protein_quant_current_normalized_20Q2
-names(proteomic_20Q2)
+# names(proteomic_20Q2)
 
 ### gather `proteomic` into long form on columns: `depmap_id`, `gene`, `expression`
-proteomic_20Q2_long <- gather(proteomic_20Q2,
-    intensity,
-    -Protein_Id:TenPx24_Peptides)
+proteomic_20Q2_long <- proteomic_20Q2 %>%
+    dplyr::select(-starts_with("TenPx")) %>%
+    pivot_longer(names_to = "Protein", values_to = "protein_expression", 7:384)
 
 ### mutate gene into gene_name and ensembl_id
 proteomic_20Q2_long <- proteomic_20Q2_long %>% 
-    mutate(ensembl_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+    mutate(TenPx = gsub("^.*?TenPx", "TenPx", Protein)) %>% 
+    mutate(cell_line = sub("_[^_]+$", "", Protein))
 
 ### left_join join proteomic & depmap_id_to_name_20Q2, add cell_line column
-proteomic_20Q2 <- proteomic_20Q2_long %>% left_join(depmap_id_to_name_20Q2, 
-                                        by = c("depmap_id" = "depmap_id"))
+proteomic_20Q2 <- proteomic_20Q2_long %>%
+    dplyr::left_join(depmap_id_to_name_20Q2, by = c("cell_line" = "cell_line"))
+
+names(proteomic_20Q2) <- c("protein_id", "gene_name", "desc",
+                           "group_id", "uniprot", "uniprot_acc", "protein",
+                           "protein_expression", "TenPx", "cell_line" , "depmap_id")
+
+proteomic_20Q2 <- proteomic_20Q2 %>%
+    dplyr::left_join(unique(dplyr::select(mutationCalls_20Q2, gene_name, entrez_id)),
+                     by = c("gene_name" = "gene_name"))
 
 ### rearrange columns into same column format as other datasets
 proteomic_20Q2 <- proteomic_20Q2 %>%
-    dplyr::select(depmap_id, gene, expression,
-                  ensembl_id, gene_name, cell_line) %>%
-    type_convert(cols(ensembl_id = "i"))
+    dplyr::select(depmap_id, gene_name, entrez_id, protein, protein_expression,
+                  everything()) %>%
+    type_convert(cols(entrez_id = "i"))
 
 ### visual check
-head(proteomic_20Q2)
+# View(proteomic_20Q2)
 
 ### saving cleaned and converted `proteomic` data as .rda file
 save(proteomic_20Q2, file = "../eh_data/proteomic_20Q2.rda", compress = "xz",

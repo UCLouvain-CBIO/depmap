@@ -1,13 +1,13 @@
-#' mutationCalls_20Q1
+#' mutationCalls_20Q2
 #'
-#' The `mutationCalls` dataset contains merged the 20Q1 mutation calls (for
-#' coding region, germline filtered) and includes data from 18802 genes, 1697
-#' cell lines, 35 primary diseases and 36 lineages. This dataset can be
+#' The `mutationCalls` dataset contains merged the 20Q2 mutation calls (for
+#' coding region, germline filtered) and includes data from 18802 genes, 1741
+#' cell lines, 35 primary diseases and 37 lineages. This dataset can be
 #' considered the metadata data set for mutations and does not contain any
 #' dependency data. This dataset can be loaded into the R environment with the
 #' `depmap_mutationCalls` function.
 #'
-#' @format A data frame with 1279923 rows and 34 variables:
+#' @format A data frame with 1296237 rows and 34 variables:
 #' \describe{
 #'   \item{depmap_id}{depmap_id}
 #'   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -48,7 +48,7 @@
 #' }
 #'
 #' @details This data represents the `CCLE_mutations.csv` file taken from the
-#' 20Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' 20Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -73,7 +73,9 @@
 #' 
 #' - 19Q4: adds 1 gene, 10 cell lines, 0 primary diseases and 2 lineages.
 #' 
-#' - 20Q1: adds 4 genes, 31 cell lines
+#' - 20Q1: adds 4 genes, 31 cell lines, 1 lineage
+#' 
+#' - 20Q2: adds 44 cell lines, 1 lineage
 #' 
 #' @docType data
 #'
@@ -107,10 +109,11 @@
 #' 503–508 (2019).
 #' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
-#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
+#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
 #'
 #' @rdname mutationCalls
 #'
 #' @aliases mutationCalls_20Q1 mutationCalls_19Q4 mutationCalls_19Q3
-#' mutationCalls_19Q2 mutationCalls_19Q1 depmap_mutationCalls
+#' mutationCalls_19Q2 mutationCalls_19Q1 mutationCalls_20Q2 depmap_mutationCalls
+#' 
 mutationCalls <- NULL

@@ -3,45 +3,46 @@
 \docType{data}
 \name{TPM}
 \alias{TPM}
+\alias{TPM_20Q2}
 \alias{TPM_20Q1}
 \alias{TPM_19Q4}
 \alias{TPM_19Q3}
 \alias{TPM_19Q2}
 \alias{TPM_19Q1}
 \alias{depmap_TPM}
-\title{TPM_20Q1}
+\title{TPM_20Q2}
 \format{
-A data frame with 24312880 rows (cell lines) and 6 variables:
+A data frame with 24963776 rows (cell lines) and 6 variables:
 \describe{
      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
      \item{gene}{HUGO symbol and Ensembl ID (e.g. TSPAN6 (ENSG00000000003))}
      \item{gene_name}{HUGO symbol (e.g. "TSPAN6")}
      \item{ensembl_id}{Ensembl ID (e.g. ENSG00000044574)}
-     \item{expression}{Log fold (log2(TPM+1)) protein expression change}
+     \item{rna_expression}{Log fold (log2(TPM+1)) protein expression change}
 }
 }
 \source{
-\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
+\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
 }
 \usage{
 TPM
 }
 \description{
-The `TPM` dataset contains the 20Q1 CCLE "Transcript Per Million" RNAseq gene
+The `TPM` dataset contains the 20Q2 CCLE "Transcript Per Million" RNAseq gene
 expression data for protein coding genes. This dataset includes data from
-19144 genes, 1270 cell lines, 32 primary diseases and 34 lineages. The
+19144 genes, 1304 cell lines, 32 primary diseases and 34 lineages. The
 columns of `TPM` are: `depmap_id`, a foreign key corresponding to the cancer
 cell lineage, `cell_line` the common CCLE name of the cancer cell lines,
 `gene` containing both the HUGO gene name of the knockdown gene along with
 ensembl ID#, `gene_name` containing the HUGO gene name and `ensembl_id`
-containing only the ensembl ID# and `expression` which contains the numerical
-protein coding gene expression change at scale (log2(TPM+1)). This dataset
-can be loaded into R environment with the `depmap_RPPA` function.
+containing only the ensembl ID# and `rna_expression` which contains the
+numerical protein coding gene expression change at scale (log2(TPM+1)). This
+dataset can be loaded into R environment with the `depmap_TPM` function.
 }
 \details{
 This data originates from the `CCLE_expression.csv` file taken
-from the 20Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
+from the 20Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -65,6 +66,8 @@ Now a 23164240 by 6 dataframe.
 - 19Q4: 0 genes, 39 cancer cell lines, 0 primary diseases and 1 lineage
 
 - 20Q1: adds 31 cell lines
+
+- 20Q2: adds 34 cell lines. `expression` changed to `rna_expression`
 }
 
 \examples{

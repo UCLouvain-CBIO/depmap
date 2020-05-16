@@ -40,3 +40,7 @@ depmap_mutationCalls <- function()
 #' @export
 depmap_drug_sensitivity <- function()
    depmap_data_loading("drug_sensitivity")
+#' 
+#' #' @export
+#' depmap_proteomic <- function()
+#'     depmap_data_loading("proteomic")

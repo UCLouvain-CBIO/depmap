@@ -8,10 +8,11 @@
 \alias{metadata_19Q3}
 \alias{metadata_19Q4}
 \alias{metadata_20Q1}
+\alias{metadata_20Q2}
 \alias{depmap_metadata}
-\title{metadata_20Q1}
+\title{metadata_20Q2}
 \format{
-A data frame with 1755 rows (cell lines) and 16 variables:
+A data frame with 1804 rows (cell lines) and 24 variables:
 \describe{
   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
   foreign key (i.e. "ACH-00001")}
@@ -44,17 +45,17 @@ A data frame with 1755 rows (cell lines) and 16 variables:
 }
 }
 \source{
-\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
+\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
 }
 \usage{
 metadata
 }
 \description{
-The `metadata` dataset contains the metadata about cell lines in the 20Q1
+The `metadata` dataset contains the metadata about cell lines in the 20Q2
 Broad Institute DepMap release, which includes mapping between `depmap_id`
 and `cell_line` name for cancer cell lines. This dataset does not contain any
-dependency data but contains the metadata for 0 genes, 1775 cell lines, 35
-primary diseases and 37 lineages. The columns of `metadata` are: `depmap_id`,
+dependency data but contains the metadata for 0 genes, 1804 cell lines, 35
+primary diseases and 38 lineages. The columns of `metadata` are: `depmap_id`,
 `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
 `source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
@@ -62,7 +63,7 @@ primary diseases and 37 lineages. The columns of `metadata` are: `depmap_id`,
 environment with the `depmap_copyNumber` function.
 }
 \details{
-This data represents the `sample_info.csv` file taken from the 20Q1
+This data represents the `sample_info.csv` file taken from the 20Q2
 [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 study. This dataset features the a primary key `depmap_id` which is a unique
 ID given to each cell line and is found in the first column of this dataset.
@@ -91,6 +92,8 @@ including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 
 - 20Q1: adds 19 cell lines, `gender` was changed to `sex`, `age`,
 `primary_or_metastasis` and `sample_collection_site`` were added
+
+- 20Q2: addes 30 cell lines and 1 lineage
 }
 
 \examples{
