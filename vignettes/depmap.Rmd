@@ -358,7 +358,7 @@ proteomic <- eh[["EH3459"]]
 The `proteomic` dataset contains normalized quantitative profiling of
 proteins of cancer cell lines by mass spectrometry. This dataset corresponds
 with the `https://gygi.med.harvard.edu/sites/gygi.med.harvard.edu/files/documents/protein_quant_current_normalized.csv.gz`
-file found in the `r depmap::depmap_release()` depmap release and includes 
+file found in the `r depmap::depmap_release()` depmap release and includes
 `r length(unique(proteomic$depmap_id))` cell lines, 24 primary diseases
 and 27 lineages.
 
