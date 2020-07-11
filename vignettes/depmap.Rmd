@@ -349,6 +349,41 @@ depmap::depmap_drug_sensitivity()
 rm(drug_sensitivity)
 ```
 
+## Proteomic
+
+```{r, echo = FALSE}
+proteomic <- eh[["EH3459"]]
+```
+
+The `proteomic` dataset contains normalized quantitative profiling of
+proteins of cancer cell lines by mass spectrometry. This dataset corresponds
+with the `https://gygi.med.harvard.edu/sites/gygi.med.harvard.edu/files/documents/protein_quant_current_normalized.csv.gz`
+file found in the `r depmap::depmap_release()` depmap release and includes
+`r length(unique(proteomic$depmap_id))` cell lines, 24 primary diseases
+and 27 lineages.
+
+Specific `proteomic` datasets can be accessed, such as `proteomic_20Q2`
+by EH number.
+
+```{r, eval = FALSE}
+proteomic <- eh[["EH3459"]]
+```
+
+```{r}
+proteomic
+```
+
+The most recent `proteomic` dataset can be automatically loaded into R by
+using the `depmap_proteomic` function.
+
+```{r}
+depmap::depmap_proteomic()
+```
+
+```{r, echo = FALSE}
+rm(proteomic)
+```
+
 # The [Broad Institute](https://depmap.org/portal/download/) data
 
 If desired, the original data from which the

@@ -1,17 +1,17 @@
-#' metadata_20Q1
+#' metadata_20Q2
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 20Q1
+#' The `metadata` dataset contains the metadata about cell lines in the 20Q2
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
-#' dependency data but contains the metadata for 0 genes, 1775 cell lines, 35
-#' primary diseases and 37 lineages. The columns of `metadata` are: `depmap_id`,
+#' dependency data but contains the metadata for 0 genes, 1804 cell lines, 35
+#' primary diseases and 38 lineages. The columns of `metadata` are: `depmap_id`,
 #' `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 #' `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
 #' `source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 #' `culture_medium`, and `cas9_activity`. This dataset can be loaded into the R 
 #' environment with the `depmap_copyNumber` function.
 #'
-#' @format A data frame with 1755 rows (cell lines) and 16 variables:
+#' @format A data frame with 1804 rows (cell lines) and 24 variables:
 #' \describe{
 #'   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
 #'   foreign key (i.e. "ACH-00001")}
@@ -43,7 +43,7 @@
 #'   
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 20Q1
+#' @details This data represents the `sample_info.csv` file taken from the 20Q2
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -71,6 +71,8 @@
 #' 
 #' - 20Q1: adds 19 cell lines, `gender` was changed to `sex`, `age`,
 #' `primary_or_metastasis` and `sample_collection_site`` were added
+#' 
+#' - 20Q2: addes 30 cell lines and 1 lineage
 #'
 #' @docType data
 #'
@@ -104,10 +106,11 @@
 #' 503–508 (2019).
 #' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
-#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
+#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
 #'
 #' @rdname metadata
 #'
 #' @aliases metadata_19Q1 metadata_19Q2 metadata_19Q3 metadata_19Q4
-#' metadata_20Q1 depmap_metadata
+#' metadata_20Q1 metadata_20Q2 depmap_metadata
+#' 
 metadata <- NULL

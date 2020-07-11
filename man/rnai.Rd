@@ -59,9 +59,13 @@ primary diseases and 31 lineages.
 
 - 19Q3: adds 1 primary disease
 
-- 19Q4: no change, no further releases are scheduled at this time.
+- 19Q4: no change, no further releases are scheduled at this time. NOTE:
+as of this release, the crispr dataset replaces the rnai dataset for
+dependency measurements in all future releases.
 
 - 20Q1: no change, no further releases are scheduled at this time.
+
+- 20Q2: no change, no further releases are scheduled at this time.
 }
 
 \examples{

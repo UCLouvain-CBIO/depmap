@@ -1,5 +1,5 @@
 ### =========================================================================
-### Make 19Q4 depmap data
+### Make 20Q1 depmap data
 ### -------------------------------------------------------------------------
 ###
 
@@ -18,18 +18,18 @@ library("tidyr")
 library("ExperimentHub")
 
 ##########################################
-## EH3086 depmap `metadata_19Q4` dataset
+## EH3294 depmap `metadata_20Q1` dataset
 ##########################################
 
 ##  data cleaning of `metadata` dataset
 
 ### loading data (downloading .csv file from online source)
-url_23 <- "https://ndownloader.figshare.com/files/20274744"
-sample_info <- read_csv(url_23)
+url_28 <- "https://ndownloader.figshare.com/files/21522000"
+sample_info <- read_csv(url_28)
 
-### DepMap-2019q1-celllines.csv data renamed to `metadata`
-metadata_19Q4 <- sample_info
-# names(metadata_19Q4)
+### DepMap-2020q1-celllines.csv data renamed to `metadata`
+metadata_20Q1 <- sample_info
+# names(metadata_20Q1)
 # [1] "DepMap_ID"                 "stripped_cell_line_name"   "CCLE_Name"                
 # [4] "alias"                     "COSMIC_ID"                 "lineage"                  
 # [7] "lineage_subtype"           "lineage_sub_subtype"       "lineage_molecular_subtype"
@@ -40,8 +40,8 @@ metadata_19Q4 <- sample_info
 # [22] "age"                       "Sanger_model_ID"           "additional_info"   
 
 #### Rename `metadata` columns to contain underscores and be in snake case
-## note: "metadata_19Q4" has different columns than "metadata_19Q4"
-names(metadata_19Q4)[1:24] <-c("depmap_id", "stripped_cell_line_name",
+## note: "metadata_20Q1" has different columns than "metadata_20Q1"
+names(metadata_20Q1)[1:24] <-c("depmap_id", "stripped_cell_line_name",
                               "cell_line", "aliases", "cosmic_id", "lineage",
                               "lineage_subtype", "lineage_sub_subtype",
                               "lineage_molecular_subtype", "sex",
@@ -53,10 +53,10 @@ names(metadata_19Q4)[1:24] <-c("depmap_id", "stripped_cell_line_name",
                               "sanger_id", "additional_info")
 
 ### visual check
-View(metadata_19Q4)
+View(metadata_20Q1)
 
 ### saving cleaned and converted `metadata` data as .rda file
-save(metadata_19Q4, file = "../eh_data/metadata_19Q4.rda",
+save(metadata_20Q1, file = "../eh_data/metadata_20Q1.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
@@ -64,10 +64,10 @@ save(metadata_19Q4, file = "../eh_data/metadata_19Q4.rda",
 # x <- query(hub, "depmap")
 
 ##########################################
-## `depmap_id_to_name_19Q4 map `depmap_id` to `cell_line`
+## `depmap_id_to_name_20Q1 map `depmap_id` to `cell_line`
 ##########################################
 
-##  generation of `metadata` subset `depmap_id_to_name_19Q4`
+##  generation of `metadata` subset `depmap_id_to_name_20Q1`
 
 ## The subset of `metadata`, `depmap_id_to_name_Q2` is used to map `cell_line`
 ## and depmap_id via left_join in other depmap datasets that do not contain
@@ -75,30 +75,30 @@ save(metadata_19Q4, file = "../eh_data/metadata_19Q4.rda",
 ## need to run the following code to generate the data correctly.
 
 ### `depmap_id_to_name` to add `depmap_id` or `cell_line` to other datasets
-depmap_id_to_name_19Q4 <- metadata_19Q4 %>% dplyr::select(depmap_id, cell_line)
+depmap_id_to_name_20Q1 <- metadata_20Q1 %>% dplyr::select(depmap_id, cell_line)
 
 ### visual check
-# head(depmap_id_to_name_19Q4)
+# head(depmap_id_to_name_20Q1)
 
 ##########################################
-## depmap `mutationCalls_19Q4` dataset
+## EH3293 depmap `mutationCalls_20Q1` dataset
 ##########################################
 
 ## data cleaning of `mutationCalls` dataset
 
 ### loading data (downloading .csv file from online source)
-url_24 <- "https://ndownloader.figshare.com/files/20274747"
-CCLE_mutations_19Q4 <- read_csv(url_24)
+url_29 <- "https://ndownloader.figshare.com/files/21521967"
+CCLE_mutations_20Q1 <- read_csv(url_29)
 
-### depmap_19Q1_mutation_calls data renamed to `mutationCalls`
-mutationCalls_19Q4 <- CCLE_mutations_19Q4
-head(mutationCalls_19Q4)
+### depmap_20Q1_mutation_calls data renamed to `mutationCalls`
+mutationCalls_20Q1 <- CCLE_mutations_20Q1
+# head(mutationCalls_20Q1)
 
 ## remove unnecessary X1 variable
-mutationCalls_19Q4 <- mutationCalls_19Q4 %>% dplyr::select(-X1)
+mutationCalls_20Q1 <- mutationCalls_20Q1 %>% dplyr::select(-X1)
 
 #### rename last column to depmap_id
-names(mutationCalls_19Q4)
+# names(mutationCalls_20Q1)
 # [1] "Hugo_Symbol"            "Entrez_Gene_Id"         "NCBI_Build"            
 # [4] "Chromosome"             "Start_position"         "End_position"          
 # [7] "Strand"                 "Variant_Classification" "Variant_Type"          
@@ -112,10 +112,10 @@ names(mutationCalls_19Q4)
 # [31] "RD_AC"                  "WGS_AC"                 "Variant_annotation"
 # [34] "DepMap_ID"             
 
-## note: "mutationCalls_19Q4" has different columns than "mutationCalls_19Q1"
+## note: "mutationCalls_20Q1" has different columns than "mutationCalls_20Q1"
 ## the variable "VA_WES_AC" is no longer present in this dataset, unlike
 ## previous releases (e.g. 19Q1)! 
-names(mutationCalls_19Q4)[1:34] <- c("gene_name", "entrez_id", "ncbi_build",
+names(mutationCalls_20Q1)[1:34] <- c("gene_name", "entrez_id", "ncbi_build",
                                 "chromosome", "start_pos", "end_pos", "strand",
                                 "var_class","var_type", "ref_allele",
                                 "tumor_seq_allele1", "dbSNP_RS",
@@ -130,7 +130,7 @@ names(mutationCalls_19Q4)[1:34] <- c("gene_name", "entrez_id", "ncbi_build",
                                 "var_annotation","depmap_id")
 
 ### rearrange columns into same column format as other datasets
-mutationCalls_19Q4 <- mutationCalls_19Q4 %>%
+mutationCalls_20Q1 <- mutationCalls_20Q1 %>%
     dplyr::select(depmap_id, gene_name, entrez_id, ncbi_build, chromosome,
                   start_pos, end_pos, strand, var_class, var_type, ref_allele,
                   tumor_seq_allele1, dbSNP_RS, dbSNP_val_status, genome_change,
@@ -141,10 +141,10 @@ mutationCalls_19Q4 <- mutationCalls_19Q4 %>%
                   HC_AC, RD_AC, WGS_AC, var_annotation)
 
 ### visual check
-# head(mutationCalls_19Q4)
+# head(mutationCalls_20Q1)
 
 ### saving cleaned and converted `mutationCalls` data as .rda file
-save(mutationCalls_19Q4, file = "../eh_data/mutationCalls_19Q4.rda",
+save(mutationCalls_20Q1, file = "../eh_data/mutationCalls_20Q1.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
@@ -152,45 +152,45 @@ save(mutationCalls_19Q4, file = "../eh_data/mutationCalls_19Q4.rda",
 # x <- query(hub, "depmap")
 
 ##########################################
-## depmap `copyNumber_19Q4` dataset
+## EH3291 depmap `copyNumber_20Q1` dataset
 ##########################################
 
 ##  data cleaning of `copyNumber` dataset 
 
 ### loading data (downloading .csv file from online source)
-url_25 <- "https://ndownloader.figshare.com/files/20234367"
-CCLE_gene_cn_19Q4 <- read_csv(url_25)
+url_30 <- "https://ndownloader.figshare.com/files/21521964"
+CCLE_gene_cn_20Q1 <- read_csv(url_30)
 
-### public_19Q1_gene_cn.csv data renamed to `copyNumber`
-copyNumber_19Q4 <- CCLE_gene_cn_19Q4
+### public_20Q1_gene_cn.csv data renamed to `copyNumber`
+copyNumber_20Q1 <- CCLE_gene_cn_20Q1
 
 ### rename column first column to "depmap_id"
-names(copyNumber_19Q4)[1] <- "depmap_id"
+names(copyNumber_20Q1)[1] <- "depmap_id"
 
 ### gather into long form on columns: `depmap_id`, `gene`, `logCopyNumber`
-copyNumber_19Q4_long <- gather(copyNumber_19Q4, gene, log_copy_number,
+copyNumber_20Q1_long <- gather(copyNumber_20Q1, gene, log_copy_number,
                                -depmap_id)
 
 ### mutate gene column into `gene_name` and `entrez_id`
-copyNumber_19Q4_long <- copyNumber_19Q4_long %>% 
+copyNumber_20Q1_long <- copyNumber_20Q1_long %>% 
     mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
            gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
 
-### left_join `copyNumber` & `depmap_id_to_name_19Q4` on `depmap_id`, 
+### left_join `copyNumber` & `depmap_id_to_name_20Q1` on `depmap_id`, 
 ## `cell_line`     
-copyNumber_19Q4 <- copyNumber_19Q4_long %>% 
-    left_join(depmap_id_to_name_19Q4, by = c("depmap_id" = "depmap_id"))
+copyNumber_20Q1 <- copyNumber_20Q1_long %>% 
+    left_join(depmap_id_to_name_20Q1, by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-copyNumber_19Q4 <- copyNumber_19Q4 %>% 
+copyNumber_20Q1 <- copyNumber_20Q1 %>% 
                         dplyr::select(depmap_id, gene, log_copy_number,
                                       entrez_id, gene_name, cell_line) %>%
                                       type_convert(cols(entrez_id = "i"))
 ### visual check
-head(copyNumber_19Q4)
+head(copyNumber_20Q1)
 
 ### saving cleaned and converted `copyNumber` data as .rda file
-save(copyNumber_19Q4, file = "../eh_data/copyNumber_19Q4.rda",
+save(copyNumber_20Q1, file = "../eh_data/copyNumber_20Q1.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
@@ -198,46 +198,46 @@ save(copyNumber_19Q4, file = "../eh_data/copyNumber_19Q4.rda",
 # x <- query(hub, "depmap")
 
 ##########################################
-## depmap `crispr_19Q4` dataset
+## EH3290 depmap `crispr_20Q1` dataset
 ##########################################
 
 ##  data cleaning of `crispr` dataset`
 
 ### loading data (downloading .csv file from online source)
-url_26 <- "https://ndownloader.figshare.com/files/20234073"
-Achilles_gene_effect_19Q4 <- read_csv(url_26)
+url_31 <- "https://ndownloader.figshare.com/files/21521910"
+Achilles_gene_effect_20Q1 <- read_csv(url_31)
 
 ### gene_effect_corrected.csv data renamed to `crispr`
-crispr_19Q4 <- Achilles_gene_effect_19Q4
+crispr_20Q1 <- Achilles_gene_effect_20Q1
 
 ### visual check
-head(crispr_19Q4)
+head(crispr_20Q1)
 
 ### rename column first column to "depmap_id"
-names(crispr_19Q4)[1] <-"depmap_id"
+names(crispr_20Q1)[1] <-"depmap_id"
 
 ### gather cripsr into long form with columns: `depmap_id`, `gene`, `dependency`
-crispr_19Q4_long <- gather(crispr_19Q4, gene, dependency, -depmap_id)
+crispr_20Q1_long <- gather(crispr_20Q1, gene, dependency, -depmap_id)
 
 ### mutate gene into `gene_name` and `entrez_id`
-crispr_19Q4_long <- crispr_19Q4_long %>% 
+crispr_20Q1_long <- crispr_20Q1_long %>% 
     mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
            gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
 
 ### left_join `crispr_long` and `depmap_id_to_name` to add `cell_line` column   
-crispr_19Q4 <- crispr_19Q4_long %>% left_join(depmap_id_to_name_19Q4, 
+crispr_20Q1 <- crispr_20Q1_long %>% left_join(depmap_id_to_name_20Q1, 
                                     by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-crispr_19Q4 <- crispr_19Q4 %>% dplyr::select(depmap_id, gene,
+crispr_20Q1 <- crispr_20Q1 %>% dplyr::select(depmap_id, gene,
                                              dependency, entrez_id,
                                              gene_name, cell_line) %>%
                                              type_convert(cols(entrez_id = "i"))
 ### visual check
-head(crispr_19Q4)
+head(crispr_20Q1)
 
 ### saving cleaned and converted `crispr` data as .rda file
-save(crispr_19Q4, file = "../eh_data/crispr_19Q4.rda",
+save(crispr_20Q1, file = "../eh_data/crispr_20Q1.rda",
      compress = "xz", compression_level = 9)
 
 ## access the data on ExperimentHub
@@ -245,41 +245,41 @@ save(crispr_19Q4, file = "../eh_data/crispr_19Q4.rda",
 # x <- query(hub, "depmap")
 
 ##########################################
-## depmap `TPM_19Q4` dataset
+## EH3292 depmap `TPM_20Q1` dataset
 ##########################################
 
 ## data cleaning of `TPM` dataset
 
 ### loading data (downloading .csv file from online source)
-url_27 <- "https://ndownloader.figshare.com/files/20234346"
-CCLE_expression_full_19Q4 <- read_csv(url_27)
+url_32 <- "https://ndownloader.figshare.com/files/21521940"
+CCLE_expression_full_20Q1 <- read_csv(url_32)
 
-### CCLE_depMap_19Q1_TPM.csv data renamed to `TPM`
-TPM_19Q4 <- CCLE_expression_full_19Q4
-names(TPM_19Q4)
+### CCLE_depMap_20Q1_TPM.csv data renamed to `TPM`
+TPM_20Q1 <- CCLE_expression_full_20Q1
+names(TPM_20Q1)
 
 ### rename column first column to "depmap_id"
-names(TPM_19Q4)[1] <-"depmap_id"
+names(TPM_20Q1)[1] <-"depmap_id"
 
 ### gather `TPM` into long form on columns: `depmap_id`, `gene`, `expression`
-TPM_19Q4_long <- gather(TPM_19Q4, gene, expression, -depmap_id)
+TPM_20Q1_long <- gather(TPM_20Q1, gene, expression, -depmap_id)
 
 ### mutate gene into gene_name and ensembl_id
-TPM_19Q4_long <- TPM_19Q4_long %>% 
+TPM_20Q1_long <- TPM_20Q1_long %>% 
     mutate(ensembl_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
            gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
 
-### left_join join `TPM` and `depmap_id_to_name_19Q4` to add `cell_line` column
-TPM_19Q4 <- TPM_19Q4_long %>% left_join(depmap_id_to_name_19Q4, 
+### left_join join `TPM` and `depmap_id_to_name_20Q1` to add `cell_line` column
+TPM_20Q1 <- TPM_20Q1_long %>% left_join(depmap_id_to_name_20Q1, 
                               by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-TPM_19Q4 <- TPM_19Q4 %>% dplyr::select(depmap_id, gene, expression, ensembl_id,
+TPM_20Q1 <- TPM_20Q1 %>% dplyr::select(depmap_id, gene, expression, ensembl_id,
                                 gene_name, cell_line) %>%
                                 type_convert(cols(ensembl_id = "i"))
 ### visual check
-head(TPM_19Q4)
+head(TPM_20Q1)
 
 ### saving cleaned and converted `TPM` data as .rda file
-save(TPM_19Q4, file = "../eh_data/TPM_19Q4.rda", compress="xz",
-     compression_level = 9)
+save(TPM_20Q1, file = "../eh_data/TPM_20Q1.rda", compress="xz",
+     compression_level=9)

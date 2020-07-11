@@ -35,7 +35,7 @@ meta_20Q1 <- data.frame(
                   paste0("https://ndownloader.figshare.com/files/21521940"),
                   paste0("https://ndownloader.figshare.com/files/21521967"),
                   paste0("https://ndownloader.figshare.com/files/21522000")),
-    SourceVersion = "Feb 20 2019",
+    SourceVersion = "Feb 20 2020",
     Species = "Homo sapiens",
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
@@ -55,6 +55,6 @@ meta_20Q1 <- data.frame(
                 "Proteome, StemCell, Tissue"),
     Notes = "This dataset is from the 20Q1 release")
 
-write.csv(meta_20Q1, file="../extdata/metadata_20Q1.csv", row.names=FALSE)
+write.csv(meta_20Q1, file = "../extdata/metadata_20Q1.csv", row.names = FALSE)
 ## to upload this metadata to EH, enter the following into the CL
 ## ExperimentHubData::makeExperimentHubMetadata("~/tmp/depmap/", fileName = "metadata_20Q1.csv")

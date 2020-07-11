@@ -256,7 +256,7 @@ save(crispr_19Q3, file = "../eh_data/crispr_19Q3.rda",
 url_19 <- "https://ndownloader.figshare.com/files/16757690"
 CCLE_expression_full_19Q3 <- read_csv(url_19)
 
-### CCLE_depMap_19Q1_TPM.csv data renamed to `TPM`
+### CCLE_depMap_19Q3_TPM.csv data renamed to `TPM`
 TPM_19Q3 <- CCLE_expression_full_19Q3
 # names(TPM_19Q3)
 

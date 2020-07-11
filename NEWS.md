@@ -1,5 +1,11 @@
 # depmap 1.1
 
+## Changes in version 1.1.4
+
+- 20Q2 data added
+- Included new `proteomic` dataset
+- `expression` variable in `TPM` dataset changed to `rna_expression`
+
 ## Changes in version 1.1.3
 
 - The using_depmap vignette has been updated to illustrate how to
