@@ -35,9 +35,16 @@ To install [depmap](https://github.com/UCLouvain-CBIO/depmap/), the
 [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
 Bioconductor Project Package Manager is required. If
 [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
-is not already installed, it will need to be done so beforehand. Type
-(within R) install.packages("BiocManager") (This needs to be done just
-once.)
+is not already installed, it will need to be done so beforehand with
+(within R) `install.packages("BiocManager")`. Once it is installed, `depmap` 
+can be installed from Biocondctor:
+
+```r
+install.packages("BiocManager")
+BiocManager::install("depmap")
+```
+
+To install the version from GitHub, use
 
 ```r
 install.packages("BiocManager")
