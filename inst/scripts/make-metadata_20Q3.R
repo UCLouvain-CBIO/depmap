@@ -38,7 +38,7 @@ meta_20Q3 <- data.frame(
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
     DataProvider = "Broad Institute",
-    Maintainer = "Theo Killian <theodore.killian@uclouvain.be>",
+    Maintainer = "Theo Killian <theodore.killian@kuleuven.vib.be>",
     RDataClass = "tibble",
     DispatchClass = "Rda",
     RDataPath = c(paste0("depmap/crispr_20Q3.rda"), 
