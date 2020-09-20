@@ -2,7 +2,9 @@
 
 ## Changes in version 1.3.2
 
-- 20Q3 data added
+- 20Q3 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`
+  and `metadata` datasets. Newer versions for the other datasets
+  were not released.
 
 ## Changes in version 1.3.1
 

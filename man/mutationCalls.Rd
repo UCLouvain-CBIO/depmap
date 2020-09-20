@@ -3,14 +3,15 @@
 \docType{data}
 \name{mutationCalls}
 \alias{mutationCalls}
+\alias{mutationCalls_20Q3}
+\alias{mutationCalls_20Q2}
 \alias{mutationCalls_20Q1}
 \alias{mutationCalls_19Q4}
 \alias{mutationCalls_19Q3}
 \alias{mutationCalls_19Q2}
 \alias{mutationCalls_19Q1}
-\alias{mutationCalls_20Q2}
 \alias{depmap_mutationCalls}
-\title{mutationCalls_20Q2}
+\title{mutationCalls_20Q3}
 \format{
 A data frame with 1296237 rows and 34 variables:
 \describe{
@@ -59,7 +60,7 @@ A data frame with 1296237 rows and 34 variables:
 mutationCalls
 }
 \description{
-The `mutationCalls` dataset contains merged the 20Q2 mutation calls (for
+The `mutationCalls` dataset contains merged the 20Q3 mutation calls (for
 coding region, germline filtered) and includes data from 18802 genes, 1741
 cell lines, 35 primary diseases and 37 lineages. This dataset can be
 considered the metadata data set for mutations and does not contain any
@@ -68,7 +69,7 @@ dependency data. This dataset can be loaded into the R environment with the
 }
 \details{
 This data represents the `CCLE_mutations.csv` file taken from the
-20Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
+20Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -97,6 +98,8 @@ unique identifying purpose.
 - 20Q1: adds 4 genes, 31 cell lines, 1 lineage
 
 - 20Q2: adds 44 cell lines, 1 lineage
+
+- 20Q3: no change
 }
 
 \examples{

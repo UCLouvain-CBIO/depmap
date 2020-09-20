@@ -3,16 +3,17 @@
 \docType{data}
 \name{metadata}
 \alias{metadata}
-\alias{metadata_19Q1}
-\alias{metadata_19Q2}
-\alias{metadata_19Q3}
-\alias{metadata_19Q4}
-\alias{metadata_20Q1}
+\alias{metadata_20Q3}
 \alias{metadata_20Q2}
+\alias{metadata_20Q1}
+\alias{metadata_19Q4}
+\alias{metadata_19Q3}
+\alias{metadata_19Q2}
+\alias{metadata_19Q1}
 \alias{depmap_metadata}
-\title{metadata_20Q2}
+\title{metadata_20Q3}
 \format{
-A data frame with 1804 rows (cell lines) and 24 variables:
+A data frame with 1804 rows (cell lines) and 25 variables:
 \describe{
   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
   foreign key (i.e. "ACH-00001")}
@@ -51,19 +52,20 @@ A data frame with 1804 rows (cell lines) and 24 variables:
 metadata
 }
 \description{
-The `metadata` dataset contains the metadata about cell lines in the 20Q2
+The `metadata` dataset contains the metadata about cell lines in the 20Q3
 Broad Institute DepMap release, which includes mapping between `depmap_id`
 and `cell_line` name for cancer cell lines. This dataset does not contain any
 dependency data but contains the metadata for 0 genes, 1804 cell lines, 35
 primary diseases and 38 lineages. The columns of `metadata` are: `depmap_id`,
 `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
-`primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
-`source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
-`culture_medium`, and `cas9_activity`. This dataset can be loaded into the R 
-environment with the `depmap_copyNumber` function.
+`WTSI_master_cell_ID`, `primary_disease`, `subtype_disease`,
+`sub_subtype_disease`, `gender`, `source`, `Achilles_n_replicates`,
+`cell_line_NNMD`, `culture_type`, `culture_medium`, and `cas9_activity`.
+This dataset can be loaded into the R  environment with the
+`depmap_copyNumber` function.
 }
 \details{
-This data represents the `sample_info.csv` file taken from the 20Q2
+This data represents the `sample_info.csv` file taken from the 20Q3
 [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 study. This dataset features the a primary key `depmap_id` which is a unique
 ID given to each cell line and is found in the first column of this dataset.
@@ -94,6 +96,8 @@ including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 `primary_or_metastasis` and `sample_collection_site`` were added
 
 - 20Q2: addes 30 cell lines and 1 lineage
+
+- 20Q3: added new column `WTSI_master_cell_ID`
 }
 
 \examples{

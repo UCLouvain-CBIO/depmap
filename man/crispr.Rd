@@ -3,6 +3,7 @@
 \docType{data}
 \name{crispr}
 \alias{crispr}
+\alias{crispr_20Q3}
 \alias{crispr_20Q2}
 \alias{crispr_20Q1}
 \alias{crispr_19Q4}
@@ -10,9 +11,9 @@
 \alias{crispr_19Q2}
 \alias{crispr_19Q1}
 \alias{depmap_crispr}
-\title{crispr_20Q2}
+\title{crispr_20Q3}
 \format{
-A data frame with 13933511 rows (cell lines) and 6 variables:
+A data frame with 14295891 rows (cell lines) and 6 variables:
 \describe{
     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
@@ -30,9 +31,9 @@ Broad (2020)}
 crispr
 }
 \description{
-The `crispr` dataset contains the 20Q2 genetic dependency of CRISPR-Cas9 gene
+The `crispr` dataset contains the 20Q3 genetic dependency of CRISPR-Cas9 gene
 knockout of select genes in various cancer cell lines. This dataset includes
-data from 18119 genes, 769 cell lines, 29 primary diseases and 26 lineages.
+data from 18119 genes, 789 cell lines, 230primary diseases and 27 lineages.
 The columns of `crispr` are: `depmap_id` a foreign key corresponding to the
 cancer cell lineage, `cell_line` containing the common CCLE name of the
 cancer cell lines, `gene` containing both the HUGO gene name of the knockout
@@ -46,7 +47,7 @@ release.
 }
 \details{
 This data represents the `Achilles_gene_effect.csv` file taken from
-the 20Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
+the 20Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -66,11 +67,13 @@ diseases and 28 lineages.
 - 19Q3: adds 699 genes, 62 cell lines and 1 primary disease. Now a dataset
 with 11458125 rows and 6 variables.
 
-- 19Q4: adds 0 genes, 64 cell lines, 1 primary diseases and 0 lineages.
+- 19Q4: adds 0 genes, 64 cell lines, 1 primary disease and 0 lineages.
 
-- 20Q1: adds 50 cell lines
+- 20Q1: adds 50 cell lines.
 
-- 20Q2: adds 30 cell lines
+- 20Q2: adds 30 cell lines.
+
+- 20Q3: adds 20 cell lines, 1 primary disease and 1 lineages.
 }
 
 \examples{
