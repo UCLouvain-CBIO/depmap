@@ -1,5 +1,9 @@
 # depmap 1.3
 
+## Changes in version 1.3.2
+
+- 20Q3 data added
+
 ## Changes in version 1.3.1
 
 - 20Q2 data added
