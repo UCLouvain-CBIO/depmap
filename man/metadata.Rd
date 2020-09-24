@@ -22,6 +22,11 @@ A data frame with 1804 rows (cell lines) and 25 variables:
   \item{aliases}{Aliases of cancer cell line}
   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID
   number (e.g. 905933)}
+  \item{sanger_id}{Sanger ID (eg. 2201)}
+  \item{WTSI_master_cell_ID}{Wellcome Trust Sanger Institute ID (eg. 1369)}
+  \item{primary_or_metastasis}{Primary cancer cell line or metastatic}
+  \item{primary_disease}{Primary Disease (e.g. cancer type)}
+  \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
   \item{lineage}{Lineage of cancer cell line}
   \item{lineage_subtype}{Subtype of lineage of cancer cell line}
   \item{lineage_sub_subtype}{Subtype of subtype of Lineage of cancer cell line}
@@ -35,12 +40,8 @@ A data frame with 1804 rows (cell lines) and 25 variables:
   \item{cas9_activity}{Cas9 activity)}
   \item{RRID}{Resource Identification Portal ID}
   \item{sample_collection_site}{Site of sample collection}
-  \item{primary_or_metastasis}{Primary cancer cell line or metastatic}
-  \item{primary_disease}{Primary Disease (e.g. cancer type)}
-  \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
   (AML), M3 (Promyelocytic))}
   \item{age}{Age of individual sample of cell line was derived}
-  \item{sanger_id}{Sanger ID (eg. 2201)}
   \item{additional_info}{Additional information about samples}
   
 }
