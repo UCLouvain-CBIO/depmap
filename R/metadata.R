@@ -14,22 +14,11 @@
 #'
 #' @format A data frame with 1804 rows (cell lines) and 25 variables:
 #' \describe{
-#'   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
-#'   foreign key (i.e. "ACH-00001")}
+#'   \item{depmap_id}{Cancer cell line primary key (i.e. "ACH-00001")}
 #'   \item{stripped_cell_line_name}{Name of stripped cell line}
 #'   \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
 #'   \item{aliases}{Aliases of cancer cell line}
-#'   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID
-#'   number (e.g. 905933)}
-#'   \item{sanger_id}{Sanger ID (eg. 2201)}
-#'   \item{WTSI_master_cell_ID}{Wellcome Trust Sanger Institute ID (eg. 1369)}
-#'   \item{primary_or_metastasis}{Primary cancer cell line or metastatic}
-#'   \item{primary_disease}{Primary Disease (e.g. cancer type)}
-#'   \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
-#'   \item{lineage}{Lineage of cancer cell line}
-#'   \item{lineage_subtype}{Subtype of lineage of cancer cell line}
-#'   \item{lineage_sub_subtype}{Subtype of subtype of Lineage of cancer cell line}
-#'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
+#'   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer ID number (e.g. 905933)}
 #'   \item{sex}{Sex of tissue sample)}
 #'   \item{source}{Source of tissue sample)}
 #'   \item{Achilles_n_replicates}{Number of replicates)}
@@ -38,11 +27,18 @@
 #'   \item{culture_medium}{Culture medium of tissue sample)}
 #'   \item{cas9_activity}{Cas9 activity)}
 #'   \item{RRID}{Resource Identification Portal ID}
-#'   \item{sample_collection_site}{Site of sample collection}
-#'   (AML), M3 (Promyelocytic))}
+#'   \item{sample_collection_site}{Site of sample collection (AML), M3 (Promyelocytic))}
+#'   \item{primary_or_metastasis}{Primary cancer cell line or metastatic}
+#'   \item{primary_disease}{Primary Disease (e.g. cancer type)}
+#'   \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia)}
 #'   \item{age}{Age of individual sample of cell line was derived}
+#'   \item{sanger_id}{Sanger ID (eg. 2201)}
+#'   \item{WTSI_master_cell_ID}{Wellcome Trust Sanger Institute ID (eg. 1369)}
 #'   \item{additional_info}{Additional information about samples}
-#'   
+#'   \item{lineage}{Lineage of cancer cell line}
+#'   \item{lineage_subtype}{Subtype of lineage of cancer cell line}
+#'   \item{lineage_sub_subtype}{Subtype of subtype of Lineage of cancer cell line}
+#'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
 #' }
 #'
 #' @details This data represents the `sample_info.csv` file taken from the 20Q3

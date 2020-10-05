@@ -28,8 +28,7 @@ A data frame with 1296237 rows and 34 variables:
   \item{var_type}{Variant Type}
   \item{ref_allele}{Reference Allele}
   \item{tumor_seq_allele1}{Tumor Seq Allele1}
-  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)3
-  reference cluster}
+  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)3 reference cluster}
   \item{dbSNP_val_status}{dbSNP Val Status}
   \item{genome_change}{Genome Change}
   \item{annotation_transcript}{Annotation Transcript}
