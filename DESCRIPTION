@@ -1,12 +1,12 @@
 Package: depmap
 Type: Package
 Title: Cancer Dependency Map Data Package
-Version: 1.3.1
+Version: 1.3.2
 Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    email = "laurent.gatto@uclouvain.be",
 		    role = c("cre", "aut")),
 	     person(given = "Theo", family = "Killian",
-		    email = "theodore.killian@uclouvain.com",
+		    email = "theo.killian@kuleuven.vib.be",
 		    role = "aut"))
 Description: The depmap package is a data package that accesses datsets from the
     Broad Institute DepMap cancer dependency study using ExperimentHub. Datasets
@@ -30,7 +30,7 @@ Depends: R (>= 3.6), methods, dplyr
 Imports: utils, ExperimentHub, AnnotationHub
 License: Artistic-2.0
 Encoding: UTF-8
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests:
     knitr,
     rmarkdown,

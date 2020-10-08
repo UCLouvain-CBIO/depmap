@@ -1,8 +1,8 @@
-#' TPM_20Q2
+#' TPM_20Q3
 #'
-#' The `TPM` dataset contains the 20Q2 CCLE "Transcript Per Million" RNAseq gene
+#' The `TPM` dataset contains the 20Q3 CCLE "Transcript Per Million" RNAseq gene
 #' expression data for protein coding genes. This dataset includes data from
-#' 19144 genes, 1304 cell lines, 32 primary diseases and 34 lineages. The
+#' 19144 genes, 1305 cell lines, 32 primary diseases and 34 lineages. The
 #' columns of `TPM` are: `depmap_id`, a foreign key corresponding to the cancer
 #' cell lineage, `cell_line` the common CCLE name of the cancer cell lines,
 #' `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -11,7 +11,7 @@
 #' numerical protein coding gene expression change at scale (log2(TPM+1)). This
 #' dataset can be loaded into R environment with the `depmap_TPM` function.
 #'
-#' @format A data frame with 24963776 rows (cell lines) and 6 variables:
+#' @format A data frame with 24982920 rows (cell lines) and 6 variables:
 #' \describe{
 #'      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
 #'      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
@@ -22,7 +22,7 @@
 #' }
 #'
 #' @details This data originates from the `CCLE_expression.csv` file taken
-#' from the 20Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' from the 20Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -47,6 +47,8 @@
 #' - 20Q1: adds 31 cell lines
 #' 
 #' - 20Q2: adds 34 cell lines. `expression` changed to `rna_expression`
+#' 
+#' - 20Q3: addes 1 cell line
 #'
 #' @docType data
 #'
@@ -84,6 +86,7 @@
 #'
 #' @rdname TPM
 #'
-#' @aliases TPM_20Q2 TPM_20Q1 TPM_19Q4 TPM_19Q3 TPM_19Q2 TPM_19Q1 depmap_TPM
+#' @aliases TPM_20Q3 TPM_20Q2 TPM_20Q1 TPM_19Q4 TPM_19Q3 TPM_19Q2 TPM_19Q1
+#' depmap_TPM
 #' 
 TPM <- NULL
