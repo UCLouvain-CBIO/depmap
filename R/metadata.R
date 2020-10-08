@@ -1,29 +1,24 @@
-#' metadata_20Q2
+#' metadata_20Q3
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 20Q2
+#' The `metadata` dataset contains the metadata about cell lines in the 20Q3
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
 #' dependency data but contains the metadata for 0 genes, 1804 cell lines, 35
 #' primary diseases and 38 lineages. The columns of `metadata` are: `depmap_id`,
 #' `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
-#' `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
-#' `source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
-#' `culture_medium`, and `cas9_activity`. This dataset can be loaded into the R 
-#' environment with the `depmap_copyNumber` function.
+#' `WTSI_master_cell_ID`, `primary_disease`, `subtype_disease`,
+#' `sub_subtype_disease`, `gender`, `source`, `Achilles_n_replicates`,
+#' `cell_line_NNMD`, `culture_type`, `culture_medium`, and `cas9_activity`.
+#' This dataset can be loaded into the R  environment with the
+#' `depmap_copyNumber` function.
 #'
-#' @format A data frame with 1804 rows (cell lines) and 24 variables:
+#' @format A data frame with 1804 rows (cell lines) and 25 variables:
 #' \describe{
-#'   \item{depmap_id}{Cancer cell line primary key, used in other datasets as
-#'   foreign key (i.e. "ACH-00001")}
+#'   \item{depmap_id}{Cancer cell line primary key (i.e. "ACH-00001")}
 #'   \item{stripped_cell_line_name}{Name of stripped cell line}
 #'   \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
 #'   \item{aliases}{Aliases of cancer cell line}
-#'   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer (COSMIC) ID
-#'   number (e.g. 905933)}
-#'   \item{lineage}{Lineage of cancer cell line}
-#'   \item{lineage_subtype}{Subtype of lineage of cancer cell line}
-#'   \item{lineage_sub_subtype}{Subtype of subtype of Lineage of cancer cell line}
-#'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
+#'   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer ID number (e.g. 905933)}
 #'   \item{sex}{Sex of tissue sample)}
 #'   \item{source}{Source of tissue sample)}
 #'   \item{Achilles_n_replicates}{Number of replicates)}
@@ -32,18 +27,21 @@
 #'   \item{culture_medium}{Culture medium of tissue sample)}
 #'   \item{cas9_activity}{Cas9 activity)}
 #'   \item{RRID}{Resource Identification Portal ID}
-#'   \item{sample_collection_site}{Site of sample collection}
+#'   \item{sample_collection_site}{Site of sample collection (AML), M3 (Promyelocytic))}
 #'   \item{primary_or_metastasis}{Primary cancer cell line or metastatic}
 #'   \item{primary_disease}{Primary Disease (e.g. cancer type)}
-#'   \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia
-#'   (AML), M3 (Promyelocytic))}
+#'   \item{subtype_disease}{Subtype Disease (e.g. Acute Myelogenous Leukemia)}
 #'   \item{age}{Age of individual sample of cell line was derived}
 #'   \item{sanger_id}{Sanger ID (eg. 2201)}
+#'   \item{WTSI_master_cell_ID}{Wellcome Trust Sanger Institute ID (eg. 1369)}
 #'   \item{additional_info}{Additional information about samples}
-#'   
+#'   \item{lineage}{Lineage of cancer cell line}
+#'   \item{lineage_subtype}{Subtype of lineage of cancer cell line}
+#'   \item{lineage_sub_subtype}{Subtype of subtype of Lineage of cancer cell line}
+#'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 20Q2
+#' @details This data represents the `sample_info.csv` file taken from the 20Q3
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -73,6 +71,8 @@
 #' `primary_or_metastasis` and `sample_collection_site`` were added
 #' 
 #' - 20Q2: addes 30 cell lines and 1 lineage
+#'
+#' - 20Q3: added new column `WTSI_master_cell_ID`
 #'
 #' @docType data
 #'
@@ -110,7 +110,7 @@
 #'
 #' @rdname metadata
 #'
-#' @aliases metadata_19Q1 metadata_19Q2 metadata_19Q3 metadata_19Q4
-#' metadata_20Q1 metadata_20Q2 depmap_metadata
+#' @aliases metadata_20Q3 metadata_20Q2 metadata_20Q1 metadata_19Q4
+#' metadata_19Q3 metadata_19Q2 metadata_19Q1 depmap_metadata
 #' 
 metadata <- NULL

@@ -1,6 +1,6 @@
-#' copyNumber_20Q2
+#' copyNumber_20Q3
 #'
-#' The `copyNumber` dataset contains the 20Q2 WES copy number data for genes and
+#' The `copyNumber` dataset contains the 20Q3 WES copy number data for genes and
 #' cancer cell lines. This dataset includes data from 27639 genes, 1745 cell
 #' lines, 35 primary diseases and 37 lineages. The columns of `copyNumber` are:
 #' `depmap_id`, a foreign key corresponding to the cancer cell lineage,
@@ -25,7 +25,7 @@
 #' }
 #'
 #' @details This data represents the `CCLE_gene_cn.csv` file taken from the
-#' 20Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' 20Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -46,9 +46,11 @@
 #'
 #' - 19Q4: adds 77 genes, 25 cell lines, 0 primary diseases and 2 lineages.
 #' 
-#' - 20Q1: adds 31 cell lines
+#' - 20Q1: adds 31 cell lines.
 #' 
-#' - 20Q2: adds 32 cell lines
+#' - 20Q2: adds 32 cell lines.
+#' 
+#' - 20Q3: no change.
 #'
 #' @keywords datasets
 #'

@@ -40,6 +40,8 @@
 #' - 20Q2: Initial dataset consisted of a data frame with 24963776 rows
 #' (cell lines) and 12 variables
 #'
+#' - 20Q3: no change, no further releases are scheduled at this time.
+#'
 #' @docType data
 #'
 #' @import dplyr

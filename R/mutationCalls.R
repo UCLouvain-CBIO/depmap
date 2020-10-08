@@ -1,6 +1,6 @@
-#' mutationCalls_20Q2
+#' mutationCalls_20Q3
 #'
-#' The `mutationCalls` dataset contains merged the 20Q2 mutation calls (for
+#' The `mutationCalls` dataset contains merged the 20Q3 mutation calls (for
 #' coding region, germline filtered) and includes data from 18802 genes, 1741
 #' cell lines, 35 primary diseases and 37 lineages. This dataset can be
 #' considered the metadata data set for mutations and does not contain any
@@ -22,8 +22,7 @@
 #'   \item{var_type}{Variant Type}
 #'   \item{ref_allele}{Reference Allele}
 #'   \item{tumor_seq_allele1}{Tumor Seq Allele1}
-#'   \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)3
-#'   reference cluster}
+#'   \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP)3 reference cluster}
 #'   \item{dbSNP_val_status}{dbSNP Val Status}
 #'   \item{genome_change}{Genome Change}
 #'   \item{annotation_transcript}{Annotation Transcript}
@@ -48,7 +47,7 @@
 #' }
 #'
 #' @details This data represents the `CCLE_mutations.csv` file taken from the
-#' 20Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' 20Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -76,6 +75,8 @@
 #' - 20Q1: adds 4 genes, 31 cell lines, 1 lineage
 #' 
 #' - 20Q2: adds 44 cell lines, 1 lineage
+#' 
+#' - 20Q3: no change
 #' 
 #' @docType data
 #'
@@ -113,7 +114,8 @@
 #'
 #' @rdname mutationCalls
 #'
-#' @aliases mutationCalls_20Q1 mutationCalls_19Q4 mutationCalls_19Q3
-#' mutationCalls_19Q2 mutationCalls_19Q1 mutationCalls_20Q2 depmap_mutationCalls
+#' @aliases mutationCalls_20Q3 mutationCalls_20Q2 mutationCalls_20Q1
+#' mutationCalls_19Q4 mutationCalls_19Q3 mutationCalls_19Q2 mutationCalls_19Q1
+#' depmap_mutationCalls
 #' 
 mutationCalls <- NULL
