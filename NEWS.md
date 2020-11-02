@@ -1,3 +1,9 @@
+# depmap 1.5
+
+## Changes in version 1.5.0
+
+- New Bioc devel verison
+
 # depmap 1.3
 
 ## Changes in version 1.3.2
