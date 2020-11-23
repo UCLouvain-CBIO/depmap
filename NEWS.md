@@ -1,3 +1,15 @@
+# depmap 1.5
+
+## Changes in version 1.5.1
+
+- 20Q4 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`
+  and `metadata` datasets. Newer versions for the other datasets
+  were not released.
+
+## Changes in version 1.5.0
+
+- New Bioc devel verison
+
 # depmap 1.3
 
 ## Changes in version 1.3.2

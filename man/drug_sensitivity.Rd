@@ -59,6 +59,8 @@ diseases and 25 lineages.
 - 20Q2: no change, no further releases are scheduled at this time.
 
 - 20Q3: no change, no further releases are scheduled at this time.
+
+- 20Q4: no change, no further releases are scheduled at this time.
 }
 
 \references{

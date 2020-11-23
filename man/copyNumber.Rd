@@ -3,6 +3,8 @@
 \docType{data}
 \name{copyNumber}
 \alias{copyNumber}
+\alias{copyNumber_20Q4}
+\alias{copyNumber_20Q3}
 \alias{copyNumber_20Q2}
 \alias{copyNumber_20Q1}
 \alias{copyNumber_19Q4}
@@ -10,9 +12,9 @@
 \alias{copyNumber_19Q2}
 \alias{copyNumber_19Q1}
 \alias{depmap_copyNumber}
-\title{copyNumber_20Q3}
+\title{copyNumber_20Q4}
 \format{
-A data frame with 48230055 rows (cell lines) and 6 variables.
+A data frame with 48316186 rows (cell lines) and 6 variables.
 
 \describe{
      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -31,9 +33,9 @@ A data frame with 48230055 rows (cell lines) and 6 variables.
 copyNumber
 }
 \description{
-The `copyNumber` dataset contains the 20Q3 WES copy number data for genes and
-cancer cell lines. This dataset includes data from 27639 genes, 1745 cell
-lines, 35 primary diseases and 37 lineages. The columns of `copyNumber` are:
+The `copyNumber` dataset contains the 20Q4 WES copy number data for genes and
+cancer cell lines. This dataset includes data from 27562 genes, 1753 cell
+lines, 35 primary diseases and 38 lineages. The columns of `copyNumber` are:
 `depmap_id`, a foreign key corresponding to the cancer cell lineage,
 `cell_line` containing the common CCLE name of the cancer cell lines,
 `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -45,7 +47,7 @@ This dataset can be loaded into the R environment with the
 }
 \details{
 This data represents the `CCLE_gene_cn.csv` file taken from the
-20Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+20Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -63,15 +65,17 @@ primary diseases and 33 lineages.
 - 19Q2: adds 23 cell lines and 1 lineage
 
 - 19Q3: adds 3263 genes, 30 cell lines and removes 2 primary diseases. Now a
-dataframe with 45670234 rows and 6 variables.
+dataframe with 45670234 rows and 6 variables
 
-- 19Q4: adds 77 genes, 25 cell lines, 0 primary diseases and 2 lineages.
+- 19Q4: adds 77 genes, 25 cell lines, 0 primary diseases and 2 lineages
 
-- 20Q1: adds 31 cell lines.
+- 20Q1: adds 31 cell lines
 
-- 20Q2: adds 32 cell lines.
+- 20Q2: adds 32 cell lines
 
-- 20Q3: no change.
+- 20Q3: no change
+
+- 20Q4: removes 77 genes, adds 8 cell lines and 1 lineage
 }
 
 \examples{
