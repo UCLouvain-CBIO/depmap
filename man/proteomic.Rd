@@ -57,6 +57,8 @@ where feasible.
 (cell lines) and 12 variables
 
 - 20Q3: no change, no further releases are scheduled at this time.
+
+- 20Q4: no change, no further releases are scheduled at this time.
 }
 
 \examples{

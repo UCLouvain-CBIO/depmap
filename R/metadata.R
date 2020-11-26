@@ -1,10 +1,10 @@
-#' metadata_20Q3
+#' metadata_20Q4
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 20Q3
+#' The `metadata` dataset contains the metadata about cell lines in the 20Q4
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
-#' dependency data but contains the metadata for 0 genes, 1804 cell lines, 35
-#' primary diseases and 38 lineages. The columns of `metadata` are: `depmap_id`,
+#' dependency data but contains the metadata for 0 genes, 1812 cell lines, 35
+#' primary diseases and 39 lineages. The columns of `metadata` are: `depmap_id`,
 #' `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 #' `WTSI_master_cell_ID`, `primary_disease`, `subtype_disease`,
 #' `sub_subtype_disease`, `gender`, `source`, `Achilles_n_replicates`,
@@ -12,11 +12,12 @@
 #' This dataset can be loaded into the R  environment with the
 #' `depmap_copyNumber` function.
 #'
-#' @format A data frame with 1804 rows (cell lines) and 25 variables:
+#' @format A data frame with 1812 rows (cell lines) and 26 variables:
 #' \describe{
 #'   \item{depmap_id}{Cancer cell line primary key (i.e. "ACH-00001")}
 #'   \item{stripped_cell_line_name}{Name of stripped cell line}
 #'   \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
+#'   \item{cell_line_name}{Abbreviated name of cancer cell line (i.e. "NIH:OVCAR-3")}
 #'   \item{aliases}{Aliases of cancer cell line}
 #'   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer ID number (e.g. 905933)}
 #'   \item{sex}{Sex of tissue sample)}
@@ -41,7 +42,7 @@
 #'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 20Q3
+#' @details This data represents the `sample_info.csv` file taken from the 20Q4
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -63,16 +64,18 @@
 #' including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 #' `culture_medium`, and `cas9_activity`.
 #' 
-#' - 19Q3: adds 0 genes, 30 cell lines, 2 primary diseases and 2 lineages.
+#' - 19Q3: adds 30 cell lines, 2 primary diseases and 2 lineages
 #' 
-#' - 19Q4: for 0 genes, 42 cell lines, 0 primary diseases and 3 lineages.
+#' - 19Q4: adds 42 cell lines, 0 primary diseases and 3 lineages
 #' 
 #' - 20Q1: adds 19 cell lines, `gender` was changed to `sex`, `age`,
 #' `primary_or_metastasis` and `sample_collection_site`` were added
 #' 
-#' - 20Q2: addes 30 cell lines and 1 lineage
+#' - 20Q2: adds 30 cell lines and 1 lineage
 #'
-#' - 20Q3: added new column `WTSI_master_cell_ID`
+#' - 20Q3: adds new column `WTSI_master_cell_ID`
+#' 
+#' - 20Q4: adds 6 cell lines and 1 lineage. Adds column `cell_line_name`
 #'
 #' @docType data
 #'
@@ -110,7 +113,7 @@
 #'
 #' @rdname metadata
 #'
-#' @aliases metadata_20Q3 metadata_20Q2 metadata_20Q1 metadata_19Q4
-#' metadata_19Q3 metadata_19Q2 metadata_19Q1 depmap_metadata
+#' @aliases metadata_20Q4 metadata_20Q3 metadata_20Q2 metadata_20Q1
+#' metadata_19Q4 metadata_19Q3 metadata_19Q2 metadata_19Q1 depmap_metadata
 #' 
 metadata <- NULL
