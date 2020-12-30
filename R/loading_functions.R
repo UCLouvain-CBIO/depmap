@@ -4,7 +4,7 @@
 
 depmap_data_loading <- function(name) {
    eh <- ExperimentHub::ExperimentHub()
-   eh <- AnnotationHub::query(eh, c("depmap", name))
+   eh <- AnnotationHub::query(eh, c("depmap", name), ignore.case=FALSE)
    eh_name <- names(eh)[length(eh)]
    eh[[eh_name]]
 }
