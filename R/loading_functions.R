@@ -35,7 +35,7 @@ depmap_metadata <- function()
 
 #' @export
 depmap_mutationCalls <- function()
-   depmap_data_loading("copyNumber")
+   depmap_data_loading("mutationCalls")
 
 #' @export
 depmap_drug_sensitivity <- function()
