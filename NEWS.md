@@ -3,9 +3,10 @@
 ## Changes in version 1.5.2
 
 - 21Q1 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`
-  and `metadata` datasets. Newer versions for the other datasets
-  were not released.
+  and `metadata` datasets. Newer versions for the other datasets were
+  not released.
 - Loading function bug was fixed.
+- Fix ensembl_id to entrez_id in TPM data (see #64)
 
 ## Changes in version 1.5.1
 
