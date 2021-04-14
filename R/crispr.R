@@ -1,6 +1,6 @@
-#' crispr_20Q4
+#' crispr_21Q1
 #'
-#' The `crispr` dataset contains the 20Q4 genetic dependency of CRISPR-Cas9 gene
+#' The `crispr` dataset contains the 21Q1 genetic dependency of CRISPR-Cas9 gene
 #' knockout of select genes in various cancer cell lines. This dataset includes
 #' data from 18119 genes, 808 cell lines, 31 primary diseases and 29 lineages.
 #' The columns of `crispr` are: `depmap_id` a foreign key corresponding to the
@@ -25,7 +25,7 @@
 #' }
 #'
 #' @details This data represents the `Achilles_gene_effect.csv` file taken from
-#' the 20Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' the 21Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -53,6 +53,8 @@
 #' - 20Q3: adds 20 cell lines, 1 primary disease and 1 lineages.
 #' 
 #' - 20Q4: adds 19 cell lines, 1 primary disease and 2 lineages
+#' 
+#' - 21Q1: no change
 #'
 #' @docType data
 #'
@@ -91,7 +93,7 @@
 #'
 #' @rdname crispr
 #'
-#' @aliases crispr_20Q4 crispr_20Q3 crispr_20Q2 crispr_20Q1 crispr_19Q4
-#' crispr_19Q3 crispr_19Q2 crispr_19Q1 depmap_crispr
+#' @aliases crispr_21Q1 crispr_20Q4 crispr_20Q3 crispr_20Q2 crispr_20Q1
+#' crispr_19Q4 crispr_19Q3 crispr_19Q2 crispr_19Q1 depmap_crispr
 #' 
 crispr <- NULL
