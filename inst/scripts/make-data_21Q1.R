@@ -163,7 +163,7 @@ names(TPM_21Q1)[1] <-"depmap_id"
 ### gather `TPM` into long form on columns: `depmap_id`, `gene`, `expression`
 TPM_21Q1_long <- gather(TPM_21Q1, gene, rna_expression, -depmap_id)
 
-### mutate gene into gene_name and ensembl_id
+### mutate gene into gene_name and entrez_id
 TPM_21Q1_long <- TPM_21Q1_long %>%
     mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
            gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene)))
@@ -174,11 +174,10 @@ TPM_21Q1 <- TPM_21Q1_long %>% left_join(depmap_id_to_name_21Q1,
 
 ### rearrange columns into same column format as other datasets
 TPM_21Q1 <- TPM_21Q1 %>%
-    dplyr::select(depmap_id, gene, rna_expression, ensembl_id, gene_name,
+    dplyr::select(depmap_id, gene, rna_expression, entrez_id, gene_name,
                   cell_line) %>%
-    type_convert(cols(ensembl_id = "i"))
+    type_convert(cols(entrez_id = "i"))
 
 ### saving cleaned and converted `TPM` data as .rda file
 save(TPM_21Q1, file = "../eh_data/TPM_21Q1.rda", compress = "xz",
      compression_level = 9)
-#
