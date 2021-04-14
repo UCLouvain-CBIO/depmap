@@ -4,7 +4,7 @@
 
 ## This scripts documents how to download and generate the data files.
 ## Note 1: This scipt assumes (!!!) that it is run in ./depmap/inst/scripts/ and
-## saves the resulting .rda files in ./depmap/inst/data  
+## saves the resulting .rda files in ./depmap/inst/data
 ## (e.g. *setwd(./depmap/inst/scripts/)*)
 ## Note 2: the Broad Institute may change the download urls for these datasets.
 ## If the link to one of these datasets is broken, please contact the package
@@ -62,7 +62,7 @@ mutationCalls_21Q1 <- read_csv(url_50)
 
 ## note: "mutationCalls_21Q1" has different columns than "mutationCalls_19Q1"
 ## the variable "VA_WES_AC" is no longer present in this dataset, unlike
-## previous releases (e.g. 19Q1)! 
+## previous releases (e.g. 19Q1)!
 names(mutationCalls_21Q1)[1:32] <- c(
     "gene_name", "entrez_id", "ncbi_build", "chromosome", "start_pos",
     "end_pos", "strand", "var_class","var_type", "ref_allele",
@@ -97,17 +97,17 @@ copyNumber_21Q1_long <- gather(copyNumber_21Q1, gene, log_copy_number,
                                -depmap_id)
 
 ### mutate gene column into `gene_name` and `entrez_id`
-copyNumber_21Q1_long <- copyNumber_21Q1_long %>% 
+copyNumber_21Q1_long <- copyNumber_21Q1_long %>%
     mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene)))
 
-### left_join `copyNumber` & `depmap_id_to_name_21Q1` on `depmap_id`, 
-## `cell_line`     
-copyNumber_21Q1 <- copyNumber_21Q1_long %>% 
+### left_join `copyNumber` & `depmap_id_to_name_21Q1` on `depmap_id`,
+## `cell_line`
+copyNumber_21Q1 <- copyNumber_21Q1_long %>%
     left_join(depmap_id_to_name_21Q1, by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-copyNumber_21Q1 <- copyNumber_21Q1 %>% 
+copyNumber_21Q1 <- copyNumber_21Q1 %>%
                         dplyr::select(depmap_id, gene, log_copy_number,
                                       entrez_id, gene_name, cell_line) %>%
                                       type_convert(cols(entrez_id = "i"))
@@ -131,12 +131,12 @@ names(crispr_21Q1)[1] <-"depmap_id"
 crispr_21Q1_long <- gather(crispr_21Q1, gene, dependency, -depmap_id)
 
 ### mutate gene into `gene_name` and `entrez_id`
-crispr_21Q1_long <- crispr_21Q1_long %>% 
+crispr_21Q1_long <- crispr_21Q1_long %>%
     mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene)))
 
-### left_join `crispr_long` and `depmap_id_to_name` to add `cell_line` column   
-crispr_21Q1 <- crispr_21Q1_long %>% left_join(depmap_id_to_name_21Q1, 
+### left_join `crispr_long` and `depmap_id_to_name` to add `cell_line` column
+crispr_21Q1 <- crispr_21Q1_long %>% left_join(depmap_id_to_name_21Q1,
                                     by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
@@ -164,12 +164,12 @@ names(TPM_21Q1)[1] <-"depmap_id"
 TPM_21Q1_long <- gather(TPM_21Q1, gene, rna_expression, -depmap_id)
 
 ### mutate gene into gene_name and ensembl_id
-TPM_21Q1_long <- TPM_21Q1_long %>% 
-    mutate(ensembl_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+TPM_21Q1_long <- TPM_21Q1_long %>%
+    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
+           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene)))
 
 ### left_join join `TPM` and `depmap_id_to_name_21Q1` to add `cell_line` column
-TPM_21Q1 <- TPM_21Q1_long %>% left_join(depmap_id_to_name_21Q1, 
+TPM_21Q1 <- TPM_21Q1_long %>% left_join(depmap_id_to_name_21Q1,
                               by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
