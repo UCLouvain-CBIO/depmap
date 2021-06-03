@@ -57,7 +57,7 @@
 #' 
 #' - 21Q2: adds 3 cell lines. Additionally, a bug was fixed where the Entrez ID
 #' appeared as Ensembl_ID. This was changed for all previous versions of this
-#' dataset from 19Q1 to 21Q2
+#' dataset from 19Q3 to 21Q2
 #'
 #' @docType data
 #'
