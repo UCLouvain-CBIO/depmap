@@ -3,6 +3,8 @@
 \docType{data}
 \name{copyNumber}
 \alias{copyNumber}
+\alias{copyNumber_21Q2}
+\alias{copyNumber_21Q1}
 \alias{copyNumber_20Q4}
 \alias{copyNumber_20Q3}
 \alias{copyNumber_20Q2}
@@ -12,9 +14,9 @@
 \alias{copyNumber_19Q2}
 \alias{copyNumber_19Q1}
 \alias{depmap_copyNumber}
-\title{copyNumber_20Q4}
+\title{copyNumber_21Q2}
 \format{
-A data frame with 48316186 rows (cell lines) and 6 variables.
+A data frame with 48013004 rows (cell lines) and 6 variables.
 
 \describe{
      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -33,8 +35,8 @@ A data frame with 48316186 rows (cell lines) and 6 variables.
 copyNumber
 }
 \description{
-The `copyNumber` dataset contains the 20Q4 WES copy number data for genes and
-cancer cell lines. This dataset includes data from 27562 genes, 1753 cell
+The `copyNumber` dataset contains the 21Q2 WES copy number data for genes and
+cancer cell lines. This dataset includes data from 27562 genes, 1742 cell
 lines, 35 primary diseases and 38 lineages. The columns of `copyNumber` are:
 `depmap_id`, a foreign key corresponding to the cancer cell lineage,
 `cell_line` containing the common CCLE name of the cancer cell lines,
@@ -47,7 +49,7 @@ This dataset can be loaded into the R environment with the
 }
 \details{
 This data represents the `CCLE_gene_cn.csv` file taken from the
-20Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+21Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -76,6 +78,10 @@ dataframe with 45670234 rows and 6 variables
 - 20Q3: no change
 
 - 20Q4: removes 77 genes, adds 8 cell lines and 1 lineage
+
+- 21Q1: removes 13 cell lines
+
+- 21Q2: adds 2 cell lines
 }
 
 \examples{

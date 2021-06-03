@@ -1,9 +1,9 @@
-#' metadata_21Q1
+#' metadata_21Q2
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 21Q1
+#' The `metadata` dataset contains the metadata about cell lines in the 21Q2
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
-#' dependency data but contains the metadata for 0 genes, 1811 cell lines, 35
+#' dependency data but contains the metadata for 0 genes, 1814 cell lines, 35
 #' primary diseases and 39 lineages. The columns of `metadata` are: `depmap_id`,
 #' `stripped_cell_line_name`, `cell_line`, `aliases`, `cosmic_id`, `sanger_id`,
 #' `WTSI_master_cell_ID`, `primary_disease`, `subtype_disease`,
@@ -12,7 +12,7 @@
 #' This dataset can be loaded into the R  environment with the
 #' `depmap_copyNumber` function.
 #'
-#' @format A data frame with 1811 rows (cell lines) and 26 variables:
+#' @format A data frame with 1814 rows (cell lines) and 26 variables:
 #' \describe{
 #'   \item{depmap_id}{Cancer cell line primary key (i.e. "ACH-00001")}
 #'   \item{stripped_cell_line_name}{Name of stripped cell line}
@@ -42,7 +42,7 @@
 #'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 21Q1
+#' @details This data represents the `sample_info.csv` file taken from the 21Q2
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -78,6 +78,8 @@
 #' - 20Q4: adds 6 cell lines and 1 lineage. Adds column `cell_line_name`
 #'
 #' - 21Q1: removes 1 cell line
+#' 
+#' - 21Q2: adds 3 cell lines
 #' 
 #' @docType data
 #'
@@ -115,8 +117,8 @@
 #'
 #' @rdname metadata
 #'
-#' @aliases metadata_21Q1 metadata_20Q4 metadata_20Q3 metadata_20Q2
-#' metadata_20Q1 metadata_19Q4 metadata_19Q3 metadata_19Q2 metadata_19Q1
-#' depmap_metadata
+#' @aliases metadata_21Q2 metadata_21Q1 metadata_20Q4 metadata_20Q3
+#' metadata_20Q2 metadata_20Q1 metadata_19Q4 metadata_19Q3 metadata_19Q2
+#' metadata_19Q1 depmap_metadata
 #' 
 metadata <- NULL

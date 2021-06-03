@@ -3,6 +3,8 @@
 \docType{data}
 \name{mutationCalls}
 \alias{mutationCalls}
+\alias{mutationCalls_21Q2}
+\alias{mutationCalls_21Q1}
 \alias{mutationCalls_20Q4}
 \alias{mutationCalls_20Q3}
 \alias{mutationCalls_20Q2}
@@ -12,9 +14,9 @@
 \alias{mutationCalls_19Q2}
 \alias{mutationCalls_19Q1}
 \alias{depmap_mutationCalls}
-\title{mutationCalls_20Q4}
+\title{mutationCalls_21Q2}
 \format{
-A data frame with 1293716 rows and 32 variables:
+A data frame with 1269999 rows and 32 variables:
 \describe{
   \item{depmap_id}{depmap_id}
   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -58,8 +60,8 @@ A data frame with 1293716 rows and 32 variables:
 mutationCalls
 }
 \description{
-The `mutationCalls` dataset contains merged the 20Q4 mutation calls (for
-coding region, germline filtered) and includes data from 18789 genes, 1749
+The `mutationCalls` dataset contains merged the 21Q2 mutation calls (for
+coding region, germline filtered) and includes data from 18787 genes, 1750
 cell lines, 35 primary diseases and 38 lineages. This dataset can be
 considered the metadata data set for mutations and does not contain any
 dependency data. This dataset can be loaded into the R environment with the
@@ -67,7 +69,7 @@ dependency data. This dataset can be loaded into the R environment with the
 }
 \details{
 This data represents the `CCLE_mutations.csv` file taken from the
-20Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+21Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -100,7 +102,11 @@ unique identifying purpose.
 - 20Q3: no change
 
 - 20Q4: removes 13 genes, adds 8 cell lines and 1 lineage. Columns
- `tumor_sample_barcode` and `sanger_recalib_WES_AC` were removed
+ `tumor_sample_barcode` and `sanger_recalib_WES_AC` were removed 
+
+- 21Q1: removes 11 genes and 2 cell lines
+
+- 21Q2: removes 1 genes and adds 3 cell lines
 }
 
 \examples{

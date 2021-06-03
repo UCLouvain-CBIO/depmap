@@ -274,9 +274,9 @@ TPM_19Q4 <- TPM_19Q4_long %>% left_join(depmap_id_to_name_19Q4,
                               by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-TPM_19Q4 <- TPM_19Q4 %>% dplyr::select(depmap_id, gene, expression, ensembl_id,
+TPM_19Q4 <- TPM_19Q4 %>% dplyr::select(depmap_id, gene, expression, entrez_id,
                                 gene_name, cell_line) %>%
-                                type_convert(cols(ensembl_id = "i"))
+                                type_convert(cols(entrez_id_id = "i"))
 ### visual check
 head(TPM_19Q4)
 
