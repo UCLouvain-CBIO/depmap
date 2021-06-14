@@ -21,11 +21,11 @@ library("ExperimentHub")
 ##########################################
 
 ### loading data (downloading .csv file from online source)
-metadata_21Q2 <- read_csv("https://ndownloader.figshare.com/files/27902376") #
+metadata_21Q2 <- read_csv("https://ndownloader.figshare.com/files/27902376")
 
 #### Rename `metadata` columns to contain underscores and be in snake case
 ## note: "metadata_21Q2" has different columns than "metadata_21Q2"
-names(metadata_21Q2)[1:26] <-c(
+names(metadata_21Q2)[1:26] <- c(
     "depmap_id", "cell_line_name",
     "stripped_cell_line_name", "cell_line",
     "aliases", "cosmic_id",
@@ -62,7 +62,7 @@ metadata_21Q2 %>% dplyr::select(depmap_id, cell_line) -> dep_2_name_21Q2
 ##########################################
 
 ### loading data (downloading .csv file from online source)
-mutationCalls_21Q2 <- read_csv("https://ndownloader.figshare.com/files/27902118") #
+mutationCalls_21Q2 <- read_csv("https://ndownloader.figshare.com/files/27902118")
 
 ## note: "mutationCalls_21Q2" has different columns than "mutationCalls_19Q1"
 ## the variable "VA_WES_AC" is no longer present in this dataset, unlike
@@ -98,7 +98,7 @@ save(mutationCalls_21Q2, file = "../eh_data/mutationCalls_21Q2.rda",
 ##########################################
 
 ### loading data (downloading .csv file from online source)
-copyNumber_21Q2 <- read_csv("https://ndownloader.figshare.com/files/27902124") #
+copyNumber_21Q2 <- read_csv("https://ndownloader.figshare.com/files/27902124")
 
 ### rename column first column to "depmap_id"
 names(copyNumber_21Q2)[1] <- "depmap_id"
@@ -240,14 +240,14 @@ save(drug_sensativity_19Q3, file = "../eh_data/drug_sensativity_19Q3.rda",
 # query(eh, "depmap")
 
 ## old datasets will be downloaded via EH and saved
-eh[["EH2264"]] %>% rename(entrez_id = ensembl_id) -> TPM_19Q1
-save(TPM_19Q1, file = "../eh_data/TPM_19Q1.rda", compress = "xz",
-     compression_level = 9)
-rm(TPM_19Q1)
-eh[["EH2554"]] %>% rename(entrez_id = ensembl_id) -> TPM_19Q2
-save(TPM_19Q2, file = "../eh_data/TPM_19Q2.rda", compress = "xz",
-     compression_level = 9)
-rm(TPM_19Q2)
+# eh[["EH2264"]] %>% rename(entrez_id = ensembl_id) -> TPM_19Q1
+# save(TPM_19Q1, file = "../eh_data/TPM_19Q1.rda", compress = "xz",
+#      compression_level = 9)
+# rm(TPM_19Q1)
+# eh[["EH2554"]] %>% rename(entrez_id = ensembl_id) -> TPM_19Q2
+# save(TPM_19Q2, file = "../eh_data/TPM_19Q2.rda", compress = "xz",
+#      compression_level = 9)
+# rm(TPM_19Q2)
 eh[["EH3084"]] %>% rename(entrez_id = ensembl_id) -> TPM_19Q3
 save(TPM_19Q3, file = "../eh_data/TPM_19Q3.rda", compress = "xz",
      compression_level = 9)
