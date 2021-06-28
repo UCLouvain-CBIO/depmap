@@ -45,6 +45,8 @@
 #' - 20Q4: no change, no further releases are scheduled at this time.
 #' 
 #' - 21Q1: no change, no further releases are scheduled at this time.
+#' 
+#' - 21Q2: no change, no further releases are scheduled at this time.
 #'
 #' @docType data
 #'

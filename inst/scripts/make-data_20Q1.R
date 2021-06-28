@@ -270,13 +270,16 @@ TPM_20Q1_long <- TPM_20Q1_long %>%
            gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
 
 ### left_join join `TPM` and `depmap_id_to_name_20Q1` to add `cell_line` column
-TPM_20Q1 <- TPM_20Q1_long %>% left_join(depmap_id_to_name_20Q1, 
-                              by = c("depmap_id" = "depmap_id"))
+TPM_20Q1_long %>%
+    left_join(depmap_id_to_name_20Q1, by = c("depmap_id" = "depmap_id")
+              ) -> TPM_20Q1
 
 ### rearrange columns into same column format as other datasets
-TPM_20Q1 <- TPM_20Q1 %>% dplyr::select(depmap_id, gene, expression, ensembl_id,
-                                gene_name, cell_line) %>%
-                                type_convert(cols(ensembl_id = "i"))
+TPM_20Q1 %>%
+    dplyr::select(depmap_id, gene, expression, entrez_id, gene_name,
+                  cell_line) %>%
+    type_convert(cols(entrez_id = "i")) -> TPM_20Q1
+
 ### visual check
 head(TPM_20Q1)
 

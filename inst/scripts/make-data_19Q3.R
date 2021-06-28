@@ -276,11 +276,10 @@ TPM_19Q3 <- TPM_19Q3_long %>% left_join(depmap_id_to_name_19Q3,
                               by = c("depmap_id" = "depmap_id"))
 
 ### rearrange columns into same column format as other datasets
-TPM_19Q3 <- TPM_19Q3 %>% dplyr::select(depmap_id, gene, expression, ensembl_id,
-                                gene_name, cell_line) %>%
-                                type_convert(cols(ensembl_id = "i"))
-### visual check
-# head(TPM_19Q3)
+TPM_19Q3 %>%
+    dplyr::select(depmap_id, gene, expression, entrez_id, gene_name,
+                  cell_line) %>%
+    type_convert(cols(entrez_id = "i")) -> TPM_19Q3
 
 ### saving cleaned and converted `TPM` data as .rda file
 save(TPM_19Q3, file = "../eh_data/TPM_19Q3.rda", compress="xz",
