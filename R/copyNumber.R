@@ -1,8 +1,8 @@
-#' copyNumber_21Q2
+#' copyNumber_21Q3
 #'
-#' The `copyNumber` dataset contains the 21Q2 WES copy number data for genes and
-#' cancer cell lines. This dataset includes data from 27562 genes, 1742 cell
-#' lines, 35 primary diseases and 38 lineages. The columns of `copyNumber` are:
+#' The `copyNumber` dataset contains the 21Q3 WES copy number data for genes and
+#' cancer cell lines. This dataset includes data from 27562 genes, 1741 cell
+#' lines, 35 primary diseases and 37 lineages. The columns of `copyNumber` are:
 #' `depmap_id`, a foreign key corresponding to the cancer cell lineage,
 #' `cell_line` containing the common CCLE name of the cancer cell lines,
 #' `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -12,7 +12,7 @@
 #' This dataset can be loaded into the R environment with the
 #' `depmap_copyNumber` function.
 #'
-#' @format A data frame with 48013004 rows (cell lines) and 6 variables.
+#' @format A data frame with 47985442 rows (cell lines) and 6 variables.
 #'
 #' \describe{
 #'      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -25,7 +25,7 @@
 #' }
 #'
 #' @details This data represents the `CCLE_gene_cn.csv` file taken from the
-#' 21Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' 21Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -58,6 +58,8 @@
 #'
 #' - 21Q2: adds 2 cell lines
 #'
+#' - 21Q3: removes 1 cell line and 1 lineage
+#'
 #' @keywords datasets
 #'
 #' @examples
@@ -88,9 +90,9 @@
 #'
 #' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
 #'
-#' @aliases copyNumber_21Q2 copyNumber_21Q1 copyNumber_20Q4 copyNumber_20Q3
-#' copyNumber_20Q2 copyNumber_20Q1 copyNumber_19Q4 copyNumber_19Q3
-#' copyNumber_19Q2 copyNumber_19Q1 depmap_copyNumber
+#' @aliases depmap_copyNumber copyNumber_19Q1 copyNumber_19Q2 copyNumber_19Q3
+#' copyNumber_19Q4 copyNumber_20Q1 copyNumber_20Q2 copyNumber_20Q3
+#' copyNumber_20Q4 copyNumber_21Q1 copyNumber_21Q2 copyNumber_21Q3
 #'
 #' @rdname copyNumber
 copyNumber <- NULL

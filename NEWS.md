@@ -1,5 +1,14 @@
 # depmap 1.5
 
+## Changes in version 1.5.4
+
+- 21Q3 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`
+  and `metadata` datasets. Newer versions for the other datasets were
+  not released.
+- CERES CRISPR data has been deprecated and has been replaced with Chronos
+  CRISPR dependency in 21Q3 and all future releases. For more information, see:
+  https://cancerdatascience.org/blog/posts/ceres-chronos/
+
 ## Changes in version 1.5.3
 
 - 21Q2 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`

@@ -76,7 +76,9 @@ diseases and 25 lineages.
 - 21Q1: no change, no further releases are scheduled at this time.
 
 - 21Q2: Drug sensitivity data combined with compound metadata, added 10 new
- features from the file primary-screen-replicate-collapsed-treatment-info.csv
+ features from the file primary-screen-replicate-collapsed-treatment-info.csv 
+ 
+- 21Q3: no change, no further releases are scheduled at this time.
 }
 
 \references{
