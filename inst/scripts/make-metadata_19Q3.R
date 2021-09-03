@@ -12,8 +12,7 @@ meta_19Q3 <- data.frame(
               paste0("TPM_19Q3"),
               paste0("mutationCalls_19Q3"),
               paste0("metadata_19Q3"),
-              paste0("drug_sensitivity_19Q3")
-              ),
+              paste0("drug_sensitivity_19Q3")),
     Description = c(paste0("(DEMETER2) Batch and off-target corrected RNAi ", 
                            "gene knockdown dependency data for 17309 genes, ", 
                            "712 cancer cell lines, 31 primary Diseases and ", 
@@ -42,8 +41,7 @@ meta_19Q3 <- data.frame(
                            "derived from replicate collapsed logfold change ",
                            "values relative to DMSO, corrected for experimental ",
                            "confounders using ComBat representing 4686 compounds, ",
-                           "578 cell lines, 23 primary diseases and 25 lineages")
-                    ),
+                           "578 cell lines, 23 primary diseases and 25 lineages")),
     BiocVersion = "3.10",
     Genome = "", 
     SourceType = "CSV", 
@@ -54,8 +52,7 @@ meta_19Q3 <- data.frame(
                   paste0("https://ndownloader.figshare.com/files/16757690"),
                   paste0("https://ndownloader.figshare.com/files/16757702"),
                   paste0("https://ndownloader.figshare.com/files/16757723"),
-                  paste0("https://ndownloader.figshare.com/files/17008628")
-                  ),
+                  paste0("https://ndownloader.figshare.com/files/17008628")),
     SourceVersion = "Aug 7 2019",
     Species = "Homo sapiens",
     TaxonomyId = 9606,
@@ -71,8 +68,7 @@ meta_19Q3 <- data.frame(
                   paste0("depmap/TPM_19Q3.rda"),
                   paste0("depmap/mutationCalls_19Q3.rda"),
                   paste0("depmap/metadata_19Q3.rda"),
-                  paste0("depmap/drug_sensitivity_19Q3.rda")
-                  ),
+                  paste0("depmap/drug_sensitivity_19Q3.rda")),
     Tags=paste0("ExperimentHub, ExperimentData, ReproducibleResearch, RepositoryData, AssayDomainData, ", 
                 "CopyNumberVariationData, DiseaseModel, CancerData, BreastCancerData, ColonCancerData, ", 
                 "KidneyCancerData, LeukemiaCancerData, LungCancerData, OvarianCancerData, ProstateCancerData", 

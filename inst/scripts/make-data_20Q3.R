@@ -180,19 +180,20 @@ names(TPM_20Q3)[1] <-"depmap_id"
 TPM_20Q3_long <- gather(TPM_20Q3, gene, rna_expression, -depmap_id)
 
 ### mutate gene into gene_name and ensembl_id
-TPM_20Q3_long <- TPM_20Q3_long %>% 
+TPM_20Q3_long %>% 
     mutate(ensembl_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))) 
+           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))
+           ) -> TPM_20Q3_long 
 
 ### left_join join `TPM` and `depmap_id_to_name_20Q3` to add `cell_line` column
-TPM_20Q3 <- TPM_20Q3_long %>% left_join(depmap_id_to_name_20Q3, 
-                              by = c("depmap_id" = "depmap_id"))
+TPM_20Q3_long %>%
+    left_join(depmap_id_to_name_20Q3, by = c("depmap_id" = "depmap_id")
+              ) -> TPM_20Q3
 
 ### rearrange columns into same column format as other datasets
-TPM_20Q3 <- TPM_20Q3 %>%
-    dplyr::select(depmap_id, gene, rna_expression, ensembl_id, gene_name,
-                  cell_line) %>%
-    type_convert(cols(ensembl_id = "i"))
+TPM_20Q3 %>%
+    select(depmap_id, gene, rna_expression, entrez_id, gene_name, cell_line) %>%
+    type_convert(cols(entrez_id = "i")) -> TPM_20Q3
 
 ### saving cleaned and converted `TPM` data as .rda file
 save(TPM_20Q3, file = "../eh_data/TPM_20Q3.rda", compress = "xz",

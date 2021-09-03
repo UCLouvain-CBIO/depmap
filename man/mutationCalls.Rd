@@ -3,18 +3,21 @@
 \docType{data}
 \name{mutationCalls}
 \alias{mutationCalls}
-\alias{mutationCalls_20Q4}
-\alias{mutationCalls_20Q3}
-\alias{mutationCalls_20Q2}
-\alias{mutationCalls_20Q1}
-\alias{mutationCalls_19Q4}
-\alias{mutationCalls_19Q3}
-\alias{mutationCalls_19Q2}
-\alias{mutationCalls_19Q1}
 \alias{depmap_mutationCalls}
-\title{mutationCalls_20Q4}
+\alias{mutationCalls_19Q1}
+\alias{mutationCalls_19Q2}
+\alias{mutationCalls_19Q3}
+\alias{mutationCalls_19Q4}
+\alias{mutationCalls_20Q1}
+\alias{mutationCalls_20Q2}
+\alias{mutationCalls_20Q3}
+\alias{mutationCalls_20Q4}
+\alias{mutationCalls_21Q1}
+\alias{mutationCalls_21Q2}
+\alias{mutationCalls_21Q3}
+\title{mutationCalls_21Q3}
 \format{
-A data frame with 1293716 rows and 32 variables:
+A data frame with 1226336 rows and 32 variables:
 \describe{
   \item{depmap_id}{depmap_id}
   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -29,7 +32,8 @@ A data frame with 1293716 rows and 32 variables:
   \item{var_type}{Variant Type}
   \item{ref_allele}{Reference Allele}
   \item{tumor_seq_allele1}{Tumor Seq Allele1}
-  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) reference cluster}
+  \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) reference
+   cluster}
   \item{dbSNP_val_status}{dbSNP Val Status}
   \item{genome_change}{Genome Change}
   \item{annotation_transcript}{Annotation Transcript}
@@ -58,16 +62,16 @@ A data frame with 1293716 rows and 32 variables:
 mutationCalls
 }
 \description{
-The `mutationCalls` dataset contains merged the 20Q4 mutation calls (for
-coding region, germline filtered) and includes data from 18789 genes, 1749
-cell lines, 35 primary diseases and 38 lineages. This dataset can be
+The `mutationCalls` dataset contains merged the 21Q3 mutation calls (for
+coding region, germline filtered) and includes data from 18784 genes, 1746
+ cell lines, 35 primary diseases and 37 lineages. This dataset can be
 considered the metadata data set for mutations and does not contain any
 dependency data. This dataset can be loaded into the R environment with the
 `depmap_mutationCalls` function.
 }
 \details{
 This data represents the `CCLE_mutations.csv` file taken from the
-20Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+21Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -85,9 +89,9 @@ diseases and 33 lineages
 - 19Q2: adds 30 cell lines, 1 primary disease and 1 lineage. This version has
 different columns than the previous version: the variable "VA_WES_AC" is no
 longer present in this dataset. Some minor alterations to the original file
-were made. The first column of the original dataset, (item{ID}{Sample number})
-was removed, as this column was only the row number and did not serve any
-unique identifying purpose.
+were made. The first column of the original dataset,
+(item{ID}{Sample number}) was removed, as this column was only the row number
+and did not serve any unique identifying purpose.
 
 - 19Q3: adds 1 gene, 25 cell lines and removes 1 primary disease
 
@@ -100,7 +104,13 @@ unique identifying purpose.
 - 20Q3: no change
 
 - 20Q4: removes 13 genes, adds 8 cell lines and 1 lineage. Columns
- `tumor_sample_barcode` and `sanger_recalib_WES_AC` were removed
+ `tumor_sample_barcode` and `sanger_recalib_WES_AC` were removed 
+
+- 21Q1: removes 11 genes and 2 cell lines
+
+- 21Q2: removes 1 genes and adds 3 cell lines
+
+- 21Q3: removes 3 genes, 4 cell lines and 1 lineage
 }
 
 \examples{

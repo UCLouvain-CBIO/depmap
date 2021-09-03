@@ -164,19 +164,20 @@ names(TPM_21Q1)[1] <-"depmap_id"
 TPM_21Q1_long <- gather(TPM_21Q1, gene, rna_expression, -depmap_id)
 
 ### mutate gene into gene_name and entrez_id
-TPM_21Q1_long <- TPM_21Q1_long %>%
-    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "",gene))),
-           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene)))
+TPM_21Q1_long %>%
+    mutate(entrez_id = gsub("&", ";", sub("\\)", "", sub("^.+ \\(", "", gene))),
+           gene_name = gsub("&", ";", sub(" \\(.+\\)$", "", gene))
+           ) -> TPM_21Q1_long
 
 ### left_join join `TPM` and `depmap_id_to_name_21Q1` to add `cell_line` column
-TPM_21Q1 <- TPM_21Q1_long %>% left_join(depmap_id_to_name_21Q1,
-                              by = c("depmap_id" = "depmap_id"))
+TPM_21Q1_long %>%
+  left_join(depmap_id_to_name_21Q1, by = c("depmap_id" = "depmap_id")
+            ) -> TPM_21Q1
 
 ### rearrange columns into same column format as other datasets
-TPM_21Q1 <- TPM_21Q1 %>%
-    dplyr::select(depmap_id, gene, rna_expression, entrez_id, gene_name,
-                  cell_line) %>%
-    type_convert(cols(entrez_id = "i"))
+TPM_21Q1 %>%
+    select(depmap_id, gene, rna_expression, entrez_id, gene_name, cell_line) %>%
+    type_convert(cols(entrez_id = "i")) -> TPM_21Q1
 
 ### saving cleaned and converted `TPM` data as .rda file
 save(TPM_21Q1, file = "../eh_data/TPM_21Q1.rda", compress = "xz",

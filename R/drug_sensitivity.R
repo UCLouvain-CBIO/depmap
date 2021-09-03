@@ -10,14 +10,25 @@
 #' a foreign key corresponding to the cancer cell lineage, `cell_line` the
 #' common CCLE name of the cancer cell lines, `compound` the synonym for the
 #' drug compound, and `dependency` which contains the numerical dependency score
-#' values for each pair of genes and cell lines.
+#' values for each pair of genes and cell lines. Compounded metadata has also 
+#' been added.
 #'
-#' @format A data frame with 67498602 rows (cell lines) and 6 variables:
+#' @format A data frame with 2708508 rows (cell lines) and 14 variables:
 #' \describe{
 #'      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
 #'      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
 #'      \item{compound}{Drug compound name (i.e. BRD-A00077618-236-07-6::2.5::HTS)}
-#'      \item{dependency}{numerical depenency score of a gene for a cell line}
+#'      \item{dependency}{numerical depenency score of a compound on a cell line}
+#'      \item{broad_id}{Broad ID for compound (i.e. BRD-A00077618-236-07-6)}
+#'      \item{name}{Standard chemical name (i.e. 8-bromo-cGMP)}
+#'      \item{dose}{Dose of compound}
+#'      \item{screen_id}{Broad ID for compound (i.e. HTS)}
+#'      \item{moa}{Mechanism of action (i.e. PKA activator)}
+#'      \item{target}{Molecular target of compount (i.e. PRKG1)}
+#'      \item{disease_area}{Anatomical target (i.e. hematologic malignancy)}
+#'      \item{indication}{Prescribed for disease (i.e. acute myeloid leukemia (AML))}
+#'      \item{smiles}{Simplified molecular-input line-entry specification}
+#'      \item{phase}{Clincal phase}
 #' }
 #'
 #' @details This data originates from the 
@@ -47,6 +58,11 @@
 #' - 20Q4: no change, no further releases are scheduled at this time.
 #' 
 #' - 21Q1: no change, no further releases are scheduled at this time.
+#' 
+#' - 21Q2: Drug sensitivity data combined with compound metadata, added 10 new
+#'  features from the file primary-screen-replicate-collapsed-treatment-info.csv 
+#'  
+#' - 21Q3: no change, no further releases are scheduled at this time.
 #'
 #' @docType data
 #'

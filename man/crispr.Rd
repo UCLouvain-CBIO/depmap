@@ -3,18 +3,21 @@
 \docType{data}
 \name{crispr}
 \alias{crispr}
-\alias{crispr_20Q4}
-\alias{crispr_20Q3}
-\alias{crispr_20Q2}
-\alias{crispr_20Q1}
-\alias{crispr_19Q4}
-\alias{crispr_19Q3}
-\alias{crispr_19Q2}
-\alias{crispr_19Q1}
 \alias{depmap_crispr}
-\title{crispr_20Q4}
+\alias{crispr_19Q1}
+\alias{crispr_19Q2}
+\alias{crispr_19Q3}
+\alias{crispr_19Q4}
+\alias{crispr_20Q1}
+\alias{crispr_20Q2}
+\alias{crispr_20Q3}
+\alias{crispr_20Q4}
+\alias{crispr_21Q1}
+\alias{crispr_21Q2}
+\alias{crispr_21Q3}
+\title{crispr_21Q3}
 \format{
-A data frame with 14640152 rows (cell lines) and 6 variables:
+A data frame with 17949576 rows (cell lines) and 6 variables:
 \describe{
     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
@@ -32,9 +35,9 @@ Broad (2020)}
 crispr
 }
 \description{
-The `crispr` dataset contains the 20Q4 genetic dependency of CRISPR-Cas9 gene
+The `crispr` dataset contains the 21Q3 genetic dependency of CRISPR-Cas9 gene
 knockout of select genes in various cancer cell lines. This dataset includes
-data from 18119 genes, 808 cell lines, 31 primary diseases and 29 lineages.
+data from 17393 genes, 1032 cell lines, 32 primary diseases and 30 lineages.
 The columns of `crispr` are: `depmap_id` a foreign key corresponding to the
 cancer cell lineage, `cell_line` containing the common CCLE name of the
 cancer cell lines, `gene` containing both the HUGO gene name of the knockout
@@ -48,7 +51,7 @@ release.
 }
 \details{
 This data represents the `Achilles_gene_effect.csv` file taken from
-the 20Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+the 21Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -77,6 +80,13 @@ with 11458125 rows and 6 variables.
 - 20Q3: adds 20 cell lines, 1 primary disease and 1 lineages.
 
 - 20Q4: adds 19 cell lines, 1 primary disease and 2 lineages
+
+- 21Q1: no change
+
+- 21Q2: removes 474 genes and adds 182 cell lines 1 primary disease and 1
+ lineage
+ 
+- 21Q3: removes 252 genes and adds 42 cell lines
 }
 
 \examples{
