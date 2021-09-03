@@ -74,6 +74,8 @@ dependency measurements in all future releases.
 - 21Q1: no change, no further releases are scheduled at this time.
 
 - 21Q2: no change, no further releases are scheduled at this time.
+
+- 21Q3: no change, no further releases are scheduled at this time.
 }
 
 \examples{
