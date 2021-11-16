@@ -1,5 +1,11 @@
 # depmap 1.7
 
+## Changes in version 1.7.2
+
+- 21Q4 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`
+  and `metadata` datasets. Newer versions for the other datasets were
+  not released.
+
 ## Changes in version 1.7.1
 
 - 21Q3 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`

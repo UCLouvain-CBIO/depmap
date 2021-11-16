@@ -1,7 +1,7 @@
-#' copyNumber_21Q3
+#' copyNumber_21Q4
 #'
-#' The `copyNumber` dataset contains the 21Q3 WES copy number data for genes and
-#' cancer cell lines. This dataset includes data from 27562 genes, 1741 cell
+#' The `copyNumber` dataset contains the 21Q4 WES copy number data for genes and
+#' cancer cell lines. This dataset includes data from 27368 genes, 1750 cell
 #' lines, 35 primary diseases and 37 lineages. The columns of `copyNumber` are:
 #' `depmap_id`, a foreign key corresponding to the cancer cell lineage,
 #' `cell_line` containing the common CCLE name of the cancer cell lines,
@@ -12,7 +12,7 @@
 #' This dataset can be loaded into the R environment with the
 #' `depmap_copyNumber` function.
 #'
-#' @format A data frame with 47985442 rows (cell lines) and 6 variables.
+#' @format A data frame with 44394000 rows (cell lines) and 6 variables.
 #'
 #' \describe{
 #'      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -25,7 +25,7 @@
 #' }
 #'
 #' @details This data represents the `CCLE_gene_cn.csv` file taken from the
-#' 21Q3 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' 21Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -59,6 +59,8 @@
 #' - 21Q2: adds 2 cell lines
 #'
 #' - 21Q3: removes 1 cell line and 1 lineage
+#' 
+#' - 21Q4: removes 194 genes and adds 9 cell lines
 #'
 #' @keywords datasets
 #'
@@ -93,6 +95,7 @@
 #' @aliases depmap_copyNumber copyNumber_19Q1 copyNumber_19Q2 copyNumber_19Q3
 #' copyNumber_19Q4 copyNumber_20Q1 copyNumber_20Q2 copyNumber_20Q3
 #' copyNumber_20Q4 copyNumber_21Q1 copyNumber_21Q2 copyNumber_21Q3
+#' copyNumber_21Q4
 #'
 #' @rdname copyNumber
 copyNumber <- NULL

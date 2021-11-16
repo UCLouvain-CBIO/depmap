@@ -1,7 +1,7 @@
 Package: depmap
 Type: Package
 Title: Cancer Dependency Map Data Package
-Version: 1.7.1
+Version: 1.7.2
 Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    email = "laurent.gatto@uclouvain.be",
 		    role = c("cre", "aut")),
@@ -30,7 +30,7 @@ Depends: R (>= 3.6), methods, dplyr
 Imports: utils, ExperimentHub, AnnotationHub
 License: Artistic-2.0
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests:
     knitr,
     rmarkdown,
