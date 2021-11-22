@@ -1,10 +1,10 @@
-#' metadata_21Q3
+#' metadata_21Q4
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 21Q3
+#' The `metadata` dataset contains the metadata about cell lines in the 21Q4
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
-#' dependency data but contains the metadata for 21Q3 DepMap release, for 2944
-#' cell lines, 0 genes, 43 primary diseases and 47 lineages. The columns of
+#' dependency data but contains the metadata for 21Q4 DepMap release, for 1825
+#' cell lines, 0 genes, 35 primary diseases and 39 lineages. The columns of
 #' `metadata` are: `depmap_id`, `stripped_cell_line_name`, `cell_line`,
 #' `aliases`, `cosmic_id`, `sanger_id`, `WTSI_master_cell_ID`,
 #' `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
@@ -12,7 +12,7 @@
 #' `culture_medium`, and `cas9_activity`. This dataset can be loaded into the R
 #'  environment with the `depmap_metadata` function.
 #'
-#' @format A data frame with 2944 rows (cell lines) and 26 variables:
+#' @format A data frame with 1825 rows (cell lines) and 26 variables:
 #' \describe{
 #'   \item{depmap_id}{Cancer cell line primary key (i.e. "ACH-00001")}
 #'   \item{stripped_cell_line_name}{Name of stripped cell line}
@@ -42,7 +42,7 @@
 #'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 21Q3
+#' @details This data represents the `sample_info.csv` file taken from the 21Q4
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -83,6 +83,8 @@
 #' 
 #' - 21Q3: adds 1130 cell lines, 8 primary diseases and 8 lineages
 #' 
+#' - 21Q4: removes 1119 cell lines, 8 primary diseases and 8 lineages
+#' 
 #' @docType data
 #'
 #' @import dplyr
@@ -121,6 +123,6 @@
 #'
 #' @aliases depmap_metadata metadata_19Q1 metadata_19Q2 metadata_19Q3
 #' metadata_19Q4 metadata_20Q1 metadata_20Q2 metadata_20Q3 metadata_20Q4
-#' metadata_21Q1 metadata_21Q2 metadata_21Q3
+#' metadata_21Q1 metadata_21Q2 metadata_21Q3 metadata_21Q4
 #' 
 metadata <- NULL
