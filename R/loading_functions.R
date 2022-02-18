@@ -1,7 +1,6 @@
 ##' @importFrom AnnotationHub query
 ##' @importFrom ExperimentHub ExperimentHub
 
-
 depmap_data_loading <- function(name) {
    eh <- ExperimentHub::ExperimentHub()
    eh <- AnnotationHub::query(eh, c("depmap", name), ignore.case = FALSE)
@@ -44,3 +43,11 @@ depmap_drug_sensitivity <- function()
 #' @export
 depmap_proteomic <- function()
     depmap_data_loading("proteomic")
+
+#' @export
+depmap_achilles <- function()
+   depmap_data_loading("achilles")
+
+#' @export
+depmap_gene_summary <- function()
+   depmap_data_loading("gene_summary")

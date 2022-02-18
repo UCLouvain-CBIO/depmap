@@ -65,6 +65,8 @@
 #' - 21Q3: no change, no further releases are scheduled at this time.
 #' 
 #' - 21Q4: no change, no further releases are scheduled at this time.
+#' 
+#' - 22Q1: no change, no further releases are scheduled at this time.
 #'
 #' @docType data
 #'
@@ -88,9 +90,9 @@
 #' are a source of previously unappreciated anti-cancer activity.
 #' (\href{"https://www.biorxiv.org/content/10.1101/730119v1"}{bioRXiv})
 #'
-#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
+#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2021)}
 #'
 #' @rdname drug_sensitivity
 #'
-#' @aliases drug_sensitivity_19Q3 depmap_drug_sensitivity
+#' @aliases depmap_drug_sensitivity drug_sensitivity_19Q3 drug_sensitivity_21Q1
 drug_sensitivity <- NULL

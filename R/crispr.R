@@ -1,8 +1,8 @@
-#' crispr_21Q4
+#' crispr_22Q1
 #'
-#' The `crispr` dataset contains the 21Q4 genetic dependency of CRISPR-Cas9 gene
+#' The `crispr` dataset contains the 22Q1 genetic effect of CRISPR-Cas9 gene
 #' knockout of select genes in various cancer cell lines. This dataset includes
-#' data from 17386 genes, 1054 cell lines, 32 primary diseases and 30 lineages.
+#' data from 17386 genes, 1070 cell lines, 32 primary diseases and 31 lineages.
 #' The columns of `crispr` are: `depmap_id` a foreign key corresponding to the
 #' cancer cell lineage, `cell_line` containing the common CCLE name of the
 #' cancer cell lines, `gene` containing both the HUGO gene name of the knockout
@@ -14,7 +14,7 @@
 #' primary supported measurement of cancer dependency data as of the 19Q4
 #' release.
 #'
-#' @format A data frame with 18324844 rows (cell lines) and 6 variables:
+#' @format A data frame with 18603020 rows (cell lines) and 6 variables:
 #' \describe{
 #'     \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
 #'     \item{gene}{HUGO symbol (e.g. "SAP25") and Entrez ID# (e.g. 100316904)}
@@ -25,7 +25,7 @@
 #' }
 #'
 #' @details This data represents the `Achilles_gene_effect.csv` file taken from
-#' the 21Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' the 22Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -62,6 +62,8 @@
 #' - 21Q3: removes 252 genes and adds 42 cell lines
 #' 
 #' - 21Q4: removes 7 genes and 22 cell lines
+#' 
+#' - 22Q1: adds 16 cell lines and 31 lineage
 #'
 #' @docType data
 #'
@@ -102,6 +104,6 @@
 #'
 #' @aliases depmap_crispr crispr_19Q1 crispr_19Q2 crispr_19Q3 crispr_19Q4
 #' crispr_20Q1 crispr_20Q2 crispr_20Q3 crispr_20Q4 crispr_21Q1 crispr_21Q2
-#' crispr_21Q3 crispr_21Q4
+#' crispr_21Q3 crispr_21Q4 crispr_22Q1
 #' 
 crispr <- NULL

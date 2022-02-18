@@ -16,9 +16,10 @@
 \alias{mutationCalls_21Q2}
 \alias{mutationCalls_21Q3}
 \alias{mutationCalls_21Q4}
-\title{mutationCalls_21Q4}
+\alias{mutationCalls_22Q1}
+\title{mutationCalls_22Q1}
 \format{
-A data frame with 1230245 rows and 32 variables:
+A data frame with 1231281 rows and 32 variables:
 \describe{
   \item{depmap_id}{depmap_id}
   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -32,7 +33,7 @@ A data frame with 1230245 rows and 32 variables:
   \item{var_class}{Variant Classification}
   \item{var_type}{Variant Type}
   \item{ref_allele}{Reference Allele}
-  \item{tumor_seq_allele1}{Tumor Seq Allele1}
+  \item{alt_allele}{Tumor Seq Allele1}
   \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) reference
    cluster}
   \item{dbSNP_val_status}{dbSNP Val Status}
@@ -63,16 +64,16 @@ A data frame with 1230245 rows and 32 variables:
 mutationCalls
 }
 \description{
-The `mutationCalls` dataset contains merged the 21Q4 mutation calls (for
-coding region, germline filtered) and includes data from 18784 genes, 1755
-cell lines, 35 primary diseases and 37 lineages. This dataset can be
+The `mutationCalls` dataset contains merged the 22Q1 mutation calls (for
+coding region, germline filtered) and includes data from 18784 genes, 1759
+cell lines, 35 primary diseases and 38 lineages. This dataset can be
 considered the metadata data set for mutations and does not contain any
 dependency data. This dataset can be loaded into the R environment with the
 `depmap_mutationCalls` function.
 }
 \details{
 This data represents the `CCLE_mutations.csv` file taken from the
-21Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+22Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -116,6 +117,9 @@ and did not serve any unique identifying purpose.
 - 21Q3: removes 3 genes, 4 cell lines and 1 lineage
 
 - 21Q4: adds 9 cell lines
+
+- 22Q1: adds 4 cell lines and 1 lineage. The variable `tumor_seq_allele1`
+  was renamed `alt_allele`
 }
 
 \examples{

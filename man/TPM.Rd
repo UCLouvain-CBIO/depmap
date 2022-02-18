@@ -16,9 +16,10 @@
 \alias{TPM_21Q2}
 \alias{TPM_21Q3}
 \alias{TPM_21Q4}
-\title{TPM_21Q4}
+\alias{TPM_22Q1}
+\title{TPM_22Q1}
 \format{
-A data frame with 26636853 rows (cell lines) and 6 variables:
+A data frame with 26713561 rows (cell lines) and 6 variables:
 \describe{
      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
@@ -35,9 +36,9 @@ A data frame with 26636853 rows (cell lines) and 6 variables:
 TPM
 }
 \description{
-The `TPM` dataset contains the 21Q4 CCLE "Transcript Per Million" RNAseq gene
+The `TPM` dataset contains the 22Q1 CCLE "Transcript Per Million" RNAseq gene
 expression data for protein coding genes. This dataset includes data from
-19177 genes, 1389 cell lines, 33 primary diseases and 37 lineages. The
+19177 genes, 1393 cell lines, 33 primary diseases and 38 lineages. The
 columns of `TPM` are: `depmap_id`, a foreign key corresponding to the cancer
 cell lineage, `cell_line` the common CCLE name of the cancer cell lines,
 `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -48,7 +49,7 @@ dataset can be loaded into R environment with the `depmap_TPM` function.
 }
 \details{
 This data originates from the `CCLE_expression.csv` file taken
-from the 21Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+from the 22Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -89,6 +90,8 @@ dataset from 19Q3 to 21Q2
 - 21Q3: removes 2 cell lines
 
 - 21Q4: adds 12 cell lines
+
+- 22Q1: adds 4 cell lines and 1 lineage
 }
 
 \examples{

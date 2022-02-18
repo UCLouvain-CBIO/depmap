@@ -3,8 +3,9 @@
 \docType{data}
 \name{drug_sensitivity}
 \alias{drug_sensitivity}
-\alias{drug_sensitivity_19Q3}
 \alias{depmap_drug_sensitivity}
+\alias{drug_sensitivity_19Q3}
+\alias{drug_sensitivity_21Q1}
 \title{drug_sensitivity_19Q3}
 \format{
 A data frame with 2708508 rows (cell lines) and 14 variables:
@@ -26,7 +27,7 @@ A data frame with 2708508 rows (cell lines) and 14 variables:
 }
 }
 \source{
-\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2019)}
+\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2021)}
 }
 \usage{
 drug_sensitivity
@@ -81,6 +82,8 @@ diseases and 25 lineages.
 - 21Q3: no change, no further releases are scheduled at this time.
 
 - 21Q4: no change, no further releases are scheduled at this time.
+
+- 22Q1: no change, no further releases are scheduled at this time.
 }
 
 \references{

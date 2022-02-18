@@ -1,13 +1,13 @@
-#' mutationCalls_21Q4
+#' mutationCalls_22Q1
 #'
-#' The `mutationCalls` dataset contains merged the 21Q4 mutation calls (for
-#' coding region, germline filtered) and includes data from 18784 genes, 1755
-#' cell lines, 35 primary diseases and 37 lineages. This dataset can be
+#' The `mutationCalls` dataset contains merged the 22Q1 mutation calls (for
+#' coding region, germline filtered) and includes data from 18784 genes, 1759
+#' cell lines, 35 primary diseases and 38 lineages. This dataset can be
 #' considered the metadata data set for mutations and does not contain any
 #' dependency data. This dataset can be loaded into the R environment with the
 #' `depmap_mutationCalls` function.
 #'
-#' @format A data frame with 1230245 rows and 32 variables:
+#' @format A data frame with 1231281 rows and 32 variables:
 #' \describe{
 #'   \item{depmap_id}{depmap_id}
 #'   \item{gene_name}{Hugo Symbol denotes a unique and meaningful name for each
@@ -21,7 +21,7 @@
 #'   \item{var_class}{Variant Classification}
 #'   \item{var_type}{Variant Type}
 #'   \item{ref_allele}{Reference Allele}
-#'   \item{tumor_seq_allele1}{Tumor Seq Allele1}
+#'   \item{alt_allele}{Tumor Seq Allele1}
 #'   \item{dbSNP_RS}{Single Nucleotide Polymorphism Database (dbSNP) reference
 #'    cluster}
 #'   \item{dbSNP_val_status}{dbSNP Val Status}
@@ -46,7 +46,7 @@
 #' }
 #'
 #' @details This data represents the `CCLE_mutations.csv` file taken from the
-#' 21Q4 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' 22Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -90,6 +90,9 @@
 #' 
 #' - 21Q4: adds 9 cell lines
 #' 
+#' - 22Q1: adds 4 cell lines and 1 lineage. The variable `tumor_seq_allele1`
+#'   was renamed `alt_allele`
+#' 
 #' @docType data
 #'
 #' @import dplyr
@@ -129,6 +132,6 @@
 #' @aliases depmap_mutationCalls mutationCalls_19Q1  mutationCalls_19Q2
 #' mutationCalls_19Q3 mutationCalls_19Q4 mutationCalls_20Q1 mutationCalls_20Q2
 #' mutationCalls_20Q3 mutationCalls_20Q4 mutationCalls_21Q1 mutationCalls_21Q2
-#' mutationCalls_21Q3 mutationCalls_21Q4
+#' mutationCalls_21Q3 mutationCalls_21Q4 mutationCalls_22Q1
 #' 
 mutationCalls <- NULL
