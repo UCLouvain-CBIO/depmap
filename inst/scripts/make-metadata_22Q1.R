@@ -1,15 +1,15 @@
 ### =========================================================================
-### depmap metadata 22Q4 data 
+### depmap metadata 22Q1 data 
 ### -------------------------------------------------------------------------
-### This script generates the metadata_22Q4.csv
+### This script generates the metadata_22Q1.csv
 ## note: this script assumes that your current directory is depmap/inst/scripts/
 # setwd("~/tmp/depmap/inst/scripts/")
 ## Links to download: https://depmap.org/portal/download/
 
 data.frame(
-    Title = c("crispr_22Q4", "copyNumber_22Q4", "TPM_22Q4",
-              "mutationCalls_22Q4", "metadata_22Q4", "achilles_metadata_22Q4",
-              "gene_summary_22Q4", "drug_sensitivity_21Q2"),
+    Title = c("crispr_22Q1", "copyNumber_22Q1", "TPM_22Q1",
+              "mutationCalls_22Q1", "metadata_22Q1", "achilles_22Q1",
+              "gene_summary_22Q1", "drug_sensitivity_21Q2"),
     Description = c(
         paste0("(CERES) Batch and off-target corrected CRISPR-Cas9 gene, ",
                "knockdout dependency data for 17386 genes, 1070 cell lines, ",
@@ -23,7 +23,7 @@ data.frame(
         paste0("CCLE mutation calls (for coding region, germline filtered) ",
                "and includes data from 18784 genes, 1759 cell lines, 35 ", 
                "primary diseases and 38 lineages."),
-        paste0("Metadata for cell lines in the 22Q4 DepMap release, for 0 ",
+        paste0("Metadata for cell lines in the 22Q1 DepMap release, for 0 ",
                "genes, 1829 cell lines, 35 primary diseases and 40 lineages."),
         paste0("Metadata for DepMap’s cancer models/cell lines, specific to ",
                "Project Achilles’ CRISPR screens."),
@@ -54,12 +54,12 @@ data.frame(
     Maintainer = "Theo Killian <theo.killian@vib.be>",
     RDataClass = "tibble",
     DispatchClass = "Rda",
-    RDataPath = c("depmap/crispr_22Q4.rda",
-                  "depmap/copyNumber_22Q4.rda",
-                  "depmap/TPM_22Q4.rda",
-                  "depmap/mutationCalls_22Q4.rda",
-                  "depmap/metadata_22Q4.rda",
-                  "depmap/achilles_metadata_22Q4.rda",
+    RDataPath = c("depmap/crispr_22Q1.rda",
+                  "depmap/copyNumber_22Q1.rda",
+                  "depmap/TPM_22Q1.rda",
+                  "depmap/mutationCalls_22Q1.rda",
+                  "depmap/metadata_22Q1.rda",
+                  "depmap/achilles_22Q1.rda",
                   "depmap/gene_summary_22Q1.rda",
                   "depmap/drug_sensitivity_21Q2.rda"),
     Tags = paste0(
@@ -69,9 +69,9 @@ data.frame(
  "LungCancerData, OvarianCancerData, ProstateCancerData OrganismData, ",
  "Homo_sapiens_Data, PackageTypeData, SpecimenSource, CellCulture, Genome, ", 
  "Proteome, StemCell, Tissue"),
-    Notes = "This dataset is from the 22Q4 release") -> meta_22Q4
+    Notes = "This dataset is from the 22Q1 release") -> meta_22Q1
 
-write.csv(meta_22Q4, file = "../extdata/metadata_22Q4.csv", row.names = FALSE)
+write.csv(meta_22Q1, file = "../extdata/metadata_22Q1.csv", row.names = FALSE)
 ## to upload this metadata to EH, enter the following into the CL
 # ExperimentHubData::makeExperimentHubMetadata(pathToPackage = "~/tmp/depmap/",
-#                                              fileName = "metadata_22Q4.csv")
+#                                              fileName = "metadata_22Q1.csv")

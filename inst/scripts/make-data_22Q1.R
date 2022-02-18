@@ -225,7 +225,7 @@ names(gene_summaries_22Q1)[1:7] <- c(
   "cell_lines_with_data", "strongly_selective", "common_essential")
 
 ### saving cleaned and converted `metadata` data as .rda file
-save(gene_summaries_22Q1, file = "../eh_data/gene_summaries_22Q1.rda",
+save(gene_summaries_22Q1, file = "../eh_data/gene_summary_22Q1.rda",
       compress = "xz", compression_level = 9)
 
 ##########################################
@@ -243,7 +243,7 @@ achilles_metadata %>%
   dplyr::select(depmap_id, cell_line, everything()) -> achilles_metadata_22Q1
 
 ### saving cleaned and converted `metadata` data as .rda file
-save(achilles_metadata_22Q1, file = "../eh_data/achilles_metadata_22Q1.rda",
+save(achilles_metadata_22Q1, file = "../eh_data/achilles_22Q1.rda",
       compress = "xz", compression_level = 9)
 
 #################################################################
