@@ -1,3 +1,13 @@
+# depmap 1.11
+
+## Changes in version 1.11.1
+
+- 22Q1 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`
+  and `metadata` datasets. New datasets were added, including `gene_summaries`
+  and `achilles` describing Depmap Achilles screens and gene essentiality
+  probabilities, respectively. New loading functions were created for these
+  datasets. Newer versions for the other datasets were not released.
+
 # depmap 1.9
 
 ## Changes in version 1.9.1

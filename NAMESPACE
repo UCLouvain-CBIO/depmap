@@ -2,9 +2,11 @@
 
 export(depmap_RPPA)
 export(depmap_TPM)
+export(depmap_achilles)
 export(depmap_copyNumber)
 export(depmap_crispr)
 export(depmap_drug_sensitivity)
+export(depmap_gene_summary)
 export(depmap_metadata)
 export(depmap_mutationCalls)
 export(depmap_proteomic)

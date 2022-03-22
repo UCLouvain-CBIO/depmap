@@ -16,9 +16,10 @@
 \alias{metadata_21Q2}
 \alias{metadata_21Q3}
 \alias{metadata_21Q4}
-\title{metadata_21Q4}
+\alias{metadata_22Q1}
+\title{metadata_22Q1}
 \format{
-A data frame with 1825 rows (cell lines) and 26 variables:
+A data frame with 1829 rows (cell lines) and 22 variables:
 \describe{
   \item{depmap_id}{Cancer cell line primary key (i.e. "ACH-00001")}
   \item{stripped_cell_line_name}{Name of stripped cell line}
@@ -28,11 +29,7 @@ A data frame with 1825 rows (cell lines) and 26 variables:
   \item{cosmic_id}{Catalogue Of Somatic Mutations In Cancer ID number (e.g. 905933)}
   \item{sex}{Sex of tissue sample)}
   \item{source}{Source of tissue sample)}
-  \item{Achilles_n_replicates}{Number of replicates)}
-  \item{cell_line_NNMD}{Cell line NNMD)}
   \item{culture_type}{Culture type of tissue sample)}
-  \item{culture_medium}{Culture medium of tissue sample)}
-  \item{cas9_activity}{Cas9 activity)}
   \item{RRID}{Resource Identification Portal ID}
   \item{sample_collection_site}{Site of sample collection (AML), M3 (Promyelocytic))}
   \item{primary_or_metastasis}{Primary cancer cell line or metastatic}
@@ -55,20 +52,20 @@ A data frame with 1825 rows (cell lines) and 26 variables:
 metadata
 }
 \description{
-The `metadata` dataset contains the metadata about cell lines in the 21Q4
+The `metadata` dataset contains the metadata about cell lines in the 22Q1
 Broad Institute DepMap release, which includes mapping between `depmap_id`
 and `cell_line` name for cancer cell lines. This dataset does not contain any
-dependency data but contains the metadata for 21Q4 DepMap release, for 1825
+data from the Achilles screen nor dependency data, but contains the metadata
+from the other datasets pertaining to the 22Q1 DepMap release, for 1829
 cell lines, 0 genes, 35 primary diseases and 39 lineages. The columns of
 `metadata` are: `depmap_id`, `stripped_cell_line_name`, `cell_line`,
 `aliases`, `cosmic_id`, `sanger_id`, `WTSI_master_cell_ID`,
 `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
-`source`, `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
-`culture_medium`, and `cas9_activity`. This dataset can be loaded into the R
+`source` and `culture_type`. This dataset can be loaded into the R
  environment with the `depmap_metadata` function.
 }
 \details{
-This data represents the `sample_info.csv` file taken from the 21Q4
+This data represents the `sample_info.csv` file taken from the 22Q1
 [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 study. This dataset features the a primary key `depmap_id` which is a unique
 ID given to each cell line and is found in the first column of this dataset.
@@ -88,8 +85,8 @@ and 33 lineages
 
 - 19Q2: adds 37 new cell lines, 1 primary disease and 1 lineage. This version
 of the metadata dataset contains 6 variables not found in previous versions,
-including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
-`culture_medium`, and `cas9_activity`.
+relating the the Achilles metadata:  `Achilles_n_replicates`,
+`cell_line_NNMD`, `culture_type`, `culture_medium`, and `cas9_activity`.
 
 - 19Q3: adds 30 cell lines, 2 primary diseases and 2 lineages
 
@@ -111,6 +108,10 @@ including: `Achilles_n_replicates`, `cell_line_NNMD`, `culture_type`,
 - 21Q3: adds 1130 cell lines, 8 primary diseases and 8 lineages
 
 - 21Q4: removes 1119 cell lines, 8 primary diseases and 8 lineages
+
+- 22Q1: adds 4 cell lines. The features relating to Achilles metadata have
+been removed and put into their own dataset: `Achilles_n_replicates`,
+`cell_line_NNMD`, `culture_type`, `culture_medium`, and `cas9_activity`.
 }
 
 \examples{

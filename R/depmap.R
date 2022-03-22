@@ -27,7 +27,7 @@ NULL
 ##' @return `character(1)` with the depmap release
 ##' @md
 ##' @export
-depmap_release <- function() "21Q4"
+depmap_release <- function() "22Q1"
 
 #' @import methods
 NULL
