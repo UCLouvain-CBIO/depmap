@@ -15,9 +15,9 @@
 library("readr")
 library("dplyr")
 library("tidyr")
-setwd("/home/marshalbanana/tmp/depmap/inst/scripts")
 
-setwd("~/tmp/depmap/inst/scripts/")
+# setwd("~/tmp/depmap/inst/scripts/")
+## set environment variable to allow download from depmap website
 Sys.setenv(VROOM_CONNECTION_SIZE = 500072)
 
 ##########################################
@@ -223,6 +223,10 @@ read_csv(file = "https://depmap.org/portal/api/download/gene_dep_summary"
 names(gene_summaries_22Q1)[1:7] <- c(
   "entrez_id", "gene_name", "dataset", "dependent_cell_lines",
   "cell_lines_with_data", "strongly_selective", "common_essential")
+
+## remove "DependencyEnum." from the dataset variable
+gene_summaries_22Q1$dataset <- sub("DependencyEnum.", "",
+                                   gene_summaries_22Q1$dataset)
 
 ### saving cleaned and converted `metadata` data as .rda file
 save(gene_summaries_22Q1, file = "../eh_data/gene_summary_22Q1.rda",
