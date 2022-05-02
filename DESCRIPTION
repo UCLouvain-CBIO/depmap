@@ -1,7 +1,7 @@
 Package: depmap
 Type: Package
 Title: Cancer Dependency Map Data Package
-Version: 1.9.2
+Version: 1.11.0
 Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    email = "laurent.gatto@uclouvain.be",
 		    role = c("cre", "aut")),
