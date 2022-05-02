@@ -1,3 +1,9 @@
+# depmap 1.11
+
+## Changes in version 1.11.11
+
+- EH numbers have been updated in the latest dataset (see #78)
+
 # depmap 1.9
 
 ## Changes in version 1.9.2
