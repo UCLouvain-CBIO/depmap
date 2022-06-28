@@ -17,9 +17,10 @@
 \alias{copyNumber_21Q3}
 \alias{copyNumber_21Q4}
 \alias{copyNumber_22Q1}
-\title{copyNumber_22Q1}
+\alias{copyNumber_22Q2}
+\title{copyNumber_22Q2}
 \format{
-A data frame with 44495472 rows (cell lines) and 6 variables.
+A data frame with 44799888 rows (cell lines) and 6 variables.
 
 \describe{
      \item{depmap_id}{Cancer cell line foreign key (i.e. "ACH-00001")}
@@ -38,13 +39,13 @@ A data frame with 44495472 rows (cell lines) and 6 variables.
 copyNumber
 }
 \description{
-The `copyNumber` dataset contains the 22Q1 WES copy number data for genes and
-cancer cell lines. This dataset includes data from 25368 genes, 1754 cell
-lines, 35 primary diseases and 38 lineages. The columns of `copyNumber` are:
-`depmap_id`, a foreign key corresponding to the cancer cell lineage,
-`cell_line` containing the common CCLE name of the cancer cell lines,
-`gene` containing both the HUGO gene name of the knockdown gene along with
-entrez ID#, `gene_name` containing only the HUGO gene name, `entrez_id`
+The `copyNumber` dataset contains the 22Q2 inferred copy number data for
+genes and cancer cell lines. This dataset includes data from 25368 genes,
+1754 cell lines, 35 primary diseases and 38 lineages. The columns of
+`copyNumber` are: `depmap_id`, a foreign key corresponding to the cancer
+cell lineage, `cell_line` containing the common CCLE name of the cancer cell
+lines, `gene` containing both the HUGO gene name of the knockdown gene along
+with entrez ID#, `gene_name` containing only the HUGO gene name, `entrez_id`
 containing only the entrez ID#, and `log_copy_number` containing the
 numerical dependency score values for each pair of genes and cell lines.
 This dataset can be loaded into the R environment with the
@@ -52,7 +53,7 @@ This dataset can be loaded into the R environment with the
 }
 \details{
 This data represents the `CCLE_gene_cn.csv` file taken from the
-22Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
+22Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 depenedency study. The derived dataset found in the `depmap` package features
 the addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
@@ -91,6 +92,8 @@ dataframe with 45670234 rows and 6 variables
 - 21Q4: removes 194 genes and adds 9 cell lines
 
 - 22Q1: removes 2000 genes, adds 4 cell lines and 1 lineage
+
+- 22Q2: adds 12 cell lines and removes 2 primary diseases and 8 lineages
 }
 
 \examples{

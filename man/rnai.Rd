@@ -63,23 +63,8 @@ primary diseases and 31 lineages.
 as of this release, the crispr dataset replaces the rnai dataset for
 dependency measurements in all future releases.
 
-- 20Q1: no change, no further releases are scheduled at this time.
-
-- 20Q2: no change, no further releases are scheduled at this time.
-
-- 20Q3: no change, no further releases are scheduled at this time.
-
-- 20Q4: no change, no further releases are scheduled at this time.
-
-- 21Q1: no change, no further releases are scheduled at this time.
-
-- 21Q2: no change, no further releases are scheduled at this time.
-
-- 21Q3: no change, no further releases are scheduled at this time.
-
-- 21Q4: no change, no further releases are scheduled at this time.
-
-- 22Q1: no change, no further releases are scheduled at this time.
+- 20Q1: no change, this dataset is superceded by the CRISPR dependency
+screens and no further releases are scheduled.
 }
 
 \examples{

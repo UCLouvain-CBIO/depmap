@@ -1,10 +1,10 @@
-#' achilles_22Q1
+#' achilles_22Q2
 #'
 #' The `achilles` dataset contains the metadata for DepMap’s cancer models/cell
-#' lines, specific to Project Achilles’ CRISPR screens. This dataset can be
+#' lines, specific to Project Achilles’ 22Q2 CRISPR screens. This dataset can be
 #' loaded into the R environment with the `depmap_achilles` function.
 #'
-#' @format A data frame with 1020 rows and 7 variables:
+#' @format A data frame with 1036 rows and 6 variables:
 #' \describe{
 #'     \item{depmap_id}{cancer cancer cell line foreign key (i.e. "ACH-00001")}
 #'     \item{cell_line}{CCLE name of cancer cell line (i.e. "184A1_BREAST")}
@@ -13,20 +13,19 @@
 #'     \item{cell_line_NNMD}{Difference in the means of positive and negative
 #'      controls normalized by the standard deviation of the negative control
 #'      distribution}
-#'     \item{culture_type}{ Growth pattern of cell line (Adherent, Suspension,
-#'      Mixed adherent and suspension, 3D, or Adherent (requires laminin
-#'      coating))}
 #'     \item{culture_medium}{Medium used to grow cell line}
 #'     \item{cas9_activity}{Percentage of cells remaining GFP negative on days
 #'      12-14 of cas9 activity assay as measured by FACs}
 #' }
 #'
 #' @details This data represents the `Achilles_metadata.csv` file taken from the
-#' 22Q1 [Broad Institute](https://depmap.org/portal/download/) release.
+#' 22Q2 [Broad Institute](https://depmap.org/portal/download/) release.
 #' 
 #' @section Change log:
 #' 
 #' - 22Q1: Initial dataset
+#' 
+#' - 22Q2: "culture_type" column was removed
 #'
 #' @docType data
 #'
@@ -56,5 +55,5 @@
 #'
 #' @rdname achilles
 #' 
-#' @aliases achilles_22Q1 depmap_achilles
+#' @aliases depmap_achilles achilles_22Q1 achilles_22Q2
 achilles <- NULL

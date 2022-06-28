@@ -6,7 +6,8 @@
 \alias{depmap_drug_sensitivity}
 \alias{drug_sensitivity_19Q3}
 \alias{drug_sensitivity_21Q1}
-\title{drug_sensitivity_19Q3}
+\alias{drug_sensitivity_21Q2}
+\title{drug_sensitivity_21Q2}
 \format{
 A data frame with 2708508 rows (cell lines) and 14 variables:
 \describe{
@@ -37,8 +38,8 @@ The `drug_sensitivity` dataset contains the 19Q3 replicate collapsed logfold
 change values relative to DMSO, corrected for experimental confounders using
 ComBat. This dataset contains information refering to 4686 compounds, 578
 cell lines, 23 primary diseases and 25 lineages. This dataset is part of the
-SIGMA Repurposing release which contains small molecule viability datasets
-generated using the Broad Repurposing Library and the PRISM multiplexed
+SIGMA Re-purposing release which contains small molecule viability datasets
+generated using the Broad Re-purposing Library and the PRISM multiplexed
 cell-line viability assay. The columns of `drug_sensitivity` are: `depmap_id`
 a foreign key corresponding to the cancer cell lineage, `cell_line` the
 common CCLE name of the cancer cell lines, `compound` the synonym for the
@@ -55,7 +56,12 @@ addition of a foreign key `depmap_id` found in the first column of this
 dataset, which was added from the `metadata` dataset. This dataset has been
 converted to a long format tibble. Variables names from the original dataset
 were converted to lower case, put in snake case, and abbreviated where
-feasible.
+feasible. Note: compound metadata was added to this dataset, consisting of
+10 new features derived from the file
+`primary-screen-replicate-collapsed-treatment-info.csv` from the
+[Broad Institute](https://depmap.org/portal/download/) website. The 
+Drug sensitivity data remains from 19Q3, however the version was bumped to
+21Q2 to distinguish between the different datasets.
 }
 \section{Change log}{
 
@@ -84,6 +90,8 @@ diseases and 25 lineages.
 - 21Q4: no change, no further releases are scheduled at this time.
 
 - 22Q1: no change, no further releases are scheduled at this time.
+
+- 22Q2: no change, no further releases are scheduled at this time.
 }
 
 \references{

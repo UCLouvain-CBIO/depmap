@@ -1,8 +1,8 @@
-#' TPM_22Q1
+#' TPM_22Q2
 #'
-#' The `TPM` dataset contains the 22Q1 CCLE "Transcript Per Million" RNAseq gene
+#' The `TPM` dataset contains the 22Q2 CCLE "Transcript Per Million" RNAseq gene
 #' expression data for protein coding genes. This dataset includes data from
-#' 19177 genes, 1393 cell lines, 33 primary diseases and 38 lineages. The
+#' 19221 genes, 1406 cell lines, 33 primary diseases and 30 lineages. The
 #' columns of `TPM` are: `depmap_id`, a foreign key corresponding to the cancer
 #' cell lineage, `cell_line` the common CCLE name of the cancer cell lines,
 #' `gene` containing both the HUGO gene name of the knockdown gene along with
@@ -11,7 +11,8 @@
 #' numerical protein coding gene expression change at scale (log2(TPM+1)). This
 #' dataset can be loaded into R environment with the `depmap_TPM` function.
 #'
-#' @format A data frame with 26713561 rows (cell lines) and 6 variables:
+#'
+#' @format A data frame with 27024726 rows (cell lines) and 6 variables:
 #' \describe{
 #'      \item{depmap_id}{Cell line foreign key (i.e. "ACH-000956")}
 #'      \item{cell_line}{Name of cancer cell line (i.e. "22RV1_PROSTATE")}
@@ -22,7 +23,7 @@
 #' }
 #'
 #' @details This data originates from the `CCLE_expression.csv` file taken
-#' from the 22Q1 [Broad Institute](https://depmap.org/portal/download/) cancer
+#' from the 22Q2 [Broad Institute](https://depmap.org/portal/download/) cancer
 #' depenedency study. The derived dataset found in the `depmap` package features
 #' the addition of a foreign key `depmap_id` found in the first column of this
 #' dataset, which was added from the `metadata` dataset. This dataset has been
@@ -64,6 +65,8 @@
 #' - 21Q4: adds 12 cell lines
 #' 
 #' - 22Q1: adds 4 cell lines and 1 lineage
+#' 
+#' - 22Q2: adds 44 genes, 13 cell lines and removes 8 lineages
 #'
 #' @docType data
 #'
@@ -102,6 +105,6 @@
 #' @rdname TPM
 #'
 #' @aliases depmap_TPM TPM_19Q1 TPM_19Q2 TPM_19Q3 TPM_19Q4 TPM_20Q1 TPM_20Q2
-#' TPM_20Q3 TPM_20Q4 TPM_21Q1 TPM_21Q2 TPM_21Q3 TPM_21Q4 TPM_22Q1
+#' TPM_20Q3 TPM_20Q4 TPM_21Q1 TPM_21Q2 TPM_21Q3 TPM_21Q4 TPM_22Q1 TPM_22Q2
 #' 
 TPM <- NULL

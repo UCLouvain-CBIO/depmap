@@ -1,15 +1,15 @@
-#' metadata_22Q1
+#' metadata_22Q2
 #'
-#' The `metadata` dataset contains the metadata about cell lines in the 22Q1
+#' The `metadata` dataset contains the metadata about cell lines in the 22Q2
 #' Broad Institute DepMap release, which includes mapping between `depmap_id`
 #' and `cell_line` name for cancer cell lines. This dataset does not contain any
 #' data from the Achilles screen nor dependency data, but contains the metadata
-#' from the other datasets pertaining to the 22Q1 DepMap release, for 1829
-#' cell lines, 0 genes, 35 primary diseases and 39 lineages. The columns of
+#' from the other datasets pertaining to the 22Q1 DepMap release, for 1840
+#' cell lines, 0 genes, 33 primary diseases and 30 lineages. The columns of
 #' `metadata` are: `depmap_id`, `stripped_cell_line_name`, `cell_line`,
 #' `aliases`, `cosmic_id`, `sanger_id`, `WTSI_master_cell_ID`,
 #' `primary_disease`, `subtype_disease`, `sub_subtype_disease`, `gender`,
-#' `source` and `culture_type`. This dataset can be loaded into the R
+#' `source` . This dataset can be loaded into the R
 #'  environment with the `depmap_metadata` function.
 #'
 #' @format A data frame with 1829 rows (cell lines) and 22 variables:
@@ -36,9 +36,16 @@
 #'   \item{lineage_subtype}{Subtype of lineage of cancer cell line}
 #'   \item{lineage_sub_subtype}{Subtype of subtype of Lineage of cancer cell line}
 #'   \item{lineage_molecular_subtype}{Molecular type of Lineage of cancer cell line}
+#'   \item{model_manipulation}{Culture model manipulation details}
+#'   \item{model_manipulation_details}{Culture model manipulation details}
+#'   \item{patient_id}{Patient id}
+#'   \item{parent_patient_id}{Parent patient id}
+#'   \item{Cellosaurus_NCIt_disease}{Cellosaurus NCIt disease}
+#'   \item{Cellosaurus_NCIt_id}{Cellosaurus NCIt_id}
+#'   \item{Cellosaurus_NCIt_id}{Cellosaurus NCIt_id}
 #' }
 #'
-#' @details This data represents the `sample_info.csv` file taken from the 22Q1
+#' @details This data represents the `sample_info.csv` file taken from the 22Q2
 #' [Broad Institute](https://depmap.org/portal/download/) cancer depenedency
 #' study. This dataset features the a primary key `depmap_id` which is a unique
 #' ID given to each cell line and is found in the first column of this dataset.
@@ -85,6 +92,12 @@
 #' been removed and put into their own dataset: `Achilles_n_replicates`,
 #' `cell_line_NNMD`, `culture_type`, `culture_medium`, and `cas9_activity`.
 #' 
+#' - 22Q2: adds 11 cell lines and removes 2 primary diseases and 30 lineages.
+#' The feature `culture_type` has been removed and columns "model_manipulation",
+#' "model_manipulation_details", "patient_id", "parent_depmap_id",
+#' "Cellosaurus_NCIt_disease", "Cellosaurus_NCIt_id" and "Cellosaurus_issues"
+#' have been added.
+#'  
 #' @docType data
 #'
 #' @import dplyr
@@ -124,5 +137,6 @@
 #' @aliases depmap_metadata metadata_19Q1 metadata_19Q2 metadata_19Q3
 #' metadata_19Q4 metadata_20Q1 metadata_20Q2 metadata_20Q3 metadata_20Q4
 #' metadata_21Q1 metadata_21Q2 metadata_21Q3 metadata_21Q4 metadata_22Q1
+#' metadata_22Q2
 #' 
 metadata <- NULL

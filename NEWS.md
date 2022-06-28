@@ -1,5 +1,12 @@
 # depmap 1.11
 
+## Changes in version 1.11.12
+
+- 22Q2 data added for `crispr`, `copyNumber`, `TPM`, `mutationCalls`,
+  `metadata` and `achilles` datasets. Note: 22Q2 is the last release to follow 
+  a quarterly release schedule. Future Depmap releases will follow a bi-annual
+  release schedule with dataset updates every 6 months.
+
 ## Changes in version 1.11.11
 
 - EH numbers have been updated in the latest dataset (see #78)
