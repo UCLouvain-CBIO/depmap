@@ -69,6 +69,8 @@ where feasible.
 - 21Q4: no change, no further releases are scheduled at this time.
 
 - 22Q1: no change, no further releases are scheduled at this time.
+
+- 22Q2: no change, no further releases are scheduled at this time.
 }
 
 \examples{

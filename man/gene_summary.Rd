@@ -40,6 +40,8 @@ release.
 
 
 - 22Q1: Initial dataset
+
+- 22Q2: no change, no further releases are scheduled at this time.
 }
 
 \examples{

@@ -53,7 +53,7 @@ and 28 lineages.
 
 - 19Q2: no change
 
-- 19Q3: no change
+- 19Q3: no change, no further releases are scheduled at this time.
 
 - 19Q4: no change, no further releases are scheduled at this time.
 
@@ -74,6 +74,8 @@ and 28 lineages.
 - 21Q4: no change, no further releases are scheduled at this time.
 
 - 22Q1: no change, no further releases are scheduled at this time.
+
+- 22Q2: no change, no further releases are scheduled at this time.
 }
 
 \examples{
