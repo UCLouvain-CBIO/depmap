@@ -54,7 +54,7 @@ A data frame with 1829 rows (cell lines) and 22 variables:
 }
 }
 \source{
-\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
+DepMap, Broad Institute: https://depmap.org/portal/download/
 }
 \usage{
 metadata
@@ -85,7 +85,7 @@ Variables names were converted to lower case, put in snake case, and
 abbreviated where feasible (e.g. "Sanger ID" was changed to "sanger_id").
 }
 \section{Change log}{
- 
+
 
 - 19Q1: Initial dataset consisted of data frame with 1677 rows (cell lines)
 and 9 variables, representing 0 genes, 1677 cell lines, 38 primary diseases
@@ -138,22 +138,19 @@ depmap_metadata()
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 dependency map. Cell, 170(3), 564-576.
-(\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
 
-DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
-(\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
-Fileset. 
+DepMap, Broad (2019): DepMap Achilles 19Q1
+Public. https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150
 
-Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
-David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
-copy number effect improves specificity of CRISPR-Cas9 essentiality screens
-in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
-(\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})14
- 
-Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
-... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
-generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
-503–508 (2019).
-(\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
+Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara
+A. Weir, ...  David E. Root, William C. Hahn, Aviad
+Tsherniak. Computational correction of copy number effect improves
+specificity of CRISPR-Cas9 essentiality screens in cancer
+cells. Nature Genetics 2017 October 49:1779–1784.
+
+Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory
+V. Kryukov, ... Todd R. Golub, Levi A. Garraway & William
+R. Sellers. 2019. Next- generation characterization of the Cancer
+Cell Line Encyclopedia. Nature 569, 503–508 (2019).
 }
 \keyword{datasets}

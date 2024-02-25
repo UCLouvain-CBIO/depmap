@@ -19,9 +19,8 @@
 #'
 #' See the package vignettes and respective man pages for details.
 #'
-#' @docType package
 #' @name depmap
-NULL
+"_PACKAGE"
 
 ##' @title Returns the depmap release
 ##' @return `character(1)` with the depmap release

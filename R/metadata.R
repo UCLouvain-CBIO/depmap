@@ -56,54 +56,54 @@
 #' Variables names were converted to lower case, put in snake case, and
 #' abbreviated where feasible (e.g. "Sanger ID" was changed to "sanger_id").
 #'
-#' @section Change log: 
-#' 
+#' @section Change log:
+#'
 #' - 19Q1: Initial dataset consisted of data frame with 1677 rows (cell lines)
 #' and 9 variables, representing 0 genes, 1677 cell lines, 38 primary diseases
 #' and 33 lineages
-#' 
+#'
 #' - 19Q2: adds 37 new cell lines, 1 primary disease and 1 lineage. This version
 #' of the metadata dataset contains 6 variables not found in previous versions,
 #' relating the the Achilles metadata:  `Achilles_n_replicates`,
 #' `cell_line_NNMD`, `culture_type`, `culture_medium`, and `cas9_activity`.
-#' 
+#'
 #' - 19Q3: adds 30 cell lines, 2 primary diseases and 2 lineages
-#' 
+#'
 #' - 19Q4: adds 42 cell lines, 0 primary diseases and 3 lineages
-#' 
+#'
 #' - 20Q1: adds 19 cell lines, `gender` was changed to `sex`, `age`,
 #' `primary_or_metastasis` and `sample_collection_site`` were added
-#' 
+#'
 #' - 20Q2: adds 30 cell lines and 1 lineage
 #'
 #' - 20Q3: adds new column `WTSI_master_cell_ID`
-#' 
+#'
 #' - 20Q4: adds 6 cell lines and 1 lineage. Adds column `cell_line_name`
 #'
 #' - 21Q1: removes 1 cell line
-#' 
+#'
 #' - 21Q2: adds 3 cell lines
-#' 
+#'
 #' - 21Q3: adds 1130 cell lines, 8 primary diseases and 8 lineages
-#' 
+#'
 #' - 21Q4: removes 1119 cell lines, 8 primary diseases and 8 lineages
-#' 
+#'
 #' - 22Q1: adds 4 cell lines. The features relating to Achilles metadata have
 #' been removed and put into their own dataset: `Achilles_n_replicates`,
 #' `cell_line_NNMD`, `culture_type`, `culture_medium`, and `cas9_activity`.
-#' 
+#'
 #' - 22Q2: adds 11 cell lines and removes 2 primary diseases and 30 lineages.
 #' The feature `culture_type` has been removed and columns "model_manipulation",
 #' "model_manipulation_details", "patient_id", "parent_depmap_id",
 #' "Cellosaurus_NCIt_disease", "Cellosaurus_NCIt_id" and "Cellosaurus_issues"
 #' have been added.
-#'  
+#'
 #' @docType data
 #'
 #' @import dplyr
 #'
 #' @keywords datasets
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' depmap_metadata()
@@ -112,25 +112,22 @@
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
-#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
-#' 
-#' DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
-#' (\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
-#' Fileset. 
-#' 
-#' Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
-#' David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
-#' copy number effect improves specificity of CRISPR-Cas9 essentiality screens
-#' in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
-#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})14
-#'  
-#' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
-#' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
-#' generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
-#' 503–508 (2019).
-#' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
-#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
+#' DepMap, Broad (2019): DepMap Achilles 19Q1
+#' Public. https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150
+#'
+#' Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara
+#' A. Weir, ...  David E. Root, William C. Hahn, Aviad
+#' Tsherniak. Computational correction of copy number effect improves
+#' specificity of CRISPR-Cas9 essentiality screens in cancer
+#' cells. Nature Genetics 2017 October 49:1779–1784.
+#'
+#' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory
+#' V. Kryukov, ... Todd R. Golub, Levi A. Garraway & William
+#' R. Sellers. 2019. Next- generation characterization of the Cancer
+#' Cell Line Encyclopedia. Nature 569, 503–508 (2019).
+#'
+#' @source DepMap, Broad Institute: https://depmap.org/portal/download/
 #'
 #' @rdname metadata
 #'
@@ -138,5 +135,5 @@
 #' metadata_19Q4 metadata_20Q1 metadata_20Q2 metadata_20Q3 metadata_20Q4
 #' metadata_21Q1 metadata_21Q2 metadata_21Q3 metadata_21Q4 metadata_22Q1
 #' metadata_22Q2
-#' 
+#'
 metadata <- NULL

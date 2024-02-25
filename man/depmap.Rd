@@ -2,6 +2,7 @@
 % Please edit documentation in R/depmap.R
 \docType{package}
 \name{depmap}
+\alias{depmap-package}
 \alias{depmap}
 \title{depmap: Cancer Dependency Map Data Package}
 \description{
@@ -24,4 +25,13 @@ This data is distributed under the Creative Commons license
 }
 \details{
 See the package vignettes and respective man pages for details.
+}
+\author{
+\strong{Maintainer}: Laurent Gatto \email{laurent.gatto@uclouvain.be}
+
+Authors:
+\itemize{
+  \item Theo Killian
+}
+
 }

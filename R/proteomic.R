@@ -33,27 +33,27 @@
 #' of this dataset, which was added from the `metadata` dataset. This dataset
 #' has been converted to a long format tibble. Variables names from the original
 #' dataset were converted to lower case, put in snake case, and abbreviated
-#' where feasible. 
+#' where feasible.
 #'
 #' @section Change log:
-#' 
+#'
 #' - 20Q2: Initial dataset consisted of a data frame with 24963776 rows
 #' (cell lines) and 12 variables
 #'
 #' - 20Q3: no change, no further releases are scheduled at this time.
-#' 
+#'
 #' - 20Q4: no change, no further releases are scheduled at this time.
-#' 
+#'
 #' - 21Q1: no change, no further releases are scheduled at this time.
-#' 
+#'
 #' - 21Q2: no change, no further releases are scheduled at this time.
-#' 
+#'
 #' - 21Q3: no change, no further releases are scheduled at this time.
-#' 
+#'
 #' - 21Q4: no change, no further releases are scheduled at this time.
-#' 
+#'
 #' - 22Q1: no change, no further releases are scheduled at this time.
-#' 
+#'
 #' - 22Q2: no change, no further releases are scheduled at this time.
 #'
 #' @docType data
@@ -67,18 +67,20 @@
 #' depmap_proteomic()
 #' }
 #'
-#' @references David P. Nusinow, John Szpyt, Mahmoud Ghandi, Christopher M.
-#' Rose, E. Robert McDonald III, Marian Kalocsay, Judit Jané-Valbuena, Ellen
-#' Gelfand, Devin K. Schweppe, Mark Jedrychowski, Javad Golji, Dale A. Porter,
-#' Tomas Rejtar, Y. Karen Wang, Gregory V. Kryukov, Frank Stegmeier, Brian K.
-#' Erickson, Levi A. Garraway, William R. Sellers, Steven P. Gygi (2020).
-#' Quantitative Proteomics of the Cancer Cell Line Encyclopedia. Cell 180, 2.
-#' (\href{"https://doi.org/10.1016/j.cell.2019.12.023"}{Elsevier})
+#' @references
 #'
-#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
+#' David P. Nusinow, John Szpyt, Mahmoud Ghandi, Christopher M.  Rose,
+#' E. Robert McDonald III, Marian Kalocsay, Judit Jané-Valbuena, Ellen
+#' Gelfand, Devin K. Schweppe, Mark Jedrychowski, Javad Golji, Dale
+#' A. Porter, Tomas Rejtar, Y. Karen Wang, Gregory V. Kryukov, Frank
+#' Stegmeier, Brian K.  Erickson, Levi A. Garraway, William
+#' R. Sellers, Steven P. Gygi (2020).  Quantitative Proteomics of the
+#' Cancer Cell Line Encyclopedia. Cell 180, 2.
+#'
+#' @source  DepMap, Broad Institute: https://depmap.org/portal/download/
 #'
 #' @rdname proteomic
 #'
 #' @aliases proteomic_20Q2 depmap_proteomic
-#' 
+#'
 proteomic <- NULL

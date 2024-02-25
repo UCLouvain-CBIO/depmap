@@ -31,39 +31,39 @@
 #' dataset, which was added from the `metadata` dataset. This dataset has been
 #' converted to a long format tibble. Variables names from the original dataset
 #' were converted to lower case, put in snake case, and abbreviated where
-#' feasible. 
-#' 
+#' feasible.
+#'
 #' @section Change log:
-#' 
+#'
 #' - 19Q1: Initial dataset consisted of a data frame with 37907473 rows
 #' (cell lines) and 6 variables representing 23299 genes, 1604 cell lines, 38
 #' primary diseases and 33 lineages.
-#' 
+#'
 #' - 19Q2: adds 23 cell lines and 1 lineage
-#' 
+#'
 #' - 19Q3: adds 3263 genes, 30 cell lines and removes 2 primary diseases. Now a
 #' dataframe with 45670234 rows and 6 variables
 #'
 #' - 19Q4: adds 77 genes, 25 cell lines, 0 primary diseases and 2 lineages
-#' 
+#'
 #' - 20Q1: adds 31 cell lines
-#' 
+#'
 #' - 20Q2: adds 32 cell lines
-#' 
+#'
 #' - 20Q3: no change
-#' 
+#'
 #' - 20Q4: removes 77 genes, adds 8 cell lines and 1 lineage
-#' 
+#'
 #' - 21Q1: removes 13 cell lines
 #'
 #' - 21Q2: adds 2 cell lines
 #'
 #' - 21Q3: removes 1 cell line and 1 lineage
-#' 
+#'
 #' - 21Q4: removes 194 genes and adds 9 cell lines
-#' 
+#'
 #' - 22Q1: removes 2000 genes, adds 4 cell lines and 1 lineage
-#' 
+#'
 #' - 22Q2: adds 12 cell lines and removes 2 primary diseases and 8 lineages
 #'
 #' @keywords datasets
@@ -76,25 +76,21 @@
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
-#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
-#' 
-#' DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
-#' (\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
-#' Fileset. 
-#' 
+#'
+#' DepMap, Broad (2019): DepMap Achilles 19Q1
+#' Public. https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150
+#'
 #' Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
 #' David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
 #' copy number effect improves specificity of CRISPR-Cas9 essentiality screens
-#' in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
-#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
-#'  
+#' in cancer cells. Nature Genetics 2017 October 49:1779–1784.
+#'
 #' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
 #' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
 #' generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
 #' 503–508 (2019).
-#' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
-#' @source \href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
+#' @source DepMap, Broad Institute: https://depmap.org/portal/download/
 #'
 #' @aliases depmap_copyNumber copyNumber_19Q1 copyNumber_19Q2 copyNumber_19Q3
 #' copyNumber_19Q4 copyNumber_20Q1 copyNumber_20Q2 copyNumber_20Q3

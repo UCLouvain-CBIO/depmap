@@ -24,7 +24,7 @@ A data frame with 24963776 rows (cell lines) and 12 variables:
 }
 }
 \source{
-\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
+DepMap, Broad Institute: https://depmap.org/portal/download/
 }
 \usage{
 proteomic
@@ -80,12 +80,12 @@ depmap_proteomic()
 
 }
 \references{
-David P. Nusinow, John Szpyt, Mahmoud Ghandi, Christopher M.
-Rose, E. Robert McDonald III, Marian Kalocsay, Judit Jané-Valbuena, Ellen
-Gelfand, Devin K. Schweppe, Mark Jedrychowski, Javad Golji, Dale A. Porter,
-Tomas Rejtar, Y. Karen Wang, Gregory V. Kryukov, Frank Stegmeier, Brian K.
-Erickson, Levi A. Garraway, William R. Sellers, Steven P. Gygi (2020).
-Quantitative Proteomics of the Cancer Cell Line Encyclopedia. Cell 180, 2.
-(\href{"https://doi.org/10.1016/j.cell.2019.12.023"}{Elsevier})
+David P. Nusinow, John Szpyt, Mahmoud Ghandi, Christopher M.  Rose,
+E. Robert McDonald III, Marian Kalocsay, Judit Jané-Valbuena, Ellen
+Gelfand, Devin K. Schweppe, Mark Jedrychowski, Javad Golji, Dale
+A. Porter, Tomas Rejtar, Y. Karen Wang, Gregory V. Kryukov, Frank
+Stegmeier, Brian K.  Erickson, Levi A. Garraway, William
+R. Sellers, Steven P. Gygi (2020).  Quantitative Proteomics of the
+Cancer Cell Line Encyclopedia. Cell 180, 2.
 }
 \keyword{datasets}

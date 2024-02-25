@@ -34,35 +34,35 @@
 #' feasible.
 #'
 #' @section Change log:
-#' 
+#'
 #' - 19Q1: Initial dataset consisted of a data frame with 9839772 rows (cell
 #' lines) and 6 variables representing 17634 genes, 558 cell lines, 26 primary
 #' diseases and 28 lineages.
-#' 
+#'
 #' - 19Q2: adds 5 cell lines, 1 primary disease and 1 lineage
 #'
 #' - 19Q3: adds 699 genes, 62 cell lines and 1 primary disease. Now a dataset
 #' with 11458125 rows and 6 variables.
-#' 
+#'
 #' - 19Q4: adds 0 genes, 64 cell lines, 1 primary disease and 0 lineages.
-#' 
+#'
 #' - 20Q1: adds 50 cell lines.
-#' 
+#'
 #' - 20Q2: adds 30 cell lines.
-#' 
+#'
 #' - 20Q3: adds 20 cell lines, 1 primary disease and 1 lineages.
-#' 
+#'
 #' - 20Q4: adds 19 cell lines, 1 primary disease and 2 lineages
-#' 
+#'
 #' - 21Q1: no change
-#' 
+#'
 #' - 21Q2: removes 474 genes and adds 182 cell lines 1 primary disease and 1
 #'  lineage
-#'  
+#'
 #' - 21Q3: removes 252 genes and adds 42 cell lines
-#' 
+#'
 #' - 21Q4: removes 7 genes and 22 cell lines
-#' 
+#'
 #' - 22Q1: adds 16 cell lines and 1 lineage
 #'
 #' - 22Q2: adds 16 cell lines and removes 1 primary diseases and 3 lineages.
@@ -72,7 +72,7 @@
 #' @import dplyr
 #'
 #' @keywords datasets
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' depmap_crispr()
@@ -81,31 +81,27 @@
 #' @references Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 #' Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 #' dependency map. Cell, 170(3), 564-576.
-#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
-#' 
-#' DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
-#' (\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
-#' Fileset. 
-#' 
+#'
+#' DepMap, Broad (2019): DepMap Achilles 19Q1
+#' Public. https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150
+#' Fileset.
+#'
 #' Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
 #' David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
 #' copy number effect improves specificity of CRISPR-Cas9 essentiality screens
-#' in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
-#' (\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
-#'  
+#' in cancer cells. Nature Genetics 2017 October 49:1779–1784.
+#'
 #' Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
 #' ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
 #' generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
 #' 503–508 (2019).
-#' (\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 #'
-#' @source \href{"https://ndownloader.figshare.com/files/14221385"}{DepMap,
-#' Broad (2020)}
+#' @source DepMap, Broad Institute: https://depmap.org/portal/download/
 #'
 #' @rdname crispr
 #'
 #' @aliases depmap_crispr crispr_19Q1 crispr_19Q2 crispr_19Q3 crispr_19Q4
 #' crispr_20Q1 crispr_20Q2 crispr_20Q3 crispr_20Q4 crispr_21Q1 crispr_21Q2
 #' crispr_21Q3 crispr_21Q4 crispr_22Q1 crispr_22Q2
-#' 
+#'
 crispr <- NULL

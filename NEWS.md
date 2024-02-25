@@ -1,3 +1,14 @@
+# depmap 1.17
+
+## Changes in version 1.17.1
+
+- New depmap datasets and files infrastructure to directly download
+  individual files. See `?DepMapFiles` for details. <2024-02-25 Mon>
+
+## Changes in version 1.17.0
+
+- New devel version.
+
 # depmap 1.11
 
 ## Changes in version 1.11.2

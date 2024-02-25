@@ -31,7 +31,7 @@ A data frame with 27024726 rows (cell lines) and 6 variables:
 }
 }
 \source{
-\href{"https://depmap.org/portal/download/"}{DepMap, Broad (2020)}
+DepMap, Broad Institute: https://depmap.org/portal/download/
 }
 \usage{
 TPM
@@ -81,7 +81,7 @@ Now a 23164240 by 6 dataframe.
 
 - 20Q4: removes 38 genes and 71 cell lines, addes 1 primary disease and 3
  lineages
- 
+
 - 21Q1: removes 5 genes
 
 - 21Q2: adds 3 cell lines. Additionally, a bug was fixed where the Entrez ID
@@ -107,22 +107,19 @@ depmap_TPM()
 Tsherniak, A., Vazquez, F., Montgomery, P. G., Weir, B. A.,
 Kryukov, G., Cowley, G. S., ... & Meyers, R. M. (2017). Defining a cancer
 dependency map. Cell, 170(3), 564-576.
-(\href{"https://www.ncbi.nlm.nih.gov/pubmed/28753430"}{PubMed})
 
-DepMap, Broad (2019): DepMap Achilles 19Q1 Public.
-(\href{"https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150"}{figshare}).
-Fileset. 
+DepMap, Broad (2019): DepMap Achilles 19Q1
+Public. https://figshare.com/articles/DepMap_Achilles_19Q1_Public/7655150.
+Fileset.
 
 Robin M. Meyers, Jordan G. Bryan, James M. McFarland, Barbara A. Weir, ...
 David E. Root, William C. Hahn, Aviad Tsherniak. Computational correction of
 copy number effect improves specificity of CRISPR-Cas9 essentiality screens
-in cancer cells. Nature Genetics 2017 October 49:1779–1784. 
-(\href{"https://www.ncbi.nlm.nih.gov/pubmed/29083409"}{Pubmed})
- 
+in cancer cells. Nature Genetics 2017 October 49:1779–1784.
+
 Mahmoud Ghandi, Franklin W. Huang, Judit Jané-Valbuena, Gregory V. Kryukov,
 ... Todd R. Golub, Levi A. Garraway & William R. Sellers. 2019. Next-
 generation characterization of the Cancer Cell Line Encyclopedia. Nature 569,
 503–508 (2019).
-(\href{"https://www.nature.com/articles/s41586-019-1186-3"}{Nature})
 }
 \keyword{datasets}
