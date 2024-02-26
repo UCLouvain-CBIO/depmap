@@ -57,44 +57,47 @@
 #'
 #' @section Change log:
 #'
-#' - 19Q1: Initial dataset for package consisted of dataframe with 1243145 rows
-#' and 35 variables representing 18755 genes, 1601 cell lines, 37 primary
-#' diseases and 33 lineages
+#' - 19Q1: Initial dataset for package consisted of dataframe with
+#'   1243145 rows and 35 variables representing 18755 genes, 1601 cell
+#'   lines, 37 primary diseases and 33 lineages.
 #'
-#' - 19Q2: adds 30 cell lines, 1 primary disease and 1 lineage. This version has
-#' different columns than the previous version: the variable "VA_WES_AC" is no
-#' longer present in this dataset. Some minor alterations to the original file
-#' were made. The first column of the original dataset,
-#' (item{ID}{Sample number}) was removed, as this column was only the row number
-#' and did not serve any unique identifying purpose.
+#' - 19Q2: adds 30 cell lines, 1 primary disease and 1 lineage. This
+#'   version has different columns than the previous version: the
+#'   variable "VA_WES_AC" is no longer present in this dataset. Some
+#'   minor alterations to the original file were made. The first
+#'   column of the original dataset, (ID, Sample number) was removed,
+#'   as this column was only the row number and did not serve any
+#'   unique identifying purpose.
 #'
-#' - 19Q3: adds 1 gene, 25 cell lines and removes 1 primary disease
+#' - 19Q3: adds 1 gene, 25 cell lines and removes 1 primary disease.
 #'
-#' - 19Q4: adds 1 gene, 10 cell lines, 0 primary diseases and 2 lineages
+#' - 19Q4: adds 1 gene, 10 cell lines, 0 primary diseases and 2
+#'   lineages.
 #'
-#' - 20Q1: adds 4 genes, 31 cell lines, 1 lineage
+#' - 20Q1: adds 4 genes, 31 cell lines, 1 lineage.
 #'
-#' - 20Q2: adds 44 cell lines, 1 lineage
+#' - 20Q2: adds 44 cell lines, 1 lineage.
 #'
-#' - 20Q3: no change
+#' - 20Q3: no change.
 #'
 #' - 20Q4: removes 13 genes, adds 8 cell lines and 1 lineage. Columns
-#'  `tumor_sample_barcode` and `sanger_recalib_WES_AC` were removed
+#'  `tumor_sample_barcode` and `sanger_recalib_WES_AC` were removed.
 #'
-#' - 21Q1: removes 11 genes and 2 cell lines
+#' - 21Q1: removes 11 genes and 2 cell lines.
 #'
-#' - 21Q2: removes 1 genes and adds 3 cell lines
+#' - 21Q2: removes 1 genes and adds 3 cell lines.
 #'
-#' - 21Q3: removes 3 genes, 4 cell lines and 1 lineage
+#' - 21Q3: removes 3 genes, 4 cell lines and 1 lineage.
 #'
-#' - 21Q3: removes 3 genes, 4 cell lines and 1 lineage
+#' - 21Q3: removes 3 genes, 4 cell lines and 1 lineage.
 #'
-#' - 21Q4: adds 9 cell lines
+#' - 21Q4: adds 9 cell lines.
 #'
 #' - 22Q1: adds 4 cell lines and 1 lineage. The variable `tumor_seq_allele1`
-#'   was renamed `alt_allele`
+#'   was renamed `alt_allele`.
 #'
-#' - 22Q2: adds 12 cell lines and removes 2 primary diseases and 8 lineages.
+#' - 22Q2: adds 12 cell lines and removes 2 primary diseases and 8
+#'   lineages.
 #'
 #' @docType data
 #'

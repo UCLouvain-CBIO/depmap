@@ -4,6 +4,7 @@ Title: Cancer Dependency Map Data Package
 Version: 1.17.2
 Authors@R: c(person(given = "Laurent", family = "Gatto",
                     email = "laurent.gatto@uclouvain.be",
+                    comment = c(ORCID = "0000-0002-1520-2268"),
                     role = c("cre", "aut")),
              person(given = "Theo", family = "Killian",
                     role = "aut"))
