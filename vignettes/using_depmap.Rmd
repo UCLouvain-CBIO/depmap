@@ -2,7 +2,6 @@
 title: "Using the depmap data"
 author:
 - name: Theo Killian
-  affiliation: VIB Center for Cancer Biology, KU Leuven
 - name: Laurent Gatto
   affiliation: Computational Biology, UCLouvain
 date: "`r Sys.Date()`"
