@@ -1,6 +1,6 @@
 # depmap 1.17
 
-## Changes in version 1.17.1
+## Changes in version 1.17.2
 
 - Add new section on `dmsets()` and `dmfiles()`. <2024-02-26 Mon>
 
