@@ -46,7 +46,8 @@ Suggests:
     readr,
     stringr,
     dplyr,
-    tidyr
+    tidyr,
+    magick
 VignetteBuilder: knitr
 biocViews:
     ExperimentHub,
