@@ -46,7 +46,8 @@ Suggests:
     ggplot2,
     readr,
     stringr,
-    tidyr
+    tidyverse,
+    magick
 VignetteBuilder: knitr
 biocViews:
     ExperimentHub,

@@ -19,7 +19,7 @@ BiocStyle::markdown()
 ```
 
 ```{r, echo = FALSE}
-suppressPackageStartupMessages(library("dplyr"))
+suppressPackageStartupMessages(library("tidyverse"))
 ```
 
 # Introduction
