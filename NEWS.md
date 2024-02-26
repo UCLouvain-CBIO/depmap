@@ -2,8 +2,12 @@
 
 ## Changes in version 1.17.1
 
+- Add new section on `dmsets()` and `dmfiles()`. <2024-02-26 Mon>
+
+## Changes in version 1.17.1
+
 - New depmap datasets and files infrastructure to directly download
-  individual files. See `?DepMapFiles` for details. <2024-02-25 Mon>
+  individual files. See `?DepMapFiles` for details. <2024-02-25 Sun>
 
 ## Changes in version 1.17.0
 

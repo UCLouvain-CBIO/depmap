@@ -2,7 +2,6 @@
 title: "The depmap data"
 author:
 - name: Theo Killian
-  affiliation: VIB Center for Cancer Biology, KU Leuven
 - name: Laurent Gatto
   affiliation: Computational Biology, UCLouvain
 date: "`r Sys.Date()`"
@@ -26,9 +25,11 @@ suppressPackageStartupMessages(library("dplyr"))
 # Introduction
 
 The `depmap` package aims to provide a reproducible research framework
-to cancer dependency data described by
-[Tsherniak, Aviad, et al. "Defining a cancer dependency map." Cell 170.3 (2017): 564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430).
-The data found in the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+to cancer dependency data described by [Tsherniak, Aviad, et
+al. "Defining a cancer dependency map." Cell 170.3 (2017):
+564-576.](https://www.ncbi.nlm.nih.gov/pubmed/28753430).  The data
+found in the
+[depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
 package has been formatted to facilitate the use of common R packages
 such as `dplyr` and `ggplot2`. We hope that this package will allow
 researchers to more easily mine, explore and visually illustrate
@@ -36,37 +37,43 @@ dependency data taken from the Depmap cancer genomic dependency study.
 
 # Installation instructions
 
-To install [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html),
-the [BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
+To install
+[depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html),
+the
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
 Bioconductor Project Package Manager is required. If
-[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html) is
-not already installed, it will need to be done so beforehand. Type (within R)
-install.packages("BiocManager") (This needs to be done just once.)
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/index.html)
+is not already installed, it will need to be done so beforehand. Type
+(within R) install.packages("BiocManager") (This needs to be done just
+once.)
 
 ```{r install, eval=FALSE}
 install.packages("BiocManager")
 BiocManager::install("depmap")
 ```
 
-The `depmap` package fully depends on the `ExperimentHub` Bioconductor package,
-which allows the data accessed in this package to be stored and retrieved from
-the cloud.
+The `depmap` package fully depends on the `ExperimentHub` Bioconductor
+package, which allows the data accessed in this package to be stored
+and retrieved from the cloud.
 
 ```{r import_EH, message = FALSE}
 library("depmap")
 library("ExperimentHub")
 ```
 
-# Available data
+# Tidy depmap data
 
-The [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
-package currently contains eight datasets available through `ExperimentHub`.
+The
+[depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
+package currently contains eight datasets available through
+`ExperimentHub`.
 
 The data found in this R package has been converted from a "wide"
-format `.csv` file to "long" format .rda file. None of the values taken
-from the original datasets have been changed, although the columns
-have been re-arranged.  Descriptions of the changes made are described
-under the `Details` section after querying the relevant dataset.
+format `.csv` file to "long" format .rda file. None of the values
+taken from the original datasets have been changed, although the
+columns have been re-arranged.  Descriptions of the changes made are
+described under the `Details` section after querying the relevant
+dataset.
 
 ```{r ehquery}
 ## create ExperimentHub query object
@@ -74,165 +81,102 @@ eh <- ExperimentHub()
 query(eh, "depmap")
 ```
 
-Each dataset has a `ExperimentHub` accession number, (e.g. *EH2260* refers to
-the `rnai` dataset from the 19Q1 release).
+Each dataset has a `ExperimentHub` accession number, (e.g. *EH2260*
+refers to the `rnai` dataset from the 19Q1 release).
 
 ## RNA inference knockout data
 
-```{r, echo = FALSE}
-rnai <- eh[["EH2260"]]
-```
 
-The `rnai` dataset contains the combined genetic dependency data for RNAi -
-induced gene knockdown for select genes and cancer cell lines. This data
-corresponds to the `D2_combined_genetic_dependency_scores.csv` file found in the
-`r depmap::depmap_release()` depmap release and includes `r length(unique(rnai$gene))`
-genes, `r length(unique(rnai$cell_line))` cell lines, 30 primary diseases and 31
-lineages.
+The `rnai` dataset contains the combined genetic dependency data for
+RNAi - induced gene knockdown for select genes and cancer cell
+lines. This data corresponds to the
+`D2_combined_genetic_dependency_scores.csv` file.
 
 Specific `rnai` datasets can be accessed, such as `rnai_19Q1` by EH number.
 
 ```{r, eval = FALSE}
-rnai <- eh[["EH2260"]]
+eh[["EH2260"]]
 ```
 
-```{r}
-rnai
-```
-
-The most recent `rnai` dataset can be automatically loaded into R by using the
-`depmap_rnai` function.
+The most recent `rnai` dataset can be automatically loaded into R by
+using the `depmap_rnai` function.
 
 ```{r}
 depmap::depmap_rnai()
 ```
 
-```{r, echo = FALSE}
-rm(rnai)
-```
-
 ## CRISPR-Cas9 knockout data
 
-```{r, echo = FALSE}
-crispr <- eh[["EH2261"]]
-```
+The `crispr` dataset contains the (batch corrected CERES inferred gene
+effect) CRISPR-Cas9 knockout data of select genes and cancer cell
+lines. This data corresponds to the `gene_effect_corrected.csv` file.
 
-The `crispr` dataset contains the (batch corrected CERES inferred gene effect)
-CRISPR-Cas9 knockout data of select genes and cancer cell lines. This data
-corresponds to the `gene_effect_corrected.csv` file from the `r depmap::depmap_release()`
-depmap release. Data from this dataset includes `r length(unique(crispr$gene_name))`
-genes, `r length(unique(crispr$cell_line))` cell lines, 26 primary diseases, 28
-lineages.
-
-Specific `crispr` datasets can be accessed, such as `crispr_19Q1` by EH number.
+Specific `crispr` datasets can be accessed, such as `crispr_19Q1` by
+EH number.
 
 ```{r, eval = FALSE}
-crispr <- eh[["EH2261"]]
+eh[["EH2261"]]
 ```
 
-```{r}
-crispr
-```
-
-The most recent `crispr` dataset can be automatically loaded into R by using the
-`depmap_crispr` function.
+The most recent `crispr` dataset can be automatically loaded into R by
+using the `depmap_crispr` function.
 
 ```{r}
 depmap::depmap_crispr()
 ```
 
-```{r, echo = FALSE}
-rm(crispr)
-```
-
 ## WES copy number data
 
-```{r, echo = FALSE}
-copyNumber <- eh[["EH2262"]]
-```
+The `copyNumber` dataset contains the WES copy number data, relating
+to the numerical log-fold copy number change measured against the
+baseline copy number of select genes and cell lines. This dataset
+corresponds to the `public_19Q1_gene_cn.csv`
 
-The `copyNumber` dataset contains the WES copy number data, relating to the
-numerical log-fold copy number change measured against the baseline copy number
-of select genes and cell lines. This dataset corresponds to the
-`public_19Q1_gene_cn.csv` from the `r depmap::depmap_release()` depmap release.
-This dataset includes `r length(unique(copyNumber$gene_name))` genes,
-`r length(unique(copyNumber$cell_line))` cell lines, 38 primary diseases and 33
-lineages.
-
-Specific `copyNumber` datasets can be accessed, such as `copyNumber_19Q1` by EH
-number.
+Specific `copyNumber` datasets can be accessed, such as
+`copyNumber_19Q1` by EH number.
 
 ```{r, eval = FALSE}
-copyNumber <- eh[["EH2262"]]
+eh[["EH2262"]]
 ```
 
-```{r}
-copyNumber
-```
-
-The most recent `copyNumber` dataset can be automatically loaded into R by using
-the `depmap_copyNumber` function.
+The most recent `copyNumber` dataset can be automatically loaded into
+R by using the `depmap_copyNumber` function.
 
 ```{r}
 depmap::depmap_copyNumber()
 ```
 
-```{r, echo = FALSE}
-rm(copyNumber)
-```
-
 ## CCLE Reverse Phase Protein Array data
 
-```{r, echo = FALSE}
-RPPA <- eh[["EH2263"]]
-```
 
-The `RPPA` dataset contains the CCLE Reverse Phase Protein Array (RPPA) data
-which corresponds to the `CCLE_RPPA_20180123.csv` file from the `r depmap::depmap_release()`
-depmap release. This dataset includes 214 genes, `r length(unique(RPPA$cell_line))`
-cell lines, 28 primary diseases, 28 lineages.
+The `RPPA` dataset contains the CCLE Reverse Phase Protein Array
+(RPPA) data which corresponds to the `CCLE_RPPA_20180123.csv` file.
 
-Specific `RPPA` datasets can be accessed, such as `RPPA_19Q1` by EH number.
+Specific `RPPA` datasets can be accessed, such as `RPPA_19Q1` by EH
+number.
 
 ```{r, eval = FALSE}
-RPPA <- eh[["EH2263"]]
+eh[["EH2263"]]
 ```
 
-```{r}
-RPPA
-```
-
-The most recent `RPPA` dataset can be automatically loaded into R by using the
-`depmap_RPPA` function.
+The most recent `RPPA` dataset can be automatically loaded into R by
+using the `depmap_RPPA` function.
 
 ```{r}
 depmap::depmap_RPPA()
 ```
 
-```{r, echo = FALSE}
-rm(RPPA)
-```
-
 ## CCLE RNAseq gene expression data
 
-```{r, echo = FALSE}
-TPM <- eh[["EH2264"]]
-```
-
-The `TPM` dataset contains the CCLE RNAseq gene expression data. This shows
-expression data only for protein coding genes (using scale log2(TPM+1)). This
-data corresponds to the `CCLE_depMap_19Q1_TPM.csv` file from the `r depmap::depmap_release()`
-depmap release. This dataset includes `r length(unique(TPM$gene_name))` genes,
-`r length(unique(TPM$cell_line))` cell lines, 33 primary Diseases, 32 lineages.
+The `TPM` dataset contains the CCLE RNAseq gene expression data. This
+shows expression data only for protein coding genes (using scale
+log2(TPM+1)). This data corresponds to the `CCLE_depMap_19Q1_TPM.csv`
+file.
 
 Specific `TPM` datasets can be accessed, such as `TPM_19Q1` by EH number.
 
 ```{r, eval = FALSE}
-TPM <- eh[["EH2264"]]
-```
-
-```{r}
-TPM
+eh[["EH2264"]]
 ```
 
 The `TPM` dataset can also be accessed by using the `depmap_TPM` function.
@@ -241,30 +185,16 @@ The `TPM` dataset can also be accessed by using the `depmap_TPM` function.
 depmap::depmap_TPM()
 ```
 
-```{r, echo = FALSE}
-rm(TPM)
-```
-
 ## Cancer cell lines
 
-```{r, echo = FALSE}
-metadata <- eh[["EH2266"]]
-```
+The `metadata` dataset contains the metadata about all of the cancer
+cell lines.  It corresponds to the `depmap_19Q1_cell_lines.csv` file.
 
-The `metadata` dataset contains the metadata about all of the cancer cell lines.
-It corresponds to the `depmap_19Q1_cell_lines.csv` file found in the `r depmap::depmap_release()`
-depmap release. This dataset includes 0 genes, `r length(unique(metadata$cell_line))`
-cell lines, 38 primary diseases and 33 lineages.
-
-Specific `metadata` datasets can be accessed, such as `metadata_19Q1` by EH
-number.
+Specific `metadata` datasets can be accessed, such as `metadata_19Q1`
+by EH number.
 
 ```{r, eval = FALSE}
-metadata <- eh[["EH2266"]]
-```
-
-```{r}
-metadata
+eh[["EH2266"]]
 ```
 
 The most recent `metadata` dataset can be automatically loaded into R by using
@@ -274,33 +204,19 @@ the `depmap_metadata` function.
 depmap::depmap_metadata()
 ```
 
-```{r, echo = FALSE}
-rm(metadata)
-```
 
 ## Mutation calls
 
-```{r, echo = FALSE}
-mutationCalls <- eh[["EH2265"]]
-```
 
-The `mutationCalls` dataset contains all merged mutation calls (coding region,
-germline filtered) found in the depmap dependency study. This dataset
-corresponds with the `depmap_19Q1_mutation_calls.csv` file found in the 
-`r depmap::depmap_release()` depmap release and includes 
-`r length(unique(mutationCalls$gene_name))` genes,
-`r length(unique(mutationCalls$depmap_id))` cell lines, 37 primary diseases and
-33 lineages.
+The `mutationCalls` dataset contains all merged mutation calls (coding
+region, germline filtered) found in the depmap dependency study. This
+dataset corresponds with the `depmap_19Q1_mutation_calls.csv` file.
 
-Specific `mutationCalls` datasets can be accessed, such as `mutationCalls_19Q1`
-by EH number.
+Specific `mutationCalls` datasets can be accessed, such as
+`mutationCalls_19Q1` by EH number.
 
 ```{r, eval = FALSE}
-mutationCalls <- eh[["EH2265"]]
-```
-
-```{r}
-mutationCalls
+eh[["EH2265"]]
 ```
 
 The most recent `mutationCalls` dataset can be automatically loaded into R by
@@ -310,67 +226,41 @@ using the  `depmap_mutationCalls` function.
 depmap::depmap_mutationCalls()
 ```
 
-```{r, echo = FALSE}
-rm(mutationCalls)
-```
 
 ## Drug Sensitivity
 
-```{r, echo = FALSE}
-drug_sensitivity <- eh[["EH3087"]]
-```
-
-The `drug_sensitivity` dataset contains dependency data for cancer cell lines
-treated with `r length(unique(drug_sensitivity$compound))` compounds. This
-dataset corresponds with the `primary_replicate_collapsed_logfold_change.csv`
-file found in the  `r depmap::depmap_release()` depmap release and includes 
-`r length(unique(drug_sensitivity$depmap_id))` cell lines, 23 primary diseases
-and 25 lineages.
+The `drug_sensitivity` dataset contains dependency data for cancer
+cell lines treated with `r length(unique(drug_sensitivity$compound))`
+compounds. This dataset corresponds with the
+`primary_replicate_collapsed_logfold_change.csv` file.
 
 Specific `drug_sensitivity` datasets can be accessed, such as
 `drug_sensitivity_19Q3` by EH number.
 
 ```{r, eval = FALSE}
-drug_sensitivity <- eh[["EH3087"]]
+ eh[["EH3087"]]
 ```
 
-```{r}
-drug_sensitivity
-```
-
-The most recent `drug_sensitivity` dataset can be automatically loaded into R by
-using the `depmap_drug_sensitivity` function.
+The most recent `drug_sensitivity` dataset can be automatically loaded
+into R by using the `depmap_drug_sensitivity` function.
 
 ```{r}
 depmap::depmap_drug_sensitivity()
 ```
 
-```{r, echo = FALSE}
-rm(drug_sensitivity)
-```
-
 ## Proteomic
 
-```{r, echo = FALSE}
-proteomic <- eh[["EH3459"]]
-```
-
 The `proteomic` dataset contains normalized quantitative profiling of
-proteins of cancer cell lines by mass spectrometry. This dataset corresponds
-with the `https://gygi.med.harvard.edu/sites/gygi.med.harvard.edu/files/documents/protein_quant_current_normalized.csv.gz`
-file found in the `r depmap::depmap_release()` depmap release and includes
-`r length(unique(proteomic$depmap_id))` cell lines, 24 primary diseases
-and 27 lineages.
+proteins of cancer cell lines by mass spectrometry. This dataset
+corresponds with the
+`https://gygi.med.harvard.edu/sites/gygi.med.harvard.edu/files/documents/protein_quant_current_normalized.csv.gz`
+file.
 
-Specific `proteomic` datasets can be accessed, such as `proteomic_20Q2`
-by EH number.
+Specific `proteomic` datasets can be accessed, such as
+`proteomic_20Q2` by EH number.
 
 ```{r, eval = FALSE}
-proteomic <- eh[["EH3459"]]
-```
-
-```{r}
-proteomic
+eh[["EH3459"]]
 ```
 
 The most recent `proteomic` dataset can be automatically loaded into R by
@@ -380,20 +270,97 @@ using the `depmap_proteomic` function.
 depmap::depmap_proteomic()
 ```
 
-```{r, echo = FALSE}
-rm(proteomic)
-```
 
-# The [Broad Institute](https://depmap.org/portal/download/) data
+## Repackaged data source
 
 If desired, the original data from which the
-[depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
-package were derived from can be downloaded from the [Broad Institute](https://depmap.org/portal/download/)
-website. The instructions on how to download these files and how the data was
-transformed and loaded into the [depmap](https://bioconductor.org/packages/devel/data/experiment/html/depmap.html)
-package can be found in the `make_data.R` file found in `./inst/scripts`. (It
-should be noted that the original uncompressed *.csv* files are >1.5GB in
+[depmap](https://bioconductor.org/packages/depmap) package were
+derived from can be downloaded from the [Broad
+Institute](https://depmap.org/portal/download/) website. The
+instructions on how to download these files and how the data was
+transformed and loaded into the
+[depmap](https://bioconductor.org/packages/depmap) package can be
+found in the `make_data.R` file found in `./inst/scripts`. (It should
+be noted that the original uncompressed *.csv* files are > 1.5GB in
 total and take a moderate amount of time to download remotely.)
+
+# Original depmap data
+
+In addition to the re-packaged files, the package also allows to
+download any of the original files provided by the [DepMap project on
+Figshare](https://figshare.com/authors/Broad_DepMap/5514062).
+
+A list of all the datasets is available with the `dmsets()` function:
+
+```{r}
+dmsets()
+```
+
+We could check what datasets from any quarter of 2020 are available by
+searching for `"20Q"` in the datasets titles:
+
+```{r, message=FALSE}
+library(tidyverse)
+dmsets() |>
+    filter(grepl("20Q", title))
+```
+
+Let's focus on the *PRISM Repurposing 20Q2 Dataset* dataset, with
+identifier `20564034`.
+
+A list of all the files is available with the `dmfiles()` function:
+
+```{r}
+dmfiles()
+```
+
+If we want to find all files from the *PRISM Repurposing 20Q2 Dataset*
+identified above, we could filter all files with its `dataset_id`:
+
+```{r}
+dmfiles() |>
+    filter(dataset_id == 20564034)
+```
+
+Let's now focus on the
+`prism-repurposing-20q2-primary-screen-cell-line-info.csv` file. We
+can filter it by its name and downloaded it with `dmget()`:
+
+```{r}
+dmfiles() |>
+    filter(name == "prism-repurposing-20q2-primary-screen-cell-line-info.csv") |>
+    dmget()
+```
+
+The `dmget()` function will first check if it hasn't already been
+downloaded and cached in the depmap cache directory (see
+`?dmCache()`). If so, it will retrieve if from there. Otherwise, it
+will download the file and store it in the package cache directory. It
+will return the location of the cached file.
+
+Given that the file is in csv format, we can directly open it with
+`read_csv()`:
+
+```{r}
+dmfiles() |>
+    filter(name == "prism-repurposing-20q2-primary-screen-cell-line-info.csv") |>
+    dmget() |>
+    read_csv()
+```
+
+It is also possible to pass multiple rows of the `dmfiles()` table to
+`dmget()` to retrieve multiple file paths. Below, let's get all the
+README.txt files from 2020:
+
+```{r}
+ids_2020 <- filter(dmsets(), grepl("20Q", title)) |>
+    pull(dataset_id)
+
+dmfiles() |>
+    filter(dataset_id %in% ids_2020) |>
+    filter(grepl("README", name)) |>
+    dmget()
+```
 
 # Session information
 
