@@ -299,7 +299,7 @@ We could check what datasets from any quarter of 2020 are available by
 searching for `"20Q"` in the datasets titles:
 
 ```{r, message=FALSE}
-library(tidyverse)
+library(dplyr)
 dmsets() |>
     filter(grepl("20Q", title))
 ```

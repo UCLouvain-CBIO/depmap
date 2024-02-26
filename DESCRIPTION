@@ -45,6 +45,7 @@ Suggests:
     ggplot2,
     readr,
     stringr,
+    dplyr,
     tidyr
 VignetteBuilder: knitr
 biocViews:
