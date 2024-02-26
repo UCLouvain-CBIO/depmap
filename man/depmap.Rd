@@ -27,7 +27,7 @@ This data is distributed under the Creative Commons license
 See the package vignettes and respective man pages for details.
 }
 \author{
-\strong{Maintainer}: Laurent Gatto \email{laurent.gatto@uclouvain.be}
+\strong{Maintainer}: Laurent Gatto \email{laurent.gatto@uclouvain.be} (\href{https://orcid.org/0000-0002-1520-2268}{ORCID})
 
 Authors:
 \itemize{
