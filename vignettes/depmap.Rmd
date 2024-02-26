@@ -230,9 +230,8 @@ depmap::depmap_mutationCalls()
 ## Drug Sensitivity
 
 The `drug_sensitivity` dataset contains dependency data for cancer
-cell lines treated with `r length(unique(drug_sensitivity$compound))`
-compounds. This dataset corresponds with the
-`primary_replicate_collapsed_logfold_change.csv` file.
+cell lines treated with various compounds. This dataset corresponds
+with the `primary_replicate_collapsed_logfold_change.csv` file.
 
 Specific `drug_sensitivity` datasets can be accessed, such as
 `drug_sensitivity_19Q3` by EH number.
