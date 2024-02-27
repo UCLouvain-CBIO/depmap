@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">depmap</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.3</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@ Killian</h4>
                                     <h4 data-toc-skip class="author">Laurent
 Gatto</h4>
             <address class="author_afil">
-      Computational Biology, UCLouvain<br><h4 data-toc-skip class="date">2024-02-26</h4>
+      Computational Biology, UCLouvain<br><h4 data-toc-skip class="date">2024-02-27</h4>
       
       
       <div class="hidden name"><code>depmap.Rmd</code></div>
@@ -150,7 +150,7 @@ relevant dataset.</p>
 <span><span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/AnnotationHub/man/AnnotationHub-class.html" class="external-link">query</a></span><span class="op">(</span><span class="va">eh</span>, <span class="st">"depmap"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ExperimentHub with 82 records</span></span>
-<span><span class="co">## # snapshotDate(): 2024-02-22</span></span>
+<span><span class="co">## # snapshotDate(): 2024-02-26</span></span>
 <span><span class="co">## # $dataprovider: Broad Institute</span></span>
 <span><span class="co">## # $species: Homo sapiens</span></span>
 <span><span class="co">## # $rdataclass: tibble</span></span>
@@ -585,7 +585,7 @@ file. We can filter it by its name and downloaded it with
 <pre><code><span><span class="co">## File: prism-repurposing-20q2-primary-screen-cell-line-info.csv (36794565)</span></span></code></pre>
 <pre><code><span><span class="co">## Loading 36794565 from cache.</span></span></code></pre>
 <pre><code><span><span class="co">##                                                BFC1 </span></span>
-<span><span class="co">## "/github/home/.cache/R/depmap/25d2e8eae0a_36794565"</span></span></code></pre>
+<span><span class="co">## "/github/home/.cache/R/depmap/2b746c7800d_36794565"</span></span></code></pre>
 <p>The <code><a href="../reference/DepMapFiles.html">dmget()</a></code> function will first check if it hasn’t
 already been downloaded and cached in the depmap cache directory (see
 <code>?dmCache()</code>). If so, it will retrieve if from there.
@@ -645,13 +645,13 @@ multiple file paths. Below, let’s get all the README.txt files from
 <pre><code><span><span class="co">## File: README (22543694)</span></span></code></pre>
 <pre><code><span><span class="co">## Loading 22543694 from cache.</span></span></code></pre>
 <pre><code><span><span class="co">##                                                BFC2 </span></span>
-<span><span class="co">## "/github/home/.cache/R/depmap/25d6391c5ed_25797005" </span></span>
+<span><span class="co">## "/github/home/.cache/R/depmap/2b72c26cecd_25797005" </span></span>
 <span><span class="co">##                                                BFC3 </span></span>
-<span><span class="co">## "/github/home/.cache/R/depmap/25d14896636_25817903" </span></span>
+<span><span class="co">## "/github/home/.cache/R/depmap/2b75588e9e5_25817903" </span></span>
 <span><span class="co">##                                                BFC4 </span></span>
-<span><span class="co">## "/github/home/.cache/R/depmap/25d15091365_22897970" </span></span>
+<span><span class="co">## "/github/home/.cache/R/depmap/2b731bfca14_22897970" </span></span>
 <span><span class="co">##                                                BFC5 </span></span>
-<span><span class="co">## "/github/home/.cache/R/depmap/25d22a11f28_22543694"</span></span></code></pre>
+<span><span class="co">## "/github/home/.cache/R/depmap/2b762939a61_22543694"</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
@@ -680,7 +680,7 @@ multiple file paths. Below, let’s get all the README.txt files from
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
 <span><span class="co">##  [1] ExperimentHub_2.11.1 AnnotationHub_3.11.1 BiocFileCache_2.11.1</span></span>
-<span><span class="co">##  [4] dbplyr_2.4.0         BiocGenerics_0.49.1  depmap_1.17.2       </span></span>
+<span><span class="co">##  [4] dbplyr_2.4.0         BiocGenerics_0.49.1  depmap_1.17.3       </span></span>
 <span><span class="co">##  [7] lubridate_1.9.3      forcats_1.0.0        stringr_1.5.1       </span></span>
 <span><span class="co">## [10] dplyr_1.1.4          purrr_1.0.2          readr_2.1.5         </span></span>
 <span><span class="co">## [13] tidyr_1.3.1          tibble_3.2.1         ggplot2_3.5.0       </span></span>
