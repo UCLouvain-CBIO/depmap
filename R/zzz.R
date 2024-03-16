@@ -10,7 +10,8 @@
                    ExperimentHub::createHubAccessors(pkgname, titles)
                })
     } else {
-        warning("Not internet connectivity. Unable to create Hub accessors.")
+        warning("Not internet connectivity. Unable to create Hub accessors.",
+                call. = FALSE)
     }
 }
 
