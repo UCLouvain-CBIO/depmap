@@ -1,5 +1,10 @@
 # depmap 1.17
 
+## Changes in version 1.17.4
+
+- Fix .onLoad() to create Hub accessors for all experiments, including
+  older versions.
+
 ## Changes in version 1.17.3
 
 - Bump version to publish latest vignette updates.
