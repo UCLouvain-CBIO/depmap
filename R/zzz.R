@@ -1,4 +1,5 @@
 ##' @importFrom utils read.csv
+##' @importFrom curl has_internet
 ##' @importFrom ExperimentHub createHubAccessors
 .onLoad <- function(libname, pkgname) {
     fls <- dir(system.file("extdata", package = pkgname),

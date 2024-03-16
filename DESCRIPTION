@@ -33,6 +33,7 @@ Imports:
     AnnotationHub,
     BiocFileCache,
     httr2,
+    curl,
     tibble
 License: Artistic-2.0
 Encoding: UTF-8
