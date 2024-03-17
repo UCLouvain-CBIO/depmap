@@ -1,7 +1,7 @@
 ##' @importFrom utils read.csv
 ##' @importFrom ExperimentHub createHubAccessors
-.createDepMapHubAccessors <- function() {
-    fls <- dir(system.file("extdata", package = "depmap"),
+.createDepMapHubAccessors <- function(pkgname = "depmap") {
+    fls <- dir(system.file("extdata", package),
                full.names = TRUE, pattern = "metadata")
     sapply(fls,
            function(fl) {
