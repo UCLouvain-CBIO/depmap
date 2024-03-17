@@ -1,3 +1,16 @@
+##' @importFrom utils read.csv
+##' @importFrom ExperimentHub createHubAccessors
+.createDepMapHubAccessors <- function() {
+    fls <- dir(system.file("extdata", package = "depmap"),
+               full.names = TRUE, pattern = "metadata")
+    sapply(fls,
+           function(fl) {
+               titles <- read.csv(fl, stringsAsFactors = FALSE)$Title
+               ExperimentHub::createHubAccessors(pkgname, titles)
+           })
+}
+
+
 ##' @importFrom AnnotationHub query
 ##' @importFrom ExperimentHub ExperimentHub
 
@@ -9,7 +22,7 @@ depmap_data_loading <- function(name) {
 }
 
 #' @export
-depmap_rnai <- function() 
+depmap_rnai <- function()
    depmap_data_loading("rnai")
 
 #' @export

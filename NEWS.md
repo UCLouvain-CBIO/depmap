@@ -1,5 +1,10 @@
 # depmap 1.17
 
+## Changes in version 1.17.5
+
+- Check if there's internet connectivity before creating hub
+  accessors.
+
 ## Changes in version 1.17.4
 
 - Fix .onLoad() to create Hub accessors for all experiments, including
