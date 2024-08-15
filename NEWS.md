@@ -1,5 +1,9 @@
 # depmap 1.19
 
+## Changes in version 1.19.1
+
+- Added 24Q2 data to `dmsets` and `dmfiles` to enable latest data to be analyzed
+
 ## Changes in version 1.19.0
 
 - New devel version.

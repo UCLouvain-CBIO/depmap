@@ -1,8 +1,9 @@
 ## List of URLs obtained from the DepMap Figshare page
 ## (https://figshare.com/authors/Broad_DepMap/5514062) on the
-## 25 February 2024.
+## 15 August 2024
 depmapURLs <-
-    c("https://figshare.com/articles/dataset/DepMap_23Q4_Public/24667905",
+    c("https://figshare.com/articles/dataset/DepMap_24Q2_Public/25880521",
+      "https://figshare.com/articles/dataset/DepMap_23Q4_Public/24667905",
       "https://figshare.com/articles/dataset/DepMap_23Q2_Public/22765112",
       "https://figshare.com/articles/dataset/DepMap_22Q4_Public/21637199",
       "https://figshare.com/articles/dataset/DepMap_22Q2_Public/19700056",
@@ -39,7 +40,6 @@ dmsets <- tibble(url = depmapURLs) |>
 dmfiles <- DepMapFiles(dmsets$data)
 ## or dmfiles <- DepMapFiles(DepMapDataset(depmap$dataset_id))
 
-
-extdata <- "~/wrk/depmap/inst/extdata"
+extdata <- "~/repos/OS/depmap/inst/extdata"
 saveRDS(dmsets, file = file.path(extdata, "dmsets.rds"))
 saveRDS(dmfiles, file = file.path(extdata, "dmfiles.rds"))
