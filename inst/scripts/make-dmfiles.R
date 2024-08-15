@@ -40,7 +40,6 @@ dmsets <- tibble(url = depmapURLs) |>
 dmfiles <- DepMapFiles(dmsets$data)
 ## or dmfiles <- DepMapFiles(DepMapDataset(depmap$dataset_id))
 
-
-extdata <- "~/wrk/depmap/inst/extdata"
+extdata <- "~/repos/OS/depmap/inst/extdata"
 saveRDS(dmsets, file = file.path(extdata, "dmsets.rds"))
 saveRDS(dmfiles, file = file.path(extdata, "dmfiles.rds"))
