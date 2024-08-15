@@ -2,7 +2,7 @@
 ## (https://figshare.com/authors/Broad_DepMap/5514062) on the
 ## 15 August 2024
 depmapURLs <-
-    c("https://plus.figshare.com/articles/dataset/DepMap_24Q2_Public/25880521",
+    c("https://figshare.com/articles/dataset/DepMap_24Q2_Public/25880521",
       "https://figshare.com/articles/dataset/DepMap_23Q4_Public/24667905",
       "https://figshare.com/articles/dataset/DepMap_23Q2_Public/22765112",
       "https://figshare.com/articles/dataset/DepMap_22Q4_Public/21637199",
