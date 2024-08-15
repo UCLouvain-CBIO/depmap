@@ -1,3 +1,9 @@
+# depmap 1.19
+
+## Changes in version 1.19.0
+
+- New devel version.
+
 # depmap 1.17
 
 ## Changes in version 1.17.5
